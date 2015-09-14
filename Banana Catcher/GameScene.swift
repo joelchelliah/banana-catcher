@@ -4,6 +4,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let ground: Ground = Ground()
     let basketMan: BasketMan = BasketMan()
+    let monkey: EvilMonkey = EvilMonkey()
     
     var touching = false
     var touchLoc = CGPointMake(0, 0)
@@ -12,6 +13,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundColor = bgColor
         addGround()
         addBasketMan()
+        addEvilMonkey()
+        
+        invokeThrowBananas()
+        
     }
     
     override func update(currentTime: CFTimeInterval) {
@@ -40,12 +45,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addBasketMan() {
-        basketMan.position = CGPoint(x: CGRectGetMidX(self.frame), y: self.frame.height + 50)
+        basketMan.position = CGPoint(x: CGRectGetMidX(self.frame), y: ground.size.height + 10)
         addChild(basketMan)
     }
     
+    private func addEvilMonkey() {
+        monkey.position = CGPoint(x: CGRectGetMidX(self.frame), y: self.frame.height - 130)
+        addChild(monkey)
+    }
     
-    /* Move game elements */
+    
+    /* game element actions */
     
     private func moveBasketMan() {
         let dx = touchLoc.x - basketMan.position.x
@@ -54,5 +64,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(mag > 3.0) {
             basketMan.position.x += dx / mag * 5.0
         }
+    }
+    
+    private func invokeThrowBananas() {
+        let throwIt = SKAction.runBlock() { self.throwBanana() }
+        let wait = SKAction.waitForDuration(1.0)
+
+        runAction(SKAction.repeatActionForever(SKAction.sequence([throwIt, wait])))
+    }
+    
+    private func throwBanana() {
+        let banana: Banana = Banana()
+        banana.position = CGPoint(x: monkey.position.x, y: monkey.position.y)
+        addChild(banana)
+        
+        let throwRange = CGFloat(arc4random_uniform(11)) - 5.0
+        
+        banana.physicsBody?.velocity = CGVectorMake(0,0)
+        banana.physicsBody?.applyImpulse(CGVectorMake(throwRange, 10))
     }
 }
