@@ -21,6 +21,7 @@
 		A3A79FCC1BA6D9E1003C1F32 /* banana.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A79FCB1BA6D9E1003C1F32 /* banana.png */; };
 		A3A79FD31BA6DA61003C1F32 /* BananaRain.sks in Resources */ = {isa = PBXBuildFile; fileRef = A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */; };
 		A3A79FD41BA6DA61003C1F32 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A79FD21BA6DA61003C1F32 /* spark.png */; };
+		A3A79FD61BA6E22D003C1F32 /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A79FD51BA6E22D003C1F32 /* ground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		A3A79FCB1BA6D9E1003C1F32 /* banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banana.png; sourceTree = "<group>"; };
 		A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BananaRain.sks; sourceTree = "<group>"; };
 		A3A79FD21BA6DA61003C1F32 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		A3A79FD51BA6E22D003C1F32 /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		A3A79FC81BA6D646003C1F32 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A3A79FD51BA6E22D003C1F32 /* ground.png */,
 				A3A79FCB1BA6D9E1003C1F32 /* banana.png */,
 				A3A79FC91BA6D670003C1F32 /* newgamebtn.png */,
 			);
@@ -263,6 +266,7 @@
 				A3A79FD41BA6DA61003C1F32 /* spark.png in Resources */,
 				A3A79F9E1BA6D32A003C1F32 /* Assets.xcassets in Resources */,
 				A3A79F9C1BA6D32A003C1F32 /* Main.storyboard in Resources */,
+				A3A79FD61BA6E22D003C1F32 /* ground.png in Resources */,
 				A3A79FCC1BA6D9E1003C1F32 /* banana.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
