@@ -12,6 +12,10 @@ class Ground: SKSpriteNode {
         self.physicsBody?.usesPreciseCollisionDetection = false
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.affectedByGravity = false
+        
+        self.physicsBody?.categoryBitMask = CollisionCategories.Ground
+        self.physicsBody?.contactTestBitMask = CollisionCategories.Banana
+        self.physicsBody?.collisionBitMask = CollisionCategories.BasketMan | CollisionCategories.Banana
     }
     
     required init?(coder aDecoder: NSCoder) {

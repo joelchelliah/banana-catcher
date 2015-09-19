@@ -11,6 +11,9 @@ class EvilMonkey: SKSpriteNode {
         self.physicsBody?.dynamic = false
         self.physicsBody?.usesPreciseCollisionDetection = false
 
+        self.physicsBody?.categoryBitMask = CollisionCategories.EvilMonkey
+        self.physicsBody?.collisionBitMask = CollisionCategories.EdgeBody
+        
         animate()
     }
     

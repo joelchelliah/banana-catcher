@@ -27,6 +27,7 @@
 		A3A79FDE1BA705C4003C1F32 /* evil-monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A79FDD1BA705C4003C1F32 /* evil-monkey.png */; };
 		A3A79FE01BA706C5003C1F32 /* EvilMonkey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79FDF1BA706C5003C1F32 /* EvilMonkey.swift */; };
 		A3A79FE21BA70838003C1F32 /* Banana.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79FE11BA70838003C1F32 /* Banana.swift */; };
+		A3F33D861BAD381F0038FDFB /* CollisionCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		A3A79FDD1BA705C4003C1F32 /* evil-monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "evil-monkey.png"; sourceTree = "<group>"; };
 		A3A79FDF1BA706C5003C1F32 /* EvilMonkey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvilMonkey.swift; sourceTree = "<group>"; };
 		A3A79FE11BA70838003C1F32 /* Banana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banana.swift; sourceTree = "<group>"; };
+		A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionCategories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				A3A79FC81BA6D646003C1F32 /* images */,
 				A3A79F921BA6D32A003C1F32 /* AppDelegate.swift */,
 				A3A79F961BA6D32A003C1F32 /* GameScene.swift */,
+				A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */,
 				A3A79FD91BA6FE67003C1F32 /* BasketMan.swift */,
 				A3A79FDB1BA6FFDC003C1F32 /* Ground.swift */,
 				A3A79FDF1BA706C5003C1F32 /* EvilMonkey.swift */,
@@ -239,6 +242,7 @@
 				TargetAttributes = {
 					A3A79F8E1BA6D32A003C1F32 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 9NQ2459H97;
 					};
 					A3A79FA61BA6D32A003C1F32 = {
 						CreatedOnToolsVersion = 7.1;
@@ -312,6 +316,7 @@
 				A3A79F971BA6D32A003C1F32 /* GameScene.swift in Sources */,
 				A3A79FDC1BA6FFDC003C1F32 /* Ground.swift in Sources */,
 				A3A79FC51BA6D46A003C1F32 /* MenuScene.swift in Sources */,
+				A3F33D861BAD381F0038FDFB /* CollisionCategories.swift in Sources */,
 				A3A79F991BA6D32A003C1F32 /* GameViewController.swift in Sources */,
 				A3A79FDA1BA6FE67003C1F32 /* BasketMan.swift in Sources */,
 				A3A79FE01BA706C5003C1F32 /* EvilMonkey.swift in Sources */,
@@ -456,8 +461,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Banana Catcher/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cookiemagik.Banana-Catcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -468,8 +474,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Banana Catcher/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cookiemagik.Banana-Catcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -545,6 +552,7 @@
 				A3A79FBD1BA6D32A003C1F32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3A79FBE1BA6D32A003C1F32 /* Build configuration list for PBXNativeTarget "Banana CatcherTests" */ = {
 			isa = XCConfigurationList;
@@ -553,6 +561,7 @@
 				A3A79FC01BA6D32A003C1F32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3A79FC11BA6D32A003C1F32 /* Build configuration list for PBXNativeTarget "Banana CatcherUITests" */ = {
 			isa = XCConfigurationList;
@@ -561,6 +570,7 @@
 				A3A79FC31BA6D32A003C1F32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
