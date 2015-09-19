@@ -26,6 +26,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(currentTime: CFTimeInterval) {
+        monkey.move(frame.width)
+        
         if (touching) { moveBasketMan() }
     }
     
@@ -94,18 +96,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addGround() {
-        ground.position = CGPoint(x: CGRectGetMidX(self.frame), y: ground.size.height / 2 - 10)
+        ground.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height / 2 - 10)
         ground.zPosition = -999
         addChild(ground)
     }
     
     private func addBasketMan() {
-        basketMan.position = CGPoint(x: CGRectGetMidX(self.frame), y: ground.size.height + 10)
+        basketMan.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height + 10)
         addChild(basketMan)
     }
     
     private func addEvilMonkey() {
-        monkey.position = CGPoint(x: CGRectGetMidX(self.frame), y: self.frame.height - 130)
+        monkey.position = CGPoint(x: CGRectGetMidX(frame), y: frame.height - 130)
         addChild(monkey)
     }
     
@@ -122,8 +124,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func invokeThrowBananas() {
+        let waitTime = 2.0 - (Double(score) * 0.1)
         let throwIt = SKAction.runBlock() { self.throwBanana() }
-        let wait = SKAction.waitForDuration(1.0)
+        let wait = SKAction.waitForDuration(waitTime)
 
         runAction(SKAction.repeatActionForever(SKAction.sequence([throwIt, wait])))
     }
@@ -136,7 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let throwRange = CGFloat(arc4random_uniform(13)) - 6.0
         
         banana.physicsBody?.velocity = CGVectorMake(0,0)
-        banana.physicsBody?.applyImpulse(CGVectorMake(throwRange, 10))
+        banana.physicsBody?.applyImpulse(CGVectorMake(throwRange, 8))
     }
     
     private func incrementScore() {
