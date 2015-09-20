@@ -26,7 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         monkey.move(frame.width)
         if monkey.canThrowBanana() { throwBanana() }
         
-        if (touching) { moveBasketMan() }
+        if (touching) { basketMan.move(touchLoc) }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -111,15 +111,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     /* Game element actions */
-    
-    private func moveBasketMan() {
-        let dx = touchLoc.x - basketMan.position.x
-        let mag = abs(dx)
-        
-        if(mag > 3.0) {
-            basketMan.position.x += dx / mag * 5.0
-        }
-    }
     
     private func throwBanana() {
         let banana: Banana = Banana()

@@ -3,6 +3,8 @@ import SpriteKit
 
 class BasketMan: SKSpriteNode {
 
+    private let velocity: CGFloat = 6.0
+    
     init() {
         let texture = SKTexture(imageNamed: "box")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
@@ -21,6 +23,15 @@ class BasketMan: SKSpriteNode {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func move(touch: CGPoint) {
+        let dx = touch.x - position.x
+        let mag = abs(dx)
+        
+        if(mag > 3.0) {
+            position.x += dx / mag * velocity
+        }
     }
     
     func collect() {
