@@ -20,13 +20,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addGround()
         addBasketMan()
         addEvilMonkey()
-        
-        invokeThrowBananas()
-        
     }
     
     override func update(currentTime: CFTimeInterval) {
         monkey.move(frame.width)
+        if monkey.canThrowBanana() { throwBanana() }
         
         if (touching) { moveBasketMan() }
     }
@@ -123,14 +121,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    private func invokeThrowBananas() {
-        let waitTime = 2.0 - (Double(score) * 0.1)
-        let throwIt = SKAction.runBlock() { self.throwBanana() }
-        let wait = SKAction.waitForDuration(waitTime)
-
-        runAction(SKAction.repeatActionForever(SKAction.sequence([throwIt, wait])))
-    }
-    
     private func throwBanana() {
         let banana: Banana = Banana()
         banana.position = CGPoint(x: monkey.position.x, y: monkey.position.y)
@@ -144,5 +134,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private func incrementScore() {
         score += 1
+        if score % 2 == 0 {
+            monkey.enrage()
+        }
     }
 }

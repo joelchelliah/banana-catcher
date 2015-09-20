@@ -3,8 +3,10 @@ import SpriteKit
 
 class EvilMonkey: SKSpriteNode {
     
-    var direction: CGFloat = -1.0
-    let step: CGFloat = 1.0
+    private let step: CGFloat = 1.0
+    private var direction: CGFloat = -1.0
+    private var cooldown: Double = 2.0
+    private var canThrow: Bool = true
 
     init() {
         let texture = SKTexture(imageNamed: "evil-monkey")
@@ -29,6 +31,27 @@ class EvilMonkey: SKSpriteNode {
                 direction = -direction
         }
         position.x += direction * step
+    }
+    
+    func enrage() {
+        if cooldown > 0.5 {
+            cooldown -= 0.1
+        } else {
+            cooldown = 1.0
+        }
+    }
+    
+    func canThrowBanana() -> Bool {
+        let couldThrow = canThrow
+        if canThrow {
+            canThrow = false
+            NSTimer.scheduledTimerWithTimeInterval(cooldown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)
+        }
+        return couldThrow
+    }
+    
+    internal func updateCanThrow() {
+        canThrow = true
     }
     
     private func animate() {
