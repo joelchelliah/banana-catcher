@@ -35,7 +35,7 @@ class EvilMonkey: SKSpriteNode {
     
     func enrage() {
         if cooldown > 0.5 {
-            cooldown -= 0.1
+            cooldown -= 0.2
         } else {
             cooldown = 1.0
         }
