@@ -8,7 +8,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let ground: Ground = Ground()
     let basketMan: BasketMan = BasketMan()
     let monkey: EvilMonkey = EvilMonkey()
-    let scoreLabel = ScoreLabel()
+    let scoreLabel: ScoreLabel = ScoreLabel()
+    let lives: Lives = Lives()
+    
     var score: Int = 0
     
     var touching = false
@@ -20,6 +22,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundColor = bgColor
         adjustGravity()
         addScore()
+        addLives()
         addEdgeBody()
         addGround()
         addBasketMan()
@@ -76,7 +79,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
                 
-                if !banana.isSplat() { banana.goSplat() }
+                if !banana.isSplat() {
+                    banana.goSplat()
+                    decrementLives()
+                }
             }
             else {
                 print("Unexpected contant test: (\(b1), \(b2))")
@@ -95,6 +101,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private func addScore() {
         scoreLabel.position = CGPoint(x: 10, y: frame.height - 30)
         addChild(scoreLabel)
+    }
+    
+    private func addLives() {
+        lives.position = CGPoint(x: frame.width - lives.size.width, y: frame.height - 30)
+        addChild(lives)
     }
     
     private func addEdgeBody() {
@@ -139,5 +150,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if score % 2 == 0 {
             monkey.enrage()
         }
+    }
+    
+    private func decrementLives() {
+        lives.ouch()
+        
+        if lives.isEmpty() { gameOver() }
+    }
+    
+    private func gameOver() {
+        let scene = MenuScene(size: size)
+        scene.scaleMode = scaleMode
+        
+        let transitionType = SKTransition.flipVerticalWithDuration(0.5)
+        view?.presentScene(scene,transition: transitionType)
     }
 }
