@@ -26,7 +26,7 @@ class MenuScene: SKScene {
     }
     
     func addTitle() {
-        let title = RotatingText(fontNamed: "GillSans-Bold")
+        let title = RotatingText(fontNamed: gameFont)
         
         title.setTextFontSizeAndRotate("Banana Catcher", theFontSize: 30)
         title.position = CGPointMake(size.width/2,size.height/2 + 200)

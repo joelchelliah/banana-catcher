@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A396BB541BB6E517002F7231 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A396BB531BB6E517002F7231 /* ScoreLabel.swift */; settings = {ASSET_TAGS = (); }; };
 		A3A79F931BA6D32A003C1F32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79F921BA6D32A003C1F32 /* AppDelegate.swift */; };
 		A3A79F971BA6D32A003C1F32 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79F961BA6D32A003C1F32 /* GameScene.swift */; };
 		A3A79F991BA6D32A003C1F32 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79F981BA6D32A003C1F32 /* GameViewController.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A396BB531BB6E517002F7231 /* ScoreLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
 		A3A79F8F1BA6D32A003C1F32 /* Banana Catcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Banana Catcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3A79F921BA6D32A003C1F32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3A79F961BA6D32A003C1F32 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */,
 				A3A79FC41BA6D46A003C1F32 /* MenuScene.swift */,
 				A3A79FC61BA6D535003C1F32 /* RotatingText.swift */,
+				A396BB531BB6E517002F7231 /* ScoreLabel.swift */,
 				A3A79F9A1BA6D32A003C1F32 /* Main.storyboard */,
 				A3A79F9D1BA6D32A003C1F32 /* Assets.xcassets */,
 				A3A79F9F1BA6D32A003C1F32 /* LaunchScreen.storyboard */,
@@ -321,6 +324,7 @@
 				A3A79FDA1BA6FE67003C1F32 /* BasketMan.swift in Sources */,
 				A3A79FE01BA706C5003C1F32 /* EvilMonkey.swift in Sources */,
 				A3A79FE21BA70838003C1F32 /* Banana.swift in Sources */,
+				A396BB541BB6E517002F7231 /* ScoreLabel.swift in Sources */,
 				A3A79F931BA6D32A003C1F32 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,11 +1,14 @@
 import SpriteKit
 
+//TODO: move these into a globals file?
+let gameFont: String = "GillSans-Bold"
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let ground: Ground = Ground()
     let basketMan: BasketMan = BasketMan()
     let monkey: EvilMonkey = EvilMonkey()
-    
+    let scoreLabel = ScoreLabel()
     var score: Int = 0
     
     var touching = false
@@ -16,6 +19,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         backgroundColor = bgColor
         adjustGravity()
+        addScore()
         addEdgeBody()
         addGround()
         addBasketMan()
@@ -88,6 +92,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
     }
     
+    private func addScore() {
+        scoreLabel.position = CGPoint(x: 10, y: frame.height - 30)
+        addChild(scoreLabel)
+    }
+    
     private func addEdgeBody() {
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
         self.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
@@ -125,6 +134,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private func incrementScore() {
         score += 1
+        scoreLabel.text = "Score: \(score)"
+        
         if score % 2 == 0 {
             monkey.enrage()
         }
