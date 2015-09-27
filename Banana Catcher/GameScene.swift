@@ -148,9 +148,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func decrementLives() {
-        lives.ouch()
-        
-        if lives.isEmpty() { gameOver() }
+        if lives.isEmpty() {
+            gameOver()
+        }
+        else {
+            lives.ouch()
+        }
     }
     
     private func gameOver() {        

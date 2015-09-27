@@ -31,6 +31,13 @@ class Lives: SKSpriteNode {
     func ouch() {
         let heart = hearts.removeFirst()
         
-        heart.removeFromParent()
+        let fadeOutAction = SKAction.fadeOutWithDuration(0.2)
+        let fadeInAction = SKAction.fadeInWithDuration(0.2)
+        let fadeOutInAction = SKAction.repeatAction(SKAction.sequence([fadeOutAction,fadeInAction]), count: 2)
+        let removeHeartAction = SKAction.runBlock {
+            heart.removeFromParent()
+        }
+        
+        heart.runAction(SKAction.sequence([fadeOutInAction, fadeOutAction, removeHeartAction]))
     }
 }
