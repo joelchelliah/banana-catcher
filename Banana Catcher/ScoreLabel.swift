@@ -3,9 +3,9 @@ import SpriteKit
 
 class ScoreLabel: SKLabelNode {
 
-    override init() {
+    init(name: String = "Score", score: Int = 0) {
         super.init()
-        text = "Score: 0"
+        text = "\(name): \(score)"
         color = SKColor.whiteColor()
         fontName = gameFont
         fontSize = 22
@@ -15,5 +15,9 @@ class ScoreLabel: SKLabelNode {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setScore(score: Int) {
+        text = "Score: \(score)"
     }
 }

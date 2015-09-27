@@ -1,8 +1,5 @@
 import SpriteKit
 
-//TODO: move these into a globals file?
-let gameFont: String = "GillSans-Bold"
-
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let ground: Ground = Ground()
@@ -10,8 +7,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let monkey: EvilMonkey = EvilMonkey()
     let scoreLabel: ScoreLabel = ScoreLabel()
     let lives: Lives = Lives()
-    
-    var score: Int = 0
     
     var touching = false
     var touchLoc = CGPointMake(0, 0)
@@ -158,8 +153,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if lives.isEmpty() { gameOver() }
     }
     
-    private func gameOver() {
-        let scene = MenuScene(size: size)
+    private func gameOver() {        
+        let scene = GameOverScene(size: size)
         scene.scaleMode = scaleMode
         
         let transitionType = SKTransition.flipVerticalWithDuration(0.5)
