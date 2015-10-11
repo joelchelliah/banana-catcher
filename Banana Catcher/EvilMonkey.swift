@@ -7,6 +7,7 @@ class EvilMonkey: SKSpriteNode {
     private var direction: CGFloat = -1.0
     private var cooldown: Double = 2.0
     private var canThrow: Bool = true
+    private var victorious: Bool = false
 
     init() {
         let texture = SKTexture(imageNamed: "evil-monkey")
@@ -41,7 +42,13 @@ class EvilMonkey: SKSpriteNode {
         }
     }
     
+    func win() {
+        victorious = true
+    }
+    
     func canThrowBanana() -> Bool {
+        if victorious { return false }
+        
         let couldThrow = canThrow
         if canThrow {
             canThrow = false

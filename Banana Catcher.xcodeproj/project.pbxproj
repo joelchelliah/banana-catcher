@@ -45,6 +45,9 @@
 		A3C955921BCA895B000E6274 /* idle.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C955851BCA895B000E6274 /* idle.png */; settings = {ASSET_TAGS = (); }; };
 		A3C955951BCA90A5000E6274 /* banana.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C955941BCA90A5000E6274 /* banana.png */; settings = {ASSET_TAGS = (); }; };
 		A3C955981BCA943E000E6274 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C955971BCA943E000E6274 /* heart.png */; settings = {ASSET_TAGS = (); }; };
+		A3C9559B1BCACD91000E6274 /* banana_splat_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C955991BCACD91000E6274 /* banana_splat_1.png */; settings = {ASSET_TAGS = (); }; };
+		A3C9559C1BCACD91000E6274 /* banana_splat_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C9559A1BCACD91000E6274 /* banana_splat_2.png */; settings = {ASSET_TAGS = (); }; };
+		A3C9559E1BCACFCC000E6274 /* SplatBanana.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9559D1BCACFCC000E6274 /* SplatBanana.swift */; settings = {ASSET_TAGS = (); }; };
 		A3F33D861BAD381F0038FDFB /* CollisionCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -110,6 +113,9 @@
 		A3C955851BCA895B000E6274 /* idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = idle.png; path = images/heroes/box/idle.png; sourceTree = "<group>"; };
 		A3C955941BCA90A5000E6274 /* banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana.png; path = images/throwables/banana.png; sourceTree = "<group>"; };
 		A3C955971BCA943E000E6274 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = images/hud/heart.png; sourceTree = "<group>"; };
+		A3C955991BCACD91000E6274 /* banana_splat_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_1.png; path = images/throwables/banana_splat_1.png; sourceTree = "<group>"; };
+		A3C9559A1BCACD91000E6274 /* banana_splat_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_2.png; path = images/throwables/banana_splat_2.png; sourceTree = "<group>"; };
+		A3C9559D1BCACFCC000E6274 /* SplatBanana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplatBanana.swift; sourceTree = "<group>"; };
 		A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionCategories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +175,7 @@
 				A3A79FDB1BA6FFDC003C1F32 /* Ground.swift */,
 				A3A79FDF1BA706C5003C1F32 /* EvilMonkey.swift */,
 				A3A79FE11BA70838003C1F32 /* Banana.swift */,
+				A3C9559D1BCACFCC000E6274 /* SplatBanana.swift */,
 				A3A79F981BA6D32A003C1F32 /* GameViewController.swift */,
 				A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */,
 				A3A79FC41BA6D46A003C1F32 /* MenuScene.swift */,
@@ -248,6 +255,8 @@
 		A3C955931BCA9092000E6274 /* throwables */ = {
 			isa = PBXGroup;
 			children = (
+				A3C955991BCACD91000E6274 /* banana_splat_1.png */,
+				A3C9559A1BCACD91000E6274 /* banana_splat_2.png */,
 				A3C955941BCA90A5000E6274 /* banana.png */,
 			);
 			name = throwables;
@@ -366,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3A79FDE1BA705C4003C1F32 /* evil-monkey.png in Resources */,
+				A3C9559B1BCACD91000E6274 /* banana_splat_1.png in Resources */,
 				A3A79FD31BA6DA61003C1F32 /* BananaRain.sks in Resources */,
 				A3C9558B1BCA895B000E6274 /* catch_2.png in Resources */,
 				A3C9558C1BCA895B000E6274 /* catch_3.png in Resources */,
@@ -379,6 +389,7 @@
 				A3A79FCA1BA6D670003C1F32 /* newgamebtn.png in Resources */,
 				A3C955881BCA895B000E6274 /* blink_3.png in Resources */,
 				A3C955951BCA90A5000E6274 /* banana.png in Resources */,
+				A3C9559C1BCACD91000E6274 /* banana_splat_2.png in Resources */,
 				A3C9558D1BCA895B000E6274 /* catch_4.png in Resources */,
 				A3C955981BCA943E000E6274 /* heart.png in Resources */,
 				A3A79FD81BA6FD55003C1F32 /* box.png in Resources */,
@@ -423,6 +434,7 @@
 				A32A31FB1BB8114300A12214 /* GameOverScene.swift in Sources */,
 				A3A79FE01BA706C5003C1F32 /* EvilMonkey.swift in Sources */,
 				A3A79FE21BA70838003C1F32 /* Banana.swift in Sources */,
+				A3C9559E1BCACFCC000E6274 /* SplatBanana.swift in Sources */,
 				A396BB541BB6E517002F7231 /* ScoreLabel.swift in Sources */,
 				A32A31FF1BB81E3F00A12214 /* Label.swift in Sources */,
 				A3A79F931BA6D32A003C1F32 /* AppDelegate.swift in Sources */,

@@ -12,8 +12,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var touchLoc = CGPointMake(0, 0)
     
     override func didMoveToView(view: SKView) {
-        print("did move to view")
-        
         backgroundColor = bgColor
         adjustGravity()
         addBackgroundImage()
@@ -66,19 +64,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let banana = b1.node as! Banana
             
             if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
-                
-                if !banana.isSplat() {
-                    banana.removeFromParent()
-                    basketMan.collect()
-                    incrementScore()
-                }
+                banana.removeFromParent()
+                basketMan.collect()
+                incrementScore()
             }
             else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
-                
-                if !banana.isSplat() {
-                    banana.goSplat()
-                    decrementLives()
-                }
+                splat(banana)
+                decrementLives()
             }
             else {
                 print("Unexpected contant test: (\(b1), \(b2))")
@@ -145,6 +137,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         banana.physicsBody?.applyImpulse(CGVectorMake(throwRange, 8))
     }
     
+    private func splat(banana: Banana) {
+        let splatBanana = SplatBanana()
+        
+        splatBanana.position = CGPointMake(banana.position.x, ground.size.height + 5)
+        
+        addChild(splatBanana)
+        banana.removeFromParent()
+    }
+    
     private func incrementScore() {
         score += 1
         scoreLabel.text = "Score: \(score)"
@@ -156,7 +157,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private func decrementLives() {
         if lives.isEmpty() {
-            gameOver()
+            monkey.win()
+            
+            let wait = SKAction.waitForDuration(0.3)
+            let endGame = SKAction.runBlock { self.gameOver() }
+            
+            self.runAction(SKAction.sequence([wait, endGame]))
         }
         else {
             lives.ouch()
