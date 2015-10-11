@@ -4,10 +4,11 @@ import SpriteKit
 class BasketMan: SKSpriteNode {
 
     private let velocity: CGFloat = 6.0
+    private var blink_textures = [SKTexture]()
     private var catch_textures = [SKTexture]()
     
     init() {
-        let texture = SKTexture(imageNamed: "idle_1.png")
+        let texture = SKTexture(imageNamed: "idle.png")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
         self.physicsBody = SKPhysicsBody(texture: self.texture!,size:self.size)
@@ -38,17 +39,23 @@ class BasketMan: SKSpriteNode {
     
     func collect() {
         let catchAnim = SKAction.animateWithTextures(catch_textures, timePerFrame: 0.05)
-        let backToIdle = SKAction.runBlock { self.texture = SKTexture(imageNamed: "idle_1.png") }
         
-        self.runAction(SKAction.sequence([catchAnim, backToIdle]))
-    }
-    
-    private func loadTextures() {
-        for i in 1...7 {
-            catch_textures.append(SKTexture(imageNamed: "catch_\(i).png"))
-        }
+        self.runAction(catchAnim)
     }
     
     private func animate() {
+        let blinkAnim = SKAction.animateWithTextures(blink_textures, timePerFrame: 0.05)
+        let delay = SKAction.waitForDuration(1.0)
+        
+        self.runAction(SKAction.repeatActionForever(SKAction.sequence([blinkAnim, delay])))
+    }
+    
+    private func loadTextures() {
+        for i in 1...4 {
+            blink_textures.append(SKTexture(imageNamed: "blink_\(i).png"))
+        }
+        for i in 1...8 {
+            catch_textures.append(SKTexture(imageNamed: "catch_\(i).png"))
+        }
     }
 }
