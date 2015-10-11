@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A32A31FB1BB8114300A12214 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A31FA1BB8114300A12214 /* GameOverScene.swift */; settings = {ASSET_TAGS = (); }; };
 		A32A31FF1BB81E3F00A12214 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A31FE1BB81E3F00A12214 /* Label.swift */; settings = {ASSET_TAGS = (); }; };
+		A32A32011BB84BDC00A12214 /* Box 1.png in Resources */ = {isa = PBXBuildFile; fileRef = A32A32001BB84BDC00A12214 /* Box 1.png */; settings = {ASSET_TAGS = (); }; };
 		A396BB541BB6E517002F7231 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A396BB531BB6E517002F7231 /* ScoreLabel.swift */; settings = {ASSET_TAGS = (); }; };
 		A396BB561BB6E756002F7231 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = A396BB551BB6E756002F7231 /* heart.png */; settings = {ASSET_TAGS = (); }; };
 		A396BB581BB6E840002F7231 /* Lives.swift in Sources */ = {isa = PBXBuildFile; fileRef = A396BB571BB6E840002F7231 /* Lives.swift */; settings = {ASSET_TAGS = (); }; };
@@ -55,6 +56,7 @@
 /* Begin PBXFileReference section */
 		A32A31FA1BB8114300A12214 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		A32A31FE1BB81E3F00A12214 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		A32A32001BB84BDC00A12214 /* Box 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Box 1.png"; path = "images/Box 1.png"; sourceTree = "<group>"; };
 		A396BB531BB6E517002F7231 /* ScoreLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
 		A396BB551BB6E756002F7231 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		A396BB571BB6E840002F7231 /* Lives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lives.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		A3A79FC81BA6D646003C1F32 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A32A32001BB84BDC00A12214 /* Box 1.png */,
 				A396BB551BB6E756002F7231 /* heart.png */,
 				A3A79FDD1BA705C4003C1F32 /* evil-monkey.png */,
 				A3A79FD71BA6FD55003C1F32 /* box.png */,
@@ -298,6 +301,7 @@
 				A3A79FD31BA6DA61003C1F32 /* BananaRain.sks in Resources */,
 				A396BB561BB6E756002F7231 /* heart.png in Resources */,
 				A3A79FA11BA6D32A003C1F32 /* LaunchScreen.storyboard in Resources */,
+				A32A32011BB84BDC00A12214 /* Box 1.png in Resources */,
 				A3A79FCA1BA6D670003C1F32 /* newgamebtn.png in Resources */,
 				A3A79FD81BA6FD55003C1F32 /* box.png in Resources */,
 				A3A79F9E1BA6D32A003C1F32 /* Assets.xcassets in Resources */,

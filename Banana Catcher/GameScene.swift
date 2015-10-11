@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         backgroundColor = bgColor
         adjustGravity()
+        addBackgroundImage()
         addScore()
         addLives()
         addEdgeBody()
@@ -93,6 +94,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
     }
     
+    private func addBackgroundImage() {
+        let img = SKSpriteNode(imageNamed: "ground.png")
+        img.position = CGPointMake(CGRectGetMidX(frame), img.size.height / 2)
+        img.zPosition = -999
+        addChild(img)
+    }
+    
     private func addScore() {
         scoreLabel.position = CGPoint(x: 10, y: frame.height - 30)
         addChild(scoreLabel)
@@ -109,8 +117,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addGround() {
-        ground.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height / 2 - 10)
-        ground.zPosition = -999
+        ground.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height / 2)
         addChild(ground)
     }
     

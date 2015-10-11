@@ -4,10 +4,10 @@ import SpriteKit
 class Ground: SKSpriteNode {
 
     init() {
-        let texture = SKTexture(imageNamed: "ground")
-        super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
+        let groundSize = CGSizeMake(400, 145)
+        super.init(texture: nil, color: SKColor.clearColor(), size: groundSize)
 
-        self.physicsBody = SKPhysicsBody(texture: self.texture!,size:self.size)
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: groundSize)
         self.physicsBody?.dynamic = false
         self.physicsBody?.usesPreciseCollisionDetection = false
         self.physicsBody?.allowsRotation = false

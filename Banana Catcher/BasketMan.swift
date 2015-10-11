@@ -6,7 +6,7 @@ class BasketMan: SKSpriteNode {
     private let velocity: CGFloat = 6.0
     
     init() {
-        let texture = SKTexture(imageNamed: "box")
+        let texture = SKTexture(imageNamed: "Box 1")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
         self.physicsBody = SKPhysicsBody(texture: self.texture!,size:self.size)
