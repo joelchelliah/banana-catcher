@@ -4,9 +4,10 @@ import SpriteKit
 class BasketMan: SKSpriteNode {
 
     private let velocity: CGFloat = 6.0
+    private var catch_textures = [SKTexture]()
     
     init() {
-        let texture = SKTexture(imageNamed: "Box 1")
+        let texture = SKTexture(imageNamed: "idle_1.png")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
         self.physicsBody = SKPhysicsBody(texture: self.texture!,size:self.size)
@@ -18,6 +19,7 @@ class BasketMan: SKSpriteNode {
         self.physicsBody?.contactTestBitMask = CollisionCategories.Banana
         self.physicsBody?.collisionBitMask = CollisionCategories.Ground | CollisionCategories.EdgeBody
         
+        loadTextures()
         animate()
     }
 
@@ -35,12 +37,16 @@ class BasketMan: SKSpriteNode {
     }
     
     func collect() {
-        let shrink1 = SKAction.scaleYTo(0.8, duration: 0.1)
-        let grow1 = SKAction.scaleYTo(1.25, duration: 0.1)
-        let shrink2 = SKAction.scaleYTo(0.9, duration: 0.05)
-        let grow2 = SKAction.scaleYTo(1.111111, duration: 0.05)
+        let catchAnim = SKAction.animateWithTextures(catch_textures, timePerFrame: 0.05)
+        let backToIdle = SKAction.runBlock { self.texture = SKTexture(imageNamed: "idle_1.png") }
         
-        self.runAction(SKAction.sequence([shrink1, grow1, shrink2, grow2]))
+        self.runAction(SKAction.sequence([catchAnim, backToIdle]))
+    }
+    
+    private func loadTextures() {
+        for i in 1...7 {
+            catch_textures.append(SKTexture(imageNamed: "catch_\(i).png"))
+        }
     }
     
     private func animate() {
