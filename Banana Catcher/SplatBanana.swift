@@ -18,7 +18,7 @@ class SplatBanana: SKSpriteNode {
         self.physicsBody?.categoryBitMask = CollisionCategories.Ignorable
         self.physicsBody?.collisionBitMask = CollisionCategories.Ground | CollisionCategories.EdgeBody
         
-        animate()
+        splat()
         decay()
     }
 
@@ -26,9 +26,14 @@ class SplatBanana: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func animate() {
+    
+    private func splat() {
         let textures = (1...5).map { SKTexture(imageNamed: "banana_splat_\($0).png") }
-        self.runAction(SKAction.animateWithTextures(textures, timePerFrame: 0.05))
+        
+        let sound = SKAction.playSoundFileNamed("splat.wav", waitForCompletion: false)
+        let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
+        
+        runAction(SKAction.sequence([sound, animation]))
     }
     
     private func decay() {

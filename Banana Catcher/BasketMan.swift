@@ -38,9 +38,10 @@ class BasketMan: SKSpriteNode {
     }
     
     func collect() {
-        let catchAnim = SKAction.animateWithTextures(catch_textures, timePerFrame: 0.05)
+        let sound = SKAction.playSoundFileNamed("catch.wav", waitForCompletion: false)
+        let animation = SKAction.animateWithTextures(catch_textures, timePerFrame: 0.05)
         
-        self.runAction(catchAnim)
+        self.runAction(SKAction.sequence([sound, animation]))
     }
     
     private func animate() {

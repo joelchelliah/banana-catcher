@@ -51,6 +51,9 @@
 		A3C9559B1BCACD91000E6274 /* banana_splat_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C955991BCACD91000E6274 /* banana_splat_1.png */; settings = {ASSET_TAGS = (); }; };
 		A3C9559C1BCACD91000E6274 /* banana_splat_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C9559A1BCACD91000E6274 /* banana_splat_2.png */; settings = {ASSET_TAGS = (); }; };
 		A3C9559E1BCACFCC000E6274 /* SplatBanana.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9559D1BCACFCC000E6274 /* SplatBanana.swift */; settings = {ASSET_TAGS = (); }; };
+		A3EEC5B61BD6AFBF00A1D133 /* catch.wav in Resources */ = {isa = PBXBuildFile; fileRef = A3EEC5B31BD6AFBF00A1D133 /* catch.wav */; settings = {ASSET_TAGS = (); }; };
+		A3EEC5B71BD6AFBF00A1D133 /* splat.wav in Resources */ = {isa = PBXBuildFile; fileRef = A3EEC5B41BD6AFBF00A1D133 /* splat.wav */; settings = {ASSET_TAGS = (); }; };
+		A3EEC5B81BD6AFBF00A1D133 /* throw.wav in Resources */ = {isa = PBXBuildFile; fileRef = A3EEC5B51BD6AFBF00A1D133 /* throw.wav */; settings = {ASSET_TAGS = (); }; };
 		A3F33D861BAD381F0038FDFB /* CollisionCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -122,6 +125,9 @@
 		A3C955991BCACD91000E6274 /* banana_splat_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_1.png; path = images/throwables/banana_splat_1.png; sourceTree = "<group>"; };
 		A3C9559A1BCACD91000E6274 /* banana_splat_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_2.png; path = images/throwables/banana_splat_2.png; sourceTree = "<group>"; };
 		A3C9559D1BCACFCC000E6274 /* SplatBanana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplatBanana.swift; sourceTree = "<group>"; };
+		A3EEC5B31BD6AFBF00A1D133 /* catch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = catch.wav; path = sounds/catch.wav; sourceTree = "<group>"; };
+		A3EEC5B41BD6AFBF00A1D133 /* splat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = splat.wav; path = sounds/splat.wav; sourceTree = "<group>"; };
+		A3EEC5B51BD6AFBF00A1D133 /* throw.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = throw.wav; path = sounds/throw.wav; sourceTree = "<group>"; };
 		A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionCategories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,6 +179,7 @@
 		A3A79F911BA6D32A003C1F32 /* Banana Catcher */ = {
 			isa = PBXGroup;
 			children = (
+				A3EEC5B21BD6AFAD00A1D133 /* sounds */,
 				A3A79FC81BA6D646003C1F32 /* images */,
 				A3A79F921BA6D32A003C1F32 /* AppDelegate.swift */,
 				A3A79F961BA6D32A003C1F32 /* GameScene.swift */,
@@ -277,6 +284,16 @@
 				A3C955971BCA943E000E6274 /* heart.png */,
 			);
 			name = hud;
+			sourceTree = "<group>";
+		};
+		A3EEC5B21BD6AFAD00A1D133 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				A3EEC5B31BD6AFBF00A1D133 /* catch.wav */,
+				A3EEC5B41BD6AFBF00A1D133 /* splat.wav */,
+				A3EEC5B51BD6AFBF00A1D133 /* throw.wav */,
+			);
+			name = sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +403,7 @@
 				A3A79FDE1BA705C4003C1F32 /* evil-monkey.png in Resources */,
 				A3C9559B1BCACD91000E6274 /* banana_splat_1.png in Resources */,
 				A3A79FD31BA6DA61003C1F32 /* BananaRain.sks in Resources */,
+				A3EEC5B81BD6AFBF00A1D133 /* throw.wav in Resources */,
 				A3C9558B1BCA895B000E6274 /* catch_2.png in Resources */,
 				A3C9558C1BCA895B000E6274 /* catch_3.png in Resources */,
 				A3C955911BCA895B000E6274 /* catch_8.png in Resources */,
@@ -396,6 +414,7 @@
 				A3C9558A1BCA895B000E6274 /* catch_1.png in Resources */,
 				A3A79FA11BA6D32A003C1F32 /* LaunchScreen.storyboard in Resources */,
 				A3A79FCA1BA6D670003C1F32 /* newgamebtn.png in Resources */,
+				A3EEC5B71BD6AFBF00A1D133 /* splat.wav in Resources */,
 				A3C955881BCA895B000E6274 /* blink_3.png in Resources */,
 				A3C955951BCA90A5000E6274 /* banana.png in Resources */,
 				A3194FCD1BCD7A1800FD0122 /* banana_splat_3.png in Resources */,
@@ -405,6 +424,7 @@
 				A3A79FD81BA6FD55003C1F32 /* box.png in Resources */,
 				A3C955861BCA895B000E6274 /* blink_1.png in Resources */,
 				A3194FCF1BCD7A1800FD0122 /* banana_splat_5.png in Resources */,
+				A3EEC5B61BD6AFBF00A1D133 /* catch.wav in Resources */,
 				A3C9558F1BCA895B000E6274 /* catch_6.png in Resources */,
 				A3A79F9E1BA6D32A003C1F32 /* Assets.xcassets in Resources */,
 				A3A79F9C1BA6D32A003C1F32 /* Main.storyboard in Resources */,
