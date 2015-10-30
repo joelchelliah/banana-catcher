@@ -3,10 +3,10 @@ import SpriteKit
 
 class EvilMonkey: SKSpriteNode {
     
-    private let step: CGFloat = 1.0
+    private var step: CGFloat = 1.0
     private var direction: CGFloat = -1.0
     private var cooldown: Double = 2.0
-    private var canThrow: Bool = true
+    private var canThrow: Bool = false
     private var victorious: Bool = false
     
     private var flyingTextures = [SKTexture]()
@@ -24,6 +24,7 @@ class EvilMonkey: SKSpriteNode {
         
         loadTextures()
         animate()
+        activateCooldown()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,17 +32,13 @@ class EvilMonkey: SKSpriteNode {
     }
     
     func move(range: CGFloat) {
-        let halfWidth = size.width / 2
-        
-        if (position.x > range - halfWidth) || (position.x < halfWidth) {
-                direction = -direction
-        }
-        position.x += direction * step
+        updateStep()
+        updatePosition(range)
     }
     
     func enrage() {
         if cooldown > 0.5 {
-            cooldown -= 0.2
+            cooldown -= 0.1
         } else {
             cooldown = 1.0
         }
@@ -57,14 +54,35 @@ class EvilMonkey: SKSpriteNode {
         let couldThrow = canThrow
         if canThrow {
             canThrow = false
-            NSTimer.scheduledTimerWithTimeInterval(cooldown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)
+            activateCooldown()
         }
         return couldThrow
     }
     
-    internal func updateCanThrow() {
-        canThrow = true
+    private func updateStep() {
+        if step < 1.0 {
+            if Int(arc4random_uniform(6)) == 1 {
+                step = CGFloat(arc4random_uniform(4))
+            }
+        } else { step -= 0.05 }
     }
+    
+    private func updatePosition(range: CGFloat) {
+        let halfWidth = size.width / 2
+        let safetyDistance: CGFloat = 0.5
+        
+        if (position.x > range - halfWidth) {
+            position.x = range - halfWidth - safetyDistance
+            direction = -direction
+        }
+        
+        if (position.x < halfWidth) {
+            position.x = halfWidth + safetyDistance
+            direction = -direction
+        }
+        position.x += direction * step
+    }
+    
     
     private func loadTextures() {
         flyingTextures = (1...8).map { SKTexture(imageNamed: "flying_\($0).png") }
@@ -74,5 +92,13 @@ class EvilMonkey: SKSpriteNode {
         let anim = SKAction.animateWithTextures(flyingTextures, timePerFrame: 0.06)
         
         self.runAction(SKAction.repeatActionForever(anim))
+    }
+    
+    private func activateCooldown() {
+        NSTimer.scheduledTimerWithTimeInterval(cooldown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)
+    }
+    
+    private func updateCanThrow() {
+        canThrow = true
     }
 }
