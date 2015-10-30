@@ -8,9 +8,11 @@ class EvilMonkey: SKSpriteNode {
     private var cooldown: Double = 2.0
     private var canThrow: Bool = true
     private var victorious: Bool = false
+    
+    private var flyingTextures = [SKTexture]()
 
     init() {
-        let texture = SKTexture(imageNamed: "evil-monkey")
+        let texture = SKTexture(imageNamed: "flying_1.png")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
         self.physicsBody = SKPhysicsBody(texture: self.texture!,size:self.size)
@@ -20,6 +22,7 @@ class EvilMonkey: SKSpriteNode {
         self.physicsBody?.categoryBitMask = CollisionCategories.EvilMonkey
         self.physicsBody?.collisionBitMask = CollisionCategories.EdgeBody
         
+        loadTextures()
         animate()
     }
     
@@ -28,7 +31,9 @@ class EvilMonkey: SKSpriteNode {
     }
     
     func move(range: CGFloat) {
-        if (position.x > range - size.width) || (position.x < size.width) {
+        let halfWidth = size.width / 2
+        
+        if (position.x > range - halfWidth) || (position.x < halfWidth) {
                 direction = -direction
         }
         position.x += direction * step
@@ -61,6 +66,13 @@ class EvilMonkey: SKSpriteNode {
         canThrow = true
     }
     
+    private func loadTextures() {
+        flyingTextures = (1...8).map { SKTexture(imageNamed: "flying_\($0).png") }
+    }
+    
     private func animate() {
+        let anim = SKAction.animateWithTextures(flyingTextures, timePerFrame: 0.06)
+        
+        self.runAction(SKAction.repeatActionForever(anim))
     }
 }
