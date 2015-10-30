@@ -44,6 +44,15 @@ class BasketMan: SKSpriteNode {
         self.runAction(SKAction.sequence([sound, animation]))
     }
     
+    func ouch() {
+        let sound = SKAction.playSoundFileNamed("splat.wav", waitForCompletion: false)
+        let fadeOut = SKAction.fadeOutWithDuration(0.1)
+        let fadeIn = SKAction.fadeInWithDuration(0.1)
+        let fadeOutIn = SKAction.repeatAction(SKAction.sequence([fadeOut, fadeIn]), count: 3)
+        
+        self.runAction(SKAction.sequence([sound, fadeOutIn]))
+    }
+    
     private func animate() {
         let blinkAnim = SKAction.animateWithTextures(blink_textures, timePerFrame: 0.05)
         let delay = SKAction.waitForDuration(1.0)

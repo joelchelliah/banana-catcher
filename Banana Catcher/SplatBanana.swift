@@ -3,11 +3,13 @@ import SpriteKit
 
 class SplatBanana: SKSpriteNode {
 
-    init() {
+    init(pos: CGPoint) {
         let direction = CGFloat([-1.0, 1.0][Int(arc4random_uniform(2))])
         let texture = SKTexture(imageNamed: "banana_splat_\(1)")
 
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
+        
+        self.position = pos
         self.xScale *= direction
         
         self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.size)

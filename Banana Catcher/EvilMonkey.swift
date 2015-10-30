@@ -3,14 +3,24 @@ import SpriteKit
 
 class EvilMonkey: SKSpriteNode {
     
+    private var flyingTextures = [SKTexture]()
+    
+    // Movement
     private var step: CGFloat = 1.0
     private var direction: CGFloat = -1.0
+    
+    // Throw
     private var cooldown: Double = 2.0
     private var canThrow: Bool = false
+    
+    // Coconut
+    private let coconutFactorDefault: Int = 0;
+    private let coconutFactorInc: Int = 10;
+    private var coconutFactor: Int = 0;
+    
+    
     private var victorious: Bool = false
     
-    private var flyingTextures = [SKTexture]()
-
     init() {
         let texture = SKTexture(imageNamed: "flying_1.png")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
@@ -36,6 +46,18 @@ class EvilMonkey: SKSpriteNode {
         updatePosition(range)
     }
     
+    func getTrowable() -> Throwable {
+        let diceRoll = Int(arc4random_uniform(100))
+        
+        if diceRoll < coconutFactor {
+            coconutFactor = coconutFactorDefault
+            return Coconut()
+        } else {
+            coconutFactor += coconutFactorInc
+            return Banana()
+        }
+    }
+    
     func enrage() {
         if cooldown > 0.5 {
             cooldown -= 0.1
@@ -48,7 +70,7 @@ class EvilMonkey: SKSpriteNode {
         victorious = true
     }
     
-    func canThrowBanana() -> Bool {
+    func isAbleToThrow() -> Bool {
         if victorious { return false }
         
         let couldThrow = canThrow
@@ -98,7 +120,7 @@ class EvilMonkey: SKSpriteNode {
         NSTimer.scheduledTimerWithTimeInterval(cooldown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)
     }
     
-    private func updateCanThrow() {
+    internal func updateCanThrow() {
         canThrow = true
     }
 }

@@ -25,7 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(currentTime: CFTimeInterval) {
         monkey.move(frame.width)
-        if monkey.canThrowBanana() { throwBanana() }
+        monkeyThrowsSomething()
         
         if (touching) { basketMan.move(touchLoc) }
     }
@@ -69,12 +69,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 incrementScore()
             }
             else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
-                splat(banana)
+                throwableHitsGround(banana)
                 decrementLives()
             }
             else {
-                print("Unexpected contant test: (\(b1), \(b2))")
+                handleUnexpectedContactTest(b1, b2: b2)
             }
+        } else if b1.categoryBitMask & CollisionCategories.Coconut != 0  {
+            let coconut = b1.node as! Coconut
+            
+            if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
+                coconut.removeFromParent()
+                basketMan.ouch()
+                decrementLives()
+            }
+            else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
+                throwableHitsGround(coconut)
+            }
+            else {
+                handleUnexpectedContactTest(b1, b2: b2)
+            }
+            
         }
     }
     
@@ -126,26 +141,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     /* Game element actions */
     
-    private func throwBanana() {
-        let banana: Banana = Banana()
-        banana.position = CGPoint(x: monkey.position.x, y: monkey.position.y)
-        addChild(banana)
-        
-        let throwRange = CGFloat(arc4random_uniform(13)) - 6.0
-        
-        banana.physicsBody?.velocity = CGVectorMake(0,0)
-        banana.physicsBody?.applyImpulse(CGVectorMake(throwRange, 8))
+    private func monkeyThrowsSomething() {
+        if monkey.isAbleToThrow() {
+            
+            let item: Throwable = monkey.getTrowable()
+            let throwRange = CGFloat(arc4random_uniform(13)) - 6.0
+            
+            item.position = CGPoint(x: monkey.position.x, y: monkey.position.y)
+            addChild(item)
+
+            item.physicsBody?.velocity = CGVectorMake(0,0)
+            item.physicsBody?.applyImpulse(CGVectorMake(throwRange, 8))
+        }
     }
     
-    private func splat(banana: Banana) {
-        let splatBanana = SplatBanana()
-        
-        splatBanana.position = CGPointMake(banana.position.x, ground.size.height + 5)
-        
-        addChild(splatBanana)
-        banana.removeFromParent()
+    private func throwableHitsGround(item: Throwable) {
+        if let banana = item as? Banana {
+            let splatBanana = SplatBanana(pos: CGPointMake(banana.position.x, ground.size.height + 5))
+            
+            addChild(splatBanana)
+            banana.removeFromParent()
+        } else if let coconut = item as? Coconut {
+            coconut.decay()
+        } else {
+            print("Unexpected item (\(item)) hit the ground!")
+        }
     }
-    
+
     private func incrementScore() {
         score += 1
         scoreLabel.text = "Score: \(score)"
@@ -175,5 +197,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let transitionType = SKTransition.flipVerticalWithDuration(0.5)
         view?.presentScene(scene,transition: transitionType)
+    }
+    
+    private func handleUnexpectedContactTest(b1: SKPhysicsBody, b2: SKPhysicsBody) {
+        print("Unexpected contant test: (\(b1), \(b2))")
     }
 }
