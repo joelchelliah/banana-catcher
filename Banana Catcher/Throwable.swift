@@ -21,6 +21,10 @@ class Throwable: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func throwForceY() -> CGFloat {
+        fatalError("throwForce has not been overridden!")
+    }
+    
     
     private func getThrown() {
         let rotDir = [-1.0, 1.0][Int(arc4random_uniform(2))]

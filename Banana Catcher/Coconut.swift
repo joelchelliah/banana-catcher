@@ -12,11 +12,7 @@ class Coconut: Throwable {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func decay() {
-        let wait = SKAction.waitForDuration(1.0)
-        let fadeAway = SKAction.fadeAlphaTo(0.0, duration: 1.0)
-        let remove = SKAction.runBlock() { self.removeFromParent() }
-        
-        self.runAction(SKAction.sequence([wait, fadeAway, remove]))
+    override func throwForceY() -> CGFloat {
+        return 14.0
     }
 }

@@ -146,12 +146,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let item: Throwable = monkey.getTrowable()
             let throwRange = CGFloat(arc4random_uniform(13)) - 6.0
-            
-            item.position = CGPoint(x: monkey.position.x, y: monkey.position.y)
-            addChild(item)
 
+            item.position = CGPoint(x: monkey.position.x, y: monkey.position.y)
+            
+            addChild(item)
+            
             item.physicsBody?.velocity = CGVectorMake(0,0)
-            item.physicsBody?.applyImpulse(CGVectorMake(throwRange, 8))
+            item.physicsBody?.applyImpulse(CGVectorMake(throwRange, item.throwForceY()))
         }
     }
     
@@ -162,7 +163,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addChild(splatBanana)
             banana.removeFromParent()
         } else if let coconut = item as? Coconut {
-            coconut.decay()
+            let brokenut = Brokenut(pos: CGPointMake(coconut.position.x, ground.size.height + 5))
+            
+            addChild(brokenut)
+            coconut.removeFromParent()
         } else {
             print("Unexpected item (\(item)) hit the ground!")
         }

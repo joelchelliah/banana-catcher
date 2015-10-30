@@ -1,12 +1,12 @@
 import UIKit
 import SpriteKit
 
-class SplatBanana: SKSpriteNode {
-
+class Brokenut: SKSpriteNode {
+    
     init(pos: CGPoint) {
         let direction = CGFloat([-1.0, 1.0][Int(arc4random_uniform(2))])
-        let texture = SKTexture(imageNamed: "banana_splat_1")
-
+        let texture = SKTexture(imageNamed: "brokenut_1")
+        
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
         self.position = pos
@@ -23,14 +23,14 @@ class SplatBanana: SKSpriteNode {
         splat()
         decay()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
     private func splat() {
-        let textures = (1...5).map { SKTexture(imageNamed: "banana_splat_\($0).png") }
+        let textures = (1...10).map { SKTexture(imageNamed: "brokenut_\($0).png") }
         
         let sound = SKAction.playSoundFileNamed("splat.wav", waitForCompletion: false)
         let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
@@ -39,10 +39,9 @@ class SplatBanana: SKSpriteNode {
     }
     
     private func decay() {
-        let wait = SKAction.waitForDuration(1.0)
         let fadeAway = SKAction.fadeAlphaTo(0.0, duration: 1.0)
         let remove = SKAction.runBlock() { self.removeFromParent() }
         
-        self.runAction(SKAction.sequence([wait, fadeAway, remove]))
+        self.runAction(SKAction.sequence([fadeAway, remove]))
     }
 }

@@ -11,4 +11,8 @@ class Banana: Throwable {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func throwForceY() -> CGFloat {
+        return 8.0
+    }
 }
