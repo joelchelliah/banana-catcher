@@ -6,7 +6,8 @@ class Throwable: SKSpriteNode {
     init(texture: SKTexture, size: CGSize,  categoryBitMask: UInt32) {
         super.init(texture: texture, color: SKColor.clearColor(), size: size)
         
-        self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.size)
+        //self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.size)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.height/2)
         self.physicsBody?.dynamic = true
         self.physicsBody?.usesPreciseCollisionDetection = false
         

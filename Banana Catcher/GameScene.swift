@@ -102,10 +102,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addBackgroundImage() {
-        let img = SKSpriteNode(imageNamed: "ground.png")
-        img.position = CGPointMake(CGRectGetMidX(frame), img.size.height / 2)
-        img.zPosition = -999
-        addChild(img)
+        let background = SKSpriteNode(imageNamed: "background.png")
+        background.position = CGPointMake(CGRectGetMidX(frame), background.size.height / 2)
+        background.zPosition = -999
+        addChild(background)
     }
     
     private func addScore() {
