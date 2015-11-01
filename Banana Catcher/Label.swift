@@ -3,10 +3,9 @@ import SpriteKit
 
 class Label: SKLabelNode {
     
-    init(name: String, size: CGFloat = 30, x: CGFloat, y: CGFloat) {
+    init(name: String, size: CGFloat = 30, x: CGFloat, y: CGFloat, color: SKColor = SKColor.whiteColor()) {
         super.init()
         horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
-        color = SKColor.whiteColor()
         fontName = gameFont
         text = name
         fontSize = size

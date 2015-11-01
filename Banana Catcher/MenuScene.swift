@@ -69,10 +69,18 @@ class MenuScene: SKScene {
     }
     
     private func addStartBtn() {
-        let startGameButton = SKSpriteNode(imageNamed: "newgamebtn")
+        let button = SKSpriteNode(imageNamed: "play_button.png")
         
-        startGameButton.position = CGPointMake(size.width / 2, size.height - 200)
-        startGameButton.name = newGameNode
-        addChild(startGameButton)
+        button.position = CGPointMake(size.width / 2, size.height - 250)
+        button.name = newGameNode
+        
+        let rotSequence = SKAction.sequence([
+            SKAction.rotateByAngle(0.1, duration: 2),
+            SKAction.rotateByAngle(-0.2, duration: 4),
+            SKAction.rotateByAngle(0.1, duration: 2)])
+        
+        button.runAction(SKAction.repeatActionForever(rotSequence))
+        
+        addChild(button)
     }
 }
