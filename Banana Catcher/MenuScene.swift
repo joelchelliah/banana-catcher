@@ -7,7 +7,11 @@ class MenuScene: SKScene {
     let ground: Ground = Ground()
     let basketMan: BasketMan = BasketMan()
     
+    private var menuTitleTextures = [SKTexture]()
+    
     override func didMoveToView(view: SKView) {
+        loadTextures()
+        
         backgroundColor = bgColor
         addBackground()
         addGround()
@@ -60,11 +64,14 @@ class MenuScene: SKScene {
     }
     
     private func addTitle() {
-        let title = RotatingText(fontNamed: gameFont)
+        let title = SKSpriteNode(imageNamed: "menu_title_19.png")
         
-        title.setTextFontSizeAndRotate("Banana Catcher", theFontSize: 30)
-        title.position = CGPointMake(size.width / 2, size.height - 100)
-        title.fontColor = UIColor.blackColor()
+        title.position = CGPointMake(size.width / 2, size.height - 50)
+        
+        let delay = SKAction.waitForDuration(2.0)
+        let anim = SKAction.animateWithTextures(menuTitleTextures, timePerFrame: 0.05)
+
+        title.runAction(SKAction.repeatActionForever(SKAction.sequence([delay, anim])))
         addChild(title)
     }
     
@@ -74,13 +81,19 @@ class MenuScene: SKScene {
         button.position = CGPointMake(size.width / 2, size.height - 250)
         button.name = newGameNode
         
-        let rotSequence = SKAction.sequence([
+        let sequence = SKAction.sequence([
             SKAction.rotateByAngle(0.1, duration: 2),
             SKAction.rotateByAngle(-0.2, duration: 4),
             SKAction.rotateByAngle(0.1, duration: 2)])
         
-        button.runAction(SKAction.repeatActionForever(rotSequence))
+        button.runAction(SKAction.repeatActionForever(sequence))
         
         addChild(button)
+    }
+    
+    private func loadTextures() {
+        for i in 1...19 {
+            menuTitleTextures.append(SKTexture(imageNamed: "menu_title_\(i).png"))
+        }
     }
 }

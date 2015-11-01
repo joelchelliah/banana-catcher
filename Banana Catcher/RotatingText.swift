@@ -12,6 +12,6 @@ class RotatingText: SKLabelNode {
             SKAction.rotateByAngle(-0.2, duration: 6),
             SKAction.rotateByAngle(0.1, duration: 3)])
         
-        self.runAction(SKAction.repeatActionForever(rotSequence))
+        //self.runAction(SKAction.repeatActionForever(rotSequence))
     }
 }
