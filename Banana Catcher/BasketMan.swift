@@ -4,8 +4,10 @@ import SpriteKit
 class BasketMan: SKSpriteNode {
 
     private let velocity: CGFloat = 6.0
-    private var blink_textures = [SKTexture]()
-    private var catch_textures = [SKTexture]()
+    
+    private var blinkTextures = [SKTexture]()
+    private var catchTextures = [SKTexture]()
+    private var ouchTextures = [SKTexture]()
     
     init() {
         let texture = SKTexture(imageNamed: "idle.png")
@@ -39,33 +41,32 @@ class BasketMan: SKSpriteNode {
     
     func collect() {
         let sound = SKAction.playSoundFileNamed("catch.wav", waitForCompletion: false)
-        let animation = SKAction.animateWithTextures(catch_textures, timePerFrame: 0.05)
+        let animation = SKAction.animateWithTextures(catchTextures, timePerFrame: 0.05)
         
         self.runAction(SKAction.sequence([sound, animation]))
     }
     
     func ouch() {
         let sound = SKAction.playSoundFileNamed("splat.wav", waitForCompletion: false)
+        let animation = SKAction.animateWithTextures(ouchTextures, timePerFrame: 0.05)
+        
         let fadeOut = SKAction.fadeOutWithDuration(0.1)
         let fadeIn = SKAction.fadeInWithDuration(0.1)
         let fadeOutIn = SKAction.repeatAction(SKAction.sequence([fadeOut, fadeIn]), count: 3)
         
-        self.runAction(SKAction.sequence([sound, fadeOutIn]))
+        self.runAction(SKAction.sequence([sound, animation, fadeOutIn]))
     }
     
     private func animate() {
-        let blinkAnim = SKAction.animateWithTextures(blink_textures, timePerFrame: 0.05)
+        let blinkAnim = SKAction.animateWithTextures(blinkTextures, timePerFrame: 0.05)
         let delay = SKAction.waitForDuration(1.0)
         
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([blinkAnim, delay])))
     }
     
     private func loadTextures() {
-        for i in 1...4 {
-            blink_textures.append(SKTexture(imageNamed: "blink_\(i).png"))
-        }
-        for i in 1...8 {
-            catch_textures.append(SKTexture(imageNamed: "catch_\(i).png"))
-        }
+        blinkTextures = (1...4).map { SKTexture(imageNamed: "blink_\($0).png") }
+        catchTextures = (1...8).map { SKTexture(imageNamed: "catch_\($0).png") }
+        ouchTextures  = (1...9).map { SKTexture(imageNamed: "ouch_\($0).png") }
     }
 }
