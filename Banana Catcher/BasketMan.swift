@@ -5,13 +5,13 @@ class BasketMan: SKSpriteNode {
 
     private let velocity: CGFloat = 6.0
     
+    private var idleTexture = SKTexture(imageNamed: "idle.png")
     private var blinkTextures = [SKTexture]()
     private var catchTextures = [SKTexture]()
     private var ouchTextures = [SKTexture]()
     
     init() {
-        let texture = SKTexture(imageNamed: "idle.png")
-        super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
+        super.init(texture: idleTexture, color: SKColor.clearColor(), size: idleTexture.size())
         
         self.physicsBody = SKPhysicsBody(texture: self.texture!,size:self.size)
         self.physicsBody?.dynamic = true
@@ -58,10 +58,11 @@ class BasketMan: SKSpriteNode {
     }
     
     private func animate() {
-        let blinkAnim = SKAction.animateWithTextures(blinkTextures, timePerFrame: 0.05)
+        let blink = SKAction.animateWithTextures(blinkTextures, timePerFrame: 0.05)
         let delay = SKAction.waitForDuration(1.0)
+        let animation = SKAction.sequence([blink, delay, blink, blink, delay, delay])
         
-        self.runAction(SKAction.repeatActionForever(SKAction.sequence([blinkAnim, delay])))
+        self.runAction(SKAction.repeatActionForever(animation))
     }
     
     private func loadTextures() {
