@@ -86,9 +86,9 @@ class MenuScene: SKScene {
         button.name = newGameNode
         
         let sequence = SKAction.sequence([
-            SKAction.rotateByAngle(0.1, duration: 2),
-            SKAction.rotateByAngle(-0.2, duration: 4),
-            SKAction.rotateByAngle(0.1, duration: 2)])
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 8), duration: 2),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -12), duration: 3),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 1)])
         
         button.runAction(SKAction.repeatActionForever(sequence))
         
@@ -106,9 +106,9 @@ class MenuScene: SKScene {
         setSoundBtnTexture()
         
         let sequence = SKAction.sequence([
-            SKAction.rotateByAngle(-0.1, duration: 2),
-            SKAction.rotateByAngle(0.2, duration: 4),
-            SKAction.rotateByAngle(-0.1, duration: 2)])
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 2), duration: 1),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -4), duration: 2),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 2), duration: 1)])
         
         soundButton.runAction(SKAction.repeatActionForever(sequence))
         
@@ -119,15 +119,18 @@ class MenuScene: SKScene {
     /* Button actions */
     
     private func moveToGameScene() {
+        let transitionType = SKTransition.flipVerticalWithDuration(0.5)
         let scene = GameScene(size: size)
         scene.scaleMode = scaleMode
         
-        let transitionType = SKTransition.flipVerticalWithDuration(0.5)
+        playSound(self, name: "option_select.wav")
         view?.presentScene(scene,transition: transitionType)
     }
     
     private func toggleSound() {
         soundEnabled = !soundEnabled
+        
+        playSound(self, name: "option_select.wav")
         setSoundBtnTexture()
         
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -139,7 +142,13 @@ class MenuScene: SKScene {
     private func setSoundBtnTexture() {
         let textures = [true: "sound_on.png", false: "sound_off.png"]
         
-        soundButton.texture = SKTexture(imageNamed: textures[soundEnabled]!)
+        let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.2)
+        let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.2)
+        let setSound = SKAction.runBlock {
+            self.soundButton.texture = SKTexture(imageNamed: textures[soundEnabled]!)
+        }
+        
+        soundButton.runAction(SKAction.sequence([fadeOut, setSound, fadeIn]))
     }
     
     

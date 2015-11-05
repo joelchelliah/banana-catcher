@@ -28,11 +28,13 @@ class Throwable: SKSpriteNode {
     
     
     private func getThrown() {
-        let rotDir = [-1.0, 1.0][Int(arc4random_uniform(2))]
+        let rotDirection = [-1.0, 1.0][Int(arc4random_uniform(2))]
         let rotSpeed = 2.0 / Double(arc4random_uniform(5) + 1)
-        let rot = SKAction.rotateByAngle(CGFloat(rotDir * M_PI) * 2.0, duration: rotSpeed)
+        let rot = SKAction.rotateByAngle(CGFloat(rotDirection * M_PI) * 2.0, duration: rotSpeed)
         
-        playSound(self, name: "throw.wav")
+        let soundPitch = Int(arc4random_uniform(3)) + 1
+        
+        playSound(self, name: "throw_\(soundPitch).wav")
         self.runAction(SKAction.repeatActionForever(rot))
     }
 }

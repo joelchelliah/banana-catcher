@@ -4,7 +4,7 @@ import SpriteKit
 class Lives: SKSpriteNode {
     
     var hearts: [SKSpriteNode] = [SKSpriteNode]()
-    let numLives: Int = 1
+    let numLives: Int = 3
 
     init() {
         let texture = SKTexture(imageNamed: "heart")
