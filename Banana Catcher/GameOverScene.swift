@@ -40,7 +40,6 @@ class GameOverScene: SKScene {
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
         highScore = defaults.valueForKey("highScore")?.integerValue ?? 0
-        print(highScore)
         defaults.synchronize()
     
         if score > highScore {

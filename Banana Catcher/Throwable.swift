@@ -32,9 +32,7 @@ class Throwable: SKSpriteNode {
         let rotSpeed = 2.0 / Double(arc4random_uniform(5) + 1)
         let rot = SKAction.rotateByAngle(CGFloat(rotDir * M_PI) * 2.0, duration: rotSpeed)
         
-        let sound = SKAction.playSoundFileNamed("throw.wav", waitForCompletion: false)
-        let animation = SKAction.repeatActionForever(rot)
-        
-        self.runAction(SKAction.sequence([sound, animation]))
+        playSound(self, name: "throw.wav")
+        self.runAction(SKAction.repeatActionForever(rot))
     }
 }

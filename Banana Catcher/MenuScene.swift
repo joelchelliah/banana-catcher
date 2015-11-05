@@ -3,11 +3,14 @@ import SpriteKit
 
 class MenuScene: SKScene {
 
-    let newGameNode = "newGame"
-    let ground: Ground = Ground()
-    let basketMan: BasketMan = BasketMan()
+    private let newGameNode = "newGame"
+    private let soundNode = "toggleSound"
+    
+    private let ground: Ground = Ground()
+    private let soundButton: SKSpriteNode = SKSpriteNode(imageNamed: "sound_on.png")
     
     private var menuTitleTextures = [SKTexture]()
+    
     
     override func didMoveToView(view: SKView) {
         loadTextures()
@@ -18,18 +21,17 @@ class MenuScene: SKScene {
         addBasketMan()
         addTitle()
         addStartBtn()
+        addSoundBtn()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touchLocation = touches.first!.locationInNode(self)
         let touchedNode = self.nodeAtPoint(touchLocation)
         
-        if(touchedNode.name == newGameNode){
-            let scene = GameScene(size: size)
-            scene.scaleMode = scaleMode
-            
-            let transitionType = SKTransition.flipVerticalWithDuration(0.5)
-            view?.presentScene(scene,transition: transitionType)
+        if(touchedNode.name == newGameNode) {
+            moveToGameScene()
+        } else if(touchedNode.name == soundNode) {
+            toggleSound()
         }
     }
     
@@ -59,6 +61,8 @@ class MenuScene: SKScene {
     }
     
     private func addBasketMan() {
+        let basketMan: BasketMan = BasketMan()
+        
         basketMan.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height + 10)
         addChild(basketMan)
     }
@@ -90,6 +94,56 @@ class MenuScene: SKScene {
         
         addChild(button)
     }
+    
+    private func addSoundBtn() {
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        
+        soundEnabled = defaults.valueForKey("soundEnabled")?.boolValue ?? true
+        defaults.synchronize()
+
+        soundButton.position = CGPointMake(size.width / 2 - 100, size.height - 275)
+        soundButton.name = soundNode
+        setSoundBtnTexture()
+        
+        let sequence = SKAction.sequence([
+            SKAction.rotateByAngle(-0.1, duration: 2),
+            SKAction.rotateByAngle(0.2, duration: 4),
+            SKAction.rotateByAngle(-0.1, duration: 2)])
+        
+        soundButton.runAction(SKAction.repeatActionForever(sequence))
+        
+        addChild(soundButton)
+    }
+    
+    
+    /* Button actions */
+    
+    private func moveToGameScene() {
+        let scene = GameScene(size: size)
+        scene.scaleMode = scaleMode
+        
+        let transitionType = SKTransition.flipVerticalWithDuration(0.5)
+        view?.presentScene(scene,transition: transitionType)
+    }
+    
+    private func toggleSound() {
+        soundEnabled = !soundEnabled
+        setSoundBtnTexture()
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        defaults.setObject(soundEnabled, forKey: "soundEnabled")
+        defaults.synchronize()
+    }
+    
+    private func setSoundBtnTexture() {
+        let textures = [true: "sound_on.png", false: "sound_off.png"]
+        
+        soundButton.texture = SKTexture(imageNamed: textures[soundEnabled]!)
+    }
+    
+    
+    /* Misc */
     
     private func loadTextures() {
         for i in 1...19 {

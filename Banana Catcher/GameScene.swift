@@ -13,6 +13,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         backgroundColor = bgColor
+        score = 0
+        
         adjustGravity()
         addBackgroundImage()
         addScore()

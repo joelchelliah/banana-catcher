@@ -5,7 +5,13 @@ import SpriteKit
 let bgColor = UIColor(red: 102.0/255.0, green: 150.0/255.0, blue: 230.0/255.0, alpha: 1.0)
 let gameFont: String = "GillSans-Bold"
 var score: Int = 0
+var soundEnabled: Bool = true
 
+func playSound(node: SKSpriteNode, name: String) {
+    if soundEnabled {
+        node.runAction(SKAction.playSoundFileNamed(name, waitForCompletion: false))
+    }
+}
 
 class GameViewController: UIViewController {
     

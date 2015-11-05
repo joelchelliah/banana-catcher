@@ -3,15 +3,16 @@ import SpriteKit
 
 class Lives: SKSpriteNode {
     
-    var hearts = [SKSpriteNode]()
+    var hearts: [SKSpriteNode] = [SKSpriteNode]()
+    let numLives: Int = 1
 
     init() {
         let texture = SKTexture(imageNamed: "heart")
         let texSize = texture.size()
         
-        super.init(texture: nil, color: SKColor.clearColor(), size: CGSize(width: texSize.width * 3, height: texSize.height))
+        super.init(texture: nil, color: SKColor.clearColor(), size: CGSize(width: texSize.width * CGFloat(numLives), height: texSize.height))
         
-        for i in 0...2 {
+        for i in 0...(numLives - 1) {
             let heart = SKSpriteNode(texture: texture, color: SKColor.clearColor(), size: texSize)
             heart.position = CGPoint(x: CGFloat(i) * texSize.width, y: 0)
             
