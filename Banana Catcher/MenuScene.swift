@@ -8,6 +8,7 @@ class MenuScene: SKScene {
     
     private let ground: Ground = Ground()
     private let soundButton: SKSpriteNode = SKSpriteNode(imageNamed: "sound_on.png")
+    private let playButton: SKSpriteNode = SKSpriteNode(imageNamed: "play_button.png")
     
     private var menuTitleTextures = [SKTexture]()
     
@@ -80,19 +81,17 @@ class MenuScene: SKScene {
     }
     
     private func addStartBtn() {
-        let button = SKSpriteNode(imageNamed: "play_button.png")
-        
-        button.position = CGPointMake(size.width / 2, size.height - 225)
-        button.name = newGameNode
+        playButton.position = CGPointMake(size.width / 2, size.height - 225)
+        playButton.name = newGameNode
         
         let sequence = SKAction.sequence([
             SKAction.moveBy(CGVector.init(dx: 0.0, dy: 8), duration: 2),
             SKAction.moveBy(CGVector.init(dx: 0.0, dy: -12), duration: 3),
             SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 1)])
         
-        button.runAction(SKAction.repeatActionForever(sequence))
+        playButton.runAction(SKAction.repeatActionForever(sequence))
         
-        addChild(button)
+        addChild(playButton)
     }
     
     private func addSoundBtn() {
@@ -119,19 +118,22 @@ class MenuScene: SKScene {
     /* Button actions */
     
     private func moveToGameScene() {
-        let transitionType = SKTransition.flipVerticalWithDuration(0.5)
-        let scene = GameScene(size: size)
-        scene.scaleMode = scaleMode
+        let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.1)
+        let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
+        let sound = SKAction.runBlock { playSound(self, name: "option_select.wav") }
+        let transition = SKAction.runBlock {
+            let scene = GameScene(size: self.size)
+            scene.scaleMode = self.scaleMode
+            
+            self.view?.presentScene(scene, transition: SKTransition.flipVerticalWithDuration(0.5))
+        }
         
-        playSound(self, name: "option_select.wav")
-        view?.presentScene(scene,transition: transitionType)
+        playButton.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
     }
     
     private func toggleSound() {
         soundEnabled = !soundEnabled
-        
-        playSound(self, name: "option_select.wav")
-        setSoundBtnTexture()
+        setSoundBtnTexture(true)
         
         let defaults = NSUserDefaults.standardUserDefaults()
         
@@ -139,16 +141,21 @@ class MenuScene: SKScene {
         defaults.synchronize()
     }
     
-    private func setSoundBtnTexture() {
+    private func setSoundBtnTexture(fromPress: Bool = false) {
         let textures = [true: "sound_on.png", false: "sound_off.png"]
         
-        let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.2)
-        let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.2)
-        let setSound = SKAction.runBlock {
+        let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.1)
+        let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
+        let sound = SKAction.runBlock { playSound(self, name: "option_select.wav") }
+        let setTexture = SKAction.runBlock {
             self.soundButton.texture = SKTexture(imageNamed: textures[soundEnabled]!)
         }
         
-        soundButton.runAction(SKAction.sequence([fadeOut, setSound, fadeIn]))
+        if fromPress {
+            soundButton.runAction(SKAction.sequence([fadeOut, sound, setTexture, fadeIn]))
+        } else {
+            soundButton.runAction(setTexture)
+        }
     }
     
     
