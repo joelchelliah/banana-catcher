@@ -58,7 +58,9 @@ class BasketMan: SKSpriteNode {
     }
     
     private func animate() {
-        let blink = SKAction.animateWithTextures(blinkTextures, timePerFrame: 0.05)
+        let frames = [blinkTextures, [idleTexture]].flatMap { $0 }
+        
+        let blink = SKAction.animateWithTextures(frames, timePerFrame: 0.05)
         let delay = SKAction.waitForDuration(1.0)
         let animation = SKAction.sequence([blink, delay, blink, blink, delay, delay])
         
@@ -66,7 +68,7 @@ class BasketMan: SKSpriteNode {
     }
     
     private func loadTextures() {
-        blinkTextures = (1...4).map { SKTexture(imageNamed: "blink_\($0).png") }
+        blinkTextures = (1...3).map { SKTexture(imageNamed: "blink_\($0).png") }
         catchTextures = (1...10).map { SKTexture(imageNamed: "catch_\($0).png") }
         ouchTextures  = (1...10).map { SKTexture(imageNamed: "ouch_\($0).png") }
     }

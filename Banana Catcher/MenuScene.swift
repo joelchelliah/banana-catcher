@@ -62,7 +62,7 @@ class MenuScene: SKScene {
     }
     
     private func addBasketMan() {
-        let basketMan: BasketMan = BasketMan()
+        let basketMan: BasketManMenu = BasketManMenu()
         
         basketMan.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height + 10)
         addChild(basketMan)
