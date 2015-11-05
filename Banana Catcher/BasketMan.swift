@@ -66,7 +66,7 @@ class BasketMan: SKSpriteNode {
     
     private func loadTextures() {
         blinkTextures = (1...4).map { SKTexture(imageNamed: "blink_\($0).png") }
-        catchTextures = (1...8).map { SKTexture(imageNamed: "catch_\($0).png") }
-        ouchTextures  = (1...9).map { SKTexture(imageNamed: "ouch_\($0).png") }
+        catchTextures = (1...10).map { SKTexture(imageNamed: "catch_\($0).png") }
+        ouchTextures  = (1...10).map { SKTexture(imageNamed: "ouch_\($0).png") }
     }
 }

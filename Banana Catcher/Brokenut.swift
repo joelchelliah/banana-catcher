@@ -15,10 +15,10 @@ class Brokenut: Decayable {
     
     
     internal override func splat() {
-        let textures = (1...10).map { SKTexture(imageNamed: "brokenut_\($0).png") }
+        let textures = (1...13).map { SKTexture(imageNamed: "brokenut_\($0).png") }
         let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
         
-        playSound(self, name: "splat.wav")
+        playSound(self, name: "break.wav")
         runAction(animation)
     }
 }
