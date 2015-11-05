@@ -66,7 +66,7 @@ class MenuScene: SKScene {
     private func addTitle() {
         let title = SKSpriteNode(imageNamed: "menu_title_19.png")
         
-        title.position = CGPointMake(size.width / 2, size.height - 50)
+        title.position = CGPointMake(size.width / 2, size.height - 75)
         
         let delay = SKAction.waitForDuration(2.0)
         let anim = SKAction.animateWithTextures(menuTitleTextures, timePerFrame: 0.05)
@@ -78,7 +78,7 @@ class MenuScene: SKScene {
     private func addStartBtn() {
         let button = SKSpriteNode(imageNamed: "play_button.png")
         
-        button.position = CGPointMake(size.width / 2, size.height - 250)
+        button.position = CGPointMake(size.width / 2, size.height - 225)
         button.name = newGameNode
         
         let sequence = SKAction.sequence([
