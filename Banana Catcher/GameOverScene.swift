@@ -101,19 +101,16 @@ class GameOverScene: SKScene {
         let topDarkness = SKSpriteNode(imageNamed: "darkness_top.png")
         let bottomDarkness = SKSpriteNode(imageNamed: "darkness_bottom.png")
         
-        topDarkness.size.height *= 1.2
         topDarkness.position = CGPointMake(hWidth, size.height + topDarkness.size.height / 2)
-        topDarkness.zPosition = -600
-        
-        bottomDarkness.size.height *= 1.0
         bottomDarkness.position = CGPointMake(hWidth, -bottomDarkness.size.height / 2)
-        bottomDarkness.zPosition = -600
         
-        addChild(topDarkness)
-        addChild(bottomDarkness)
+        topDarkness.runAction(SKAction.moveToY(size.height - topDarkness.size.height / 2, duration: 3))
+        bottomDarkness.runAction(SKAction.moveToY(bottomDarkness.size.height / 2, duration: 3))
         
-        topDarkness.runAction(SKAction.moveToY(size.height - topDarkness.size.height / 2, duration: 5))
-        bottomDarkness.runAction(SKAction.moveToY(bottomDarkness.size.height / 2, duration: 5))
+        [topDarkness, bottomDarkness].forEach {
+            $0.zPosition = -600
+            addChild($0)
+        }
     }
     
     private func addTitle() {
@@ -145,17 +142,18 @@ class GameOverScene: SKScene {
     }
     
     private func addScoreBoard() {
-        let scoreBoard = SKShapeNode(rect: CGRectMake(0, 0, 280, 150), cornerRadius: 3.0)
-        scoreBoard.fillColor = SKColor.blackColor()
-        scoreBoard.position = CGPointMake(hWidth - scoreBoard.frame.size.width / 2, hHeight - 30)
+        let scoreBoard = SKShapeNode(rect: CGRectMake(0, 0, 280, 120), cornerRadius: 5.0)
+        scoreBoard.strokeColor = UIColor(netHex: 0x322C6D)
+        scoreBoard.fillColor = UIColor(netHex: 0x1C1739)
+        scoreBoard.position = CGPointMake(hWidth - scoreBoard.frame.size.width / 2, hHeight - 10)
         scoreBoard.zPosition = -400
         addChild(scoreBoard)
         
         let labelStartY = hHeight + 85
         let scoreLabel1 = Label(name: "Score:", size: 25, x: hWidth, y: labelStartY)
-        let scoreLabel2 = Label(name: score.description, size: 20, x: hWidth, y: labelStartY - 30)
-        let scoreLabel3 = Label(name: "High Score:", size: 25, x: hWidth, y: labelStartY - 70)
-        let scoreLabel4 = Label(name: highScore.description, size: 20, x: hWidth, y: labelStartY - 100)
+        let scoreLabel2 = Label(name: score.description, size: 20, x: hWidth, y: labelStartY - 25)
+        let scoreLabel3 = Label(name: "High Score:", size: 25, x: hWidth, y: labelStartY - 60)
+        let scoreLabel4 = Label(name: highScore.description, size: 20, x: hWidth, y: labelStartY - 85)
         
         [scoreLabel1, scoreLabel2, scoreLabel3, scoreLabel4].forEach {
             $0.alpha = 0

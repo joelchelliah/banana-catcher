@@ -3,7 +3,7 @@ import SpriteKit
 
 //TODO: move these into a globals file?
 let bgColor = UIColor(red: 102.0/255.0, green: 150.0/255.0, blue: 230.0/255.0, alpha: 1.0)
-let gameFont: String = "GillSans-Bold"
+let gameFont: String = "Chalkduster"
 var score: Int = 0
 var soundEnabled: Bool = true
 
@@ -19,8 +19,8 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scene = MenuScene(size: view.bounds.size)
-        //let scene = GameOverScene(size: view.bounds.size)
+        //let scene = MenuScene(size: view.bounds.size)
+        let scene = GameOverScene(size: view.bounds.size)
         
         let skView = view as! SKView
         skView.showsFPS = false
