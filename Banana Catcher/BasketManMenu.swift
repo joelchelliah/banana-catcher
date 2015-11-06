@@ -38,7 +38,7 @@ class BasketManMenu: SKSpriteNode {
         let blink = SKAction.animateWithTextures(blinkTextures, timePerFrame: 0.05)
         let delay = SKAction.waitForDuration(0.5)
         
-        return SKAction.sequence([blink, delay, delay, blink, blink, delay])
+        return SKAction.sequence([delay, blink, delay, delay, blink, blink, delay])
     }
     
     private func loadTextures() {

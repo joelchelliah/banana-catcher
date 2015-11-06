@@ -3,12 +3,18 @@ import SpriteKit
 
 class MenuScene: SKScene {
 
-    private let newGameNode = "newGame"
+    private let playNode = "newGame"
     private let soundNode = "toggleSound"
+    private let howToNode = "howTo"
+    private let noAdsNode = "noAds"
+    private let ratingNode = "rating"
     
     private let ground: Ground = Ground()
     private let soundButton: SKSpriteNode = SKSpriteNode(imageNamed: "sound_on.png")
+    private let howToButton: SKSpriteNode = SKSpriteNode(imageNamed: "how.png")
     private let playButton: SKSpriteNode = SKSpriteNode(imageNamed: "play_button.png")
+    private let noAdsButton: SKSpriteNode = SKSpriteNode(imageNamed: "no_ads.png")
+    private let ratingButton: SKSpriteNode = SKSpriteNode(imageNamed: "rate.png")
     
     private var menuTitleTextures = [SKTexture]()
     
@@ -21,21 +27,30 @@ class MenuScene: SKScene {
         addGround()
         addBasketMan()
         addTitle()
-        addStartBtn()
         addSoundBtn()
+        addTutorialBtn()
+        addPlayBtn()
+        addNoAdsBtn()
+        addRatingBtn()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touchLocation = touches.first!.locationInNode(self)
         let touchedNode = self.nodeAtPoint(touchLocation)
         
-        if(touchedNode.name == newGameNode) {
+        if(touchedNode.name == playNode) {
             moveToGameScene()
         } else if(touchedNode.name == soundNode) {
             toggleSound()
+        } else if(touchedNode.name == howToNode) {
+            moveToTutorialScene()
+        } else if(touchedNode.name == noAdsNode) {
+            toggleAds()
+        } else if(touchedNode.name == ratingNode) {
+            // TODO!
         }
     }
-    
+
     private func addBackground() {
         let xPos = CGRectGetMidX(frame)
         
@@ -80,27 +95,13 @@ class MenuScene: SKScene {
         addChild(title)
     }
     
-    private func addStartBtn() {
-        playButton.position = CGPointMake(size.width / 2, size.height - 225)
-        playButton.name = newGameNode
-        
-        let sequence = SKAction.sequence([
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 8), duration: 2),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -12), duration: 3),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 1)])
-        
-        playButton.runAction(SKAction.repeatActionForever(sequence))
-        
-        addChild(playButton)
-    }
-    
     private func addSoundBtn() {
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         
         soundEnabled = defaults.valueForKey("soundEnabled")?.boolValue ?? true
         defaults.synchronize()
-
-        soundButton.position = CGPointMake(size.width / 2 - 100, size.height - 275)
+        
+        soundButton.position = CGPointMake(size.width / 2 - 125, size.height - 330 + 2)
         soundButton.name = soundNode
         setSoundBtnTexture()
         
@@ -114,6 +115,87 @@ class MenuScene: SKScene {
         addChild(soundButton)
     }
     
+    private func addTutorialBtn() {
+        howToButton.position = CGPointMake(size.width / 2 - 90, size.height - 275 + 2)
+        howToButton.name = howToNode
+        
+        let sequence = SKAction.sequence([
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -4), duration: 2),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2)])
+        
+        howToButton.runAction(SKAction.repeatActionForever(sequence))
+        
+        addChild(howToButton)
+    }
+    
+    private func addPlayBtn() {
+        playButton.position = CGPointMake(size.width / 2, size.height - 225)
+        playButton.name = playNode
+        
+        let sequence = SKAction.sequence([
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 8), duration: 2),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -12), duration: 3),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 1)])
+        
+        playButton.runAction(SKAction.repeatActionForever(sequence))
+        
+        addChild(playButton)
+    }
+    
+    private func addNoAdsBtn() {
+        noAdsButton.position = CGPointMake(size.width / 2 + 90, size.height - 275 - 2)
+        noAdsButton.name = noAdsNode
+        
+        // Keep to make restore button
+        /*
+        let fontColor = UIColor(netHex: 0x4D290C)
+        let no = SKLabelNode(fontNamed: gameFont)
+        no.fontColor = fontColor
+        no.text = "No"
+        no.fontSize = 10
+        no.alpha = 0.8
+        no.position = CGPointMake(no.position.x, no.position.y + 2)
+        
+        
+        let ads = SKLabelNode(fontNamed: gameFont)
+        ads.fontColor = fontColor
+        ads.text = "Ads"
+        ads.fontSize = 10
+        ads.alpha = 0.8
+        ads.position = CGPointMake(ads.position.x, no.position.y - 10)
+        ads.zPosition = no.zPosition + 1
+        
+        
+        let text = SKNode()
+        
+        text.addChild(no)
+        text.addChild(ads)
+        text.position = CGPointMake(size.width / 2 + 90, size.height - 270 - 2)
+*/
+        let sequence = SKAction.sequence([
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -4), duration: 2)])
+        
+        noAdsButton.runAction(SKAction.repeatActionForever(sequence))
+        //text.runAction(SKAction.repeatActionForever(sequence))
+
+        addChild(noAdsButton)
+        //addChild(text)
+    }
+    
+    private func addRatingBtn() {
+        ratingButton.position = CGPointMake(size.width / 2 + 125, size.height - 330 - 2)
+        ratingButton.name = ratingNode
+        
+        let sequence = SKAction.sequence([
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1)])
+        
+        ratingButton.runAction(SKAction.repeatActionForever(sequence))
+        
+        addChild(ratingButton)
+    }
     
     /* Button actions */
     
@@ -129,6 +211,16 @@ class MenuScene: SKScene {
         }
         
         playButton.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
+    }
+    
+    private func moveToTutorialScene() {
+        // TODO!
+        playSound(self, name: "option_select.wav")
+    }
+    
+    private func toggleAds() {
+        // TODO!
+        playSound(self, name: "option_select.wav")
     }
     
     private func toggleSound() {
