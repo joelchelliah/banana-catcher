@@ -30,7 +30,7 @@ class GameOverScene: SKScene {
         addBackground()
         addBasketMan()
         addDarkness()
-        addTitle()
+        addGameOverLabel()
         addEvilMonkey()
         addScoreBoard()
         addHomeBtn()
@@ -113,18 +113,10 @@ class GameOverScene: SKScene {
         }
     }
     
-    private func addTitle() {
-        let title = SKLabelNode(fontNamed: gameFont)
-        title.text = "Game over!"
-        title.fontSize = 35
-        title.fontColor = UIColor.whiteColor()
-        title.alpha = 0
-        title.position = CGPointMake(hWidth, size.height - 55)
-        title.zPosition = -500
+    private func addGameOverLabel() {
+        let label = GameOverLabel(x: hWidth, y: size.height - 55, zPosition: -500)
         
-        addChild(title)
-        
-        title.runAction(SKAction.fadeAlphaTo(0.8, duration: 15))
+        addChild(label)
     }
 
     private func addEvilMonkey() {
@@ -143,24 +135,24 @@ class GameOverScene: SKScene {
     
     private func addScoreBoard() {
         let scoreBoard = SKShapeNode(rect: CGRectMake(0, 0, 280, 120), cornerRadius: 5.0)
-        scoreBoard.strokeColor = UIColor(netHex: 0x322C6D)
-        scoreBoard.fillColor = UIColor(netHex: 0x1C1739)
+        scoreBoard.strokeColor = UIColor(netHex: 0x344a79)
+        scoreBoard.fillColor = UIColor(netHex: 0x162031)
         scoreBoard.position = CGPointMake(hWidth - scoreBoard.frame.size.width / 2, hHeight - 10)
         scoreBoard.zPosition = -400
         addChild(scoreBoard)
         
-        let labelStartY = hHeight + 85
+        let labelStartY = hHeight + 80
         let scoreLabel1 = Label(name: "Score:", size: 25, x: hWidth, y: labelStartY)
-        let scoreLabel2 = Label(name: score.description, size: 20, x: hWidth, y: labelStartY - 25)
-        let scoreLabel3 = Label(name: "High Score:", size: 25, x: hWidth, y: labelStartY - 60)
-        let scoreLabel4 = Label(name: highScore.description, size: 20, x: hWidth, y: labelStartY - 85)
+        let scoreLabel2 = Label(name: score.description, size: 20, x: hWidth, y: labelStartY - 20)
+        let scoreLabel3 = Label(name: "High Score:", size: 25, x: hWidth, y: labelStartY - 55)
+        let scoreLabel4 = Label(name: highScore.description, size: 20, x: hWidth, y: labelStartY - 80)
         
         [scoreLabel1, scoreLabel2, scoreLabel3, scoreLabel4].forEach {
             $0.alpha = 0
             $0.zPosition = -300
-            addChild($0)
+            $0.runAction(SKAction.fadeAlphaTo(0.7, duration: 3))
             
-            $0.runAction(SKAction.fadeAlphaTo(0.8, duration: 3))
+            addChild($0)
         }
     }
     
@@ -234,6 +226,4 @@ class GameOverScene: SKScene {
         
         homeButton.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
     }
-    
-    
 }
