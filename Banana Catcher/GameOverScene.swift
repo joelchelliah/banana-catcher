@@ -31,8 +31,8 @@ class GameOverScene: SKScene {
         addBasketMan()
         addDarkness()
         addTitle()
-        addScoreBoard()
         addEvilMonkey()
+        addScoreBoard()
         addHomeBtn()
         addReplayBtn()
         addRatingBtn()
@@ -122,18 +122,31 @@ class GameOverScene: SKScene {
         title.fontSize = 35
         title.fontColor = UIColor.whiteColor()
         title.alpha = 0
-        title.position = CGPointMake(hWidth, size.height - 50)
+        title.position = CGPointMake(hWidth, size.height - 55)
         title.zPosition = -500
         
         addChild(title)
         
         title.runAction(SKAction.fadeAlphaTo(0.8, duration: 15))
     }
+
+    private func addEvilMonkey() {
+        let monkey = EvilMonkey()
+        monkey.position = CGPointMake(hWidth, size.height - 210)
+        monkey.zPosition = -450
+        monkey.alpha = 0.9
+        
+        let wait = SKAction.waitForDuration(3)
+        let appear = SKAction.moveToY(size.height - 120, duration: 2)
+        
+        monkey.runAction(SKAction.sequence([wait, appear]))
+        
+        addChild(monkey)
+    }
     
     private func addScoreBoard() {
         let scoreBoard = SKShapeNode(rect: CGRectMake(0, 0, 280, 150), cornerRadius: 3.0)
         scoreBoard.fillColor = SKColor.blackColor()
-        scoreBoard.alpha = 0.75
         scoreBoard.position = CGPointMake(hWidth - scoreBoard.frame.size.width / 2, hHeight - 30)
         scoreBoard.zPosition = -400
         addChild(scoreBoard)
@@ -151,15 +164,6 @@ class GameOverScene: SKScene {
             
             $0.runAction(SKAction.fadeAlphaTo(0.8, duration: 3))
         }
-    }
-    
-    private func addEvilMonkey() {
-        let monkey = EvilMonkey()
-        monkey.position = CGPointMake(hWidth, size.height - 140)
-        monkey.zPosition = -300
-        monkey.alpha = 0.9
-        
-        addChild(monkey)
     }
     
     private func addReplayBtn() {
