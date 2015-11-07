@@ -3,23 +3,12 @@ import SpriteKit
 
 class EvilMonkey: SKSpriteNode {
     
+    private var disabled: Bool = false
+    
     private var flyingTextures = [SKTexture]()
-    
-    // Movement
-    private var step: CGFloat = 1.0
-    private var direction: CGFloat = -1.0
-    
-    // Throw
-    private var cooldown: Double = 2.0
-    private var canThrow: Bool = false
-    
-    // Coconut
-    private let coconutFactorDefault: Int = 0;
-    private let coconutFactorInc: Int = 10;
-    private var coconutFactor: Int = 0;
-    
-    
-    private var victorious: Bool = false
+    private var angryStartTextures = [SKTexture]()
+    private var angryMidTextures = [SKTexture]()
+    private var angryEndTextures = [SKTexture]()
     
     init() {
         let texture = SKTexture(imageNamed: "flying_1.png")
@@ -41,44 +30,55 @@ class EvilMonkey: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func move(range: CGFloat) {
-        updateStep()
-        updatePosition(range)
-    }
     
-    func getTrowable() -> Throwable {
-        let diceRoll = Int(arc4random_uniform(100))
-        
-        if diceRoll < coconutFactor {
-            coconutFactor = coconutFactorDefault
-            return Coconut()
-        } else {
-            coconutFactor += coconutFactorInc
-            return Banana()
-        }
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Rage logic
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    private var rage: Int = 0
+    private var requiredRage: Int = 5
+    private var level: Int = 0
+    
+    func currentLevel() -> Int {
+        return level
     }
     
     func enrage() {
-        if cooldown > 0.5 {
-            cooldown -= 0.1
-        } else {
-            cooldown = 1.0
-        }
-    }
-    
-    func win() {
-        victorious = true
-    }
-    
-    func isAbleToThrow() -> Bool {
-        if victorious { return false }
+        rage += 1
         
-        let couldThrow = canThrow
-        if canThrow {
-            canThrow = false
-            activateCooldown()
+        if rage >= requiredRage {
+            rage = 0
+            requiredRage += Int(arc4random_uniform(2))
+            level += 1
         }
-        return couldThrow
+    }
+    
+    func throwTantrum() {
+        let angerIndex = Int(arc4random_uniform(3)) + 1
+        
+        playSound(self, name: "monkey_angry_\(angerIndex).wav")
+        
+        let start = SKAction.animateWithTextures(angryStartTextures, timePerFrame: 0.05)
+        let mid = SKAction.animateWithTextures(angryMidTextures, timePerFrame: 0.05)
+        let midExtended = SKAction.repeatAction(mid, count: 2 * level + 16)
+        let end = SKAction.animateWithTextures(angryEndTextures, timePerFrame: 0.05)
+        
+        self.runAction(SKAction.sequence([start, midExtended, end]))
+    }
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Movement logic
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    private var step: CGFloat = 1.0
+    private var direction: CGFloat = -1.0
+    
+    func move(range: CGFloat) {
+        if !disabled {
+            updateStep()
+            updatePosition(range)
+        }
     }
     
     private func updateStep() {
@@ -106,8 +106,65 @@ class EvilMonkey: SKSpriteNode {
     }
     
     
-    private func loadTextures() {
-        flyingTextures = (1...8).map { SKTexture(imageNamed: "flying_\($0).png") }
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Throwing and cooldown logic
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    private var canThrow: Bool = false
+    private var coconutFactor: Int = 0;
+    
+    func isAbleToThrow() -> Bool {
+        if disabled { return false }
+        
+        let couldThrow = canThrow
+        if canThrow {
+            canThrow = false
+            activateCooldown()
+        }
+        return couldThrow
+    }
+    
+    func getTrowable() -> Throwable {
+        let diceRoll = Int(arc4random_uniform(100))
+        
+        if diceRoll < coconutFactor {
+            coconutFactor = 0
+            return Coconut()
+        } else {
+            coconutFactor += coconutFactorInc()
+            return Banana()
+        }
+    }
+    
+    private func coconutFactorInc() -> Int {
+        let factor = 10
+        
+        return (1 + level) * factor
+    }
+    
+    private func activateCooldown() {
+        let factor = 0.2
+        let coolDown = 2.0 - Double(level) * factor
+        
+        NSTimer.scheduledTimerWithTimeInterval(coolDown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)
+    }
+    
+    internal func updateCanThrow() {
+        canThrow = true
+    }
+    
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Misc
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    func enable() {
+        disabled = false
+    }
+    
+    func disable() {
+        disabled = true
     }
     
     private func animate() {
@@ -116,11 +173,10 @@ class EvilMonkey: SKSpriteNode {
         self.runAction(SKAction.repeatActionForever(anim))
     }
     
-    private func activateCooldown() {
-        NSTimer.scheduledTimerWithTimeInterval(cooldown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)
-    }
-    
-    internal func updateCanThrow() {
-        canThrow = true
+    private func loadTextures() {
+        flyingTextures = (1...8).map { SKTexture(imageNamed: "flying_\($0).png") }
+        angryStartTextures = (1...7).map { SKTexture(imageNamed: "monkey_angry_\($0).png") }
+        angryMidTextures = (8...9).map { SKTexture(imageNamed: "monkey_angry_\($0).png") }
+        angryEndTextures = (10...15).map { SKTexture(imageNamed: "monkey_angry_\($0).png") }
     }
 }

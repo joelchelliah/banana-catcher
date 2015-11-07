@@ -2,6 +2,8 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    private var hWidth: CGFloat = 0.0
+    
     let ground: Ground = Ground()
     let basketMan: BasketMan = BasketMan()
     let monkey: EvilMonkey = EvilMonkey()
@@ -13,6 +15,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         backgroundColor = bgColor
+        hWidth = size.width / 2
         score = 0
         
         adjustGravity()
@@ -68,10 +71,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
                 banana.removeFromParent()
                 basketMan.collect()
-                incrementScore()
+                updateScore(GamePoints.BananaCaught)
+                updateMonkey()
             }
             else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
                 throwableHitsGround(banana)
+                updateScore(GamePoints.BananaMissed)
                 decrementLives()
             }
             else {
@@ -83,6 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
                 coconut.removeFromParent()
                 basketMan.ouch()
+                updateScore(GamePoints.CoconutCaught)
                 decrementLives()
             }
             else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
@@ -95,8 +101,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
-    /* Add game elements */
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Add game elements
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     private func adjustGravity() {
         self.physicsWorld.gravity = CGVectorMake(0, -5)
@@ -126,22 +133,65 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addGround() {
-        ground.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height / 2)
+        ground.position = CGPoint(x: hWidth, y: ground.size.height / 2)
         addChild(ground)
     }
     
     private func addBasketMan() {
-        basketMan.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height + 10)
+        basketMan.position = CGPoint(x: hWidth, y: ground.size.height + 10)
         addChild(basketMan)
     }
     
     private func addEvilMonkey() {
-        monkey.position = CGPoint(x: CGRectGetMidX(frame), y: frame.height - 130)
+        monkey.position = CGPoint(x: hWidth, y: frame.height - 130)
         addChild(monkey)
     }
     
     
-    /* Game element actions */
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Update states
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    private func updateScore(amount: Int) {
+        score += amount
+        scoreLabel.text = "Score: \(score)"
+    }
+    
+    private func updateMonkey() {
+        let level = monkey.currentLevel()
+        
+        monkey.enrage()
+        
+        if monkey.currentLevel() > level {
+            monkey.disable()
+            
+            monkey.throwTantrum()
+            
+            let center = SKAction.moveToX(hWidth, duration: 0.5)
+            let frenzy = monkeyCoconutFrenzy()
+            let enable = SKAction.runBlock { self.monkey.enable() }
+            
+            monkey.runAction(SKAction.sequence([center, frenzy, enable]))
+        }
+    }
+
+    private func decrementLives() {
+        if lives.isEmpty() {
+            monkey.disable()
+            
+            let wait = SKAction.waitForDuration(0.3)
+            let endGame = SKAction.runBlock { self.gameOver() }
+            
+            self.runAction(SKAction.sequence([wait, endGame]))
+        }
+        else {
+            lives.ouch()
+        }
+    }
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Triggerable actions
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     private func monkeyThrowsSomething() {
         if monkey.isAbleToThrow() {
@@ -155,6 +205,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             item.physicsBody?.velocity = CGVectorMake(0,0)
             item.physicsBody?.applyImpulse(CGVectorMake(throwRange, item.throwForceY()))
+        }
+    }
+    
+    private func monkeyCoconutFrenzy() -> SKAction {
+        let level = monkey.currentLevel()
+        let maxX = 14
+        let step = 2 * maxX / level
+        let numCoconuts = monkey.currentLevel() / 2 + 1
+        let fromLeft = (1...numCoconuts).map { createThrowAction(-maxX, step: step, i: $0) }
+        let fromRight = (1...numCoconuts).map { createThrowAction(maxX, step: -step, i: $0) }
+
+        let coconuts = [fromLeft, fromRight].flatMap { $0 }
+        let delays = (1...coconuts.count + 1).map { _ in SKAction.waitForDuration(0.5) }
+        let frenzy = zip(coconuts, delays).flatMap { [$0, $1] }
+        
+        return SKAction.sequence(frenzy)
+    }
+    
+    private func createThrowAction(start: Int, step: Int, i: Int) -> SKAction {
+    
+        return SKAction.runBlock {
+            
+            let throwX = CGFloat(start + step * i)
+            let coconut = Coconut()
+            coconut.position = self.monkey.position
+            
+            self.addChild(coconut)
+            
+            coconut.physicsBody?.velocity = CGVectorMake(0,0)
+            coconut.physicsBody?.applyImpulse(CGVectorMake(throwX, coconut.throwForceY()))
         }
     }
     
@@ -173,29 +253,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("Unexpected item (\(item)) hit the ground!")
         }
     }
-
-    private func incrementScore() {
-        score += 1
-        scoreLabel.text = "Score: \(score)"
-        
-        if score % 2 == 0 {
-            monkey.enrage()
-        }
-    }
     
-    private func decrementLives() {
-        if lives.isEmpty() {
-            monkey.win()
-            
-            let wait = SKAction.waitForDuration(0.3)
-            let endGame = SKAction.runBlock { self.gameOver() }
-            
-            self.runAction(SKAction.sequence([wait, endGame]))
-        }
-        else {
-            lives.ouch()
-        }
-    }
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Dun dun duuuun!
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     private func gameOver() {        
         let scene = GameOverScene(size: size)

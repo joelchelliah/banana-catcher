@@ -3,8 +3,8 @@ import SpriteKit
 
 class GameOverScene: SKScene {
     
-    var hWidth: CGFloat = 0.0
-    var hHeight: CGFloat = 0.0
+    private var hWidth: CGFloat = 0.0
+    private var hHeight: CGFloat = 0.0
     
     var highScore: Int = 0
     
@@ -95,6 +95,7 @@ class GameOverScene: SKScene {
         
         topDarkness.position = CGPointMake(hWidth, size.height + topDarkness.size.height / 2)
         bottomDarkness.position = CGPointMake(hWidth, -bottomDarkness.size.height / 2)
+        bottomDarkness.size.height = 0.9
         
         topDarkness.runAction(SKAction.moveToY(size.height - topDarkness.size.height / 2, duration: 3))
         bottomDarkness.runAction(SKAction.moveToY(bottomDarkness.size.height / 2 - 50, duration: 3))
@@ -118,7 +119,6 @@ class GameOverScene: SKScene {
         let scoreBoard = SKSpriteNode(imageNamed: "scoreboard_1.png")
         scoreBoard.position = CGPointMake(hWidth, labelStartY)
         scoreBoard.zPosition = -500
-        scoreBoard.alpha = 0.9
         addChild(scoreBoard)
         
         let animation = SKAction.animateWithTextures(scoreboardTextures, timePerFrame: 0.08)

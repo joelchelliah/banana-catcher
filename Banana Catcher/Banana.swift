@@ -13,6 +13,6 @@ class Banana: Throwable {
     }
     
     override func throwForceY() -> CGFloat {
-        return 8.0
+        return 12.0
     }
 }
