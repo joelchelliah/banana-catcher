@@ -5,8 +5,6 @@ class GameOverScene: SKScene {
     
     var hWidth: CGFloat = 0.0
     var hHeight: CGFloat = 0.0
-    var groundYOffset: CGFloat = -30.0
-    
     
     var highScore: Int = 0
     
@@ -17,18 +15,19 @@ class GameOverScene: SKScene {
     private let homeButton: SKSpriteNode = SKSpriteNode(imageNamed: "home.png")
     private let retryButton: SKSpriteNode = SKSpriteNode(imageNamed: "retry_button.png")
     private let ratingButton: SKSpriteNode = SKSpriteNode(imageNamed: "rate.png")
-    private let ground: Ground = Ground()
+    
+    private var tearsTextures = [SKTexture]()
+    private var sobTextures = [SKTexture]()
     
     override func didMoveToView(view: SKView) {
         backgroundColor = bgColor
         hWidth = size.width / 2
         hHeight = size.height / 2
         
+        loadTextures()
         updateHighScore()
         
-        addGround()
         addBackground()
-        addBasketMan()
         addDarkness()
         addGameOverLabel()
         addEvilMonkey()
@@ -63,11 +62,6 @@ class GameOverScene: SKScene {
             defaults.synchronize()
         }
     }
-
-    private func addGround() {
-        ground.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height / 2 + groundYOffset)
-        addChild(ground)
-    }
     
     private func addBackground() {
         let xPos = CGRectGetMidX(frame)
@@ -83,19 +77,19 @@ class GameOverScene: SKScene {
         addChild(rain)
         
         
-        let cliff = SKSpriteNode(imageNamed: "menu_ground.png")
-        cliff.position = CGPointMake(xPos, cliff.size.height / 2 + groundYOffset)
+        let cliff = SKSpriteNode(imageNamed: "game_over_tears_1.png")
+        cliff.position = CGPointMake(xPos, cliff.size.height / 2)
         cliff.zPosition = -700
+        
+        let tears = SKAction.animateWithTextures(tearsTextures, timePerFrame: 0.1)
+        let cry = SKAction.repeatAction(tears, count: 5)
+        let sob = SKAction.animateWithTextures(sobTextures, timePerFrame: 0.1)
+        
+        cliff.runAction(SKAction.repeatActionForever(SKAction.sequence([cry, sob])))
+        
         addChild(cliff)
     }
     
-    private func addBasketMan() {
-        let basketMan: BasketManMenu = BasketManMenu()
-        
-        basketMan.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height + 10)
-        basketMan.zPosition = -650
-        addChild(basketMan)
-    }
     
     private func addDarkness() {
         let topDarkness = SKSpriteNode(imageNamed: "darkness_top.png")
@@ -103,12 +97,14 @@ class GameOverScene: SKScene {
         
         topDarkness.position = CGPointMake(hWidth, size.height + topDarkness.size.height / 2)
         bottomDarkness.position = CGPointMake(hWidth, -bottomDarkness.size.height / 2)
+        bottomDarkness.size.height *= 0.8
         
         topDarkness.runAction(SKAction.moveToY(size.height - topDarkness.size.height / 2, duration: 3))
-        bottomDarkness.runAction(SKAction.moveToY(bottomDarkness.size.height / 2, duration: 3))
+        bottomDarkness.runAction(SKAction.moveToY(bottomDarkness.size.height / 2 - 40, duration: 3))
         
         [topDarkness, bottomDarkness].forEach {
             $0.zPosition = -600
+            
             addChild($0)
         }
     }
@@ -225,5 +221,10 @@ class GameOverScene: SKScene {
         }
         
         homeButton.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
+    }
+    
+    private func loadTextures() {
+        tearsTextures = (1...5).map { SKTexture(imageNamed: "game_over_tears_\($0).png") }
+        sobTextures = (1...10).map { SKTexture(imageNamed: "game_over_sob_\($0).png") }
     }
 }
