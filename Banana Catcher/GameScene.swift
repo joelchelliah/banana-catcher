@@ -69,14 +69,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let banana = b1.node as! Banana
             
             if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
+                let pos = banana.position
+                let points = GamePoints.BananaCaught
+                
                 banana.removeFromParent()
+                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
+                
                 basketMan.collect()
-                updateScore(GamePoints.BananaCaught)
+                updateScore(points)
                 updateMonkey()
             }
             else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
+                let pos = banana.position
+                let points = GamePoints.BananaMissed
+                
+                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
+                
                 throwableHitsGround(banana)
-                updateScore(GamePoints.BananaMissed)
+                updateScore(points)
                 decrementLives()
             }
             else {
@@ -86,9 +96,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let coconut = b1.node as! Coconut
             
             if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
+                let pos = coconut.position
+                let points = GamePoints.CoconutCaught
+                
                 coconut.removeFromParent()
+                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
+                
                 basketMan.ouch()
-                updateScore(GamePoints.CoconutCaught)
+                updateScore(points)
                 decrementLives()
             }
             else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
@@ -210,7 +225,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private func monkeyCoconutFrenzy() -> SKAction {
         let level = monkey.currentLevel()
-        let maxX = 14
+        let maxX = 11
         let step = 2 * maxX / level
         let numCoconuts = monkey.currentLevel() / 2 + 1
         let fromLeft = (1...numCoconuts).map { createThrowAction(-maxX, step: step, i: $0) }

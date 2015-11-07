@@ -13,6 +13,6 @@ class Coconut: Throwable {
     }
     
     override func throwForceY() -> CGFloat {
-        return 18.0
+        return 19.0
     }
 }
