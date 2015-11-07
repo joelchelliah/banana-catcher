@@ -18,6 +18,7 @@ class GameOverScene: SKScene {
     
     private var tearsTextures = [SKTexture]()
     private var sobTextures = [SKTexture]()
+    private var scoreboardTextures = [SKTexture]()
     
     override func didMoveToView(view: SKView) {
         backgroundColor = bgColor
@@ -30,11 +31,8 @@ class GameOverScene: SKScene {
         addBackground()
         addDarkness()
         addGameOverLabel()
-        addEvilMonkey()
         addScoreBoard()
-        addHomeBtn()
-        addReplayBtn()
-        addRatingBtn()
+        addButtons()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -97,10 +95,9 @@ class GameOverScene: SKScene {
         
         topDarkness.position = CGPointMake(hWidth, size.height + topDarkness.size.height / 2)
         bottomDarkness.position = CGPointMake(hWidth, -bottomDarkness.size.height / 2)
-        bottomDarkness.size.height *= 0.8
         
         topDarkness.runAction(SKAction.moveToY(size.height - topDarkness.size.height / 2, duration: 3))
-        bottomDarkness.runAction(SKAction.moveToY(bottomDarkness.size.height / 2 - 40, duration: 3))
+        bottomDarkness.runAction(SKAction.moveToY(bottomDarkness.size.height / 2 - 50, duration: 3))
         
         [topDarkness, bottomDarkness].forEach {
             $0.zPosition = -600
@@ -114,30 +111,21 @@ class GameOverScene: SKScene {
         
         addChild(label)
     }
-
-    private func addEvilMonkey() {
-        let monkey = EvilMonkey()
-        monkey.position = CGPointMake(hWidth, size.height - 210)
-        monkey.zPosition = -450
-        monkey.alpha = 0.9
-        
-        let wait = SKAction.waitForDuration(3)
-        let appear = SKAction.moveToY(size.height - 120, duration: 2)
-        
-        monkey.runAction(SKAction.sequence([wait, appear]))
-        
-        addChild(monkey)
-    }
     
     private func addScoreBoard() {
-        let scoreBoard = SKShapeNode(rect: CGRectMake(0, 0, 280, 120), cornerRadius: 5.0)
-        scoreBoard.strokeColor = UIColor(netHex: 0x344a79)
-        scoreBoard.fillColor = UIColor(netHex: 0x162031)
-        scoreBoard.position = CGPointMake(hWidth - scoreBoard.frame.size.width / 2, hHeight - 10)
-        scoreBoard.zPosition = -400
+        let labelStartY = hHeight + 100
+        
+        let scoreBoard = SKSpriteNode(imageNamed: "scoreboard_1.png")
+        scoreBoard.position = CGPointMake(hWidth, labelStartY)
+        scoreBoard.zPosition = -500
+        scoreBoard.alpha = 0.9
         addChild(scoreBoard)
         
-        let labelStartY = hHeight + 80
+        let animation = SKAction.animateWithTextures(scoreboardTextures, timePerFrame: 0.08)
+        let fly = SKAction.repeatActionForever(animation)
+        
+        scoreBoard.runAction(fly)
+        
         let scoreLabel1 = Label(name: "Score:", size: 25, x: hWidth, y: labelStartY)
         let scoreLabel2 = Label(name: score.description, size: 20, x: hWidth, y: labelStartY - 20)
         let scoreLabel3 = Label(name: "High Score:", size: 25, x: hWidth, y: labelStartY - 55)
@@ -145,17 +133,27 @@ class GameOverScene: SKScene {
         
         [scoreLabel1, scoreLabel2, scoreLabel3, scoreLabel4].forEach {
             $0.alpha = 0
-            $0.zPosition = -300
+            $0.zPosition = -490
             $0.runAction(SKAction.fadeAlphaTo(0.7, duration: 3))
             
             addChild($0)
         }
     }
     
-    private func addReplayBtn() {
-        retryButton.position = CGPointMake(hWidth, hHeight - 65)
+    private func addButtons() {
+        let yPos = hHeight - 45
+        
+        addReplayBtn(yPos)
+        addHomeBtn(yPos)
+        addRatingBtn(yPos)
+    }
+    
+    private func addReplayBtn(yPos: CGFloat) {
+        
+        
+        retryButton.position = CGPointMake(hWidth, yPos)
         retryButton.name = retryNode
-        retryButton.zPosition = -400
+        retryButton.zPosition = -500
 
         let sequence = SKAction.sequence([
             SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
@@ -167,8 +165,8 @@ class GameOverScene: SKScene {
         addChild(retryButton)
     }
     
-    private func addHomeBtn() {
-        homeButton.position = CGPointMake(hWidth - 100, hHeight - 75)
+    private func addHomeBtn(yPos: CGFloat) {
+        homeButton.position = CGPointMake(hWidth - 100, yPos - 10)
         homeButton.name = homeNode
         
         let sequence = SKAction.sequence([
@@ -181,8 +179,8 @@ class GameOverScene: SKScene {
         addChild(homeButton)
     }
     
-    private func addRatingBtn() {
-        ratingButton.position = CGPointMake(hWidth + 100, hHeight - 75)
+    private func addRatingBtn(yPos: CGFloat) {
+        ratingButton.position = CGPointMake(hWidth + 100, yPos - 10)
         ratingButton.name = ratingNode
         
         let sequence = SKAction.sequence([
@@ -226,5 +224,6 @@ class GameOverScene: SKScene {
     private func loadTextures() {
         tearsTextures = (1...5).map { SKTexture(imageNamed: "game_over_tears_\($0).png") }
         sobTextures = (1...10).map { SKTexture(imageNamed: "game_over_sob_\($0).png") }
+        scoreboardTextures = (1...8).map { SKTexture(imageNamed: "scoreboard_\($0).png") }
     }
 }
