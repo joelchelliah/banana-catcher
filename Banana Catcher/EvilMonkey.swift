@@ -48,7 +48,7 @@ class EvilMonkey: SKSpriteNode {
         
         if rage >= requiredRage {
             rage = 0
-            requiredRage += Int(arc4random_uniform(2))
+            requiredRage += Int(arc4random_uniform(4))
             level += 1
         }
     }
@@ -143,7 +143,7 @@ class EvilMonkey: SKSpriteNode {
     }
     
     private func activateCooldown() {
-        let factor = 0.2
+        let factor = 0.3
         let coolDown = 2.0 - Double(level) * factor
         
         NSTimer.scheduledTimerWithTimeInterval(coolDown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)

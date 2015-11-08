@@ -23,11 +23,11 @@ class CollectPointLabel: SKLabelNode {
         let d1 = 0.1
         let d2 = 0.2
         let ascendWhileFading = SKAction.group([
-            SKAction.moveToY(position.y + 20, duration: d1),
+            SKAction.moveToY(position.y + 25, duration: d1),
             SKAction.fadeAlphaTo(0.3, duration: d1)
             ])
         let descendWhileFading = SKAction.group([
-            SKAction.moveToY(position.y - 3, duration: d2),
+            SKAction.moveToY(position.y - 2, duration: d2),
             SKAction.fadeAlphaTo(0, duration: d2)
             ])
         let remove = SKAction.runBlock { self.removeFromParent() }

@@ -29,6 +29,7 @@ class GameOverScene: SKScene {
         updateHighScore()
         
         addBackground()
+        addGameOverTears()
         addDarkness()
         addGameOverLabel()
         addScoreBoard()
@@ -62,21 +63,20 @@ class GameOverScene: SKScene {
     }
     
     private func addBackground() {
-        let xPos = CGRectGetMidX(frame)
-        
         let sky = SKSpriteNode(imageNamed: "menu_sky.png")
-        sky.position = CGPointMake(xPos, sky.size.height / 2)
+        sky.position = CGPointMake(hWidth, sky.size.height / 2)
         sky.zPosition = -900
         addChild(sky)
         
         let rain = SKEmitterNode(fileNamed: "BananaRain")!
-        rain.position = CGPointMake(xPos, size.height + 50)
+        rain.position = CGPointMake(hWidth, size.height + 50)
         rain.zPosition = -800
         addChild(rain)
-        
-        
+    }
+    
+    private func addGameOverTears() {
         let cliff = SKSpriteNode(imageNamed: "game_over_tears_1.png")
-        cliff.position = CGPointMake(xPos, cliff.size.height / 2)
+        cliff.position = CGPointMake(hWidth, cliff.size.height / 2)
         cliff.zPosition = -700
         
         let tears = SKAction.animateWithTextures(tearsTextures, timePerFrame: 0.1)
@@ -88,17 +88,13 @@ class GameOverScene: SKScene {
         addChild(cliff)
     }
     
-    
     private func addDarkness() {
         let topDarkness = SKSpriteNode(imageNamed: "darkness_top.png")
         let bottomDarkness = SKSpriteNode(imageNamed: "darkness_bottom.png")
+        bottomDarkness.size.height *= 0.75
         
-        topDarkness.position = CGPointMake(hWidth, size.height + topDarkness.size.height / 2)
-        bottomDarkness.position = CGPointMake(hWidth, -bottomDarkness.size.height / 2)
-        bottomDarkness.size.height = 0.9
-        
-        topDarkness.runAction(SKAction.moveToY(size.height - topDarkness.size.height / 2, duration: 3))
-        bottomDarkness.runAction(SKAction.moveToY(bottomDarkness.size.height / 2 - 50, duration: 3))
+        topDarkness.position = CGPointMake(hWidth, size.height - topDarkness.size.height / 2 + 40)
+        bottomDarkness.position = CGPointMake(hWidth, bottomDarkness.size.height / 2 - 80)
         
         [topDarkness, bottomDarkness].forEach {
             $0.zPosition = -600
