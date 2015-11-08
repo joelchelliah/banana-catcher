@@ -9,6 +9,7 @@ class BasketMan: SKSpriteNode {
     private var blinkTextures = [SKTexture]()
     private var catchTextures = [SKTexture]()
     private var ouchTextures = [SKTexture]()
+    private var sadTextures = [SKTexture]()
     
     init() {
         super.init(texture: idleTexture, color: SKColor.clearColor(), size: idleTexture.size())
@@ -49,12 +50,18 @@ class BasketMan: SKSpriteNode {
     
     func ouch() {
         let animation = SKAction.animateWithTextures(ouchTextures, timePerFrame: 0.05)
-        let fadeOut = SKAction.fadeOutWithDuration(0.1)
-        let fadeIn = SKAction.fadeInWithDuration(0.1)
+        let fadeOut = SKAction.fadeAlphaTo(0.3, duration: 0.1)
+        let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
         let fadeOutIn = SKAction.repeatAction(SKAction.sequence([fadeOut, fadeIn]), count: 3)
         
-        playSound(self, name: "splat.wav")
-        self.runAction(SKAction.sequence([animation, fadeOutIn]))
+        playSound(self, name: "ouch.wav")
+        self.runAction(SKAction.group([animation, fadeOutIn]))
+    }
+    
+    func frown() {
+        let animation = SKAction.animateWithTextures(sadTextures, timePerFrame: 0.07)
+        
+        self.runAction(animation)
     }
     
     private func animate() {
@@ -71,5 +78,6 @@ class BasketMan: SKSpriteNode {
         blinkTextures = (1...3).map { SKTexture(imageNamed: "blink_\($0).png") }
         catchTextures = (1...10).map { SKTexture(imageNamed: "catch_\($0).png") }
         ouchTextures  = (1...10).map { SKTexture(imageNamed: "ouch_\($0).png") }
+        sadTextures  = (1...8).map { SKTexture(imageNamed: "sad_\($0).png") }
     }
 }

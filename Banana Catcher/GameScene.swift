@@ -87,6 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
                 
+                basketMan.frown()
                 throwableHitsGround(banana)
                 updateScore(points)
                 decrementLives()

@@ -64,6 +64,15 @@
 		A33492EE1BEE337600A1FAE1 /* monkey_angry_15.png in Resources */ = {isa = PBXBuildFile; fileRef = A33492DF1BEE337600A1FAE1 /* monkey_angry_15.png */; };
 		A33492F01BEE611F00A1FAE1 /* CollectPointLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33492EF1BEE611F00A1FAE1 /* CollectPointLabel.swift */; };
 		A33492F21BEF2E5900A1FAE1 /* monkey_angry_4.wav in Resources */ = {isa = PBXBuildFile; fileRef = A33492F11BEF2E5900A1FAE1 /* monkey_angry_4.wav */; };
+		A33492FA1BEF534900A1FAE1 /* sad_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A33492F31BEF534900A1FAE1 /* sad_1.png */; };
+		A33492FB1BEF534900A1FAE1 /* sad_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A33492F41BEF534900A1FAE1 /* sad_2.png */; };
+		A33492FC1BEF534900A1FAE1 /* sad_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A33492F51BEF534900A1FAE1 /* sad_3.png */; };
+		A33492FD1BEF534900A1FAE1 /* sad_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A33492F61BEF534900A1FAE1 /* sad_4.png */; };
+		A33492FE1BEF534900A1FAE1 /* sad_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A33492F71BEF534900A1FAE1 /* sad_5.png */; };
+		A33492FF1BEF534900A1FAE1 /* sad_6.png in Resources */ = {isa = PBXBuildFile; fileRef = A33492F81BEF534900A1FAE1 /* sad_6.png */; };
+		A33493001BEF534900A1FAE1 /* sad_7.png in Resources */ = {isa = PBXBuildFile; fileRef = A33492F91BEF534900A1FAE1 /* sad_7.png */; };
+		A33493021BEF54C000A1FAE1 /* ouch.wav in Resources */ = {isa = PBXBuildFile; fileRef = A33493011BEF54C000A1FAE1 /* ouch.wav */; };
+		A33493041BEF567B00A1FAE1 /* sad_8.png in Resources */ = {isa = PBXBuildFile; fileRef = A33493031BEF567B00A1FAE1 /* sad_8.png */; };
 		A360122D1BE613D800FDB32D /* menu_ground.png in Resources */ = {isa = PBXBuildFile; fileRef = A360122B1BE613D800FDB32D /* menu_ground.png */; };
 		A360122E1BE613D800FDB32D /* menu_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = A360122C1BE613D800FDB32D /* menu_sky.png */; };
 		A36012461BE64C2B00FDB32D /* menu_title_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A36012331BE64C2B00FDB32D /* menu_title_1.png */; };
@@ -270,6 +279,15 @@
 		A33492DF1BEE337600A1FAE1 /* monkey_angry_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monkey_angry_15.png; path = images/monkey/monkey_angry_15.png; sourceTree = "<group>"; };
 		A33492EF1BEE611F00A1FAE1 /* CollectPointLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectPointLabel.swift; sourceTree = "<group>"; };
 		A33492F11BEF2E5900A1FAE1 /* monkey_angry_4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = monkey_angry_4.wav; path = sounds/monkey_angry_4.wav; sourceTree = "<group>"; };
+		A33492F31BEF534900A1FAE1 /* sad_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sad_1.png; path = images/heroes/box/sad_1.png; sourceTree = "<group>"; };
+		A33492F41BEF534900A1FAE1 /* sad_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sad_2.png; path = images/heroes/box/sad_2.png; sourceTree = "<group>"; };
+		A33492F51BEF534900A1FAE1 /* sad_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sad_3.png; path = images/heroes/box/sad_3.png; sourceTree = "<group>"; };
+		A33492F61BEF534900A1FAE1 /* sad_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sad_4.png; path = images/heroes/box/sad_4.png; sourceTree = "<group>"; };
+		A33492F71BEF534900A1FAE1 /* sad_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sad_5.png; path = images/heroes/box/sad_5.png; sourceTree = "<group>"; };
+		A33492F81BEF534900A1FAE1 /* sad_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sad_6.png; path = images/heroes/box/sad_6.png; sourceTree = "<group>"; };
+		A33492F91BEF534900A1FAE1 /* sad_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sad_7.png; path = images/heroes/box/sad_7.png; sourceTree = "<group>"; };
+		A33493011BEF54C000A1FAE1 /* ouch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ouch.wav; path = sounds/ouch.wav; sourceTree = "<group>"; };
+		A33493031BEF567B00A1FAE1 /* sad_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sad_8.png; path = images/heroes/box/sad_8.png; sourceTree = "<group>"; };
 		A360122B1BE613D800FDB32D /* menu_ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu_ground.png; path = images/hud/menu_ground.png; sourceTree = "<group>"; };
 		A360122C1BE613D800FDB32D /* menu_sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu_sky.png; path = images/hud/menu_sky.png; sourceTree = "<group>"; };
 		A36012331BE64C2B00FDB32D /* menu_title_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu_title_1.png; path = images/hud/menu_title_1.png; sourceTree = "<group>"; };
@@ -690,6 +708,14 @@
 				A376738C1BEBC7CD0079619A /* blink_menu_2.png */,
 				A376738D1BEBC7CD0079619A /* blink_menu_3.png */,
 				A37673911BEBC8210079619A /* blink_menu_4.png */,
+				A33492F31BEF534900A1FAE1 /* sad_1.png */,
+				A33492F41BEF534900A1FAE1 /* sad_2.png */,
+				A33492F51BEF534900A1FAE1 /* sad_3.png */,
+				A33492F61BEF534900A1FAE1 /* sad_4.png */,
+				A33492F71BEF534900A1FAE1 /* sad_5.png */,
+				A33492F81BEF534900A1FAE1 /* sad_6.png */,
+				A33492F91BEF534900A1FAE1 /* sad_7.png */,
+				A33493031BEF567B00A1FAE1 /* sad_8.png */,
 			);
 			name = box;
 			sourceTree = "<group>";
@@ -770,6 +796,7 @@
 				A33492CC1BEE2A6400A1FAE1 /* monkey_angry_2.wav */,
 				A33492CD1BEE2A6400A1FAE1 /* monkey_angry_3.wav */,
 				A33492F11BEF2E5900A1FAE1 /* monkey_angry_4.wav */,
+				A33493011BEF54C000A1FAE1 /* ouch.wav */,
 			);
 			name = sounds;
 			sourceTree = "<group>";
@@ -921,6 +948,7 @@
 				A37D4B2F1BE379250071FFBF /* flying_4.png in Resources */,
 				A33492C21BEE066A00A1FAE1 /* scoreboard_2.png in Resources */,
 				A360124B1BE64C2B00FDB32D /* menu_title_6.png in Resources */,
+				A33493041BEF567B00A1FAE1 /* sad_8.png in Resources */,
 				A33492B71BEDF6D700A1FAE1 /* sound_off.png in Resources */,
 				A360126A1BE6530800FDB32D /* ouch_9.png in Resources */,
 				A33492C31BEE066A00A1FAE1 /* scoreboard_3.png in Resources */,
@@ -979,11 +1007,14 @@
 				A36012681BE6530800FDB32D /* ouch_7.png in Resources */,
 				A37673531BEB64300079619A /* catch_3.wav in Resources */,
 				A360124C1BE64C2B00FDB32D /* menu_title_7.png in Resources */,
+				A33492FD1BEF534900A1FAE1 /* sad_4.png in Resources */,
 				A376735A1BEB92B80079619A /* brokenut_11.png in Resources */,
 				A33492C11BEE066A00A1FAE1 /* scoreboard_1.png in Resources */,
+				A33492FE1BEF534900A1FAE1 /* sad_5.png in Resources */,
 				A334929F1BEDF34800A1FAE1 /* game_over_sob_6.png in Resources */,
 				A3194FCD1BCD7A1800FD0122 /* banana_splat_3.png in Resources */,
 				A3C9559C1BCACD91000E6274 /* banana_splat_2.png in Resources */,
+				A33492FC1BEF534900A1FAE1 /* sad_3.png in Resources */,
 				A376738F1BEBC7CD0079619A /* blink_menu_2.png in Resources */,
 				A33492CE1BEE2A6400A1FAE1 /* monkey_angry_1.wav in Resources */,
 				A334929E1BEDF34800A1FAE1 /* game_over_sob_5.png in Resources */,
@@ -1001,6 +1032,7 @@
 				A33492EB1BEE337600A1FAE1 /* monkey_angry_12.png in Resources */,
 				A3C955981BCA943E000E6274 /* heart.png in Resources */,
 				A376734A1BEB60330079619A /* throw_3.wav in Resources */,
+				A33492FB1BEF534900A1FAE1 /* sad_2.png in Resources */,
 				A3C955861BCA895B000E6274 /* blink_1.png in Resources */,
 				A33492EC1BEE337600A1FAE1 /* monkey_angry_13.png in Resources */,
 				A360124A1BE64C2B00FDB32D /* menu_title_5.png in Resources */,
@@ -1011,14 +1043,17 @@
 				A33492C41BEE066A00A1FAE1 /* scoreboard_4.png in Resources */,
 				A3194FCF1BCD7A1800FD0122 /* banana_splat_5.png in Resources */,
 				A33492B51BEDF6D700A1FAE1 /* rate.png in Resources */,
+				A33493021BEF54C000A1FAE1 /* ouch.wav in Resources */,
 				A36012541BE64C2B00FDB32D /* menu_title_15.png in Resources */,
 				A33492EA1BEE337600A1FAE1 /* monkey_angry_11.png in Resources */,
 				A37D4B2D1BE379250071FFBF /* flying_2.png in Resources */,
 				A37673491BEB60330079619A /* throw_2.wav in Resources */,
 				A3C9558F1BCA895B000E6274 /* catch_6.png in Resources */,
 				A3A79F9E1BA6D32A003C1F32 /* Assets.xcassets in Resources */,
+				A33492FF1BEF534900A1FAE1 /* sad_6.png in Resources */,
 				A33492A41BEDF34800A1FAE1 /* game_over_tears_1.png in Resources */,
 				A37673621BEBA90F0079619A /* ouch_10.png in Resources */,
+				A33493001BEF534900A1FAE1 /* sad_7.png in Resources */,
 				A36012571BE64C2B00FDB32D /* menu_title_18.png in Resources */,
 				A376737A1BEBC59B0079619A /* catch_menu_1.png in Resources */,
 				A3A79F9C1BA6D32A003C1F32 /* Main.storyboard in Resources */,
@@ -1030,6 +1065,7 @@
 				A376737E1BEBC59B0079619A /* catch_menu_5.png in Resources */,
 				A33492E21BEE337600A1FAE1 /* monkey_angry_3.png in Resources */,
 				A36012521BE64C2B00FDB32D /* menu_title_13.png in Resources */,
+				A33492FA1BEF534900A1FAE1 /* sad_1.png in Resources */,
 				A37673841BEBC59B0079619A /* catch_menu_11.png in Resources */,
 				A33492ED1BEE337600A1FAE1 /* monkey_angry_14.png in Resources */,
 				A33492D01BEE2A6400A1FAE1 /* monkey_angry_3.wav in Resources */,
