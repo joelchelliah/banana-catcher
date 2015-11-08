@@ -3,13 +3,15 @@ import SpriteKit
 
 class MenuScene: SKScene {
 
+    private var hWidth: CGFloat = 0.0
+    private var hHeight: CGFloat = 0.0
+    
     private let playNode = "newGame"
     private let soundNode = "toggleSound"
     private let howToNode = "howTo"
     private let noAdsNode = "noAds"
     private let ratingNode = "rating"
     
-    private let ground: Ground = Ground()
     private let soundButton: SKSpriteNode = SKSpriteNode(imageNamed: "sound_on.png")
     private let howToButton: SKSpriteNode = SKSpriteNode(imageNamed: "how.png")
     private let playButton: SKSpriteNode = SKSpriteNode(imageNamed: "play_button.png")
@@ -23,8 +25,10 @@ class MenuScene: SKScene {
         loadTextures()
         
         backgroundColor = bgColor
+        hWidth = size.width / 2
+        hHeight = size.height / 2
+        
         addBackground()
-        addGround()
         addBasketMan()
         addTitle()
         addSoundBtn()
@@ -64,22 +68,16 @@ class MenuScene: SKScene {
         rain.zPosition = -888
         addChild(rain)
         
-        
         let ground = SKSpriteNode(imageNamed: "menu_ground.png")
         ground.position = CGPointMake(xPos, ground.size.height / 2)
         ground.zPosition = -777
         addChild(ground)
     }
     
-    private func addGround() {
-        ground.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height / 2)
-        addChild(ground)
-    }
-    
     private func addBasketMan() {
         let basketMan: BasketManMenu = BasketManMenu()
         
-        basketMan.position = CGPoint(x: CGRectGetMidX(frame), y: ground.size.height + 10)
+        basketMan.position = CGPointMake(hWidth, hHeight - 88)
         addChild(basketMan)
     }
     

@@ -9,14 +9,7 @@ class BasketManMenu: SKSpriteNode {
     
     init() {
         super.init(texture: idleTexture, color: SKColor.clearColor(), size: idleTexture.size())
-        
-        self.physicsBody = SKPhysicsBody(texture: self.texture!,size:self.size)
-        self.physicsBody?.dynamic = true
-        self.physicsBody?.usesPreciseCollisionDetection = false
-        self.physicsBody?.allowsRotation = false
-        
-        self.physicsBody?.collisionBitMask = CollisionCategories.Ground
-        
+                
         loadTextures()
         animate()
     }
