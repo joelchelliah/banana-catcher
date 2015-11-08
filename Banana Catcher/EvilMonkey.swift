@@ -32,12 +32,12 @@ class EvilMonkey: SKSpriteNode {
     
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // Rage logic
+    // * Rage logic
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     private var rage: Int = 0
     private var requiredRage: Int = 5
-    private var level: Int = 0
+    private var level: Int = 1
     
     func currentLevel() -> Int {
         return level
@@ -54,7 +54,7 @@ class EvilMonkey: SKSpriteNode {
     }
     
     func throwTantrum() {
-        let angerIndex = Int(arc4random_uniform(3)) + 1
+        let angerIndex = Int(arc4random_uniform(4)) + 1
         
         playSound(self, name: "monkey_angry_\(angerIndex).wav")
         
@@ -68,7 +68,7 @@ class EvilMonkey: SKSpriteNode {
     
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // Movement logic
+    // * Movement logic
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     private var step: CGFloat = 1.0
@@ -107,7 +107,7 @@ class EvilMonkey: SKSpriteNode {
     
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // Throwing and cooldown logic
+    // * Throwing and cooldown logic
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     private var canThrow: Bool = false
@@ -156,7 +156,7 @@ class EvilMonkey: SKSpriteNode {
     
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // Misc
+    // * Misc
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     func enable() {

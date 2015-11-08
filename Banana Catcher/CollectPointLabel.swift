@@ -2,27 +2,37 @@ import UIKit
 import SpriteKit
 
 class CollectPointLabel: SKLabelNode {
+    
+    private let plusColor = UIColor.whiteColor()
+    private let minusColor = UIColor(netHex: 0x630002)
+    
     init(points: Int, x: CGFloat, y: CGFloat) {
         super.init()
         position = CGPointMake(x, y)
-        fontName = "Courier Bold"
+        fontName = "Georgia Bold"
         fontSize = 20
-        alpha = 0.8
         
         if points > 0 {
-            text = "+ \(points)"
-            fontColor = UIColor.whiteColor()
+            text = "+\(points)"
+            fontColor = plusColor
         } else {
-            text = "- \(abs(points))"
-            fontColor = UIColor.redColor()
+            text = "\(points)"
+            fontColor = minusColor
         }
         
-        let ascend = SKAction.moveToY(position.y + 20, duration: 0.5)
-        let fade = SKAction.fadeAlphaTo(0, duration: 0.5)
-        let ascendWhileFading = SKAction.group([ascend, fade])
+        let d1 = 0.1
+        let d2 = 0.2
+        let ascendWhileFading = SKAction.group([
+            SKAction.moveToY(position.y + 20, duration: d1),
+            SKAction.fadeAlphaTo(0.3, duration: d1)
+            ])
+        let descendWhileFading = SKAction.group([
+            SKAction.moveToY(position.y - 3, duration: d2),
+            SKAction.fadeAlphaTo(0, duration: d2)
+            ])
         let remove = SKAction.runBlock { self.removeFromParent() }
         
-        self.runAction(SKAction.sequence([ascendWhileFading, remove]))
+        self.runAction(SKAction.sequence([ascendWhileFading, descendWhileFading, remove]))
     }
     
     required init?(coder aDecoder: NSCoder) {

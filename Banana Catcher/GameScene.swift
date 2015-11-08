@@ -49,7 +49,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    /* Collision detection */
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Collision detection
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     func didBeginContact(contact: SKPhysicsContact) {
         var b1: SKPhysicsBody
@@ -220,29 +222,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             item.physicsBody?.velocity = CGVectorMake(0,0)
             item.physicsBody?.applyImpulse(CGVectorMake(throwRange, item.throwForceY()))
+            
+            let yPos = monkey.position.y
+            let up = SKAction.moveToY(yPos + 20, duration: 0.1)
+            let down = SKAction.moveToY(yPos, duration: 0.2)
+            
+            monkey.runAction(SKAction.sequence([up, down]))
         }
     }
     
     private func monkeyCoconutFrenzy() -> SKAction {
         let level = monkey.currentLevel()
-        let maxX = 11
-        let step = 2 * maxX / level
-        let numCoconuts = monkey.currentLevel() / 2 + 1
-        let fromLeft = (1...numCoconuts).map { createThrowAction(-maxX, step: step, i: $0) }
-        let fromRight = (1...numCoconuts).map { createThrowAction(maxX, step: -step, i: $0) }
+        assert(level > 0, "Monkey's level should be above 0!")
+        
+        let maxX: Float = 8.0
+        let step: Float = 2.0 * Float(maxX) / Float(level)
+        
+        var numCoconuts = level - 1
+        if numCoconuts >= 2 {
+            let varianceFactor = UInt32(numCoconuts)
+            numCoconuts -= Int(arc4random_uniform(varianceFactor))
+        }
+        
+        let fromLeft = (0...numCoconuts).map { createThrowAction(-maxX, step: step, i: $0) }
+        let fromRight = (0...numCoconuts).map { createThrowAction(maxX, step: -step, i: $0) }
 
-        let coconuts = [fromLeft, fromRight].flatMap { $0 }
-        let delays = (1...coconuts.count + 1).map { _ in SKAction.waitForDuration(0.5) }
+        let coconuts = zip(fromLeft, fromRight).flatMap { [$0, $1] }
+        let delay = SKAction.waitForDuration(0.4)
+        let delays = (1...coconuts.count).map { _ in delay }
         let frenzy = zip(coconuts, delays).flatMap { [$0, $1] }
         
-        return SKAction.sequence(frenzy)
+        return SKAction.sequence(frenzy + [delay])
     }
     
-    private func createThrowAction(start: Int, step: Int, i: Int) -> SKAction {
-    
+    private func createThrowAction(start: Float, step: Float, i: Int) -> SKAction {
+        let variance: Float = Float(arc4random_uniform(4))
+        let throwX = CGFloat(start + step * Float(i) + variance)
+        
         return SKAction.runBlock {
-            
-            let throwX = CGFloat(start + step * i)
             let coconut = Coconut()
             coconut.position = self.monkey.position
             
