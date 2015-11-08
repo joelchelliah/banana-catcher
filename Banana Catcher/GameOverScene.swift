@@ -79,9 +79,9 @@ class GameOverScene: SKScene {
         cliff.position = CGPointMake(hWidth, cliff.size.height / 2)
         cliff.zPosition = -700
         
-        let tears = SKAction.animateWithTextures(tearsTextures, timePerFrame: 0.1)
+        let tears = SKAction.animateWithTextures(tearsTextures, timePerFrame: 0.08)
         let cry = SKAction.repeatAction(tears, count: 5)
-        let sob = SKAction.animateWithTextures(sobTextures, timePerFrame: 0.1)
+        let sob = SKAction.animateWithTextures(sobTextures, timePerFrame: 0.08)
         
         cliff.runAction(SKAction.repeatActionForever(SKAction.sequence([cry, sob])))
         
@@ -91,9 +91,10 @@ class GameOverScene: SKScene {
     private func addDarkness() {
         let topDarkness = SKSpriteNode(imageNamed: "darkness_top.png")
         let bottomDarkness = SKSpriteNode(imageNamed: "darkness_bottom.png")
+        topDarkness.size.height *= 0.85
         bottomDarkness.size.height *= 0.75
         
-        topDarkness.position = CGPointMake(hWidth, size.height - topDarkness.size.height / 2 + 40)
+        topDarkness.position = CGPointMake(hWidth, size.height - topDarkness.size.height / 2 + 20)
         bottomDarkness.position = CGPointMake(hWidth, bottomDarkness.size.height / 2 - 80)
         
         [topDarkness, bottomDarkness].forEach {
