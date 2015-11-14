@@ -48,7 +48,7 @@ class EvilMonkey: SKSpriteNode {
         
         if rage >= requiredRage {
             rage = 0
-            requiredRage += Int(arc4random_uniform(4))
+            requiredRage += Int(arc4random_uniform(4)) + 1
             level += 1
         }
     }
@@ -60,7 +60,7 @@ class EvilMonkey: SKSpriteNode {
         
         let start = SKAction.animateWithTextures(angryStartTextures, timePerFrame: 0.05)
         let mid = SKAction.animateWithTextures(angryMidTextures, timePerFrame: 0.05)
-        let midExtended = SKAction.repeatAction(mid, count: 2 * level + 16)
+        let midExtended = SKAction.repeatAction(mid, count: 4 * level + 10)
         let end = SKAction.animateWithTextures(angryEndTextures, timePerFrame: 0.05)
         
         self.runAction(SKAction.sequence([start, midExtended, end]))

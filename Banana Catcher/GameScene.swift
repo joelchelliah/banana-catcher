@@ -85,7 +85,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let pos = banana.position
                 let points = GamePoints.BananaMissed
                 
-                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
+                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y + 8))
                 
                 basketMan.frown()
                 throwableHitsGround(banana)
