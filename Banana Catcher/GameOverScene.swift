@@ -91,13 +91,12 @@ class GameOverScene: SKScene {
     private func addDarkness() {
         let topDarkness = SKSpriteNode(imageNamed: "darkness_top.png")
         let bottomDarkness = SKSpriteNode(imageNamed: "darkness_bottom.png")
-        topDarkness.size.height *= 0.85
-        bottomDarkness.size.height *= 0.75
         
         topDarkness.position = CGPointMake(hWidth, size.height - topDarkness.size.height / 2 + 20)
-        bottomDarkness.position = CGPointMake(hWidth, bottomDarkness.size.height / 2 - 80)
+        bottomDarkness.position = CGPointMake(hWidth, bottomDarkness.size.height / 2 - 95)
         
         [topDarkness, bottomDarkness].forEach {
+            $0.size.height *= 0.85
             $0.zPosition = -600
             
             addChild($0)
@@ -111,7 +110,7 @@ class GameOverScene: SKScene {
     }
     
     private func addScoreBoard() {
-        let labelStartY = hHeight + 100
+        let labelStartY = hHeight + 110
         
         let scoreBoard = SKSpriteNode(imageNamed: "scoreboard_1.png")
         scoreBoard.position = CGPointMake(hWidth, labelStartY)
@@ -138,7 +137,7 @@ class GameOverScene: SKScene {
     }
     
     private func addButtons() {
-        let yPos = hHeight - 45
+        let yPos = hHeight - 30
         
         addReplayBtn(yPos)
         addHomeBtn(yPos)
