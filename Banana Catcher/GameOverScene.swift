@@ -92,11 +92,13 @@ class GameOverScene: SKScene {
         let topDarkness = SKSpriteNode(imageNamed: "darkness_top.png")
         let bottomDarkness = SKSpriteNode(imageNamed: "darkness_bottom.png")
         
-        topDarkness.position = CGPointMake(hWidth, size.height - topDarkness.size.height / 2 + 20)
-        bottomDarkness.position = CGPointMake(hWidth, bottomDarkness.size.height / 2 - 95)
+        topDarkness.size.height *= 0.75
+        //bottomDarkness.size.height *= 0.85
+        
+        topDarkness.position = CGPointMake(hWidth, size.height - topDarkness.size.height / 2)
+        bottomDarkness.position = CGPointMake(hWidth, bottomDarkness.size.height / 2 - 110)
         
         [topDarkness, bottomDarkness].forEach {
-            $0.size.height *= 0.85
             $0.zPosition = -600
             
             addChild($0)
