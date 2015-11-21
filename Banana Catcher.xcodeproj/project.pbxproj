@@ -182,6 +182,8 @@
 		A3B9B1201BECEA7500AB9709 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B9B11F1BECEA7500AB9709 /* Extensions.swift */; };
 		A3B9B1231BECF4D500AB9709 /* darkness_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = A3B9B1211BECF4D500AB9709 /* darkness_bottom.png */; };
 		A3B9B1241BECF4D500AB9709 /* darkness_top.png in Resources */ = {isa = PBXBuildFile; fileRef = A3B9B1221BECF4D500AB9709 /* darkness_top.png */; };
+		A3BBCA2D1C006FA900BCBCC7 /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BBCA2C1C006FA900BCBCC7 /* Heart.swift */; };
+		A3BBCA2F1C006FE700BCBCC7 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = A3BBCA2E1C006FE700BCBCC7 /* heart.png */; };
 		A3C20E961BED44BB002A179E /* GameOverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C20E951BED44BB002A179E /* GameOverLabel.swift */; };
 		A3C955861BCA895B000E6274 /* blink_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C955791BCA895B000E6274 /* blink_1.png */; };
 		A3C955871BCA895B000E6274 /* blink_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C9557A1BCA895B000E6274 /* blink_2.png */; };
@@ -403,6 +405,8 @@
 		A3B9B11F1BECEA7500AB9709 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A3B9B1211BECF4D500AB9709 /* darkness_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = darkness_bottom.png; path = images/hud/darkness_bottom.png; sourceTree = "<group>"; };
 		A3B9B1221BECF4D500AB9709 /* darkness_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = darkness_top.png; path = images/hud/darkness_top.png; sourceTree = "<group>"; };
+		A3BBCA2C1C006FA900BCBCC7 /* Heart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
+		A3BBCA2E1C006FE700BCBCC7 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = images/throwables/heart.png; sourceTree = "<group>"; };
 		A3C20E951BED44BB002A179E /* GameOverLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverLabel.swift; sourceTree = "<group>"; };
 		A3C955791BCA895B000E6274 /* blink_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_1.png; path = images/heroes/box/blink_1.png; sourceTree = "<group>"; };
 		A3C9557A1BCA895B000E6274 /* blink_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_2.png; path = images/heroes/box/blink_2.png; sourceTree = "<group>"; };
@@ -576,6 +580,7 @@
 				A37D4B381BE3A4520071FFBF /* Throwable.swift */,
 				A3A79FE11BA70838003C1F32 /* Banana.swift */,
 				A37D4B341BE3A2700071FFBF /* Coconut.swift */,
+				A3BBCA2C1C006FA900BCBCC7 /* Heart.swift */,
 			);
 			name = throwables;
 			sourceTree = "<group>";
@@ -723,6 +728,7 @@
 		A3C955931BCA9092000E6274 /* throwables */ = {
 			isa = PBXGroup;
 			children = (
+				A3BBCA2E1C006FE700BCBCC7 /* heart.png */,
 				A37D4B401BE3BC990071FFBF /* brokenut_1.png */,
 				A37D4B411BE3BC990071FFBF /* brokenut_2.png */,
 				A37D4B421BE3BC990071FFBF /* brokenut_3.png */,
@@ -978,6 +984,7 @@
 				A3A79FA11BA6D32A003C1F32 /* LaunchScreen.storyboard in Resources */,
 				A37D4B371BE3A29C0071FFBF /* coconut.png in Resources */,
 				A36012561BE64C2B00FDB32D /* menu_title_17.png in Resources */,
+				A3BBCA2F1C006FE700BCBCC7 /* heart.png in Resources */,
 				A36012631BE6530800FDB32D /* ouch_2.png in Resources */,
 				A3EEC5B71BD6AFBF00A1D133 /* splat.wav in Resources */,
 				A33492E61BEE337600A1FAE1 /* monkey_angry_7.png in Resources */,
@@ -1117,6 +1124,7 @@
 				A3C20E961BED44BB002A179E /* GameOverLabel.swift in Sources */,
 				A37673681BEBB9200079619A /* BasketManMenu.swift in Sources */,
 				A3A79FE21BA70838003C1F32 /* Banana.swift in Sources */,
+				A3BBCA2D1C006FA900BCBCC7 /* Heart.swift in Sources */,
 				A37D4B391BE3A4520071FFBF /* Throwable.swift in Sources */,
 				A3C9559E1BCACFCC000E6274 /* SplatBanana.swift in Sources */,
 				A396BB541BB6E517002F7231 /* ScoreLabel.swift in Sources */,

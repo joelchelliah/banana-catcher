@@ -3,7 +3,7 @@ import SpriteKit
 
 class BasketMan: SKSpriteNode {
 
-    private let velocity: CGFloat = 6.0
+    private let velocity: CGFloat = 8.0
     
     private var idleTexture = SKTexture(imageNamed: "idle.png")
     private var blinkTextures = [SKTexture]()
@@ -35,7 +35,7 @@ class BasketMan: SKSpriteNode {
         let dx = touch.x - position.x
         let mag = abs(dx)
         
-        if(mag > 3.0) {
+        if(mag > 5.0) {
             position.x += dx / mag * velocity
         }
     }

@@ -32,7 +32,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         monkey.move(frame.width)
         monkeyThrowsSomething()
         
-        if (touching) { basketMan.move(touchLoc) }
+        let leftEdge = basketMan.size.width / 2
+        let rightEdge = size.width - basketMan.size.width / 2
+        
+        if basketMan.position.x < leftEdge {
+            basketMan.position.x = leftEdge
+        } else if basketMan.position.x > rightEdge {
+            basketMan.position.x = rightEdge
+        }
+        
+        if touching {
+            basketMan.move(touchLoc)
+        }   
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -116,6 +127,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 handleUnexpectedContactTest(b1, b2: b2)
             }
             
+        } else if b1.categoryBitMask & CollisionCategories.Heart != 0  {
+            let heart = b1.node as! Heart
+            
+            if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
+                let pos = heart.position
+                let points = GamePoints.HeartCaught
+                
+                heart.removeFromParent()
+                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
+                
+                basketMan.collect()
+                updateScore(points)
+                incrementLives()
+            }
+            else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
+                throwableHitsGround(heart)
+            }
+            else {
+                handleUnexpectedContactTest(b1, b2: b2)
+            }
+            
         }
     }
     
@@ -192,7 +224,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             monkey.runAction(SKAction.sequence([center, frenzy, enable]))
         }
     }
-
+    
     private func decrementLives() {
         if lives.isEmpty() {
             monkey.disable()
@@ -203,8 +235,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.runAction(SKAction.sequence([wait, endGame]))
         }
         else {
-            lives.ouch()
+            lives.down()
         }
+    }
+    
+    private func incrementLives() {
+        lives.up()
     }
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -239,35 +275,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let maxX: Float = 8.0
         let step: Float = 2.0 * Float(maxX) / Float(level)
         
-        var numCoconuts = level - 1
-        if numCoconuts >= 2 {
-            let varianceFactor = UInt32(numCoconuts)
-            numCoconuts -= Int(arc4random_uniform(varianceFactor))
+        var throwSpeedBoost = 0.0
+        var numCoconuts = level
+        if numCoconuts > 3 {
+            throwSpeedBoost = Double(numCoconuts - 3) / 20.0
+            numCoconuts = 3
         }
         
-        let fromLeft = (0...numCoconuts).map { createThrowAction(-maxX, step: step, i: $0) }
-        let fromRight = (0...numCoconuts).map { createThrowAction(maxX, step: -step, i: $0) }
+        let fromLeft = (1...numCoconuts).map { frenzyThrowAction(-maxX, step: step, i: $0 - 1) }
+        let fromRight = (1...numCoconuts).map { frenzyThrowAction(maxX, step: -step, i: $0 - 1) }
 
         let coconuts = zip(fromLeft, fromRight).flatMap { [$0, $1] }
-        let delay = SKAction.waitForDuration(0.4)
+        let delay = SKAction.waitForDuration(0.4 - throwSpeedBoost)
         let delays = (1...coconuts.count).map { _ in delay }
         let frenzy = zip(coconuts, delays).flatMap { [$0, $1] }
         
         return SKAction.sequence(frenzy + [delay])
     }
     
-    private func createThrowAction(start: Float, step: Float, i: Int) -> SKAction {
+    private func frenzyThrowAction(start: Float, step: Float, i: Int) -> SKAction {
         let variance: Float = Float(arc4random_uniform(4))
         let throwX = CGFloat(start + step * Float(i) + variance)
         
         return SKAction.runBlock {
-            let coconut = Coconut()
-            coconut.position = self.monkey.position
+            let throwable = self.frenzyThrowable()
             
-            self.addChild(coconut)
+            throwable.position = self.monkey.position
             
-            coconut.physicsBody?.velocity = CGVectorMake(0,0)
-            coconut.physicsBody?.applyImpulse(CGVectorMake(throwX, coconut.throwForceY()))
+            self.addChild(throwable)
+            
+            throwable.physicsBody?.velocity = CGVectorMake(0,0)
+            throwable.physicsBody?.applyImpulse(CGVectorMake(throwX, throwable.throwForceY()))
+        }
+    }
+    
+    private func frenzyThrowable() -> Throwable {
+        if !lives.isFull() && monkey.canThrowHeart() {
+            return Heart()
+        } else {
+            return Coconut()
         }
     }
     
@@ -282,6 +328,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             addChild(brokenut)
             coconut.removeFromParent()
+        } else if let heart = item as? Heart {
+            let fadeAction = SKAction.fadeOutWithDuration(0.5)
+            let removeAction = SKAction.runBlock { heart.removeFromParent() }
+            
+            heart.runAction(SKAction.sequence([fadeAction, removeAction]))
+            
         } else {
             print("Unexpected item (\(item)) hit the ground!")
         }

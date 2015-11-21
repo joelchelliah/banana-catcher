@@ -54,6 +54,8 @@ class EvilMonkey: SKSpriteNode {
     }
     
     func throwTantrum() {
+        setThrowHeartAbility()
+
         let angerIndex = Int(arc4random_uniform(4)) + 1
         
         playSound(self, name: "monkey_angry_\(angerIndex).wav")
@@ -64,6 +66,12 @@ class EvilMonkey: SKSpriteNode {
         let end = SKAction.animateWithTextures(angryEndTextures, timePerFrame: 0.05)
         
         self.runAction(SKAction.sequence([start, midExtended, end]))
+    }
+    
+    private func setThrowHeartAbility() {
+        if level >= 3 {
+            canThrowHeartDuringTantrum = true
+        }
     }
     
     
@@ -110,6 +118,7 @@ class EvilMonkey: SKSpriteNode {
     // * Throwing and cooldown logic
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
+    private var canThrowHeartDuringTantrum: Bool = false
     private var canThrow: Bool = false
     private var coconutFactor: Int = 0;
     
@@ -136,6 +145,15 @@ class EvilMonkey: SKSpriteNode {
         }
     }
     
+    func canThrowHeart() -> Bool {
+        if canThrowHeartDuringTantrum && arc4random_uniform(3) == 1 {
+            canThrowHeartDuringTantrum = false
+            return true
+        } else {
+            return false
+        }
+    }
+    
     private func coconutFactorInc() -> Int {
         let factor = 10
         
@@ -143,7 +161,7 @@ class EvilMonkey: SKSpriteNode {
     }
     
     private func activateCooldown() {
-        let factor = 0.3
+        let factor = 0.2
         let coolDown = 2.0 - Double(level) * factor
         
         NSTimer.scheduledTimerWithTimeInterval(coolDown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)
