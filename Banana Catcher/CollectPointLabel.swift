@@ -4,7 +4,7 @@ import SpriteKit
 class CollectPointLabel: SKLabelNode {
     
     private let plusColor = UIColor.whiteColor()
-    private let minusColor = UIColor(netHex: 0x630002)
+    private let minusColor = UIColor(netHex: 0x730002)
     
     init(points: Int, x: CGFloat, y: CGFloat) {
         super.init()
