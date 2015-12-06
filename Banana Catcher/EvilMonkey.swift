@@ -38,23 +38,33 @@ class EvilMonkey: SKSpriteNode {
     private var rage: Int = 0
     private var requiredRage: Int = 5
     private var level: Int = 0
+    private var vLevel: Int = 0
     
     func currentLevel() -> Int {
-        return level
+        return 5 * vLevel + level
     }
     
     func enrage() {
         rage += 1
         
         if rage >= requiredRage {
+            let requiredRageRandomFactor = Int(arc4random_uniform(3))
+            
+            requiredRage += requiredRageRandomFactor + 1
             rage = 0
-            requiredRage += Int(arc4random_uniform(4)) + 1
             level += 1
         }
+        
+        if level == 5 {
+            vLevel = 1
+            level = 0
+        }
+        
+        print("level: \(level), vLevel: \(vLevel), currentLevel: \(currentLevel())")
     }
     
     func throwTantrum() {
-        setThrowHeartAbility()
+        if currentLevel() >= 3 { canThrowHeartDuringTantrum = true }
 
         let angerIndex = Int(arc4random_uniform(4)) + 1
         
@@ -62,16 +72,10 @@ class EvilMonkey: SKSpriteNode {
         
         let start = SKAction.animateWithTextures(angryStartTextures, timePerFrame: 0.05)
         let mid = SKAction.animateWithTextures(angryMidTextures, timePerFrame: 0.05)
-        let midExtended = SKAction.repeatAction(mid, count: 4 * level + 10)
+        let midExtended = SKAction.repeatAction(mid, count: 3 * currentLevel() + 10)
         let end = SKAction.animateWithTextures(angryEndTextures, timePerFrame: 0.05)
         
         self.runAction(SKAction.sequence([start, midExtended, end]))
-    }
-    
-    private func setThrowHeartAbility() {
-        if level >= 3 {
-            canThrowHeartDuringTantrum = true
-        }
     }
     
     
@@ -91,7 +95,9 @@ class EvilMonkey: SKSpriteNode {
     
     private func updateStep() {
         if step < 1.0 {
-            if Int(arc4random_uniform(6)) == 1 {
+            let diceRollHit = Int(arc4random_uniform(6)) == 1
+            
+            if diceRollHit {
                 step = CGFloat(arc4random_uniform(4))
             }
         } else { step -= 0.05 }
@@ -125,12 +131,13 @@ class EvilMonkey: SKSpriteNode {
     func isAbleToThrow() -> Bool {
         if disabled { return false }
         
-        let couldThrow = canThrow
         if canThrow {
-            canThrow = false
             activateCooldown()
+            canThrow = false
+            return true
+        } else {
+            return false
         }
-        return couldThrow
     }
     
     func getTrowable() -> Throwable {
@@ -161,8 +168,10 @@ class EvilMonkey: SKSpriteNode {
     }
     
     private func activateCooldown() {
-        let factor = 0.2
-        let coolDown = 2.0 - Double(level) * factor
+        let factor = 0.25
+        let vFactor = 0.15
+        
+        let coolDown = 2.0 - Double(level) * factor - Double(vLevel) * vFactor
         
         NSTimer.scheduledTimerWithTimeInterval(coolDown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)
     }

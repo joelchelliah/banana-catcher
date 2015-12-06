@@ -7,7 +7,8 @@ class Heart: Throwable {
         let texture = SKTexture(imageNamed: "heart")
         super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.Heart)
         
-        self.physicsBody?.linearDamping *= 0.05
+        // Doesn't work!
+        //self.physicsBody?.linearDamping *= 0.005
     }
     
     required init?(coder aDecoder: NSCoder) {
