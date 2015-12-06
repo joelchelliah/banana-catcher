@@ -65,8 +65,8 @@ class Lives: SKSpriteNode {
     }
     
     private func blinkHearts() {
-        let fadeOutAction = SKAction.fadeOutWithDuration(0.5)
-        let fadeInAction = SKAction.fadeInWithDuration(0.5)
+        let fadeOutAction = SKAction.fadeOutWithDuration(0.2)
+        let fadeInAction = SKAction.fadeInWithDuration(0.2)
         let fadeOutInAction = SKAction.repeatAction(SKAction.sequence([fadeOutAction,fadeInAction]), count: 3)
         
         runAction(fadeOutInAction)
