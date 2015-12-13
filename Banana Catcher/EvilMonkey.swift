@@ -72,7 +72,7 @@ class EvilMonkey: SKSpriteNode {
         
         let start = SKAction.animateWithTextures(angryStartTextures, timePerFrame: 0.05)
         let mid = SKAction.animateWithTextures(angryMidTextures, timePerFrame: 0.05)
-        let midExtended = SKAction.repeatAction(mid, count: 3 * currentLevel() + 10)
+        let midExtended = SKAction.repeatAction(mid, count: 4 * level + 10)
         let end = SKAction.animateWithTextures(angryEndTextures, timePerFrame: 0.05)
         
         self.runAction(SKAction.sequence([start, midExtended, end]))
@@ -168,10 +168,14 @@ class EvilMonkey: SKSpriteNode {
     }
     
     private func activateCooldown() {
-        let factor = 0.25
-        let vFactor = 0.15
+        let currentL = Double(level)
+        let currentV = Double(vLevel)
+        let factorDecay = currentL > 0.0 ? 0.3 : 0.0
         
-        let coolDown = 2.0 - Double(level) * factor - Double(vLevel) * vFactor
+        let lFactor = 0.5 * currentL - factorDecay * (currentL - 1.0)
+        let vFactor = 0.4 * currentV
+        
+        let coolDown = 2.0 - lFactor - vFactor
         
         NSTimer.scheduledTimerWithTimeInterval(coolDown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)
     }
