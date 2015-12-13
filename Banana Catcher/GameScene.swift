@@ -278,7 +278,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var throwSpeedBoost = 0.0
         var numCoconuts = level
         if numCoconuts > 3 {
-            throwSpeedBoost = Double(numCoconuts - 3) / 20.0
+            throwSpeedBoost = Double(numCoconuts - 3) / (20.0 + Double(numCoconuts))
             numCoconuts = 3
         }
         

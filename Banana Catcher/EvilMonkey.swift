@@ -56,7 +56,7 @@ class EvilMonkey: SKSpriteNode {
         }
         
         if level == 5 {
-            vLevel = 1
+            vLevel += 1
             level = 0
         }
         
@@ -173,7 +173,7 @@ class EvilMonkey: SKSpriteNode {
         let factorDecay = currentL > 0.0 ? 0.3 : 0.0
         
         let lFactor = 0.5 * currentL - factorDecay * (currentL - 1.0)
-        let vFactor = 0.4 * currentV
+        let vFactor = 0.5 * currentV
         
         let coolDown = 2.0 - lFactor - vFactor
         
