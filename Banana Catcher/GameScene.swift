@@ -127,6 +127,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 handleUnexpectedContactTest(b1, b2: b2)
             }
             
+        } else if b1.categoryBitMask & CollisionCategories.Supernut != 0  {
+            let supernut = b1.node as! Supernut
+            
+            if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
+                let pos = supernut.position
+                let points = GamePoints.SupernutCaught
+                
+                supernut.removeFromParent()
+                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
+                
+                basketMan.ouch()
+                updateScore(points)
+                decrementLives()
+            }
+            else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
+                throwableHitsGround(supernut)
+            }
+            else {
+                handleUnexpectedContactTest(b1, b2: b2)
+            }
+            
         } else if b1.categoryBitMask & CollisionCategories.Heart != 0  {
             let heart = b1.node as! Heart
             
@@ -310,8 +331,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func frenzyThrowable() -> Throwable {
-        if !lives.isFull() && monkey.canThrowHeart() {
+        let diceRoll = Int(arc4random_uniform(100))
+        
+        let shouldThrowHeart = !lives.isFull() && monkey.canThrowHeart()
+        let shouldThrowSupernut = monkey.currentLevel() > 5 && diceRoll < monkey.currentLevel()
+        
+        if shouldThrowHeart {
             return Heart()
+        } else if shouldThrowSupernut {
+            return Supernut()
         } else {
             return Coconut()
         }
@@ -328,6 +356,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             addChild(brokenut)
             coconut.removeFromParent()
+        } else if let supernut = item as? Supernut {
+            let coc1 = Coconut(pos: CGPointMake(supernut.position.x + 5, ground.size.height + 30))
+            let coc2 = Coconut(pos: CGPointMake(supernut.position.x - 5, ground.size.height + 30))
+            
+            let varianceX1 = CGFloat(arc4random_uniform(6))
+            let varianceX2 = CGFloat(arc4random_uniform(6))
+            let varianceY1 = CGFloat(arc4random_uniform(10) + 5)
+            let varianceY2 = CGFloat(arc4random_uniform(10) + 5)
+            let throwX = CGFloat(10.0)
+            let throwY = coc1.throwForceY()
+            
+            addChild(coc1)
+            addChild(coc2)
+            supernut.removeFromParent()
+
+            coc1.physicsBody?.velocity = CGVectorMake(0,0)
+            coc2.physicsBody?.velocity = CGVectorMake(0,0)
+            coc1.physicsBody?.applyImpulse(CGVectorMake(throwX + varianceX1, throwY + varianceY1))
+            coc2.physicsBody?.applyImpulse(CGVectorMake(-throwX - varianceX2, throwY + varianceY2))
+            
         } else if let heart = item as? Heart {
             let fadeAction = SKAction.fadeOutWithDuration(0.5)
             let removeAction = SKAction.runBlock { heart.removeFromParent() }

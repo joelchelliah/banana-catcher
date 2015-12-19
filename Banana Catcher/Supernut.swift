@@ -1,16 +1,14 @@
 import UIKit
 import SpriteKit
 
-class Coconut: Throwable {
+class Supernut: Throwable {
     
     init() {
         let texture = SKTexture(imageNamed: "coconut")
-        super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.Coconut)
-    }
-    
-    convenience init(pos: CGPoint) {
-        self.init()
-        position = pos        
+        super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.Supernut)
+        
+        size.height *= 1.5
+        size.width *= 1.5
     }
     
     required init?(coder aDecoder: NSCoder) {

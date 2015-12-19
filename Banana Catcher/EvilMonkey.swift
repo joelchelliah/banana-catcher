@@ -126,7 +126,8 @@ class EvilMonkey: SKSpriteNode {
     
     private var canThrowHeartDuringTantrum: Bool = false
     private var canThrow: Bool = false
-    private var coconutFactor: Int = 0;
+    private var coconutChance: Int = 0;
+    private var supernutChance: Int = 0;
     
     func isAbleToThrow() -> Bool {
         if disabled { return false }
@@ -142,13 +143,23 @@ class EvilMonkey: SKSpriteNode {
     
     func getTrowable() -> Throwable {
         let diceRoll = Int(arc4random_uniform(100))
+        let chanceInc = 10
         
-        if diceRoll < coconutFactor {
-            coconutFactor = 0
-            return Coconut()
+        if diceRoll < supernutChance {
+            supernutChance = 0
+            return Supernut()
+            
         } else {
-            coconutFactor += coconutFactorInc()
-            return Banana()
+            supernutChance += vLevel * chanceInc
+            
+            if diceRoll < coconutChance {
+                coconutChance = 0
+                return Coconut()
+                
+            } else {
+                coconutChance += (1 + vLevel) * chanceInc
+                return Banana()
+            }
         }
     }
     
@@ -161,12 +172,6 @@ class EvilMonkey: SKSpriteNode {
         }
     }
     
-    private func coconutFactorInc() -> Int {
-        let factor = 10
-        
-        return (1 + level) * factor
-    }
-    
     private func activateCooldown() {
         let currentL = Double(level)
         let currentV = Double(vLevel)
@@ -175,7 +180,9 @@ class EvilMonkey: SKSpriteNode {
         let lFactor = 0.5 * currentL - factorDecay * (currentL - 1.0)
         let vFactor = 0.5 * currentV
         
-        let coolDown = 2.0 - lFactor - vFactor
+        var coolDown = 2.0 - lFactor - vFactor
+        
+        if coolDown < 0.5 { coolDown = 0.5 }
         
         NSTimer.scheduledTimerWithTimeInterval(coolDown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)
     }

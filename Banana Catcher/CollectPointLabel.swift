@@ -20,8 +20,8 @@ class CollectPointLabel: SKLabelNode {
             fontColor = minusColor
         }
         
-        let d1 = 0.1
-        let d2 = 0.2
+        let d1 = 0.2
+        let d2 = 0.4
         let ascendWhileFading = SKAction.group([
             SKAction.moveToY(position.y + 25, duration: d1),
             SKAction.fadeAlphaTo(0.3, duration: d1)

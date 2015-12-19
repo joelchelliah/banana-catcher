@@ -9,6 +9,9 @@ class Heart: Throwable {
         
         // Doesn't work!
         //self.physicsBody?.linearDamping *= 0.005
+        
+        self.size.height *= 1.5
+        self.size.width *= 1.5
     }
     
     required init?(coder aDecoder: NSCoder) {
