@@ -158,7 +158,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 heart.removeFromParent()
                 addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
                 
-                basketMan.collect()
+                basketMan.lifeUp()
                 updateScore(points)
                 incrementLives()
             }

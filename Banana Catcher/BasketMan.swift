@@ -48,6 +48,13 @@ class BasketMan: SKSpriteNode {
         self.runAction(animation)
     }
     
+    func lifeUp() {
+        let animation = SKAction.animateWithTextures(catchTextures, timePerFrame: 0.05)
+        
+        playSound(self, name: "powerup.wav")
+        self.runAction(animation)
+    }
+    
     func ouch() {
         let animation = SKAction.animateWithTextures(ouchTextures, timePerFrame: 0.05)
         let fadeOut = SKAction.fadeAlphaTo(0.3, duration: 0.1)
