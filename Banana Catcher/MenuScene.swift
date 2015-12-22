@@ -1,6 +1,5 @@
 import UIKit
 import SpriteKit
-import AVFoundation
 
 class MenuScene: SKScene {
 
@@ -22,14 +21,9 @@ class MenuScene: SKScene {
     private var menuTitleTextures = [SKTexture]()
     
     
-    // Background music
-    var musicPlayer = AVAudioPlayer()
-    var musicPlaying = false
-    var musicTimer:NSTimer!
-    
     override func didMoveToView(view: SKView) {
         loadTextures()
-        initMusic()
+        musicPlayer.change("menu")
         
         backgroundColor = bgColor
         hWidth = size.width / 2
@@ -237,7 +231,7 @@ class MenuScene: SKScene {
         defaults.setObject(soundEnabled, forKey: "soundEnabled")
         defaults.synchronize()
         
-        toggleMusic()
+        musicPlayer.toggle()
     }
     
     private func setSoundBtnTexture(fromPress: Bool = false) {
@@ -263,31 +257,6 @@ class MenuScene: SKScene {
     private func loadTextures() {
         for i in 1...19 {
             menuTitleTextures.append(SKTexture(imageNamed: "menu_title_\(i).png"))
-        }
-    }
-    
-    private func initMusic() {
-        let path = NSBundle.mainBundle().URLForResource("menu", withExtension: "mp3")
-        
-        do {
-            try musicPlayer = AVAudioPlayer(contentsOfURL: path!)
-        } catch {
-            print("Could not init player!")
-        }
-        
-        musicPlayer.numberOfLoops = -1
-        musicPlayer.play()
-        musicPlaying = true
-    }
-    
-    
-    private func toggleMusic() {
-        if soundEnabled && !musicPlaying {
-            musicPlayer.play()
-            musicPlaying = true
-        } else {
-            musicPlayer.pause()
-            musicPlaying = false
         }
     }
 }

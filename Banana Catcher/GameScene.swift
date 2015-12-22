@@ -14,6 +14,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var touchLoc = CGPointMake(0, 0)
     
     override func didMoveToView(view: SKView) {
+        musicPlayer.change("game_1")
+        
         backgroundColor = bgColor
         hWidth = size.width / 2
         score = 0
@@ -229,13 +231,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func updateMonkey() {
-        let level = monkey.currentLevel()
-        
+        let levelBefore = monkey.currentLevel()
         monkey.enrage()
+        let currentLevel = monkey.currentLevel()
         
-        if monkey.currentLevel() > level {
-            monkey.disable()
+        
+        if currentLevel > levelBefore {
+            if currentLevel == 5 { musicPlayer.change("game_2") }
             
+            monkey.disable()
             monkey.throwTantrum()
             
             let center = SKAction.moveToX(hWidth, duration: 0.5)

@@ -21,6 +21,8 @@ class GameOverScene: SKScene {
     private var scoreboardTextures = [SKTexture]()
     
     override func didMoveToView(view: SKView) {
+        musicPlayer.change("game_over")
+        
         backgroundColor = bgColor
         hWidth = size.width / 2
         hHeight = size.height / 2

@@ -12,6 +12,10 @@
 		A3194FCF1BCD7A1800FD0122 /* banana_splat_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3194FCC1BCD7A1800FD0122 /* banana_splat_5.png */; };
 		A32A31FB1BB8114300A12214 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A31FA1BB8114300A12214 /* GameOverScene.swift */; };
 		A32A31FF1BB81E3F00A12214 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A31FE1BB81E3F00A12214 /* Label.swift */; };
+		A33034F61C29AFBD008A2346 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33034F51C29AFBD008A2346 /* MusicPlayer.swift */; };
+		A33034FA1C29B344008A2346 /* game_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A33034F71C29B344008A2346 /* game_1.mp3 */; };
+		A33034FB1C29B344008A2346 /* game_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A33034F81C29B344008A2346 /* game_2.mp3 */; };
+		A33034FC1C29B344008A2346 /* game_over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A33034F91C29B344008A2346 /* game_over.mp3 */; };
 		A334929A1BEDF34800A1FAE1 /* game_over_sob_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A334928B1BEDF34800A1FAE1 /* game_over_sob_1.png */; };
 		A334929B1BEDF34800A1FAE1 /* game_over_sob_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A334928C1BEDF34800A1FAE1 /* game_over_sob_2.png */; };
 		A334929C1BEDF34800A1FAE1 /* game_over_sob_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A334928D1BEDF34800A1FAE1 /* game_over_sob_3.png */; };
@@ -232,6 +236,10 @@
 		A3194FCC1BCD7A1800FD0122 /* banana_splat_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_5.png; path = images/throwables/banana_splat_5.png; sourceTree = "<group>"; };
 		A32A31FA1BB8114300A12214 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		A32A31FE1BB81E3F00A12214 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		A33034F51C29AFBD008A2346 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		A33034F71C29B344008A2346 /* game_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = game_1.mp3; path = music/game_1.mp3; sourceTree = "<group>"; };
+		A33034F81C29B344008A2346 /* game_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = game_2.mp3; path = music/game_2.mp3; sourceTree = "<group>"; };
+		A33034F91C29B344008A2346 /* game_over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = game_over.mp3; path = music/game_over.mp3; sourceTree = "<group>"; };
 		A334928B1BEDF34800A1FAE1 /* game_over_sob_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_over_sob_1.png; path = images/gamover/game_over_sob_1.png; sourceTree = "<group>"; };
 		A334928C1BEDF34800A1FAE1 /* game_over_sob_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_over_sob_2.png; path = images/gamover/game_over_sob_2.png; sourceTree = "<group>"; };
 		A334928D1BEDF34800A1FAE1 /* game_over_sob_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_over_sob_3.png; path = images/gamover/game_over_sob_3.png; sourceTree = "<group>"; };
@@ -631,6 +639,7 @@
 				A3A79F9D1BA6D32A003C1F32 /* Assets.xcassets */,
 				A3A79F9F1BA6D32A003C1F32 /* LaunchScreen.storyboard */,
 				A3A79FA21BA6D32A003C1F32 /* Info.plist */,
+				A33034F51C29AFBD008A2346 /* MusicPlayer.swift */,
 			);
 			path = "Banana Catcher";
 			sourceTree = "<group>";
@@ -669,6 +678,9 @@
 		A3B91D651C2840FE00BEA54E /* music */ = {
 			isa = PBXGroup;
 			children = (
+				A33034F71C29B344008A2346 /* game_1.mp3 */,
+				A33034F81C29B344008A2346 /* game_2.mp3 */,
+				A33034F91C29B344008A2346 /* game_over.mp3 */,
 				A3B91D661C28411C00BEA54E /* menu.mp3 */,
 			);
 			name = music;
@@ -940,6 +952,7 @@
 				A37673511BEB64300079619A /* catch_1.wav in Resources */,
 				A36012501BE64C2B00FDB32D /* menu_title_11.png in Resources */,
 				A37D4B511BE3BC990071FFBF /* brokenut_8.png in Resources */,
+				A33034FB1C29B344008A2346 /* game_2.mp3 in Resources */,
 				A3A79FD31BA6DA61003C1F32 /* BananaRain.sks in Resources */,
 				A3C9558B1BCA895B000E6274 /* catch_2.png in Resources */,
 				A33492C71BEE066A00A1FAE1 /* scoreboard_7.png in Resources */,
@@ -1080,12 +1093,14 @@
 				A33492A41BEDF34800A1FAE1 /* game_over_tears_1.png in Resources */,
 				A37673621BEBA90F0079619A /* ouch_10.png in Resources */,
 				A33493001BEF534900A1FAE1 /* sad_7.png in Resources */,
+				A33034FA1C29B344008A2346 /* game_1.mp3 in Resources */,
 				A36012571BE64C2B00FDB32D /* menu_title_18.png in Resources */,
 				A376737A1BEBC59B0079619A /* catch_menu_1.png in Resources */,
 				A3A79F9C1BA6D32A003C1F32 /* Main.storyboard in Resources */,
 				A33492E71BEE337600A1FAE1 /* monkey_angry_8.png in Resources */,
 				A36012621BE6530800FDB32D /* ouch_1.png in Resources */,
 				A3194FCE1BCD7A1800FD0122 /* banana_splat_4.png in Resources */,
+				A33034FC1C29B344008A2346 /* game_over.mp3 in Resources */,
 				A36012531BE64C2B00FDB32D /* menu_title_14.png in Resources */,
 				A33492A11BEDF34800A1FAE1 /* game_over_sob_8.png in Resources */,
 				A376737E1BEBC59B0079619A /* catch_menu_5.png in Resources */,
@@ -1125,6 +1140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A33034F61C29AFBD008A2346 /* MusicPlayer.swift in Sources */,
 				A396BB581BB6E840002F7231 /* Lives.swift in Sources */,
 				A3A79F971BA6D32A003C1F32 /* GameScene.swift in Sources */,
 				A37D4B351BE3A2700071FFBF /* Coconut.swift in Sources */,

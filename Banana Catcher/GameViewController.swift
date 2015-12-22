@@ -4,6 +4,8 @@ import SpriteKit
 //TODO: move these into a globals file?
 let bgColor = UIColor(red: 102.0/255.0, green: 150.0/255.0, blue: 230.0/255.0, alpha: 1.0)
 let gameFont: String = "Georgia Bold"
+let musicPlayer = MusicPlayer(music: "menu")
+
 var score: Int = 0
 var soundEnabled: Bool = true
 
