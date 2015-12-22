@@ -14,7 +14,7 @@ class Throwable: SKSpriteNode {
         self.physicsBody?.contactTestBitMask = CollisionCategories.BasketMan | CollisionCategories.Ground
         self.physicsBody?.collisionBitMask = CollisionCategories.Ground | CollisionCategories.EdgeBody
         
-        getThrown()
+        withRotation()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,14 +26,21 @@ class Throwable: SKSpriteNode {
     }
     
     
-    private func getThrown() {
+    internal func withSound(sound: String? = nil) {
+        let soundPitch = Int(arc4random_uniform(3)) + 1
+        
+        if let sound = sound {
+            playSound(self, name: "\(sound)_\(soundPitch).wav")
+        } else {
+            playSound(self, name: "throw_\(soundPitch).wav")
+        }
+    }
+    
+    private func withRotation() {
         let rotDirection = [-1.0, 1.0][Int(arc4random_uniform(2))]
         let rotSpeed = 2.0 / Double(arc4random_uniform(5) + 1)
         let rot = SKAction.rotateByAngle(CGFloat(rotDirection * M_PI) * 2.0, duration: rotSpeed)
         
-        let soundPitch = Int(arc4random_uniform(3)) + 1
-        
-        playSound(self, name: "throw_\(soundPitch).wav")
         self.runAction(SKAction.repeatActionForever(rot))
     }
 }

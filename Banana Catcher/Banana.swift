@@ -6,6 +6,8 @@ class Banana: Throwable {
     init() {
         let texture = SKTexture(imageNamed: "banana")
         super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.Banana)
+        
+        withSound()
     }
     
     required init?(coder aDecoder: NSCoder) {

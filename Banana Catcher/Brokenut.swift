@@ -3,10 +3,13 @@ import SpriteKit
 
 class Brokenut: Decayable {
     
-    init(pos: CGPoint) {
+    init(pos: CGPoint, sizeFactor: CGFloat = 1.0) {
         let texture = SKTexture(imageNamed: "brokenut_1")
         
         super.init(texture: texture, pos: pos)
+        
+        size.height *= sizeFactor
+        size.width *= sizeFactor
     }
     
     required init?(coder aDecoder: NSCoder) {

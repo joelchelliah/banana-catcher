@@ -361,24 +361,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addChild(brokenut)
             coconut.removeFromParent()
         } else if let supernut = item as? Supernut {
-            let coc1 = Coconut(pos: CGPointMake(supernut.position.x + 5, ground.size.height + 30))
-            let coc2 = Coconut(pos: CGPointMake(supernut.position.x - 5, ground.size.height + 30))
+            let numSpawns: Int = monkey.currentLevel() / 5
             
-            let varianceX1 = CGFloat(arc4random_uniform(6))
-            let varianceX2 = CGFloat(arc4random_uniform(6))
-            let varianceY1 = CGFloat(arc4random_uniform(10) + 5)
-            let varianceY2 = CGFloat(arc4random_uniform(10) + 5)
-            let throwX = CGFloat(10.0)
-            let throwY = coc1.throwForceY()
-            
-            addChild(coc1)
-            addChild(coc2)
-            supernut.removeFromParent()
+            for _ in 1...numSpawns {
+                let spawnPos = CGPointMake(supernut.position.x, ground.size.height + 30)
+                let spawn = Coconut.spawnAt(spawnPos)
+                let throwX = CGFloat(arc4random_uniform(20)) - 10.0
+                let throwY = spawn.throwForceY() + CGFloat(arc4random_uniform(10) + 5)
+                
+                addChild(spawn)
+                spawn.physicsBody?.velocity = CGVectorMake(0,0)
+                spawn.physicsBody?.applyImpulse(CGVectorMake(throwX, throwY))
+            }
 
-            coc1.physicsBody?.velocity = CGVectorMake(0,0)
-            coc2.physicsBody?.velocity = CGVectorMake(0,0)
-            coc1.physicsBody?.applyImpulse(CGVectorMake(throwX + varianceX1, throwY + varianceY1))
-            coc2.physicsBody?.applyImpulse(CGVectorMake(-throwX - varianceX2, throwY + varianceY2))
+            let brokenutPos = CGPointMake(supernut.position.x, ground.size.height + 5)
+            let brokenut = Brokenut(pos: brokenutPos, sizeFactor: 1.5)
+            
+            addChild(brokenut)
+            supernut.removeFromParent()
             
         } else if let heart = item as? Heart {
             let fadeAction = SKAction.fadeOutWithDuration(0.5)

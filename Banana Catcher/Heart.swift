@@ -12,6 +12,8 @@ class Heart: Throwable {
         
         self.size.height *= 1.5
         self.size.width *= 1.5
+        
+        withSound()
     }
     
     required init?(coder aDecoder: NSCoder) {

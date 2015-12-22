@@ -16,6 +16,9 @@
 		A33034FA1C29B344008A2346 /* game_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A33034F71C29B344008A2346 /* game_1.mp3 */; };
 		A33034FB1C29B344008A2346 /* game_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A33034F81C29B344008A2346 /* game_2.mp3 */; };
 		A33034FC1C29B344008A2346 /* game_over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A33034F91C29B344008A2346 /* game_over.mp3 */; };
+		A33035021C29C8CE008A2346 /* supernut_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A33034FF1C29C8CE008A2346 /* supernut_1.wav */; };
+		A33035031C29C8CE008A2346 /* supernut_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = A33035001C29C8CE008A2346 /* supernut_2.wav */; };
+		A33035041C29C8CE008A2346 /* supernut_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = A33035011C29C8CE008A2346 /* supernut_3.wav */; };
 		A334929A1BEDF34800A1FAE1 /* game_over_sob_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A334928B1BEDF34800A1FAE1 /* game_over_sob_1.png */; };
 		A334929B1BEDF34800A1FAE1 /* game_over_sob_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A334928C1BEDF34800A1FAE1 /* game_over_sob_2.png */; };
 		A334929C1BEDF34800A1FAE1 /* game_over_sob_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A334928D1BEDF34800A1FAE1 /* game_over_sob_3.png */; };
@@ -240,6 +243,9 @@
 		A33034F71C29B344008A2346 /* game_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = game_1.mp3; path = music/game_1.mp3; sourceTree = "<group>"; };
 		A33034F81C29B344008A2346 /* game_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = game_2.mp3; path = music/game_2.mp3; sourceTree = "<group>"; };
 		A33034F91C29B344008A2346 /* game_over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = game_over.mp3; path = music/game_over.mp3; sourceTree = "<group>"; };
+		A33034FF1C29C8CE008A2346 /* supernut_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = supernut_1.wav; path = sounds/supernut_1.wav; sourceTree = "<group>"; };
+		A33035001C29C8CE008A2346 /* supernut_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = supernut_2.wav; path = sounds/supernut_2.wav; sourceTree = "<group>"; };
+		A33035011C29C8CE008A2346 /* supernut_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = supernut_3.wav; path = sounds/supernut_3.wav; sourceTree = "<group>"; };
 		A334928B1BEDF34800A1FAE1 /* game_over_sob_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_over_sob_1.png; path = images/gamover/game_over_sob_1.png; sourceTree = "<group>"; };
 		A334928C1BEDF34800A1FAE1 /* game_over_sob_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_over_sob_2.png; path = images/gamover/game_over_sob_2.png; sourceTree = "<group>"; };
 		A334928D1BEDF34800A1FAE1 /* game_over_sob_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_over_sob_3.png; path = images/gamover/game_over_sob_3.png; sourceTree = "<group>"; };
@@ -826,6 +832,9 @@
 				A37673471BEB60330079619A /* throw_3.wav */,
 				A37673431BEB5D6C0079619A /* option_select.wav */,
 				A3EEC5B41BD6AFBF00A1D133 /* splat.wav */,
+				A33034FF1C29C8CE008A2346 /* supernut_1.wav */,
+				A33035001C29C8CE008A2346 /* supernut_2.wav */,
+				A33035011C29C8CE008A2346 /* supernut_3.wav */,
 				A33492CB1BEE2A6400A1FAE1 /* monkey_angry_1.wav */,
 				A33492CC1BEE2A6400A1FAE1 /* monkey_angry_2.wav */,
 				A33492CD1BEE2A6400A1FAE1 /* monkey_angry_3.wav */,
@@ -982,6 +991,7 @@
 				A376735C1BEB92B80079619A /* brokenut_13.png in Resources */,
 				A37673881BEBC59B0079619A /* catch_menu_15.png in Resources */,
 				A37D4B2F1BE379250071FFBF /* flying_4.png in Resources */,
+				A33035041C29C8CE008A2346 /* supernut_3.wav in Resources */,
 				A33492C21BEE066A00A1FAE1 /* scoreboard_2.png in Resources */,
 				A360124B1BE64C2B00FDB32D /* menu_title_6.png in Resources */,
 				A33493041BEF567B00A1FAE1 /* sad_8.png in Resources */,
@@ -1019,6 +1029,7 @@
 				A3EEC5B71BD6AFBF00A1D133 /* splat.wav in Resources */,
 				A33492E61BEE337600A1FAE1 /* monkey_angry_7.png in Resources */,
 				A37D4B4F1BE3BC990071FFBF /* brokenut_6.png in Resources */,
+				A33035031C29C8CE008A2346 /* supernut_2.wav in Resources */,
 				A3B91D671C28411C00BEA54E /* menu.mp3 in Resources */,
 				A37D4B2E1BE379250071FFBF /* flying_3.png in Resources */,
 				A37673641BEBB04D0079619A /* banana_splat_6.png in Resources */,
@@ -1085,6 +1096,7 @@
 				A33493021BEF54C000A1FAE1 /* ouch.wav in Resources */,
 				A36012541BE64C2B00FDB32D /* menu_title_15.png in Resources */,
 				A33492EA1BEE337600A1FAE1 /* monkey_angry_11.png in Resources */,
+				A33035021C29C8CE008A2346 /* supernut_1.wav in Resources */,
 				A37D4B2D1BE379250071FFBF /* flying_2.png in Resources */,
 				A37673491BEB60330079619A /* throw_2.wav in Resources */,
 				A3C9558F1BCA895B000E6274 /* catch_6.png in Resources */,

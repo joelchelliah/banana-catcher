@@ -3,14 +3,18 @@ import SpriteKit
 
 class Coconut: Throwable {
     
-    init() {
+    init(withThrowSound: Bool = true) {
         let texture = SKTexture(imageNamed: "coconut")
         super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.Coconut)
+        
+        if withThrowSound { withSound() }
     }
     
-    convenience init(pos: CGPoint) {
-        self.init()
-        position = pos        
+    class func spawnAt(pos: CGPoint) -> Coconut {
+        let coconut = Coconut(withThrowSound: false)
+        coconut.position = pos
+        
+        return coconut
     }
     
     required init?(coder aDecoder: NSCoder) {
