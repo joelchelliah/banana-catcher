@@ -113,6 +113,7 @@
 		A360126A1BE6530800FDB32D /* ouch_9.png in Resources */ = {isa = PBXBuildFile; fileRef = A36012611BE6530800FDB32D /* ouch_9.png */; };
 		A360126C1BE6561D00FDB32D /* Decayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A360126B1BE6561D00FDB32D /* Decayable.swift */; };
 		A368FC7B1C2583BE0036DDFA /* Supernut.swift in Sources */ = {isa = PBXBuildFile; fileRef = A368FC7A1C2583BE0036DDFA /* Supernut.swift */; };
+		A373A05A1C2AB233006D2802 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373A0591C2AB233006D2802 /* TutorialScene.swift */; };
 		A37673441BEB5D6C0079619A /* option_select.wav in Resources */ = {isa = PBXBuildFile; fileRef = A37673431BEB5D6C0079619A /* option_select.wav */; };
 		A37673481BEB60330079619A /* throw_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A37673451BEB60330079619A /* throw_1.wav */; };
 		A37673491BEB60330079619A /* throw_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = A37673461BEB60330079619A /* throw_2.wav */; };
@@ -340,6 +341,7 @@
 		A36012611BE6530800FDB32D /* ouch_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ouch_9.png; path = images/heroes/box/ouch_9.png; sourceTree = "<group>"; };
 		A360126B1BE6561D00FDB32D /* Decayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decayable.swift; sourceTree = "<group>"; };
 		A368FC7A1C2583BE0036DDFA /* Supernut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supernut.swift; sourceTree = "<group>"; };
+		A373A0591C2AB233006D2802 /* TutorialScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
 		A37673431BEB5D6C0079619A /* option_select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = option_select.wav; path = sounds/option_select.wav; sourceTree = "<group>"; };
 		A37673451BEB60330079619A /* throw_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = throw_1.wav; path = sounds/throw_1.wav; sourceTree = "<group>"; };
 		A37673461BEB60330079619A /* throw_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = throw_2.wav; path = sounds/throw_2.wav; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 				A3A79F961BA6D32A003C1F32 /* GameScene.swift */,
 				A3A79FC41BA6D46A003C1F32 /* MenuScene.swift */,
 				A32A31FA1BB8114300A12214 /* GameOverScene.swift */,
+				A373A0591C2AB233006D2802 /* TutorialScene.swift */,
 			);
 			name = scenes;
 			sourceTree = "<group>";
@@ -1153,6 +1156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A33034F61C29AFBD008A2346 /* MusicPlayer.swift in Sources */,
+				A373A05A1C2AB233006D2802 /* TutorialScene.swift in Sources */,
 				A396BB581BB6E840002F7231 /* Lives.swift in Sources */,
 				A3A79F971BA6D32A003C1F32 /* GameScene.swift in Sources */,
 				A37D4B351BE3A2700071FFBF /* Coconut.swift in Sources */,

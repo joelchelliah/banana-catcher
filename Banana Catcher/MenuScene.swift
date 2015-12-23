@@ -199,22 +199,23 @@ class MenuScene: SKScene {
     /* Button actions */
     
     private func moveToGameScene() {
+        buttonClickForNewScene(howToButton, scene: GameScene(size: self.size))
+    }
+    
+    private func moveToTutorialScene() {
+        buttonClickForNewScene(howToButton, scene: TutorialScene(size: self.size))
+    }
+    
+    private func buttonClickForNewScene(button: SKSpriteNode, scene: SKScene) {
         let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.1)
         let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
         let sound = SKAction.runBlock { playSound(self, name: "option_select.wav") }
         let transition = SKAction.runBlock {
-            let scene = GameScene(size: self.size)
             scene.scaleMode = self.scaleMode
-            
             self.view?.presentScene(scene, transition: SKTransition.flipVerticalWithDuration(0.5))
         }
         
-        playButton.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
-    }
-    
-    private func moveToTutorialScene() {
-        // TODO!
-        playSound(self, name: "option_select.wav")
+        button.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
     }
     
     private func toggleAds() {
