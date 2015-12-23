@@ -93,6 +93,14 @@ class EvilMonkey: SKSpriteNode {
         }
     }
     
+    func bounce() {
+        let yPos = position.y
+        let up = SKAction.moveToY(yPos + 20, duration: 0.1)
+        let down = SKAction.moveToY(yPos, duration: 0.2)
+        
+        runAction(SKAction.sequence([up, down]))
+    }
+    
     private func updateStep() {
         if step < 1.0 {
             let diceRollHit = Int(arc4random_uniform(6)) == 1

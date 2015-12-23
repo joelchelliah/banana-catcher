@@ -284,12 +284,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             item.physicsBody?.velocity = CGVectorMake(0,0)
             item.physicsBody?.applyImpulse(CGVectorMake(throwRange, item.throwForceY()))
-            
-            let yPos = monkey.position.y
-            let up = SKAction.moveToY(yPos + 20, duration: 0.1)
-            let down = SKAction.moveToY(yPos, duration: 0.2)
-            
-            monkey.runAction(SKAction.sequence([up, down]))
+        
+            monkey.bounce()
         }
     }
     

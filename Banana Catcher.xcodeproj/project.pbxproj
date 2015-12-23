@@ -114,6 +114,12 @@
 		A360126C1BE6561D00FDB32D /* Decayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A360126B1BE6561D00FDB32D /* Decayable.swift */; };
 		A368FC7B1C2583BE0036DDFA /* Supernut.swift in Sources */ = {isa = PBXBuildFile; fileRef = A368FC7A1C2583BE0036DDFA /* Supernut.swift */; };
 		A373A05A1C2AB233006D2802 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373A0591C2AB233006D2802 /* TutorialScene.swift */; };
+		A373A05C1C2AD12A006D2802 /* TutorialLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373A05B1C2AD12A006D2802 /* TutorialLabel.swift */; };
+		A373A05F1C2AD5E5006D2802 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = A373A05D1C2AD5E5006D2802 /* next.png */; };
+		A373A0601C2AD5E5006D2802 /* ok.png in Resources */ = {isa = PBXBuildFile; fileRef = A373A05E1C2AD5E5006D2802 /* ok.png */; };
+		A373A0621C2AD8A0006D2802 /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373A0611C2AD8A0006D2802 /* InfoLabel.swift */; };
+		A373A0641C2AE5DE006D2802 /* finger.png in Resources */ = {isa = PBXBuildFile; fileRef = A373A0631C2AE5DE006D2802 /* finger.png */; };
+		A373A0661C2AF50D006D2802 /* tutorial.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A373A0651C2AF50D006D2802 /* tutorial.mp3 */; };
 		A37673441BEB5D6C0079619A /* option_select.wav in Resources */ = {isa = PBXBuildFile; fileRef = A37673431BEB5D6C0079619A /* option_select.wav */; };
 		A37673481BEB60330079619A /* throw_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A37673451BEB60330079619A /* throw_1.wav */; };
 		A37673491BEB60330079619A /* throw_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = A37673461BEB60330079619A /* throw_2.wav */; };
@@ -342,6 +348,12 @@
 		A360126B1BE6561D00FDB32D /* Decayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decayable.swift; sourceTree = "<group>"; };
 		A368FC7A1C2583BE0036DDFA /* Supernut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supernut.swift; sourceTree = "<group>"; };
 		A373A0591C2AB233006D2802 /* TutorialScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
+		A373A05B1C2AD12A006D2802 /* TutorialLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialLabel.swift; sourceTree = "<group>"; };
+		A373A05D1C2AD5E5006D2802 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = images/buttons/next.png; sourceTree = "<group>"; };
+		A373A05E1C2AD5E5006D2802 /* ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ok.png; path = images/buttons/ok.png; sourceTree = "<group>"; };
+		A373A0611C2AD8A0006D2802 /* InfoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
+		A373A0631C2AE5DE006D2802 /* finger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = finger.png; path = images/buttons/finger.png; sourceTree = "<group>"; };
+		A373A0651C2AF50D006D2802 /* tutorial.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tutorial.mp3; path = music/tutorial.mp3; sourceTree = "<group>"; };
 		A37673431BEB5D6C0079619A /* option_select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = option_select.wav; path = sounds/option_select.wav; sourceTree = "<group>"; };
 		A37673451BEB60330079619A /* throw_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = throw_1.wav; path = sounds/throw_1.wav; sourceTree = "<group>"; };
 		A37673461BEB60330079619A /* throw_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = throw_2.wav; path = sounds/throw_2.wav; sourceTree = "<group>"; };
@@ -512,6 +524,8 @@
 				A33492A91BEDF6D700A1FAE1 /* home.png */,
 				A33492AA1BEDF6D700A1FAE1 /* how.png */,
 				A33492AB1BEDF6D700A1FAE1 /* no_ads.png */,
+				A373A05D1C2AD5E5006D2802 /* next.png */,
+				A373A05E1C2AD5E5006D2802 /* ok.png */,
 				A33492AC1BEDF6D700A1FAE1 /* play_button.png */,
 				A33492AD1BEDF6D700A1FAE1 /* rate.png */,
 				A33492AE1BEDF6D700A1FAE1 /* retry_button.png */,
@@ -593,6 +607,8 @@
 				A3C20E951BED44BB002A179E /* GameOverLabel.swift */,
 				A33492EF1BEE611F00A1FAE1 /* CollectPointLabel.swift */,
 				A32A31FE1BB81E3F00A12214 /* Label.swift */,
+				A373A05B1C2AD12A006D2802 /* TutorialLabel.swift */,
+				A373A0611C2AD8A0006D2802 /* InfoLabel.swift */,
 			);
 			name = labels;
 			sourceTree = "<group>";
@@ -691,6 +707,7 @@
 				A33034F81C29B344008A2346 /* game_2.mp3 */,
 				A33034F91C29B344008A2346 /* game_over.mp3 */,
 				A3B91D661C28411C00BEA54E /* menu.mp3 */,
+				A373A0651C2AF50D006D2802 /* tutorial.mp3 */,
 			);
 			name = music;
 			sourceTree = "<group>";
@@ -819,6 +836,7 @@
 				A360122C1BE613D800FDB32D /* menu_sky.png */,
 				A37D4B541BE52E830071FFBF /* background.png */,
 				A3C955971BCA943E000E6274 /* heart.png */,
+				A373A0631C2AE5DE006D2802 /* finger.png */,
 			);
 			name = hud;
 			sourceTree = "<group>";
@@ -998,10 +1016,12 @@
 				A33492C21BEE066A00A1FAE1 /* scoreboard_2.png in Resources */,
 				A360124B1BE64C2B00FDB32D /* menu_title_6.png in Resources */,
 				A33493041BEF567B00A1FAE1 /* sad_8.png in Resources */,
+				A373A0601C2AD5E5006D2802 /* ok.png in Resources */,
 				A33492B71BEDF6D700A1FAE1 /* sound_off.png in Resources */,
 				A360126A1BE6530800FDB32D /* ouch_9.png in Resources */,
 				A33492C31BEE066A00A1FAE1 /* scoreboard_3.png in Resources */,
 				A33492B11BEDF6D700A1FAE1 /* home.png in Resources */,
+				A373A0661C2AF50D006D2802 /* tutorial.mp3 in Resources */,
 				A3C9558E1BCA895B000E6274 /* catch_5.png in Resources */,
 				A334929D1BEDF34800A1FAE1 /* game_over_sob_4.png in Resources */,
 				A33492A61BEDF34800A1FAE1 /* game_over_tears_3.png in Resources */,
@@ -1067,6 +1087,7 @@
 				A3194FCD1BCD7A1800FD0122 /* banana_splat_3.png in Resources */,
 				A3C9559C1BCACD91000E6274 /* banana_splat_2.png in Resources */,
 				A33492FC1BEF534900A1FAE1 /* sad_3.png in Resources */,
+				A373A0641C2AE5DE006D2802 /* finger.png in Resources */,
 				A376738F1BEBC7CD0079619A /* blink_menu_2.png in Resources */,
 				A33492CE1BEE2A6400A1FAE1 /* monkey_angry_1.wav in Resources */,
 				A334929E1BEDF34800A1FAE1 /* game_over_sob_5.png in Resources */,
@@ -1098,6 +1119,7 @@
 				A33492B51BEDF6D700A1FAE1 /* rate.png in Resources */,
 				A33493021BEF54C000A1FAE1 /* ouch.wav in Resources */,
 				A36012541BE64C2B00FDB32D /* menu_title_15.png in Resources */,
+				A373A05F1C2AD5E5006D2802 /* next.png in Resources */,
 				A33492EA1BEE337600A1FAE1 /* monkey_angry_11.png in Resources */,
 				A33035021C29C8CE008A2346 /* supernut_1.wav in Resources */,
 				A37D4B2D1BE379250071FFBF /* flying_2.png in Resources */,
@@ -1161,9 +1183,11 @@
 				A3A79F971BA6D32A003C1F32 /* GameScene.swift in Sources */,
 				A37D4B351BE3A2700071FFBF /* Coconut.swift in Sources */,
 				A3A79FDC1BA6FFDC003C1F32 /* Ground.swift in Sources */,
+				A373A0621C2AD8A0006D2802 /* InfoLabel.swift in Sources */,
 				A3A79FC51BA6D46A003C1F32 /* MenuScene.swift in Sources */,
 				A3F33D861BAD381F0038FDFB /* CollisionCategories.swift in Sources */,
 				A33492CA1BEE23BE00A1FAE1 /* GamePoints.swift in Sources */,
+				A373A05C1C2AD12A006D2802 /* TutorialLabel.swift in Sources */,
 				A37D4B3F1BE3BC6B0071FFBF /* Brokenut.swift in Sources */,
 				A3A79F991BA6D32A003C1F32 /* GameViewController.swift in Sources */,
 				A33492F01BEE611F00A1FAE1 /* CollectPointLabel.swift in Sources */,
