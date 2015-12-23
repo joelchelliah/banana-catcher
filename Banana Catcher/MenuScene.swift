@@ -199,7 +199,7 @@ class MenuScene: SKScene {
     /* Button actions */
     
     private func moveToGameScene() {
-        buttonClickForNewScene(howToButton, scene: GameScene(size: self.size))
+        buttonClickForNewScene(playButton, scene: GameScene(size: self.size))
     }
     
     private func moveToTutorialScene() {

@@ -26,6 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addLives()
         addEdgeBody()
         addGround()
+        addBushes()
         addBasketMan()
         addEvilMonkey()
     }
@@ -208,6 +209,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private func addGround() {
         ground.position = CGPoint(x: hWidth, y: ground.size.height / 2)
         addChild(ground)
+    }
+    
+    private func addBushes() {
+        let baseHeight = ground.size.height + 15
+        let numBushes = Int(arc4random_uniform(2) + 1)
+        
+        var positions: [CGFloat] = [
+            hWidth - 40 - CGFloat(arc4random_uniform(60)),
+            hWidth + 40 + CGFloat(arc4random_uniform(60)),
+        ]
+        
+        for _ in 0..<numBushes {
+            let bushIndex = Int(arc4random_uniform(5)) + 1
+            let bushPos = positions.removeAtIndex(Int(arc4random_uniform(UInt32(positions.count))))
+            
+            let bush = SKSpriteNode(imageNamed: "bush_\(bushIndex).png")
+            
+            bush.position = CGPointMake(bushPos, baseHeight + bush.size.height / 2)
+            bush.zPosition = -800
+            
+            addChild(bush)
+        }
     }
     
     private func addBasketMan() {

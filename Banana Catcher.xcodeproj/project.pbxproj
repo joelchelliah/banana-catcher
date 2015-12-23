@@ -120,6 +120,11 @@
 		A373A0621C2AD8A0006D2802 /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373A0611C2AD8A0006D2802 /* InfoLabel.swift */; };
 		A373A0641C2AE5DE006D2802 /* finger.png in Resources */ = {isa = PBXBuildFile; fileRef = A373A0631C2AE5DE006D2802 /* finger.png */; };
 		A373A0661C2AF50D006D2802 /* tutorial.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A373A0651C2AF50D006D2802 /* tutorial.mp3 */; };
+		A373A0791C2B41DD006D2802 /* bush_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A373A0741C2B41DD006D2802 /* bush_1.png */; };
+		A373A07A1C2B41DD006D2802 /* bush_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A373A0751C2B41DD006D2802 /* bush_2.png */; };
+		A373A07B1C2B41DD006D2802 /* bush_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A373A0761C2B41DD006D2802 /* bush_3.png */; };
+		A373A07C1C2B41DD006D2802 /* bush_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A373A0771C2B41DD006D2802 /* bush_4.png */; };
+		A373A07D1C2B41DD006D2802 /* bush_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A373A0781C2B41DD006D2802 /* bush_5.png */; };
 		A37673441BEB5D6C0079619A /* option_select.wav in Resources */ = {isa = PBXBuildFile; fileRef = A37673431BEB5D6C0079619A /* option_select.wav */; };
 		A37673481BEB60330079619A /* throw_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A37673451BEB60330079619A /* throw_1.wav */; };
 		A37673491BEB60330079619A /* throw_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = A37673461BEB60330079619A /* throw_2.wav */; };
@@ -354,6 +359,11 @@
 		A373A0611C2AD8A0006D2802 /* InfoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		A373A0631C2AE5DE006D2802 /* finger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = finger.png; path = images/buttons/finger.png; sourceTree = "<group>"; };
 		A373A0651C2AF50D006D2802 /* tutorial.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tutorial.mp3; path = music/tutorial.mp3; sourceTree = "<group>"; };
+		A373A0741C2B41DD006D2802 /* bush_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bush_1.png; path = images/doodads/bush_1.png; sourceTree = "<group>"; };
+		A373A0751C2B41DD006D2802 /* bush_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bush_2.png; path = images/doodads/bush_2.png; sourceTree = "<group>"; };
+		A373A0761C2B41DD006D2802 /* bush_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bush_3.png; path = images/doodads/bush_3.png; sourceTree = "<group>"; };
+		A373A0771C2B41DD006D2802 /* bush_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bush_4.png; path = images/doodads/bush_4.png; sourceTree = "<group>"; };
+		A373A0781C2B41DD006D2802 /* bush_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bush_5.png; path = images/doodads/bush_5.png; sourceTree = "<group>"; };
 		A37673431BEB5D6C0079619A /* option_select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = option_select.wav; path = sounds/option_select.wav; sourceTree = "<group>"; };
 		A37673451BEB60330079619A /* throw_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = throw_1.wav; path = sounds/throw_1.wav; sourceTree = "<group>"; };
 		A37673461BEB60330079619A /* throw_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = throw_2.wav; path = sounds/throw_2.wav; sourceTree = "<group>"; };
@@ -545,6 +555,18 @@
 			name = decayables;
 			sourceTree = "<group>";
 		};
+		A373A0671C2B3202006D2802 /* doodads */ = {
+			isa = PBXGroup;
+			children = (
+				A373A0741C2B41DD006D2802 /* bush_1.png */,
+				A373A0751C2B41DD006D2802 /* bush_2.png */,
+				A373A0761C2B41DD006D2802 /* bush_3.png */,
+				A373A0771C2B41DD006D2802 /* bush_4.png */,
+				A373A0781C2B41DD006D2802 /* bush_5.png */,
+			);
+			name = doodads;
+			sourceTree = "<group>";
+		};
 		A37D4B231BE3790D0071FFBF /* monkey */ = {
 			isa = PBXGroup;
 			children = (
@@ -690,6 +712,7 @@
 		A3A79FC81BA6D646003C1F32 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A373A0671C2B3202006D2802 /* doodads */,
 				A33492801BEDE8C500A1FAE1 /* buttons */,
 				A334927F1BEDE8B100A1FAE1 /* gamover */,
 				A37D4B231BE3790D0071FFBF /* monkey */,
@@ -1025,6 +1048,7 @@
 				A3C9558E1BCA895B000E6274 /* catch_5.png in Resources */,
 				A334929D1BEDF34800A1FAE1 /* game_over_sob_4.png in Resources */,
 				A33492A61BEDF34800A1FAE1 /* game_over_tears_3.png in Resources */,
+				A373A07D1C2B41DD006D2802 /* bush_5.png in Resources */,
 				A360124E1BE64C2B00FDB32D /* menu_title_9.png in Resources */,
 				A33492B41BEDF6D700A1FAE1 /* play_button.png in Resources */,
 				A360122E1BE613D800FDB32D /* menu_sky.png in Resources */,
@@ -1069,6 +1093,7 @@
 				A360124D1BE64C2B00FDB32D /* menu_title_8.png in Resources */,
 				A36012471BE64C2B00FDB32D /* menu_title_2.png in Resources */,
 				A37673801BEBC59B0079619A /* catch_menu_7.png in Resources */,
+				A373A07C1C2B41DD006D2802 /* bush_4.png in Resources */,
 				A37673441BEB5D6C0079619A /* option_select.wav in Resources */,
 				A33492C81BEE066A00A1FAE1 /* scoreboard_8.png in Resources */,
 				A33492CF1BEE2A6400A1FAE1 /* monkey_angry_2.wav in Resources */,
@@ -1121,6 +1146,7 @@
 				A36012541BE64C2B00FDB32D /* menu_title_15.png in Resources */,
 				A373A05F1C2AD5E5006D2802 /* next.png in Resources */,
 				A33492EA1BEE337600A1FAE1 /* monkey_angry_11.png in Resources */,
+				A373A0791C2B41DD006D2802 /* bush_1.png in Resources */,
 				A33035021C29C8CE008A2346 /* supernut_1.wav in Resources */,
 				A37D4B2D1BE379250071FFBF /* flying_2.png in Resources */,
 				A37673491BEB60330079619A /* throw_2.wav in Resources */,
@@ -1130,6 +1156,7 @@
 				A33492A41BEDF34800A1FAE1 /* game_over_tears_1.png in Resources */,
 				A37673621BEBA90F0079619A /* ouch_10.png in Resources */,
 				A33493001BEF534900A1FAE1 /* sad_7.png in Resources */,
+				A373A07B1C2B41DD006D2802 /* bush_3.png in Resources */,
 				A33034FA1C29B344008A2346 /* game_1.mp3 in Resources */,
 				A36012571BE64C2B00FDB32D /* menu_title_18.png in Resources */,
 				A376737A1BEBC59B0079619A /* catch_menu_1.png in Resources */,
@@ -1140,6 +1167,7 @@
 				A33034FC1C29B344008A2346 /* game_over.mp3 in Resources */,
 				A36012531BE64C2B00FDB32D /* menu_title_14.png in Resources */,
 				A33492A11BEDF34800A1FAE1 /* game_over_sob_8.png in Resources */,
+				A373A07A1C2B41DD006D2802 /* bush_2.png in Resources */,
 				A376737E1BEBC59B0079619A /* catch_menu_5.png in Resources */,
 				A33492E21BEE337600A1FAE1 /* monkey_angry_3.png in Resources */,
 				A36012521BE64C2B00FDB32D /* menu_title_13.png in Resources */,
