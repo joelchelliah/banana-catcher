@@ -27,6 +27,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
         addBackgroundImage()
         addGround()
         addBushes()
+        addCloudGenerator()
         addBasketMan()
         addEvilMonkey()
         addDarkness()
@@ -152,6 +153,12 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
             
             addChild(bush)
         }
+    }
+    
+    private func addCloudGenerator() {
+        let cloudGenerator = CloudGenerator(withScene: self)
+        
+        cloudGenerator.generate()
     }
     
     private func addBasketMan() {
