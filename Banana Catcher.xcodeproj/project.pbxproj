@@ -232,6 +232,7 @@
 		A3DF00C51C2C4AD200B772D5 /* cloud_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3DF00BF1C2C4AD200B772D5 /* cloud_5.png */; };
 		A3DF00C81C2C4B3500B772D5 /* DoodadCounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF00C71C2C4B3500B772D5 /* DoodadCounts.swift */; };
 		A3DF00CB1C2C4BE300B772D5 /* CloudGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF00CA1C2C4BE300B772D5 /* CloudGenerator.swift */; };
+		A3DF00CD1C2C713A00B772D5 /* BushGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DF00CC1C2C713A00B772D5 /* BushGenerator.swift */; };
 		A3EEC5B71BD6AFBF00A1D133 /* splat.wav in Resources */ = {isa = PBXBuildFile; fileRef = A3EEC5B41BD6AFBF00A1D133 /* splat.wav */; };
 		A3F33D861BAD381F0038FDFB /* CollisionCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */; };
 /* End PBXBuildFile section */
@@ -485,6 +486,7 @@
 		A3DF00BF1C2C4AD200B772D5 /* cloud_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cloud_5.png; path = images/doodads/cloud_5.png; sourceTree = "<group>"; };
 		A3DF00C71C2C4B3500B772D5 /* DoodadCounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoodadCounts.swift; sourceTree = "<group>"; };
 		A3DF00CA1C2C4BE300B772D5 /* CloudGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudGenerator.swift; sourceTree = "<group>"; };
+		A3DF00CC1C2C713A00B772D5 /* BushGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BushGenerator.swift; sourceTree = "<group>"; };
 		A3EEC5B41BD6AFBF00A1D133 /* splat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = splat.wav; path = sounds/splat.wav; sourceTree = "<group>"; };
 		A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionCategories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -900,6 +902,7 @@
 			children = (
 				A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */,
 				A3DF00CA1C2C4BE300B772D5 /* CloudGenerator.swift */,
+				A3DF00CC1C2C713A00B772D5 /* BushGenerator.swift */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -1258,6 +1261,7 @@
 				A37D4B351BE3A2700071FFBF /* Coconut.swift in Sources */,
 				A3A79FDC1BA6FFDC003C1F32 /* Ground.swift in Sources */,
 				A373A0621C2AD8A0006D2802 /* InfoLabel.swift in Sources */,
+				A3DF00CD1C2C713A00B772D5 /* BushGenerator.swift in Sources */,
 				A3A79FC51BA6D46A003C1F32 /* MenuScene.swift in Sources */,
 				A3DF00CB1C2C4BE300B772D5 /* CloudGenerator.swift in Sources */,
 				A3F33D861BAD381F0038FDFB /* CollisionCategories.swift in Sources */,

@@ -18,7 +18,7 @@ class CloudGenerator {
     }
     
     func generate() {
-        let randomDuration = Double(arc4random_uniform(4) + 2)
+        let randomDuration = Double(arc4random_uniform(4) + 3)
         
         let wait = SKAction.waitForDuration(randomDuration)
         let makeCloud = SKAction.runBlock {

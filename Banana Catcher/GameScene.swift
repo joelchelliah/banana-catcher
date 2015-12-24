@@ -26,8 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addLives()
         addEdgeBody()
         addGround()
-        addBushes()
-        addCloudGenerator()
+        addDoodads()
         addBasketMan()
         addEvilMonkey()
     }
@@ -212,31 +211,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(ground)
     }
     
-    private func addBushes() {
-        let baseHeight = ground.size.height + 15
-        let numBushes = Int(arc4random_uniform(2) + 1)
-        
-        var positions: [CGFloat] = [
-            hWidth - 40 - CGFloat(arc4random_uniform(60)),
-            hWidth + 40 + CGFloat(arc4random_uniform(60)),
-        ]
-        
-        for _ in 0..<numBushes {
-            let bushIndex = Int(arc4random_uniform(DoodadCounts.bushes)) + 1
-            let bushPos = positions.removeAtIndex(Int(arc4random_uniform(UInt32(positions.count))))
-            
-            let bush = SKSpriteNode(imageNamed: "bush_\(bushIndex).png")
-            
-            bush.position = CGPointMake(bushPos, baseHeight + bush.size.height / 2)
-            bush.zPosition = -800
-            
-            addChild(bush)
-        }
-    }
-    
-    private func addCloudGenerator() {
+    private func addDoodads() {
+        let bushGenerator = BushGenerator(withScene: self)
         let cloudGenerator = CloudGenerator(withScene: self)
         
+        bushGenerator.generate(at: ground.size.height + 15)
         cloudGenerator.generate()
     }
     
