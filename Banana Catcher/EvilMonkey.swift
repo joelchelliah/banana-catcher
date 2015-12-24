@@ -58,6 +58,7 @@ class EvilMonkey: SKSpriteNode {
         if level == 5 {
             vLevel += 1
             level = 0
+            requiredRage = 3
         }
         
         print("level: \(level), vLevel: \(vLevel), currentLevel: \(currentLevel())")
