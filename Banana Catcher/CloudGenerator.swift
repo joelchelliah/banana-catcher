@@ -14,7 +14,7 @@ class CloudGenerator {
         height = scene.frame.height
         width = scene.frame.width
         
-        cloudHeights = (75.stride(to: 225, by: 50)).map { height - CGFloat($0) }
+        cloudHeights = (75.stride(to: 275, by: 50)).map { height - CGFloat($0) }
     }
     
     func generate() {

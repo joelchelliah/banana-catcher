@@ -701,10 +701,8 @@
 				A3EEC5B21BD6AFAD00A1D133 /* sounds */,
 				A3A79FC81BA6D646003C1F32 /* images */,
 				A3A79F921BA6D32A003C1F32 /* AppDelegate.swift */,
-				A33492C91BEE23BE00A1FAE1 /* GamePoints.swift */,
 				A3A79F981BA6D32A003C1F32 /* GameViewController.swift */,
 				A3B9B11F1BECEA7500AB9709 /* Extensions.swift */,
-				A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */,
 				A3A79F9A1BA6D32A003C1F32 /* Main.storyboard */,
 				A3A79F9D1BA6D32A003C1F32 /* Assets.xcassets */,
 				A3A79F9F1BA6D32A003C1F32 /* LaunchScreen.storyboard */,
@@ -892,6 +890,7 @@
 			children = (
 				A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */,
 				A3DF00C71C2C4B3500B772D5 /* DoodadCounts.swift */,
+				A33492C91BEE23BE00A1FAE1 /* GamePoints.swift */,
 			);
 			name = structs;
 			sourceTree = "<group>";
@@ -899,6 +898,7 @@
 		A3DF00C91C2C4BDA00B772D5 /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */,
 				A3DF00CA1C2C4BE300B772D5 /* CloudGenerator.swift */,
 			);
 			name = helpers;
