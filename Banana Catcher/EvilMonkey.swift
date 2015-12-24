@@ -65,7 +65,7 @@ class EvilMonkey: SKSpriteNode {
     }
     
     func throwTantrum() {
-        if currentLevel() >= 3 { canThrowHeartDuringTantrum = true }
+        canThrowHeartDuringTantrum = true
 
         let angerIndex = Int(arc4random_uniform(4)) + 1
         

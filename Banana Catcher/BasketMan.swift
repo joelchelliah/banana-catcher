@@ -8,6 +8,7 @@ class BasketMan: SKSpriteNode {
     private var idleTexture = SKTexture(imageNamed: "idle.png")
     private var blinkTextures = [SKTexture]()
     private var catchTextures = [SKTexture]()
+    private var oneUpTextures = [SKTexture]()
     private var ouchTextures = [SKTexture]()
     private var sadTextures = [SKTexture]()
     
@@ -49,7 +50,7 @@ class BasketMan: SKSpriteNode {
     }
     
     func lifeUp() {
-        let animation = SKAction.animateWithTextures(catchTextures, timePerFrame: 0.05)
+        let animation = SKAction.animateWithTextures(oneUpTextures, timePerFrame: 0.05)
         
         playSound(self, name: "powerup.wav")
         self.runAction(animation)
@@ -84,6 +85,7 @@ class BasketMan: SKSpriteNode {
     private func loadTextures() {
         blinkTextures = (1...3).map { SKTexture(imageNamed: "blink_\($0).png") }
         catchTextures = (1...10).map { SKTexture(imageNamed: "catch_\($0).png") }
+        oneUpTextures = (1...11).map { SKTexture(imageNamed: "1up_\($0).png") }
         ouchTextures  = (1...10).map { SKTexture(imageNamed: "ouch_\($0).png") }
         sadTextures  = (1...8).map { SKTexture(imageNamed: "sad_\($0).png") }
     }
