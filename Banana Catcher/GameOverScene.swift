@@ -11,10 +11,12 @@ class GameOverScene: SKScene {
     private let homeNode = "home"
     private let retryNode = "retry"
     private let ratingNode = "rating"
+    private let shareNode = "share"
     
     private let homeButton: SKSpriteNode = SKSpriteNode(imageNamed: "home.png")
     private let retryButton: SKSpriteNode = SKSpriteNode(imageNamed: "retry_button.png")
     private let ratingButton: SKSpriteNode = SKSpriteNode(imageNamed: "rate.png")
+    private let shareButton: SKSpriteNode = SKSpriteNode(imageNamed: "heart.png")
     
     private var tearsTextures = [SKTexture]()
     private var sobTextures = [SKTexture]()
@@ -48,6 +50,8 @@ class GameOverScene: SKScene {
             moveToMenuScene()
         } else if(touchedNode.name == ratingNode) {
             // TODO!
+        } else if(touchedNode.name == shareNode) {
+            displaySharingPopup()
         }
     }
     
@@ -145,6 +149,7 @@ class GameOverScene: SKScene {
         
         addReplayBtn(yPos)
         addHomeBtn(yPos)
+        addShareBtn(yPos)
         addRatingBtn(yPos)
     }
     
@@ -166,7 +171,7 @@ class GameOverScene: SKScene {
     }
     
     private func addHomeBtn(yPos: CGFloat) {
-        homeButton.position = CGPointMake(hWidth - 100, yPos - 10)
+        homeButton.position = CGPointMake(hWidth - 50, yPos - 10)
         homeButton.name = homeNode
         
         let sequence = SKAction.sequence([
@@ -179,8 +184,22 @@ class GameOverScene: SKScene {
         addChild(homeButton)
     }
     
+    private func addShareBtn(yPos: CGFloat) {
+        shareButton.position = CGPointMake(hWidth + 50, yPos - 10)
+        shareButton.name = shareNode
+        
+        let sequence = SKAction.sequence([
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1)])
+        
+        shareButton.runAction(SKAction.repeatActionForever(sequence))
+        
+        addChild(shareButton)
+    }
+    
     private func addRatingBtn(yPos: CGFloat) {
-        ratingButton.position = CGPointMake(hWidth + 100, yPos - 10)
+        ratingButton.position = CGPointMake(hWidth + 100, yPos - 20)
         ratingButton.name = ratingNode
         
         let sequence = SKAction.sequence([
@@ -219,6 +238,31 @@ class GameOverScene: SKScene {
         }
         
         homeButton.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
+    }
+    
+    private func displaySharingPopup() {
+        let image : UIImage = UIImage(named: "banana.png")!
+        let message = "Yeah! Just got \(score) points in Banana Catcher."
+        
+        let activityViewController = UIActivityViewController(activityItems: [image, message], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+        
+        let exclude = [
+            UIActivityTypeAssignToContact,
+            UIActivityTypeAddToReadingList,
+            UIActivityTypeAirDrop,
+            UIActivityTypePrint,
+            UIActivityTypeCopyToPasteboard,
+            UIActivityTypeSaveToCameraRoll
+        ]
+        
+        if #available(iOS 9.0, *) {
+            activityViewController.excludedActivityTypes = exclude + [UIActivityTypeOpenInIBooks]
+        } else {
+            activityViewController.excludedActivityTypes = exclude
+        }
+        
+        self.view?.window?.rootViewController?.presentViewController(activityViewController, animated: true, completion: nil)
     }
     
     private func loadTextures() {
