@@ -1,23 +1,18 @@
 import Foundation
 import SpriteKit
 
-class CloudGenerator {
+class CloudGenerator: Generator {
     
-    private var scene: SKScene
-    private var height: CGFloat
-    private var width: CGFloat
-    private var cloudHeights: [CGFloat] = []
+    private var cloudHeights: [CGFloat]!
     private var zCounter: CGFloat = -800
     
-    init(withScene: SKScene) {
-        scene = withScene
-        height = scene.frame.height
-        width = scene.frame.width
+    init(forScene scene: SKScene) {
+        super.init(forScene: scene, yBasePos: 0)
         
-        cloudHeights = (75.stride(to: 275, by: 50)).map { height - CGFloat($0) }
+        cloudHeights = initCloudHeights()
     }
     
-    func generate() {
+    override func generate() {
         let randomDuration = Double(arc4random_uniform(4) + 3)
         
         let wait = SKAction.waitForDuration(randomDuration)
@@ -32,7 +27,7 @@ class CloudGenerator {
     }
     
     
-    internal func spawnCloud() {
+    private func spawnCloud() {
         let direction = [-1, 1][Int(arc4random_uniform(2))]
         let cIndex = Int(arc4random_uniform(DoodadCounts.clouds)) + 1
         
@@ -74,5 +69,13 @@ class CloudGenerator {
         let i = Int(arc4random_uniform(UInt32(durations.count)))
         
         return durations[i]
+    }
+    
+    private func initCloudHeights() -> [CGFloat] {
+        let min = 75
+        let max = 275
+        let step = 25
+        
+        return (min.stride(to: max, by: step)).map { height - CGFloat($0) }
     }
 }

@@ -211,8 +211,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addDoodads() {
-        let bushGenerator = BushGenerator(withScene: self, yBasePos: ground.size.height + 15)
-        let cloudGenerator = CloudGenerator(withScene: self)
+        let bushGenerator = BushGenerator(forScene: self, yBasePos: ground.size.height + 15)
+        let cloudGenerator = CloudGenerator(forScene: self)
         
         bushGenerator.generate()
         cloudGenerator.generate()

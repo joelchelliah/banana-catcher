@@ -1,29 +1,15 @@
 import Foundation
 import SpriteKit
 
-class BushGenerator {
-
-    private let scene: SKScene
-    private let height: CGFloat
-    private let width: CGFloat
-    private let hWidth: CGFloat
-    private let yBaseLevel: CGFloat
+class BushGenerator: Generator {
     
     private let numBushes = 2
     
-    init(withScene: SKScene, yBasePos: CGFloat) {
-        scene = withScene
-        height = scene.frame.height
-        width = scene.frame.width
-        hWidth = width / 2
-        yBaseLevel = yBasePos
+    override init(forScene scene: SKScene, yBasePos: CGFloat) {
+        super.init(forScene: scene, yBasePos: yBasePos)
     }
     
-    convenience init(withScene: SKScene) {
-        self.init(withScene: withScene, yBasePos: 0)
-    }
-    
-    func generate() {
+    override func generate() {
         let positions: [CGFloat] = bushPositions()
         
         for i in 0..<numBushes {

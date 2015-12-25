@@ -1,33 +1,19 @@
 import Foundation
 import SpriteKit
 
-class ButtonGenerator {
-    
-    private let scene: SKScene
-    private let height: CGFloat
-    private let width: CGFloat
-    private let hWidth: CGFloat
-    private let yBaseLevel: CGFloat
+class ButtonGenerator: Generator {
     
     private var buttonPositions: [CGPoint]!
     private var buttonAnimations: [SKAction]!
     
-    init(withScene: SKScene, yBasePos: CGFloat) {
-        scene = withScene
-        height = scene.frame.height
-        width = scene.frame.width
-        hWidth = width / 2
-        yBaseLevel = yBasePos
+    override init(forScene scene: SKScene, yBasePos: CGFloat) {
+        super.init(forScene: scene, yBasePos: yBasePos)
         
         buttonPositions = initButtonPositions()
         buttonAnimations = initButtonAnimations()
     }
     
-    convenience init(withScene: SKScene) {
-        self.init(withScene: withScene, yBasePos: 0)
-    }
-    
-    func generate() {
+    override func generate() {
         switch scene {
         case is MenuScene:
             generateMenuButtons()

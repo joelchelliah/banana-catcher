@@ -81,7 +81,7 @@ class MenuScene: SKScene {
     }
     
     private func addButtons() {
-        let buttonGenerator = ButtonGenerator(withScene: self, yBasePos: size.height - 225)
+        let buttonGenerator = ButtonGenerator(forScene: self, yBasePos: size.height - 225)
         
         buttonGenerator.generate()
         

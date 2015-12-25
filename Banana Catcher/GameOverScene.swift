@@ -136,7 +136,7 @@ class GameOverScene: SKScene {
     }
     
     private func addButtons() {
-        let buttonGenerator = ButtonGenerator(withScene: self, yBasePos: hHeight - 30)
+        let buttonGenerator = ButtonGenerator(forScene: self, yBasePos: hHeight - 30)
         
         buttonGenerator.generate()
     }
