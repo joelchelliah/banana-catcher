@@ -14,11 +14,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var touchLoc = CGPointMake(0, 0)
     
     override func didMoveToView(view: SKView) {
-        musicPlayer.change("game_1")
-        
-        backgroundColor = bgColor
         hWidth = size.width / 2
         score = 0
+        
+        musicPlayer.change("game_1")
         
         adjustGravity()
         addBackgroundImage()
@@ -212,10 +211,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addDoodads() {
-        let bushGenerator = BushGenerator(withScene: self)
+        let bushGenerator = BushGenerator(withScene: self, yBasePos: ground.size.height + 15)
         let cloudGenerator = CloudGenerator(withScene: self)
         
-        bushGenerator.generate(at: ground.size.height + 15)
+        bushGenerator.generate()
         cloudGenerator.generate()
     }
     

@@ -3,28 +3,34 @@ import SpriteKit
 
 class BushGenerator {
 
-    private var scene: SKScene
-    private var height: CGFloat
-    private var width: CGFloat
-    private var hWidth: CGFloat
+    private let scene: SKScene
+    private let height: CGFloat
+    private let width: CGFloat
+    private let hWidth: CGFloat
+    private let yBaseLevel: CGFloat
     
     private let numBushes = 2
     
-    init(withScene: SKScene) {
+    init(withScene: SKScene, yBasePos: CGFloat) {
         scene = withScene
         height = scene.frame.height
         width = scene.frame.width
         hWidth = width / 2
+        yBaseLevel = yBasePos
     }
     
-    func generate(at groundLevel: CGFloat) {
+    convenience init(withScene: SKScene) {
+        self.init(withScene: withScene, yBasePos: 0)
+    }
+    
+    func generate() {
         let positions: [CGFloat] = bushPositions()
         
         for i in 0..<numBushes {
             let bushPos = positions[i]
             let bush = SKSpriteNode(imageNamed: "bush_\(bushIndex()).png")
             
-            bush.position = CGPointMake(bushPos, groundLevel + bush.size.height / 2)
+            bush.position = CGPointMake(bushPos, yBaseLevel + bush.size.height / 2)
             bush.zPosition = -800
             
             scene.addChild(bush)

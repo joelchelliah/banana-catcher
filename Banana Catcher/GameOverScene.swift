@@ -8,32 +8,18 @@ class GameOverScene: SKScene {
     
     var highScore: Int = 0
     
-    private let homeNode = "home"
-    private let highscoreNode = "highscore"
-    private let retryNode = "retry"
-    private let shareNode = "share"
-    private let ratingNode = "rating"
-    
-    private let homeButton: SKSpriteNode = SKSpriteNode(imageNamed: "home.png")
-    private let highscoreButton: SKSpriteNode = SKSpriteNode(imageNamed: "highscore.png")
-    private let retryButton: SKSpriteNode = SKSpriteNode(imageNamed: "retry_button.png")
-    private let ratingButton: SKSpriteNode = SKSpriteNode(imageNamed: "rate.png")
-    private let shareButton: SKSpriteNode = SKSpriteNode(imageNamed: "share.png")
-    
     private var tearsTextures = [SKTexture]()
     private var sobTextures = [SKTexture]()
     private var scoreboardTextures = [SKTexture]()
     
     override func didMoveToView(view: SKView) {
-        musicPlayer.change("game_over")
-        
-        backgroundColor = bgColor
         hWidth = size.width / 2
         hHeight = size.height / 2
         
+        musicPlayer.change("game_over")
+        
         loadTextures()
         updateHighScore()
-        
         addBackground()
         addGameOverTears()
         addDarkness()
@@ -45,16 +31,17 @@ class GameOverScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touchLocation = touches.first!.locationInNode(self)
         let touchedNode = self.nodeAtPoint(touchLocation)
+        let nodes = ButtonNodes.self
         
-        if(touchedNode.name == homeNode) {
-            moveToMenuScene()
-        } else if(touchedNode.name == highscoreNode) {
+        if(touchedNode.name == nodes.home) {
+            moveToMenuScene(touchedNode)
+        } else if(touchedNode.name == nodes.highscore) {
             // TODO!
-        } else if(touchedNode.name == retryNode) {
-            moveToGameScene()
-        } else if(touchedNode.name == shareNode) {
+        } else if(touchedNode.name == nodes.retry) {
+            moveToGameScene(touchedNode)
+        } else if(touchedNode.name == nodes.share) {
             displaySharingPopup()
-        } else if(touchedNode.name == ratingNode) {
+        } else if(touchedNode.name == nodes.rating) {
             // TODO!
         }
     }
@@ -149,87 +136,13 @@ class GameOverScene: SKScene {
     }
     
     private func addButtons() {
-        let yPos = hHeight - 30
+        let buttonGenerator = ButtonGenerator(withScene: self, yBasePos: hHeight - 30)
         
-        addHomeBtn(yPos)
-        addHighscoreBtn(yPos)
-        addReplayBtn(yPos)
-        addShareBtn(yPos)
-        addRatingBtn(yPos)
+        buttonGenerator.generate()
     }
+
     
-    private func addHomeBtn(yPos: CGFloat) {
-        homeButton.position = CGPointMake(hWidth - 125, yPos - 80)
-        homeButton.name = homeNode
-        
-        let sequence = SKAction.sequence([
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1)])
-        
-        homeButton.runAction(SKAction.repeatActionForever(sequence))
-        
-        addChild(homeButton)
-    }
-    
-    private func addHighscoreBtn(yPos: CGFloat) {
-        highscoreButton.position = CGPointMake(hWidth - 80, yPos - 40)
-        highscoreButton.name = highscoreNode
-        
-        let sequence = SKAction.sequence([
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1)])
-        
-        highscoreButton.runAction(SKAction.repeatActionForever(sequence))
-        
-        addChild(highscoreButton)
-    }
-    
-    private func addReplayBtn(yPos: CGFloat) {
-        retryButton.position = CGPointMake(hWidth, yPos)
-        retryButton.name = retryNode
-        retryButton.zPosition = -500
-        
-        let sequence = SKAction.sequence([
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -8), duration: 4),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2)])
-        
-        retryButton.runAction(SKAction.repeatActionForever(sequence))
-        
-        addChild(retryButton)
-    }
-    
-    private func addShareBtn(yPos: CGFloat) {
-        shareButton.position = CGPointMake(hWidth + 80, yPos - 40)
-        shareButton.name = shareNode
-        
-        let sequence = SKAction.sequence([
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1)])
-        
-        shareButton.runAction(SKAction.repeatActionForever(sequence))
-        
-        addChild(shareButton)
-    }
-    
-    private func addRatingBtn(yPos: CGFloat) {
-        ratingButton.position = CGPointMake(hWidth + 125, yPos - 80)
-        ratingButton.name = ratingNode
-        
-        let sequence = SKAction.sequence([
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1)])
-        
-        ratingButton.runAction(SKAction.repeatActionForever(sequence))
-        
-        addChild(ratingButton)
-    }
-    
-    private func moveToGameScene() {
+    private func moveToGameScene(node: SKNode) {
         let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.1)
         let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
         let sound = SKAction.runBlock { playSound(self, name: "option_select.wav") }
@@ -240,10 +153,10 @@ class GameOverScene: SKScene {
             self.view?.presentScene(scene, transition: SKTransition.flipVerticalWithDuration(0.5))
         }
         
-        retryButton.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
+        node.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
     }
     
-    private func moveToMenuScene() {
+    private func moveToMenuScene(node: SKNode) {
         let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.1)
         let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
         let sound = SKAction.runBlock { playSound(self, name: "option_select.wav") }
@@ -254,7 +167,7 @@ class GameOverScene: SKScene {
             self.view?.presentScene(scene, transition: SKTransition.flipVerticalWithDuration(0.5))
         }
         
-        homeButton.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
+        node.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
     }
     
     private func displaySharingPopup() {

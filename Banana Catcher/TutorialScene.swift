@@ -10,19 +10,15 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     private let finger: SKSpriteNode = SKSpriteNode(imageNamed: "finger.png")
     private var infoLabel: InfoLabel?
     
-    private let nextButton: SKSpriteNode = SKSpriteNode(imageNamed: "next.png")
-    private let okButton: SKSpriteNode = SKSpriteNode(imageNamed: "ok.png")
-    private let okNode = "okNode"
-    private let nextNode = "nextNode"
     private var currentStage = 1
     private var stageAdvancable = false
+    private var nextButton: SKSpriteNode = SKSpriteNode()
     
     override func didMoveToView(view: SKView) {
-        musicPlayer.change("tutorial")
-        
-        backgroundColor = bgColor
         hWidth = size.width / 2
         
+        musicPlayer.change("tutorial")
+
         adjustPhysics()
         addBackgroundImage()
         addGround()
@@ -32,7 +28,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
         addDarkness()
         addTutorialLabel()
         addInfoLabel()
-        addNextButton()
+        addButtons()
         addFinger()
         
         playCurrentStage()
@@ -42,11 +38,13 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
         let touchLocation = touches.first!.locationInNode(self)
         let touchedNode = self.nodeAtPoint(touchLocation)
         
-        if(touchedNode.name == nextNode && stageAdvancable) {
+        if(touchedNode.name == ButtonNodes.next && stageAdvancable) {
             currentStage += 1
             
             playSound(self, name: "option_select.wav")
             playCurrentStage()
+        } else {
+            print("name: \(touchedNode.name), adv?: \(stageAdvancable)")
         }
     }
     
@@ -133,10 +131,10 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addDoodads() {
-        let bushGenerator = BushGenerator(withScene: self)
+        let bushGenerator = BushGenerator(withScene: self, yBasePos: ground.size.height + 15)
         let cloudGenerator = CloudGenerator(withScene: self)
         
-        bushGenerator.generate(at: ground.size.height + 15)
+        bushGenerator.generate()
         cloudGenerator.generate()
     }
     
@@ -178,18 +176,12 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
         addChild(infoLabel!)
     }
     
-    private func addNextButton() {
-        nextButton.position = CGPointMake(size.width / 2, nextButton.size.height + 5)
-        nextButton.name = nextNode
-        nextButton.alpha = 0.2
+    private func addButtons() {
+        let buttonGenerator = ButtonGenerator(withScene: self, yBasePos: 30)
         
-        let sequence = SKAction.sequence([
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -3), duration: 2),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 3), duration: 2)])
+        buttonGenerator.generate()
         
-        nextButton.runAction(SKAction.repeatActionForever(sequence))
-        
-        addChild(nextButton)
+        nextButton = buttonGenerator.nextButton
     }
     
     private func addFinger() {
@@ -282,6 +274,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     
     private func enableNextButtonAction() -> SKAction {
         return SKAction.runBlock {
+            print("Setting stage advancable")
             self.nextButton.alpha = 1.0
             self.stageAdvancable = true
         }
@@ -301,8 +294,8 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func prepareButtonsAndLabels(forStage stage: Int) {
-        stageAdvancable = false
         infoLabel?.changeText("")
+        stageAdvancable = false
         nextButton.alpha = 0.2
         
         if stage == 2 {
