@@ -213,6 +213,7 @@
 		A3C7B4FE1C2D6BE30038728B /* ButtonGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B4FD1C2D6BE30038728B /* ButtonGenerator.swift */; };
 		A3C7B5001C2DA82F0038728B /* ButtonIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B4FF1C2DA82F0038728B /* ButtonIndex.swift */; };
 		A3C7B5021C2DAA1A0038728B /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B5011C2DAA1A0038728B /* Generator.swift */; };
+		A3C7B5051C2DAF960038728B /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B5041C2DAF960038728B /* Globals.swift */; };
 		A3C955861BCA895B000E6274 /* blink_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C955791BCA895B000E6274 /* blink_1.png */; };
 		A3C955871BCA895B000E6274 /* blink_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C9557A1BCA895B000E6274 /* blink_2.png */; };
 		A3C955881BCA895B000E6274 /* blink_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C9557B1BCA895B000E6274 /* blink_3.png */; };
@@ -484,6 +485,7 @@
 		A3C7B4FD1C2D6BE30038728B /* ButtonGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonGenerator.swift; sourceTree = "<group>"; };
 		A3C7B4FF1C2DA82F0038728B /* ButtonIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonIndex.swift; sourceTree = "<group>"; };
 		A3C7B5011C2DAA1A0038728B /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		A3C7B5041C2DAF960038728B /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		A3C955791BCA895B000E6274 /* blink_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_1.png; path = images/heroes/box/blink_1.png; sourceTree = "<group>"; };
 		A3C9557A1BCA895B000E6274 /* blink_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_2.png; path = images/heroes/box/blink_2.png; sourceTree = "<group>"; };
 		A3C9557B1BCA895B000E6274 /* blink_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_3.png; path = images/heroes/box/blink_3.png; sourceTree = "<group>"; };
@@ -741,6 +743,7 @@
 				A3A79FC81BA6D646003C1F32 /* images */,
 				A3A79F921BA6D32A003C1F32 /* AppDelegate.swift */,
 				A3A79F981BA6D32A003C1F32 /* GameViewController.swift */,
+				A3C7B5041C2DAF960038728B /* Globals.swift */,
 				A3B9B11F1BECEA7500AB9709 /* Extensions.swift */,
 				A3A79F9A1BA6D32A003C1F32 /* Main.storyboard */,
 				A3A79F9D1BA6D32A003C1F32 /* Assets.xcassets */,
@@ -1359,6 +1362,7 @@
 				A3C9559E1BCACFCC000E6274 /* SplatBanana.swift in Sources */,
 				A396BB541BB6E517002F7231 /* ScoreLabel.swift in Sources */,
 				A368FC7B1C2583BE0036DDFA /* Supernut.swift in Sources */,
+				A3C7B5051C2DAF960038728B /* Globals.swift in Sources */,
 				A3C7B5021C2DAA1A0038728B /* Generator.swift in Sources */,
 				A32A31FF1BB81E3F00A12214 /* Label.swift in Sources */,
 				A3A79F931BA6D32A003C1F32 /* AppDelegate.swift in Sources */,
