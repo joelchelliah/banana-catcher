@@ -78,13 +78,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             b2 = contact.bodyA
         }
         
-        if b1.node?.parent == nil || b2.node?.parent == nil { return }
+        let noCollission = b1.node?.parent == nil || b2.node?.parent == nil
         
-        if b1.categoryBitMask & CollisionCategories.Banana != 0  {
+        let b1isBanana   = b1.categoryBitMask & CollisionCategories.Banana != 0
+        let b1isCoconut  = b1.categoryBitMask & CollisionCategories.Coconut != 0
+        let b1isSupernut = b1.categoryBitMask & CollisionCategories.Supernut != 0
+        let b1isHeart    = b1.categoryBitMask & CollisionCategories.Heart != 0
+        
+        let b2isBasketMan = b2.categoryBitMask & CollisionCategories.BasketMan != 0
+        let b2isGround    = b2.categoryBitMask & CollisionCategories.Ground != 0
+        
+        if noCollission { return }
+        
+        if b1isBanana {
             let banana = b1.node as! Banana
+            let pos = banana.position
             
-            if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
-                let pos = banana.position
+            if b2isBasketMan {
                 let points = GamePoints.BananaCaught
                 
                 banana.removeFromParent()
@@ -94,8 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 updateScore(points)
                 updateMonkey()
             }
-            else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
-                let pos = banana.position
+            else if b2isGround {
                 let points = GamePoints.BananaMissed
                 
                 addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y + 15))
@@ -108,10 +117,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             else {
                 handleUnexpectedContactTest(b1, b2: b2)
             }
-        } else if b1.categoryBitMask & CollisionCategories.Coconut != 0  {
+        } else if b1isCoconut {
             let coconut = b1.node as! Coconut
             
-            if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
+            if b2isBasketMan {
                 let pos = coconut.position
                 let points = GamePoints.CoconutCaught
                 
@@ -122,17 +131,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 updateScore(points)
                 decrementLives()
             }
-            else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
+            else if b2isGround {
                 throwableHitsGround(coconut)
             }
             else {
                 handleUnexpectedContactTest(b1, b2: b2)
             }
             
-        } else if b1.categoryBitMask & CollisionCategories.Supernut != 0  {
+        } else if b1isSupernut {
             let supernut = b1.node as! Supernut
             
-            if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
+            if b2isBasketMan {
                 let pos = supernut.position
                 let points = GamePoints.SupernutCaught
                 
@@ -143,17 +152,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 updateScore(points)
                 decrementLives()
             }
-            else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
+            else if b2isGround {
                 throwableHitsGround(supernut)
             }
             else {
                 handleUnexpectedContactTest(b1, b2: b2)
             }
             
-        } else if b1.categoryBitMask & CollisionCategories.Heart != 0  {
+        } else if b1isHeart {
             let heart = b1.node as! Heart
             
-            if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
+            if b2isBasketMan {
                 let pos = heart.position
                 let points = GamePoints.HeartCaught
                 
@@ -164,7 +173,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 updateScore(points)
                 incrementLives()
             }
-            else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
+            else if b2isGround {
                 throwableHitsGround(heart)
             }
             else {
