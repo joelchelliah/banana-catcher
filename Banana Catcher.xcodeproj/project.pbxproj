@@ -214,6 +214,7 @@
 		A3C7B5001C2DA82F0038728B /* ButtonIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B4FF1C2DA82F0038728B /* ButtonIndex.swift */; };
 		A3C7B5021C2DAA1A0038728B /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B5011C2DAA1A0038728B /* Generator.swift */; };
 		A3C7B5051C2DAF960038728B /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B5041C2DAF960038728B /* Globals.swift */; };
+		A3C7B5091C2DC5F40038728B /* CollissionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B5081C2DC5F40038728B /* CollissionDetector.swift */; };
 		A3C955861BCA895B000E6274 /* blink_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C955791BCA895B000E6274 /* blink_1.png */; };
 		A3C955871BCA895B000E6274 /* blink_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C9557A1BCA895B000E6274 /* blink_2.png */; };
 		A3C955881BCA895B000E6274 /* blink_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C9557B1BCA895B000E6274 /* blink_3.png */; };
@@ -486,6 +487,7 @@
 		A3C7B4FF1C2DA82F0038728B /* ButtonIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonIndex.swift; sourceTree = "<group>"; };
 		A3C7B5011C2DAA1A0038728B /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		A3C7B5041C2DAF960038728B /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		A3C7B5081C2DC5F40038728B /* CollissionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollissionDetector.swift; sourceTree = "<group>"; };
 		A3C955791BCA895B000E6274 /* blink_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_1.png; path = images/heroes/box/blink_1.png; sourceTree = "<group>"; };
 		A3C9557A1BCA895B000E6274 /* blink_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_2.png; path = images/heroes/box/blink_2.png; sourceTree = "<group>"; };
 		A3C9557B1BCA895B000E6274 /* blink_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_3.png; path = images/heroes/box/blink_3.png; sourceTree = "<group>"; };
@@ -965,6 +967,7 @@
 			children = (
 				A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */,
 				A33034F51C29AFBD008A2346 /* MusicPlayer.swift */,
+				A3C7B5081C2DC5F40038728B /* CollissionDetector.swift */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -1337,6 +1340,7 @@
 				A37D4B351BE3A2700071FFBF /* Coconut.swift in Sources */,
 				A3A79FDC1BA6FFDC003C1F32 /* Ground.swift in Sources */,
 				A373A0621C2AD8A0006D2802 /* InfoLabel.swift in Sources */,
+				A3C7B5091C2DC5F40038728B /* CollissionDetector.swift in Sources */,
 				A3DF00CD1C2C713A00B772D5 /* BushGenerator.swift in Sources */,
 				A3A79FC51BA6D46A003C1F32 /* MenuScene.swift in Sources */,
 				A3DF00CB1C2C4BE300B772D5 /* CloudGenerator.swift in Sources */,

@@ -67,120 +67,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     func didBeginContact(contact: SKPhysicsContact) {
-        var b1: SKPhysicsBody
-        var b2: SKPhysicsBody
-        
-        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
-            b1 = contact.bodyA
-            b2 = contact.bodyB
-        } else {
-            b1 = contact.bodyB
-            b2 = contact.bodyA
-        }
-        
-        let noCollission = b1.node?.parent == nil || b2.node?.parent == nil
-        
-        let b1isBanana   = b1.categoryBitMask & CollisionCategories.Banana != 0
-        let b1isCoconut  = b1.categoryBitMask & CollisionCategories.Coconut != 0
-        let b1isSupernut = b1.categoryBitMask & CollisionCategories.Supernut != 0
-        let b1isHeart    = b1.categoryBitMask & CollisionCategories.Heart != 0
-        
-        let b2isBasketMan = b2.categoryBitMask & CollisionCategories.BasketMan != 0
-        let b2isGround    = b2.categoryBitMask & CollisionCategories.Ground != 0
-        
-        if noCollission { return }
-        
-        if b1isBanana {
-            let banana = b1.node as! Banana
-            let pos = banana.position
-            
-            if b2isBasketMan {
-                let points = GamePoints.BananaCaught
-                
-                banana.removeFromParent()
-                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
-                
-                basketMan.collect()
-                updateScore(points)
-                updateMonkey()
-            }
-            else if b2isGround {
-                let points = GamePoints.BananaMissed
-                
-                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y + 15))
-                
-                basketMan.frown()
-                throwableHitsGround(banana)
-                updateScore(points)
-                decrementLives()
-            }
-            else {
-                handleUnexpectedContactTest(b1, b2: b2)
-            }
-        } else if b1isCoconut {
-            let coconut = b1.node as! Coconut
-            
-            if b2isBasketMan {
-                let pos = coconut.position
-                let points = GamePoints.CoconutCaught
-                
-                coconut.removeFromParent()
-                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
-                
-                basketMan.ouch()
-                updateScore(points)
-                decrementLives()
-            }
-            else if b2isGround {
-                throwableHitsGround(coconut)
-            }
-            else {
-                handleUnexpectedContactTest(b1, b2: b2)
-            }
-            
-        } else if b1isSupernut {
-            let supernut = b1.node as! Supernut
-            
-            if b2isBasketMan {
-                let pos = supernut.position
-                let points = GamePoints.SupernutCaught
-                
-                supernut.removeFromParent()
-                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
-                
-                basketMan.ouch()
-                updateScore(points)
-                decrementLives()
-            }
-            else if b2isGround {
-                throwableHitsGround(supernut)
-            }
-            else {
-                handleUnexpectedContactTest(b1, b2: b2)
-            }
-            
-        } else if b1isHeart {
-            let heart = b1.node as! Heart
-            
-            if b2isBasketMan {
-                let pos = heart.position
-                let points = GamePoints.HeartCaught
-                
-                heart.removeFromParent()
-                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
-                
-                basketMan.lifeUp()
-                updateScore(points)
-                incrementLives()
-            }
-            else if b2isGround {
-                throwableHitsGround(heart)
-            }
-            else {
-                handleUnexpectedContactTest(b1, b2: b2)
-            }
-            
-        }
+        CollissionDetector.run(
+            contact: contact,
+            onHitBasketMan: throwableHitsBasketMan,
+            onHitGround: throwableHitsGround)
     }
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -362,12 +252,68 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    private func throwableHitsBasketMan(item: Throwable) {
+        let pos = item.position
+        
+        switch item {
+        case is Banana:
+            let points = GamePoints.BananaCaught
+            
+            addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
+            
+            updateScore(points)
+            basketMan.collect()
+            updateMonkey()
+            
+        case is Coconut:
+            let points = GamePoints.CoconutCaught
+            
+            addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
+            
+            updateScore(points)
+            basketMan.ouch()
+            decrementLives()
+            
+        case is Supernut:
+            let points = GamePoints.SupernutCaught
+            
+            addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
+            
+            updateScore(points)
+            basketMan.ouch()
+            decrementLives()
+            
+        case is Heart:
+            let points = GamePoints.HeartCaught
+            
+            addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
+            
+            updateScore(points)
+            basketMan.lifeUp()
+            incrementLives()
+            
+        default:
+            fatalError("Unexpected item (\(item)) hit BasketMan!")
+        }
+        
+        item.removeFromParent()
+    }
+    
     private func throwableHitsGround(item: Throwable) {
         if let banana = item as? Banana {
             let splatBanana = SplatBanana(pos: CGPointMake(banana.position.x, ground.size.height + 5))
+            let pos = banana.position
+            let points = GamePoints.BananaMissed
+            
+            addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y + 15))
+            
+            updateScore(points)
+            basketMan.frown()
+            decrementLives()
             
             addChild(splatBanana)
             banana.removeFromParent()
+            
         } else if let coconut = item as? Coconut {
             let brokenut = Brokenut(pos: CGPointMake(coconut.position.x, ground.size.height + 5))
             
@@ -416,9 +362,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let transitionType = SKTransition.flipVerticalWithDuration(0.5)
         view?.presentScene(scene,transition: transitionType)
-    }
-    
-    private func handleUnexpectedContactTest(b1: SKPhysicsBody, b2: SKPhysicsBody) {
-        print("Unexpected contant test: (\(b1), \(b2))")
     }
 }
