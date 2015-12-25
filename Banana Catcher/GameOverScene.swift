@@ -106,7 +106,7 @@ class GameOverScene: SKScene {
         //bottomDarkness.size.height *= 0.85
         
         topDarkness.position = CGPointMake(hWidth, size.height - topDarkness.size.height / 2)
-        bottomDarkness.position = CGPointMake(hWidth, bottomDarkness.size.height / 2 - 110)
+        bottomDarkness.position = CGPointMake(hWidth, bottomDarkness.size.height / 2 - 130)
         
         [topDarkness, bottomDarkness].forEach {
             $0.zPosition = -600
@@ -159,7 +159,7 @@ class GameOverScene: SKScene {
     }
     
     private func addHomeBtn(yPos: CGFloat) {
-        homeButton.position = CGPointMake(hWidth - 120, yPos - 60)
+        homeButton.position = CGPointMake(hWidth - 125, yPos - 80)
         homeButton.name = homeNode
         
         let sequence = SKAction.sequence([
@@ -173,7 +173,7 @@ class GameOverScene: SKScene {
     }
     
     private func addHighscoreBtn(yPos: CGFloat) {
-        highscoreButton.position = CGPointMake(hWidth - 80, yPos - 30)
+        highscoreButton.position = CGPointMake(hWidth - 80, yPos - 40)
         highscoreButton.name = highscoreNode
         
         let sequence = SKAction.sequence([
@@ -202,7 +202,7 @@ class GameOverScene: SKScene {
     }
     
     private func addShareBtn(yPos: CGFloat) {
-        shareButton.position = CGPointMake(hWidth + 80, yPos - 30)
+        shareButton.position = CGPointMake(hWidth + 80, yPos - 40)
         shareButton.name = shareNode
         
         let sequence = SKAction.sequence([
@@ -216,7 +216,7 @@ class GameOverScene: SKScene {
     }
     
     private func addRatingBtn(yPos: CGFloat) {
-        ratingButton.position = CGPointMake(hWidth + 120, yPos - 60)
+        ratingButton.position = CGPointMake(hWidth + 125, yPos - 80)
         ratingButton.name = ratingNode
         
         let sequence = SKAction.sequence([
