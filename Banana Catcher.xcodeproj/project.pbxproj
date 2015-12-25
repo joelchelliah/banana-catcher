@@ -208,6 +208,7 @@
 		A3BBCA2F1C006FE700BCBCC7 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = A3BBCA2E1C006FE700BCBCC7 /* heart.png */; };
 		A3C20E961BED44BB002A179E /* GameOverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C20E951BED44BB002A179E /* GameOverLabel.swift */; };
 		A3C7B4F61C2D569C0038728B /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C7B4F51C2D569C0038728B /* share.png */; };
+		A3C7B4FA1C2D695C0038728B /* highscore.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C7B4F91C2D695C0038728B /* highscore.png */; };
 		A3C955861BCA895B000E6274 /* blink_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C955791BCA895B000E6274 /* blink_1.png */; };
 		A3C955871BCA895B000E6274 /* blink_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C9557A1BCA895B000E6274 /* blink_2.png */; };
 		A3C955881BCA895B000E6274 /* blink_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C9557B1BCA895B000E6274 /* blink_3.png */; };
@@ -474,6 +475,7 @@
 		A3BBCA2E1C006FE700BCBCC7 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = images/throwables/heart.png; sourceTree = "<group>"; };
 		A3C20E951BED44BB002A179E /* GameOverLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverLabel.swift; sourceTree = "<group>"; };
 		A3C7B4F51C2D569C0038728B /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = share.png; path = images/buttons/share.png; sourceTree = "<group>"; };
+		A3C7B4F91C2D695C0038728B /* highscore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = highscore.png; path = images/buttons/highscore.png; sourceTree = "<group>"; };
 		A3C955791BCA895B000E6274 /* blink_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_1.png; path = images/heroes/box/blink_1.png; sourceTree = "<group>"; };
 		A3C9557A1BCA895B000E6274 /* blink_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_2.png; path = images/heroes/box/blink_2.png; sourceTree = "<group>"; };
 		A3C9557B1BCA895B000E6274 /* blink_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_3.png; path = images/heroes/box/blink_3.png; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 		A33492801BEDE8C500A1FAE1 /* buttons */ = {
 			isa = PBXGroup;
 			children = (
+				A3C7B4F91C2D695C0038728B /* highscore.png */,
 				A33492A91BEDF6D700A1FAE1 /* home.png */,
 				A33492AA1BEDF6D700A1FAE1 /* how.png */,
 				A33492AB1BEDF6D700A1FAE1 /* no_ads.png */,
@@ -1243,6 +1246,7 @@
 				A37673491BEB60330079619A /* throw_2.wav in Resources */,
 				A3C9558F1BCA895B000E6274 /* catch_6.png in Resources */,
 				A3A79F9E1BA6D32A003C1F32 /* Assets.xcassets in Resources */,
+				A3C7B4FA1C2D695C0038728B /* highscore.png in Resources */,
 				A33492FF1BEF534900A1FAE1 /* sad_6.png in Resources */,
 				A33492A41BEDF34800A1FAE1 /* game_over_tears_1.png in Resources */,
 				A37673621BEBA90F0079619A /* ouch_10.png in Resources */,

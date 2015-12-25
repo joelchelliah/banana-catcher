@@ -15,7 +15,7 @@ class GameOverScene: SKScene {
     private let ratingNode = "rating"
     
     private let homeButton: SKSpriteNode = SKSpriteNode(imageNamed: "home.png")
-    private let highscoreButton: SKSpriteNode = SKSpriteNode(imageNamed: "how.png")
+    private let highscoreButton: SKSpriteNode = SKSpriteNode(imageNamed: "highscore.png")
     private let retryButton: SKSpriteNode = SKSpriteNode(imageNamed: "retry_button.png")
     private let ratingButton: SKSpriteNode = SKSpriteNode(imageNamed: "rate.png")
     private let shareButton: SKSpriteNode = SKSpriteNode(imageNamed: "share.png")
