@@ -23,6 +23,7 @@ class MenuScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         loadTextures()
+        initSound()
         musicPlayer.change("menu")
         
         backgroundColor = bgColor
@@ -95,11 +96,6 @@ class MenuScene: SKScene {
     }
     
     private func addSoundBtn() {
-        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        
-        soundEnabled = defaults.valueForKey("soundEnabled")?.boolValue ?? true
-        defaults.synchronize()
-        
         soundButton.position = CGPointMake(size.width / 2 - 125, size.height - 330 + 2)
         soundButton.name = soundNode
         setSoundBtnTexture()
@@ -254,6 +250,13 @@ class MenuScene: SKScene {
     
     
     /* Misc */
+    
+    private func initSound() {
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        
+        soundEnabled = defaults.valueForKey("soundEnabled")?.boolValue ?? true
+        defaults.synchronize()
+    }
     
     private func loadTextures() {
         for i in 1...19 {

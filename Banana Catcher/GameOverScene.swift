@@ -9,14 +9,16 @@ class GameOverScene: SKScene {
     var highScore: Int = 0
     
     private let homeNode = "home"
+    private let highscoreNode = "highscore"
     private let retryNode = "retry"
-    private let ratingNode = "rating"
     private let shareNode = "share"
+    private let ratingNode = "rating"
     
     private let homeButton: SKSpriteNode = SKSpriteNode(imageNamed: "home.png")
+    private let highscoreButton: SKSpriteNode = SKSpriteNode(imageNamed: "how.png")
     private let retryButton: SKSpriteNode = SKSpriteNode(imageNamed: "retry_button.png")
     private let ratingButton: SKSpriteNode = SKSpriteNode(imageNamed: "rate.png")
-    private let shareButton: SKSpriteNode = SKSpriteNode(imageNamed: "heart.png")
+    private let shareButton: SKSpriteNode = SKSpriteNode(imageNamed: "share.png")
     
     private var tearsTextures = [SKTexture]()
     private var sobTextures = [SKTexture]()
@@ -44,14 +46,16 @@ class GameOverScene: SKScene {
         let touchLocation = touches.first!.locationInNode(self)
         let touchedNode = self.nodeAtPoint(touchLocation)
         
-        if(touchedNode.name == retryNode) {
-            moveToGameScene()
-        } else if(touchedNode.name == homeNode) {
+        if(touchedNode.name == homeNode) {
             moveToMenuScene()
-        } else if(touchedNode.name == ratingNode) {
+        } else if(touchedNode.name == highscoreNode) {
             // TODO!
+        } else if(touchedNode.name == retryNode) {
+            moveToGameScene()
         } else if(touchedNode.name == shareNode) {
             displaySharingPopup()
+        } else if(touchedNode.name == ratingNode) {
+            // TODO!
         }
     }
     
@@ -147,31 +151,15 @@ class GameOverScene: SKScene {
     private func addButtons() {
         let yPos = hHeight - 30
         
-        addReplayBtn(yPos)
         addHomeBtn(yPos)
+        addHighscoreBtn(yPos)
+        addReplayBtn(yPos)
         addShareBtn(yPos)
         addRatingBtn(yPos)
     }
     
-    private func addReplayBtn(yPos: CGFloat) {
-        
-        
-        retryButton.position = CGPointMake(hWidth, yPos)
-        retryButton.name = retryNode
-        retryButton.zPosition = -500
-
-        let sequence = SKAction.sequence([
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -8), duration: 4),
-            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2)])
-        
-        retryButton.runAction(SKAction.repeatActionForever(sequence))
-        
-        addChild(retryButton)
-    }
-    
     private func addHomeBtn(yPos: CGFloat) {
-        homeButton.position = CGPointMake(hWidth - 50, yPos - 10)
+        homeButton.position = CGPointMake(hWidth - 120, yPos - 60)
         homeButton.name = homeNode
         
         let sequence = SKAction.sequence([
@@ -184,8 +172,37 @@ class GameOverScene: SKScene {
         addChild(homeButton)
     }
     
+    private func addHighscoreBtn(yPos: CGFloat) {
+        highscoreButton.position = CGPointMake(hWidth - 80, yPos - 30)
+        highscoreButton.name = highscoreNode
+        
+        let sequence = SKAction.sequence([
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -2), duration: 1)])
+        
+        highscoreButton.runAction(SKAction.repeatActionForever(sequence))
+        
+        addChild(highscoreButton)
+    }
+    
+    private func addReplayBtn(yPos: CGFloat) {
+        retryButton.position = CGPointMake(hWidth, yPos)
+        retryButton.name = retryNode
+        retryButton.zPosition = -500
+        
+        let sequence = SKAction.sequence([
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: -8), duration: 4),
+            SKAction.moveBy(CGVector.init(dx: 0.0, dy: 4), duration: 2)])
+        
+        retryButton.runAction(SKAction.repeatActionForever(sequence))
+        
+        addChild(retryButton)
+    }
+    
     private func addShareBtn(yPos: CGFloat) {
-        shareButton.position = CGPointMake(hWidth + 50, yPos - 10)
+        shareButton.position = CGPointMake(hWidth + 80, yPos - 30)
         shareButton.name = shareNode
         
         let sequence = SKAction.sequence([
@@ -199,7 +216,7 @@ class GameOverScene: SKScene {
     }
     
     private func addRatingBtn(yPos: CGFloat) {
-        ratingButton.position = CGPointMake(hWidth + 100, yPos - 20)
+        ratingButton.position = CGPointMake(hWidth + 120, yPos - 60)
         ratingButton.name = ratingNode
         
         let sequence = SKAction.sequence([
@@ -241,10 +258,10 @@ class GameOverScene: SKScene {
     }
     
     private func displaySharingPopup() {
-        let image : UIImage = UIImage(named: "banana.png")!
-        let message = "Yeah! Just got \(score) points in Banana Catcher."
+        let message1 = "🍌 Yeah! 🍌"
+        let message2 = "\r\nJust got \(score) points in Banana Catcher!"
         
-        let activityViewController = UIActivityViewController(activityItems: [image, message], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [message1, message2], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
         
         let exclude = [

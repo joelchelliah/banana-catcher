@@ -207,6 +207,7 @@
 		A3BBCA2D1C006FA900BCBCC7 /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BBCA2C1C006FA900BCBCC7 /* Heart.swift */; };
 		A3BBCA2F1C006FE700BCBCC7 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = A3BBCA2E1C006FE700BCBCC7 /* heart.png */; };
 		A3C20E961BED44BB002A179E /* GameOverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C20E951BED44BB002A179E /* GameOverLabel.swift */; };
+		A3C7B4F61C2D569C0038728B /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C7B4F51C2D569C0038728B /* share.png */; };
 		A3C955861BCA895B000E6274 /* blink_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C955791BCA895B000E6274 /* blink_1.png */; };
 		A3C955871BCA895B000E6274 /* blink_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C9557A1BCA895B000E6274 /* blink_2.png */; };
 		A3C955881BCA895B000E6274 /* blink_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C9557B1BCA895B000E6274 /* blink_3.png */; };
@@ -472,6 +473,7 @@
 		A3BBCA2C1C006FA900BCBCC7 /* Heart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
 		A3BBCA2E1C006FE700BCBCC7 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = images/throwables/heart.png; sourceTree = "<group>"; };
 		A3C20E951BED44BB002A179E /* GameOverLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverLabel.swift; sourceTree = "<group>"; };
+		A3C7B4F51C2D569C0038728B /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = share.png; path = images/buttons/share.png; sourceTree = "<group>"; };
 		A3C955791BCA895B000E6274 /* blink_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_1.png; path = images/heroes/box/blink_1.png; sourceTree = "<group>"; };
 		A3C9557A1BCA895B000E6274 /* blink_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_2.png; path = images/heroes/box/blink_2.png; sourceTree = "<group>"; };
 		A3C9557B1BCA895B000E6274 /* blink_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blink_3.png; path = images/heroes/box/blink_3.png; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 				A33492AC1BEDF6D700A1FAE1 /* play_button.png */,
 				A33492AD1BEDF6D700A1FAE1 /* rate.png */,
 				A33492AE1BEDF6D700A1FAE1 /* retry_button.png */,
+				A3C7B4F51C2D569C0038728B /* share.png */,
 				A33492AF1BEDF6D700A1FAE1 /* sound_off.png */,
 				A33492B01BEDF6D700A1FAE1 /* sound_on.png */,
 			);
@@ -731,7 +734,6 @@
 				A3A79F9D1BA6D32A003C1F32 /* Assets.xcassets */,
 				A3A79F9F1BA6D32A003C1F32 /* LaunchScreen.storyboard */,
 				A3A79FA21BA6D32A003C1F32 /* Info.plist */,
-				A33034F51C29AFBD008A2346 /* MusicPlayer.swift */,
 			);
 			path = "Banana Catcher";
 			sourceTree = "<group>";
@@ -936,6 +938,7 @@
 				A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */,
 				A3DF00CA1C2C4BE300B772D5 /* CloudGenerator.swift */,
 				A3DF00CC1C2C713A00B772D5 /* BushGenerator.swift */,
+				A33034F51C29AFBD008A2346 /* MusicPlayer.swift */,
 			);
 			name = helpers;
 			sourceTree = "<group>";
@@ -1186,6 +1189,7 @@
 				A33492A81BEDF34800A1FAE1 /* game_over_tears_5.png in Resources */,
 				A36012681BE6530800FDB32D /* ouch_7.png in Resources */,
 				A3DF00E11C2C79D900B772D5 /* 1up_10.png in Resources */,
+				A3C7B4F61C2D569C0038728B /* share.png in Resources */,
 				A37673531BEB64300079619A /* catch_3.wav in Resources */,
 				A360124C1BE64C2B00FDB32D /* menu_title_7.png in Resources */,
 				A33492FD1BEF534900A1FAE1 /* sad_4.png in Resources */,
