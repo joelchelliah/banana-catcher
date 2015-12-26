@@ -27,48 +27,73 @@ class BurriedGenerator: Generator {
         let topY = yBaseLevel - 65
         let botY = topY - 45
         
-        switch random(8) {
+        let yTop1 = topY + CGFloat(randomBalanced(40))
+        let yTop2 = topY + CGFloat(randomBalanced(40))
+        let yBot1 = botY + CGFloat(randomBalanced(40))
+        let yBot2 = botY + CGFloat(randomBalanced(40))
+        
+        switch random(12) {
         case 0: return [
-                CGPointMake(x1, topY + CGFloat(randomBalanced(40))),
-                CGPointMake(x2, botY + CGFloat(randomBalanced(40))),
-                CGPointMake(x3, topY + CGFloat(randomBalanced(40))),
-                CGPointMake(x4, botY + CGFloat(randomBalanced(40)))
+                CGPointMake(x1, yTop1),
+                CGPointMake(x2, yBot1),
+                CGPointMake(x3, yTop2),
+                CGPointMake(x4, yBot2)
             ]
         case 1: return [
-            CGPointMake(x1, botY + CGFloat(randomBalanced(40))),
-            CGPointMake(x2, topY + CGFloat(randomBalanced(40))),
-            CGPointMake(x3, botY + CGFloat(randomBalanced(40))),
-            CGPointMake(x4, topY + CGFloat(randomBalanced(40)))
+            CGPointMake(x1, yBot1),
+            CGPointMake(x2, yTop1),
+            CGPointMake(x3, yBot2),
+            CGPointMake(x4, yTop2)
             ]
         case 2: return [
-            CGPointMake(x1 + (x2 - x1) / 2, botY + CGFloat(randomBalanced(40))),
-            CGPointMake(x2 + (x3 - x2) / 2, topY + CGFloat(randomBalanced(40))),
-            CGPointMake(x3 + (x4 - x3) / 2, botY + CGFloat(randomBalanced(40)))
+            CGPointMake(x1 + (x2 - x1) / 2, yBot1),
+            CGPointMake(x2 + (x3 - x2) / 2, yTop1),
+            CGPointMake(x3 + (x4 - x3) / 2, yBot2)
             ]
         case 3: return [
-            CGPointMake(x1 + (x2 - x1) / 2, topY + CGFloat(randomBalanced(40))),
-            CGPointMake(x2 + (x3 - x2) / 2, botY + CGFloat(randomBalanced(40))),
-            CGPointMake(x3 + (x4 - x3) / 2, topY + CGFloat(randomBalanced(40)))
+            CGPointMake(x1 + (x2 - x1) / 2, yTop1),
+            CGPointMake(x2 + (x3 - x2) / 2, yBot1),
+            CGPointMake(x3 + (x4 - x3) / 2, yTop2)
             ]
         case 4: return [
-            CGPointMake(x1 / 2, topY + CGFloat(randomBalanced(40))),
-            CGPointMake(x1 + (x2 - x1) / 2, botY + CGFloat(randomBalanced(40))),
-            CGPointMake(x3 + (x4 - x3) / 2, topY + CGFloat(randomBalanced(40)))
+            CGPointMake(x1 / 2, yTop1),
+            CGPointMake(x1 + (x2 - x1) / 2, yBot1),
+            CGPointMake(x3 + (x4 - x3) / 2, yTop2)
             ]
         case 5: return [
-            CGPointMake(x1 / 2, botY + CGFloat(randomBalanced(40))),
-            CGPointMake(x1 + (x2 - x1) / 2, topY + CGFloat(randomBalanced(40))),
-            CGPointMake(x3 + (x4 - x3) / 2, botY + CGFloat(randomBalanced(40)))
+            CGPointMake(x1 / 2, yBot1),
+            CGPointMake(x1 + (x2 - x1) / 2, yTop1),
+            CGPointMake(x3 + (x4 - x3) / 2, yBot2)
             ]
         case 6: return [
-            CGPointMake(x1 + (x2 - x1) / 2, topY + CGFloat(randomBalanced(40))),
-            CGPointMake(x3 + (x4 - x3) / 2, botY + CGFloat(randomBalanced(40))),
-            CGPointMake(x4, topY + CGFloat(randomBalanced(40)))
+            CGPointMake(x1 + (x2 - x1) / 2, yTop1),
+            CGPointMake(x3 + (x4 - x3) / 2, yBot1),
+            CGPointMake(x4, yTop2)
             ]
-        default: return [
-            CGPointMake(x1 + (x2 - x1) / 2, botY + CGFloat(randomBalanced(40))),
-            CGPointMake(x3 + (x4 - x3) / 2, topY + CGFloat(randomBalanced(40))),
-            CGPointMake(x4, botY + CGFloat(randomBalanced(40)))
+        case 8: return [
+            CGPointMake(x1, yTop1),
+            CGPointMake(x3, yTop2),
+            CGPointMake(x4, yBot1),
+            ]
+        case 9: return [
+            CGPointMake(x1, yBot1),
+            CGPointMake(x3, yBot2),
+            CGPointMake(x4, yTop1),
+            ]
+        case 10: return [
+            CGPointMake(x1, yTop1),
+            CGPointMake(x2, yTop2),
+            CGPointMake(x4, yBot1),
+            ]
+        case 11: return [
+            CGPointMake(x1, yBot1),
+            CGPointMake(x2, yBot2),
+            CGPointMake(x4, yTop1),
+            ]
+        default: return [ // case 7
+            CGPointMake(x1 + (x2 - x1) / 2, yBot1),
+            CGPointMake(x3 + (x4 - x3) / 2, yTop1),
+            CGPointMake(x4, yBot2)
             ]
         }
     }
