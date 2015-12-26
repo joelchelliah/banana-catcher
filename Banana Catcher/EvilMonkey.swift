@@ -182,18 +182,22 @@ class EvilMonkey: SKSpriteNode {
     }
     
     private func activateCooldown() {
-        let currentL = Double(level)
-        let currentV = Double(vLevel)
-        let factorDecay = currentL > 0.0 ? 0.3 : 0.0
+        NSTimer.scheduledTimerWithTimeInterval(
+            coolDown(),
+            target: self,
+            selector: "updateCanThrow",
+            userInfo: nil,
+            repeats: false)
+    }
+    
+    private func coolDown() -> Double {
+        let v0 = [2.0, 1.5, 1.3, 1.1, 0.8] // 0  - 4
+        let v1 = [1.5, 1.1, 1.0, 0.9, 0.8] // 5  - 9
+        let v2 = [1.3, 1.0, 0.8, 0.7, 0.6] // 10 - 14
+        let v3 = [1.1, 0.9, 0.7, 0.5, 0.4] // 15 - 19
+        let v4 = [0.8, 0.8, 0.6, 0.4, 0.2] // 20 - 24
         
-        let lFactor = 0.5 * currentL - factorDecay * (currentL - 1.0)
-        let vFactor = 0.5 * currentV
-        
-        var coolDown = 2.0 - lFactor - vFactor
-        
-        if coolDown < 0.5 { coolDown = 0.5 }
-        
-        NSTimer.scheduledTimerWithTimeInterval(coolDown, target: self, selector: "updateCanThrow", userInfo: nil, repeats: false)
+        return (v0 + v1 + v2 + v3 + v4)[currentLevel()]
     }
     
     internal func updateCanThrow() {
