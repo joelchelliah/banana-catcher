@@ -1,7 +1,8 @@
 import UIKit
 import SpriteKit
+import GameKit
 
-class GameOverScene: SKScene {
+class GameOverScene: SKScene, GKGameCenterControllerDelegate {
     
     private var hWidth: CGFloat = 0.0
     private var hHeight: CGFloat = 0.0
@@ -36,7 +37,7 @@ class GameOverScene: SKScene {
         if(touchedNode.name == nodes.home) {
             moveToMenuScene(touchedNode)
         } else if(touchedNode.name == nodes.highscore) {
-            // TODO!
+            displayLeaderboard()
         } else if(touchedNode.name == nodes.retry) {
             moveToGameScene(touchedNode)
         } else if(touchedNode.name == nodes.share) {
@@ -45,6 +46,11 @@ class GameOverScene: SKScene {
             // TODO!
         }
     }
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Score and leaderboard
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     private func updateHighScore() {
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -56,8 +62,30 @@ class GameOverScene: SKScene {
             highScore = score
             defaults.setObject(highScore, forKey: "highScore")
             defaults.synchronize()
+            
+            
         }
+        submitScoreToLeaderboard()
     }
+    
+    private func submitScoreToLeaderboard() {
+        let sScore = GKScore(leaderboardIdentifier: leaderboardID)
+        
+        sScore.value = Int64(score)
+        
+        GKScore.reportScores([sScore], withCompletionHandler: { (error: NSError?) -> Void in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                print("Score submitted")
+            }
+        })
+    }
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Add game elements
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     private func addBackground() {
         let sky = SKSpriteNode(imageNamed: "menu_sky.png")
@@ -140,7 +168,6 @@ class GameOverScene: SKScene {
         
         buttonGenerator.generate()
     }
-
     
     private func moveToGameScene(node: SKNode) {
         let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.1)
@@ -170,6 +197,16 @@ class GameOverScene: SKScene {
         node.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
     }
     
+    private func displayLeaderboard() {
+        let gcViewController: GKGameCenterViewController = GKGameCenterViewController()
+        
+        gcViewController.gameCenterDelegate = self
+        gcViewController.viewState = GKGameCenterViewControllerState.Leaderboards
+        gcViewController.leaderboardIdentifier = leaderboardID
+        
+        rootViewController().presentViewController(gcViewController, animated: true, completion: nil)
+    }
+    
     private func displaySharingPopup() {
         let message1 = "🍌 Yeah! 🍌"
         let message2 = "\r\nJust got \(score) points in Banana Catcher!"
@@ -192,12 +229,25 @@ class GameOverScene: SKScene {
             activityViewController.excludedActivityTypes = exclude
         }
         
-        self.view?.window?.rootViewController?.presentViewController(activityViewController, animated: true, completion: nil)
+        rootViewController().presentViewController(activityViewController, animated: true, completion: nil)
     }
     
     private func loadTextures() {
         tearsTextures = (1...5).map { SKTexture(imageNamed: "game_over_tears_\($0).png") }
         sobTextures = (1...10).map { SKTexture(imageNamed: "game_over_sob_\($0).png") }
         scoreboardTextures = (1...8).map { SKTexture(imageNamed: "scoreboard_\($0).png") }
+    }
+    
+    private func rootViewController() -> UIViewController {
+        return (self.view?.window?.rootViewController)!
+    }
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Close leaderboard (from GKGameCenterControllerDelegate)
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
     }
 }
