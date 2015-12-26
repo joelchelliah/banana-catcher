@@ -203,14 +203,19 @@ class EvilMonkey: SKSpriteNode {
     }
     
     private func coolDown() -> Double {
-        let levels = [
-            2.0, 1.5, 1.3, 1.1, 0.8, // 0  - 4
-            1.5, 1.1, 1.0, 0.9, 0.8, // 5  - 9
-            1.3, 1.0, 0.8, 0.7, 0.6, // 10 - 14
-            1.1, 0.9, 0.7, 0.5, 0.4, // 15 - 19
-            0.8, 0.8, 0.6, 0.4, 0.2] // 20 - 24
+        let lvl = currentLevel()
         
-        return levels[currentLevel()]
+        if lvl > 24 {
+            return 0.3
+        } else {
+            return [
+                2.0, 1.5, 1.3, 1.1, 0.8, // 0  - 4
+                1.5, 1.1, 1.0, 0.9, 0.8, // 5  - 9
+                1.3, 1.0, 0.8, 0.7, 0.6, // 10 - 14
+                1.1, 0.9, 0.7, 0.5, 0.4, // 15 - 19
+                0.8, 0.8, 0.6, 0.4, 0.3  // 20 - 24
+                ][lvl]
+        }
     }
     
     internal func updateCanThrow() {

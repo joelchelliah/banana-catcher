@@ -143,9 +143,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         monkey.enrage()
         let currentLevel = monkey.currentLevel()
         
-        
         if currentLevel > levelBefore {
             if currentLevel == 5 { musicPlayer.change("game_2") }
+            if currentLevel == 10 { musicPlayer.change("game_3") }
+            if currentLevel == 15 { musicPlayer.change("game_4") }
+            if currentLevel == 20 { musicPlayer.change("game_5") }
             
             monkey.disable()
             monkey.throwTantrum()
