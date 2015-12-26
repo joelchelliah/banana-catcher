@@ -35,10 +35,12 @@ class EvilMonkey: SKSpriteNode {
     // * Rage logic
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
+    private let requiredRageDefault: Int = 3
+    
     private var rage: Int = 0
     private var requiredRage: Int = 3
     private var level: Int = 0
-    private var vLevel: Int = 2
+    private var vLevel: Int = 0
     
     func currentLevel() -> Int {
         return 5 * vLevel + level
@@ -58,7 +60,7 @@ class EvilMonkey: SKSpriteNode {
         if level == 5 {
             vLevel += 1
             level = 0
-            requiredRage = 3
+            requiredRage = requiredRageDefault
         }
         
         print("level: \(level), vLevel: \(vLevel), currentLevel: \(currentLevel())")
@@ -135,8 +137,11 @@ class EvilMonkey: SKSpriteNode {
     
     private var canThrowHeartDuringTantrum: Bool = false
     private var canThrow: Bool = false
+    
     private var coconutChance: Int = 0;
     private var supernutChance: Int = 0;
+    
+    private var heartChance: Int = 0;
     
     func isAbleToThrow() -> Bool {
         if disabled { return false }
@@ -152,24 +157,31 @@ class EvilMonkey: SKSpriteNode {
     
     func getTrowable() -> Throwable {
         let diceRoll = Int(arc4random_uniform(100))
-        let chanceInc = 10
+        let chanceIncHeart = 2
+        let chanceIncNuts = 10
+        
+        if diceRoll < heartChance {
+            heartChance = 0
+            return Heart()
+        }
+        
+        heartChance += vLevel * chanceIncHeart
         
         if diceRoll < supernutChance {
             supernutChance = 0
             return Supernut()
-            
-        } else {
-            supernutChance += vLevel * chanceInc
-            
-            if diceRoll < coconutChance {
-                coconutChance = 0
-                return Coconut()
-                
-            } else {
-                coconutChance += (1 + vLevel) * chanceInc
-                return Banana()
-            }
         }
+        
+        supernutChance += vLevel * chanceIncNuts
+        
+        if diceRoll < coconutChance {
+            coconutChance = 0
+            return Coconut()
+        }
+        
+        coconutChance += (1 + vLevel) * chanceIncNuts
+        
+        return Banana()
     }
     
     func canThrowHeart() -> Bool {
@@ -191,13 +203,14 @@ class EvilMonkey: SKSpriteNode {
     }
     
     private func coolDown() -> Double {
-        let v0 = [2.0, 1.5, 1.3, 1.1, 0.8] // 0  - 4
-        let v1 = [1.5, 1.1, 1.0, 0.9, 0.8] // 5  - 9
-        let v2 = [1.3, 1.0, 0.8, 0.7, 0.6] // 10 - 14
-        let v3 = [1.1, 0.9, 0.7, 0.5, 0.4] // 15 - 19
-        let v4 = [0.8, 0.8, 0.6, 0.4, 0.2] // 20 - 24
+        let levels = [
+            2.0, 1.5, 1.3, 1.1, 0.8, // 0  - 4
+            1.5, 1.1, 1.0, 0.9, 0.8, // 5  - 9
+            1.3, 1.0, 0.8, 0.7, 0.6, // 10 - 14
+            1.1, 0.9, 0.7, 0.5, 0.4, // 15 - 19
+            0.8, 0.8, 0.6, 0.4, 0.2] // 20 - 24
         
-        return (v0 + v1 + v2 + v3 + v4)[currentLevel()]
+        return levels[currentLevel()]
     }
     
     internal func updateCanThrow() {
