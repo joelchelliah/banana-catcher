@@ -9,10 +9,12 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.authenticateLocalPlayer()
+        //self.authenticateLocalPlayer()
         
-        let gameScene = MenuScene(size: view.bounds.size)
+        //let gameScene = MenuScene(size: view.bounds.size)
         //let gameScene = GameOverScene(size: view.bounds.size)
+        //let gameScene = TutorialScene(size: view.bounds.size)
+        let gameScene = GameScene(size: view.bounds.size)
         
         gameScene.scaleMode = .ResizeFill
         

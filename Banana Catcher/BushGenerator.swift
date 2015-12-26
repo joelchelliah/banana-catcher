@@ -5,28 +5,25 @@ class BushGenerator: Generator {
     
     private let numBushes = 2
     
-    override init(forScene scene: SKScene, yBasePos: CGFloat) {
-        super.init(forScene: scene, yBasePos: yBasePos)
-    }
-    
     override func generate() {
-        let positions: [CGFloat] = bushPositions()
+        let positions: [CGFloat] = bushXPositions()
         
         for i in 0..<numBushes {
-            let bushPos = positions[i]
+            let baseHeight = yBaseLevel + 15
+            let bushXPos = positions[i]
             let bush = SKSpriteNode(imageNamed: "bush_\(bushIndex()).png")
             
-            bush.position = CGPointMake(bushPos, yBaseLevel + bush.size.height / 2)
+            bush.position = CGPointMake(bushXPos, baseHeight + bush.size.height / 2)
             bush.zPosition = -800
             
             scene.addChild(bush)
         }
     }
     
-    private func bushPositions() -> [CGFloat] {
+    private func bushXPositions() -> [CGFloat] {
         return [
-            hWidth - 50 - CGFloat(arc4random_uniform(60)),
-            hWidth + 50 + CGFloat(arc4random_uniform(60))
+            hWidth - 50 - CGFloat(random((60))),
+            hWidth + 50 + CGFloat(random(60))
         ]
     }
     

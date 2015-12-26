@@ -52,21 +52,21 @@ class CloudGenerator: Generator {
     
     private func cloudPosition(direction: Int, leftLimit: CGFloat, rightLimit: CGFloat) -> CGPoint {
         let cloudPositionX = direction < 0 ? rightLimit : leftLimit
-        let cloudPositionY = cloudHeights[Int(arc4random_uniform(UInt32(cloudHeights.count)))]
+        let cloudPositionY = cloudHeights[random(cloudHeights.count)]
         
         return CGPointMake(cloudPositionX, cloudPositionY)
     }
     
     private func cloudAlpha() -> CGFloat {
         let alphas = (4...8).map { CGFloat($0) / 10.0 }
-        let i = Int(arc4random_uniform(UInt32(alphas.count)))
+        let i = random(alphas.count)
         
         return alphas[i]
     }
     
     private func cloudDuration() -> Double {
         let durations = 8.stride(to: 16, by: 4).map { Double($0) }
-        let i = Int(arc4random_uniform(UInt32(durations.count)))
+        let i = random(durations.count)
         
         return durations[i]
     }

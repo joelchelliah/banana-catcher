@@ -110,11 +110,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addDoodads() {
-        let bushGenerator = BushGenerator(forScene: self, yBasePos: ground.size.height + 15)
-        let cloudGenerator = CloudGenerator(forScene: self)
+        let groundLevel = ground.size.height
+        let cloudGen = CloudGenerator(forScene: self)
+        let bushGen = BushGenerator(forScene: self, yBasePos: groundLevel)
+        let burriedGen = BurriedGenerator(forScene: self, yBasePos: groundLevel)
         
-        bushGenerator.generate()
-        cloudGenerator.generate()
+        [burriedGen, bushGen, cloudGen].forEach { $0.generate() }
     }
     
     private func addBasketMan() {
