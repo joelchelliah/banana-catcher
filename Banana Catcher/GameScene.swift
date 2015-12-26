@@ -260,35 +260,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case is Banana:
             let points = GamePoints.BananaCaught
             
-            addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
-            
+            showCollectPoints(pos, points)
             updateScore(points)
             basketMan.collect()
             updateMonkey()
             
-        case is Coconut:
-            let points = GamePoints.CoconutCaught
-            
-            addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
-            
-            updateScore(points)
-            basketMan.ouch()
-            decrementLives()
-            
-        case is Supernut:
-            let points = GamePoints.SupernutCaught
-            
-            addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
-            
-            updateScore(points)
-            basketMan.ouch()
-            decrementLives()
+        case is Coconut: coconutHitsBasketMan(pos, GamePoints.CoconutCaught)
+
+        case is Supernut: coconutHitsBasketMan(pos, GamePoints.SupernutCaught)
             
         case is Heart:
             let points = GamePoints.HeartCaught
             
-            addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
-            
+            showCollectPoints(pos, points)
             updateScore(points)
             basketMan.lifeUp()
             incrementLives()
@@ -300,31 +284,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         item.removeFromParent()
     }
     
+    private func coconutHitsBasketMan(pos: CGPoint, _ points: Int) {
+        if basketMan.isInvincible() { return }
+        
+        showCollectPoints(pos, points)
+        updateScore(points)
+        basketMan.ouch()
+        decrementLives()
+    }
+    
     private func throwableHitsGround(item: Throwable) {
-        if let banana = item as? Banana {
-            let splatBanana = SplatBanana(pos: CGPointMake(banana.position.x, ground.size.height + 5))
-            let pos = banana.position
+        let pos = item.position
+        
+        switch item {
+        case is Banana:
+            let splatBanana = SplatBanana(pos: CGPointMake(item.position.x, ground.size.height + 5))
             let points = GamePoints.BananaMissed
             
-            addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y + 15))
-            
+            showCollectPoints(CGPointMake(pos.x, pos.y + 15), points)
             updateScore(points)
             basketMan.frown()
             decrementLives()
             
             addChild(splatBanana)
-            banana.removeFromParent()
+            item.removeFromParent()
             
-        } else if let coconut = item as? Coconut {
-            let brokenut = Brokenut(pos: CGPointMake(coconut.position.x, ground.size.height + 5))
+        case is Coconut:
+            let brokenut = Brokenut(pos: CGPointMake(item.position.x, ground.size.height + 5))
             
             addChild(brokenut)
-            coconut.removeFromParent()
-        } else if let supernut = item as? Supernut {
+            item.removeFromParent()
+            
+        case is Supernut:
             let numSpawns: Int = monkey.currentLevel() / 5
             
             for _ in 1...numSpawns {
-                let spawnPos = CGPointMake(supernut.position.x, ground.size.height + 30)
+                let spawnPos = CGPointMake(item.position.x, ground.size.height + 30)
                 let spawn = Coconut.spawnAt(spawnPos)
                 let throwX = CGFloat(arc4random_uniform(20)) - 10.0
                 let throwY = spawn.throwForceY() + CGFloat(arc4random_uniform(10) + 5)
@@ -334,21 +329,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 spawn.physicsBody?.applyImpulse(CGVectorMake(throwX, throwY))
             }
 
-            let brokenutPos = CGPointMake(supernut.position.x, ground.size.height + 5)
+            let brokenutPos = CGPointMake(item.position.x, ground.size.height + 5)
             let brokenut = Brokenut(pos: brokenutPos, sizeFactor: 1.5)
             
             addChild(brokenut)
-            supernut.removeFromParent()
+            item.removeFromParent()
             
-        } else if let heart = item as? Heart {
-            let fadeAction = SKAction.fadeOutWithDuration(0.5)
-            let removeAction = SKAction.runBlock { heart.removeFromParent() }
+        case is Heart:
+            let fadeOut = SKAction.fadeOutWithDuration(1.0)
+            let remove = SKAction.runBlock { item.removeFromParent() }
             
-            heart.runAction(SKAction.sequence([fadeAction, removeAction]))
+            item.runAction(SKAction.sequence([fadeOut, remove]))
             
-        } else {
-            print("Unexpected item (\(item)) hit the ground!")
+        default: print("Unexpected item (\(item)) hit the ground!")
         }
+    }
+
+    private func showCollectPoints(pos: CGPoint, _ points: Int) {
+        let label = CollectPointLabel(points: points, x: pos.x, y: pos.y)
+        
+        addChild(label)
     }
     
     

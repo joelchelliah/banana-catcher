@@ -38,7 +38,7 @@ class EvilMonkey: SKSpriteNode {
     private var rage: Int = 0
     private var requiredRage: Int = 3
     private var level: Int = 0
-    private var vLevel: Int = 0
+    private var vLevel: Int = 2
     
     func currentLevel() -> Int {
         return 5 * vLevel + level

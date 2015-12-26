@@ -5,6 +5,8 @@ class BasketMan: SKSpriteNode {
 
     private let velocity: CGFloat = 8.0
     
+    private var invincible: Bool = false
+    
     private var idleTexture = SKTexture(imageNamed: "idle.png")
     private var blinkTextures = [SKTexture]()
     private var catchTextures = [SKTexture]()
@@ -41,6 +43,10 @@ class BasketMan: SKSpriteNode {
         }
     }
     
+    func isInvincible() -> Bool {
+        return invincible
+    }
+    
     func collect() {
         let animation = SKAction.animateWithTextures(catchTextures, timePerFrame: 0.05)
         let soundPitch = Int(arc4random_uniform(3)) + 1
@@ -57,13 +63,20 @@ class BasketMan: SKSpriteNode {
     }
     
     func ouch() {
+        invincible = true
+        
         let animation = SKAction.animateWithTextures(ouchTextures, timePerFrame: 0.05)
         let fadeOut = SKAction.fadeAlphaTo(0.3, duration: 0.1)
         let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
         let fadeOutIn = SKAction.repeatAction(SKAction.sequence([fadeOut, fadeIn]), count: 3)
+        let ouchAnimation = SKAction.group([animation, fadeOutIn])
+        
+        let wait = SKAction.waitForDuration(1.0)
+        let removeInvincibility = SKAction.runBlock { self.invincible = false }
         
         playSound(self, name: "ouch.wav")
-        self.runAction(SKAction.group([animation, fadeOutIn]))
+
+        self.runAction(SKAction.sequence([ouchAnimation, wait, removeInvincibility]))
     }
     
     func frown() {
