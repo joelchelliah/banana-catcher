@@ -9,11 +9,10 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     private let monkey: EvilMonkey = EvilMonkey()
     
     private var touchHandler: TouchHandler!
+    private var helper: TutorialStageHelper!
     
     private var nextButton: SKSpriteNode!
     private var infoLabel:  InfoLabel!
-    
-    var helper: TutorialStageHelper!
     
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
@@ -139,6 +138,10 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     // * Tutorial stageHelper functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
+    func playNextStage() {
+        helper.playNextStage()
+    }
+    
     func prepareForNextStage(nextButtonTexture: String) {
         infoLabel.clear()
         nextButton.alpha = 0.2

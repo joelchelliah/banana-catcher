@@ -7,6 +7,8 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
     private var hWidth: CGFloat = 0.0
     private var hHeight: CGFloat = 0.0
     
+    private var touchHandler: TouchHandler!
+    
     var highScore: Int = 0
     
     private var tearsTextures = [SKTexture]()
@@ -16,6 +18,8 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
         hHeight = size.height / 2
+        
+        initTouchHandler()
         
         musicPlayer.change("game_over")
         
@@ -32,21 +36,7 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let touchLocation = touches.first!.locationInNode(self)
-        let touchedNode = self.nodeAtPoint(touchLocation)
-        let nodes = ButtonNodes.self
-        
-        if(touchedNode.name == nodes.home) {
-            moveToMenuScene(touchedNode)
-        } else if(touchedNode.name == nodes.highscore) {
-            displayLeaderboard()
-        } else if(touchedNode.name == nodes.retry) {
-            moveToGameScene(touchedNode)
-        } else if(touchedNode.name == nodes.share) {
-            displaySharingPopup()
-        } else if(touchedNode.name == nodes.rating) {
-            // TODO!
-        }
+        touchHandler.handle(touches)
     }
     
     
@@ -169,67 +159,8 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
         buttonGenerator.generate()
     }
     
-    private func moveToGameScene(node: SKNode) {
-        let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.1)
-        let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
-        let sound = SKAction.runBlock { playSound(self, name: "option_select.wav") }
-        let transition = SKAction.runBlock {
-            let scene = GameScene(size: self.size)
-            scene.scaleMode = self.scaleMode
-            
-            self.view?.presentScene(scene, transition: SKTransition.flipVerticalWithDuration(0.5))
-        }
-        
-        node.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
-    }
-    
-    private func moveToMenuScene(node: SKNode) {
-        let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.1)
-        let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
-        let sound = SKAction.runBlock { playSound(self, name: "option_select.wav") }
-        let transition = SKAction.runBlock {
-            let scene = MenuScene(size: self.size)
-            scene.scaleMode = self.scaleMode
-            
-            self.view?.presentScene(scene, transition: SKTransition.flipVerticalWithDuration(0.5))
-        }
-        
-        node.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
-    }
-    
-    private func displayLeaderboard() {
-        let gcViewController: GKGameCenterViewController = GKGameCenterViewController()
-        
-        gcViewController.gameCenterDelegate = self
-        gcViewController.viewState = GKGameCenterViewControllerState.Leaderboards
-        gcViewController.leaderboardIdentifier = leaderboardID
-        
-        rootViewController().presentViewController(gcViewController, animated: true, completion: nil)
-    }
-    
-    private func displaySharingPopup() {
-        let message1 = "🍌 Yeah! 🍌"
-        let message2 = "\r\nJust got \(score) points in Banana Catcher!"
-        
-        let activityViewController = UIActivityViewController(activityItems: [message1, message2], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
-        
-        let exclude = [
-            UIActivityTypeAssignToContact,
-            UIActivityTypeAddToReadingList,
-            UIActivityTypeAirDrop,
-            UIActivityTypePrint,
-            UIActivityTypeCopyToPasteboard,
-            UIActivityTypeSaveToCameraRoll
-        ]
-        
-        if #available(iOS 9.0, *) {
-            activityViewController.excludedActivityTypes = exclude + [UIActivityTypeOpenInIBooks]
-        } else {
-            activityViewController.excludedActivityTypes = exclude
-        }
-        
-        rootViewController().presentViewController(activityViewController, animated: true, completion: nil)
+    private func initTouchHandler() {
+        touchHandler = TouchHandler(forScene: self)
     }
     
     private func loadTextures() {
@@ -237,11 +168,6 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
         sobTextures = (1...10).map { SKTexture(imageNamed: "game_over_sob_\($0).png") }
         scoreboardTextures = (1...8).map { SKTexture(imageNamed: "scoreboard_\($0).png") }
     }
-    
-    private func rootViewController() -> UIViewController {
-        return (self.view?.window?.rootViewController)!
-    }
-    
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // * Close leaderboard (from GKGameCenterControllerDelegate)
