@@ -4,6 +4,9 @@ import GameKit
 
 class GameOverTouchHandler: TouchHandler {
     
+    private var gameCenterEnabled = false
+    private var gameCenterDefaultLeaderBoard = ""
+    
     override func handle(touches: Set<UITouch>) {
         let touchedNode = getTouchedNode(touches)
         
@@ -25,26 +28,39 @@ class GameOverTouchHandler: TouchHandler {
     }
     
     private func gotoLeaderboard(node: SKNode) {
+        let presentLeaderboard = SKAction.runBlock {
+            self.presentGameCenterLeaderboard()
+        }
+        
+        buttonClick(node, action: presentLeaderboard)
+    }
+    
+    private func presentGameCenterLeaderboard() {
         let gcViewController: GKGameCenterViewController = GKGameCenterViewController()
         
         gcViewController.gameCenterDelegate = scene as? GKGameCenterControllerDelegate
         gcViewController.viewState = GKGameCenterViewControllerState.Leaderboards
         gcViewController.leaderboardIdentifier = leaderboardID
         
-        let presentViewController = SKAction.runBlock {
-            self.rootViewController().presentViewController(gcViewController, animated: true, completion: nil)
-        }
-        
-        buttonClick(node, action: presentViewController)
+        rootViewController().presentViewController(gcViewController, animated: true, completion: nil)
     }
     
     private func gotoSharing(node: SKNode) {
         let message1 = "🍌 Yeah! 🍌"
         let message2 = "\r\nJust got \(score) points in Banana Catcher!"
-        
         let activityViewController = UIActivityViewController(activityItems: [message1, message2], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
         
+        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+        activityViewController.excludedActivityTypes = sharingExclusionList()
+        
+        let presentSharing = SKAction.runBlock {
+            self.rootViewController().presentViewController(activityViewController, animated: true, completion: nil)
+        }
+        
+        buttonClick(node, action: presentSharing)
+    }
+    
+    private func sharingExclusionList() -> [String] {
         let exclude = [
             UIActivityTypeAssignToContact,
             UIActivityTypeAddToReadingList,
@@ -55,17 +71,16 @@ class GameOverTouchHandler: TouchHandler {
         ]
         
         if #available(iOS 9.0, *) {
-            activityViewController.excludedActivityTypes = exclude + [UIActivityTypeOpenInIBooks]
+            return exclude + [UIActivityTypeOpenInIBooks]
         } else {
-            activityViewController.excludedActivityTypes = exclude
+            return exclude
         }
-        
-        let presentViewController = SKAction.runBlock {
-            self.rootViewController().presentViewController(activityViewController, animated: true, completion: nil)
-        }
-        
-        buttonClick(node, action: presentViewController)
     }
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Misc
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     private func rootViewController() -> UIViewController {
         return (scene.view?.window?.rootViewController)!

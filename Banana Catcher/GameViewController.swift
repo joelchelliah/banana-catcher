@@ -5,26 +5,11 @@ import iAd
 
 class GameViewController: UIViewController, ADBannerViewDelegate {
     
-    let screenHeight = UIScreen.mainScreen().bounds.height
+    private let screenHeight = UIScreen.mainScreen().bounds.height
+    private let adBannerView = ADBannerView()
     
-    var gameCenterEnabled = false
-    var gameCenterDefaultLeaderBoard = ""
-    
-    var adBannerView = ADBannerView()
-    
-    override func viewWillAppear(animated: Bool) {
-        let bannerHeight = adBannerView.bounds.height
-        
-        adBannerView.delegate = self
-        adBannerView.frame = CGRectMake(0, screenHeight + bannerHeight, 0, 0)
-        
-        self.view.addSubview(adBannerView)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        adBannerView.delegate = nil
-        adBannerView.removeFromSuperview()
-    }
+    private var gameCenterEnabled = false
+    private var gameCenterDefaultLeaderBoard = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +23,6 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
         
         initGameView()
     }
-    
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -71,6 +55,20 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // * Banner view
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    override func viewWillAppear(animated: Bool) {
+        let bannerHeight = adBannerView.bounds.height
+        
+        adBannerView.delegate = self
+        adBannerView.frame = CGRectMake(0, screenHeight + bannerHeight, 0, 0)
+        
+        self.view.addSubview(adBannerView)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        adBannerView.delegate = nil
+        adBannerView.removeFromSuperview()
+    }
     
     func bannerViewDidLoadAd(banner: ADBannerView!) {
         adBannerView.hidden = false
