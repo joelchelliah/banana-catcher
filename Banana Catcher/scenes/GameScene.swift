@@ -28,6 +28,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addDoodads()
         addBasketMan()
         addEvilMonkey()
+        
+        BannerAds.show()
     }
     
     override func update(currentTime: CFTimeInterval) {

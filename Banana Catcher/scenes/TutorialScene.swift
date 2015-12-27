@@ -27,6 +27,8 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
         addLabels()
         addButtons()
         addStageHelper()
+        
+        BannerAds.hide()
     }
         
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -173,7 +175,6 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
         
         monkey.bounce()
     }
-    
     
     func moveToMenuScene() {
         let scene = MenuScene(size: self.size)

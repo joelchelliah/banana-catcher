@@ -27,6 +27,8 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
         addGameOverLabel()
         addScoreBoard()
         addButtons()
+        
+        BannerAds.show()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

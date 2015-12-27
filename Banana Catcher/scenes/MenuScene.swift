@@ -22,6 +22,8 @@ class MenuScene: SKScene {
         addBasketMan()
         addTitle()
         addButtons()
+        
+        BannerAds.show()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -141,7 +143,9 @@ class MenuScene: SKScene {
     }
     
     
-    /* Misc */
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Misc
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     private func initSound() {
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()

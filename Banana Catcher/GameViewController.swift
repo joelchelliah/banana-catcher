@@ -1,16 +1,62 @@
 import UIKit
 import SpriteKit
 import GameKit
+import iAd
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, ADBannerViewDelegate {
     
-    var gcEnabled = Bool()              // Stores if the user has Game Center enabled
-    var gcDefaultLeaderBoard = String() // Stores the default leaderboardID
+    let screenHeight = UIScreen.mainScreen().bounds.height
+    
+    var gameCenterEnabled = false
+    var gameCenterDefaultLeaderBoard = ""
+    
+    var adBannerView = ADBannerView()
+    
+    override func viewWillAppear(animated: Bool) {
+        let bannerHeight = adBannerView.bounds.height
+        
+        adBannerView.delegate = self
+        adBannerView.frame = CGRectMake(0, screenHeight + bannerHeight, 0, 0)
+        
+        self.view.addSubview(adBannerView)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        adBannerView.delegate = nil
+        adBannerView.removeFromSuperview()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.authenticateLocalPlayer()
+        self.authenticateLocalPlayer()
         
+        adBannerView.hidden = true
+        adBannerView.alpha = 0
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideBannerAd", name: BannerAds.hideAdsID, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showBannerAd", name: BannerAds.showAdsID, object: nil)
+        
+        initGameView()
+    }
+    
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    private func initGameView() {
+        let gameScene = initGameScene()
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 1.0)
+        let gameView = view as! SKView
+        
+        gameView.showsFPS = false
+        gameView.showsNodeCount = false
+        gameView.ignoresSiblingOrder = true
+        gameView.presentScene(gameScene, transition: transition)
+    }
+    
+    
+    private func initGameScene() -> SKScene {
         let gameScene = MenuScene(size: view.bounds.size)
         //let gameScene = GameOverScene(size: view.bounds.size)
         //let gameScene = TutorialScene(size: view.bounds.size)
@@ -18,14 +64,53 @@ class GameViewController: UIViewController {
         
         gameScene.scaleMode = .ResizeFill
         
-        let gameView = initGameView()
-        
-        gameView.presentScene(gameScene)
+        return gameScene
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Banner view
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        adBannerView.hidden = false
+        adBannerView.alpha  = 1
     }
+    
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        adBannerView.hidden = true
+        adBannerView.alpha  = 0
+    }
+    
+    func showBannerAd() {
+        let bannerHeight = adBannerView.bounds.height
+        
+        adBannerView.hidden = false
+
+        moveBannerViewFrame(by: screenHeight - bannerHeight)
+    }
+    
+    func hideBannerAd() {
+        let bannerHeight = adBannerView.bounds.height
+        
+        adBannerView.hidden = true
+        
+        moveBannerViewFrame(by: screenHeight + bannerHeight)
+    }
+    
+    private func moveBannerViewFrame(by yDiff: CGFloat) {
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(1.0)
+        
+        adBannerView.frame = CGRectMake(0, yDiff, 0, 0)
+        
+        UIView.commitAnimations()
+    }
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Game center
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     private func authenticateLocalPlayer() {
         let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
@@ -37,34 +122,23 @@ class GameViewController: UIViewController {
                 
             } else if (localPlayer.authenticated) {
                 // 2 Player is already euthenticated & logged in, load game center
-                self.gcEnabled = true
+                self.gameCenterEnabled = true
                 
                 // Get the default leaderboard ID
                 localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifer: String?, error: NSError?) -> Void in
                     if error != nil {
                         print(error)
                     } else {
-                        self.gcDefaultLeaderBoard = leaderboardIdentifer!
+                        self.gameCenterDefaultLeaderBoard = leaderboardIdentifer!
                     }
                 })
                 
             } else {
                 // 3 Game center is not enabled on the users device
-                self.gcEnabled = false
+                self.gameCenterEnabled = false
                 print("Local player could not be authenticated, disabling game center")
                 print(error)
             }
         }
-    }
-    
-    
-    private func initGameView() -> SKView {
-        let gameView = view as! SKView
-        
-        gameView.showsFPS = false
-        gameView.showsNodeCount = false
-        gameView.ignoresSiblingOrder = true
-        
-        return gameView
     }
 }

@@ -38,7 +38,6 @@ class ButtonGenerator: Generator {
         generateTutorialButton()
         generatePlayButton()
         generateNoAdsButton()
-        generateShareButton()
         generateRatingButton()
     }
     
