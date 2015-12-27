@@ -10,6 +10,7 @@
 		A3194FCD1BCD7A1800FD0122 /* banana_splat_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A3194FCA1BCD7A1800FD0122 /* banana_splat_3.png */; };
 		A3194FCE1BCD7A1800FD0122 /* banana_splat_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A3194FCB1BCD7A1800FD0122 /* banana_splat_4.png */; };
 		A3194FCF1BCD7A1800FD0122 /* banana_splat_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3194FCC1BCD7A1800FD0122 /* banana_splat_5.png */; };
+		A32394D11C2FDBE200CC1B89 /* ButtonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32394D01C2FDBE200CC1B89 /* ButtonProperties.swift */; };
 		A32A31FB1BB8114300A12214 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A31FA1BB8114300A12214 /* GameOverScene.swift */; };
 		A32A31FF1BB81E3F00A12214 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32A31FE1BB81E3F00A12214 /* Label.swift */; };
 		A33034F61C29AFBD008A2346 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33034F51C29AFBD008A2346 /* MusicPlayer.swift */; };
@@ -212,7 +213,6 @@
 		A3A79FE01BA706C5003C1F32 /* EvilMonkey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79FDF1BA706C5003C1F32 /* EvilMonkey.swift */; };
 		A3A79FE21BA70838003C1F32 /* Banana.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79FE11BA70838003C1F32 /* Banana.swift */; };
 		A3B91D671C28411C00BEA54E /* menu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A3B91D661C28411C00BEA54E /* menu.mp3 */; };
-		A3B9B1201BECEA7500AB9709 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B9B11F1BECEA7500AB9709 /* Extensions.swift */; };
 		A3B9B1231BECF4D500AB9709 /* darkness_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = A3B9B1211BECF4D500AB9709 /* darkness_bottom.png */; };
 		A3B9B1241BECF4D500AB9709 /* darkness_top.png in Resources */ = {isa = PBXBuildFile; fileRef = A3B9B1221BECF4D500AB9709 /* darkness_top.png */; };
 		A3BBCA2D1C006FA900BCBCC7 /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BBCA2C1C006FA900BCBCC7 /* Heart.swift */; };
@@ -220,9 +220,7 @@
 		A3C20E961BED44BB002A179E /* GameOverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C20E951BED44BB002A179E /* GameOverLabel.swift */; };
 		A3C7B4F61C2D569C0038728B /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C7B4F51C2D569C0038728B /* share.png */; };
 		A3C7B4FA1C2D695C0038728B /* highscore.png in Resources */ = {isa = PBXBuildFile; fileRef = A3C7B4F91C2D695C0038728B /* highscore.png */; };
-		A3C7B4FC1C2D6A030038728B /* ButtonNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B4FB1C2D6A030038728B /* ButtonNodes.swift */; };
 		A3C7B4FE1C2D6BE30038728B /* ButtonGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B4FD1C2D6BE30038728B /* ButtonGenerator.swift */; };
-		A3C7B5001C2DA82F0038728B /* ButtonIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B4FF1C2DA82F0038728B /* ButtonIndex.swift */; };
 		A3C7B5021C2DAA1A0038728B /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B5011C2DAA1A0038728B /* Generator.swift */; };
 		A3C7B5051C2DAF960038728B /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B5041C2DAF960038728B /* Globals.swift */; };
 		A3C7B5091C2DC5F40038728B /* CollissionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7B5081C2DC5F40038728B /* CollissionDetector.swift */; };
@@ -288,6 +286,7 @@
 		A3194FCA1BCD7A1800FD0122 /* banana_splat_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_3.png; path = images/throwables/banana_splat_3.png; sourceTree = "<group>"; };
 		A3194FCB1BCD7A1800FD0122 /* banana_splat_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_4.png; path = images/throwables/banana_splat_4.png; sourceTree = "<group>"; };
 		A3194FCC1BCD7A1800FD0122 /* banana_splat_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_5.png; path = images/throwables/banana_splat_5.png; sourceTree = "<group>"; };
+		A32394D01C2FDBE200CC1B89 /* ButtonProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonProperties.swift; sourceTree = "<group>"; };
 		A32A31FA1BB8114300A12214 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		A32A31FE1BB81E3F00A12214 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		A33034F51C29AFBD008A2346 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
@@ -496,7 +495,6 @@
 		A3A79FDF1BA706C5003C1F32 /* EvilMonkey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvilMonkey.swift; sourceTree = "<group>"; };
 		A3A79FE11BA70838003C1F32 /* Banana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banana.swift; sourceTree = "<group>"; };
 		A3B91D661C28411C00BEA54E /* menu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = menu.mp3; path = music/menu.mp3; sourceTree = "<group>"; };
-		A3B9B11F1BECEA7500AB9709 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A3B9B1211BECF4D500AB9709 /* darkness_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = darkness_bottom.png; path = images/hud/darkness_bottom.png; sourceTree = "<group>"; };
 		A3B9B1221BECF4D500AB9709 /* darkness_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = darkness_top.png; path = images/hud/darkness_top.png; sourceTree = "<group>"; };
 		A3BBCA2C1C006FA900BCBCC7 /* Heart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
@@ -504,9 +502,7 @@
 		A3C20E951BED44BB002A179E /* GameOverLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverLabel.swift; sourceTree = "<group>"; };
 		A3C7B4F51C2D569C0038728B /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = share.png; path = images/buttons/share.png; sourceTree = "<group>"; };
 		A3C7B4F91C2D695C0038728B /* highscore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = highscore.png; path = images/buttons/highscore.png; sourceTree = "<group>"; };
-		A3C7B4FB1C2D6A030038728B /* ButtonNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonNodes.swift; sourceTree = "<group>"; };
 		A3C7B4FD1C2D6BE30038728B /* ButtonGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonGenerator.swift; sourceTree = "<group>"; };
-		A3C7B4FF1C2DA82F0038728B /* ButtonIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonIndex.swift; sourceTree = "<group>"; };
 		A3C7B5011C2DAA1A0038728B /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		A3C7B5041C2DAF960038728B /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		A3C7B5081C2DC5F40038728B /* CollissionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollissionDetector.swift; sourceTree = "<group>"; };
@@ -632,7 +628,7 @@
 				A3C9559D1BCACFCC000E6274 /* SplatBanana.swift */,
 				A37D4B3E1BE3BC6B0071FFBF /* Brokenut.swift */,
 			);
-			name = decayables;
+			path = decayables;
 			sourceTree = "<group>";
 		};
 		A373A0671C2B3202006D2802 /* doodads */ = {
@@ -701,7 +697,7 @@
 				A3A79FDB1BA6FFDC003C1F32 /* Ground.swift */,
 				A3A79FDF1BA706C5003C1F32 /* EvilMonkey.swift */,
 			);
-			name = sprites;
+			path = sprites;
 			sourceTree = "<group>";
 		};
 		A37D4B3B1BE3AEB90071FFBF /* scenes */ = {
@@ -712,7 +708,7 @@
 				A32A31FA1BB8114300A12214 /* GameOverScene.swift */,
 				A373A0591C2AB233006D2802 /* TutorialScene.swift */,
 			);
-			name = scenes;
+			path = scenes;
 			sourceTree = "<group>";
 		};
 		A37D4B3C1BE3AEF70071FFBF /* labels */ = {
@@ -726,6 +722,7 @@
 				A373A0611C2AD8A0006D2802 /* InfoLabel.swift */,
 			);
 			name = labels;
+			path = lables;
 			sourceTree = "<group>";
 		};
 		A37D4B3D1BE3BC3E0071FFBF /* throwables */ = {
@@ -737,7 +734,7 @@
 				A3BBCA2C1C006FA900BCBCC7 /* Heart.swift */,
 				A368FC7A1C2583BE0036DDFA /* Supernut.swift */,
 			);
-			name = throwables;
+			path = throwables;
 			sourceTree = "<group>";
 		};
 		A3A79F861BA6D32A003C1F32 = {
@@ -775,7 +772,6 @@
 				A3A79F921BA6D32A003C1F32 /* AppDelegate.swift */,
 				A3A79F981BA6D32A003C1F32 /* GameViewController.swift */,
 				A3C7B5041C2DAF960038728B /* Globals.swift */,
-				A3B9B11F1BECEA7500AB9709 /* Extensions.swift */,
 				A3A79F9A1BA6D32A003C1F32 /* Main.storyboard */,
 				A3A79F9D1BA6D32A003C1F32 /* Assets.xcassets */,
 				A3A79F9F1BA6D32A003C1F32 /* LaunchScreen.storyboard */,
@@ -840,7 +836,7 @@
 				A3DF00CA1C2C4BE300B772D5 /* CloudGenerator.swift */,
 				A3C7B5011C2DAA1A0038728B /* Generator.swift */,
 			);
-			name = generators;
+			path = generators;
 			sourceTree = "<group>";
 		};
 		A3C955671BCA69B6000E6274 /* heroes */ = {
@@ -989,10 +985,9 @@
 				A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */,
 				A3DF00C71C2C4B3500B772D5 /* DoodadCounts.swift */,
 				A33492C91BEE23BE00A1FAE1 /* GamePoints.swift */,
-				A3C7B4FB1C2D6A030038728B /* ButtonNodes.swift */,
-				A3C7B4FF1C2DA82F0038728B /* ButtonIndex.swift */,
+				A32394D01C2FDBE200CC1B89 /* ButtonProperties.swift */,
 			);
-			name = structs;
+			path = structs;
 			sourceTree = "<group>";
 		};
 		A3DF00C91C2C4BDA00B772D5 /* helpers */ = {
@@ -1002,7 +997,7 @@
 				A33034F51C29AFBD008A2346 /* MusicPlayer.swift */,
 				A3C7B5081C2DC5F40038728B /* CollissionDetector.swift */,
 			);
-			name = helpers;
+			path = helpers;
 			sourceTree = "<group>";
 		};
 		A3EEC5B21BD6AFAD00A1D133 /* sounds */ = {
@@ -1378,7 +1373,6 @@
 				A33034F61C29AFBD008A2346 /* MusicPlayer.swift in Sources */,
 				A373A05A1C2AB233006D2802 /* TutorialScene.swift in Sources */,
 				A396BB581BB6E840002F7231 /* Lives.swift in Sources */,
-				A3C7B5001C2DA82F0038728B /* ButtonIndex.swift in Sources */,
 				A3A79F971BA6D32A003C1F32 /* GameScene.swift in Sources */,
 				A37D4B351BE3A2700071FFBF /* Coconut.swift in Sources */,
 				A3A79FDC1BA6FFDC003C1F32 /* Ground.swift in Sources */,
@@ -1391,7 +1385,6 @@
 				A33492CA1BEE23BE00A1FAE1 /* GamePoints.swift in Sources */,
 				A373A05C1C2AD12A006D2802 /* TutorialLabel.swift in Sources */,
 				A37D4B3F1BE3BC6B0071FFBF /* Brokenut.swift in Sources */,
-				A3C7B4FC1C2D6A030038728B /* ButtonNodes.swift in Sources */,
 				A3A79F991BA6D32A003C1F32 /* GameViewController.swift in Sources */,
 				A33492F01BEE611F00A1FAE1 /* CollectPointLabel.swift in Sources */,
 				A3A79FDA1BA6FE67003C1F32 /* BasketMan.swift in Sources */,
@@ -1400,7 +1393,6 @@
 				A3A79FE01BA706C5003C1F32 /* EvilMonkey.swift in Sources */,
 				A360126C1BE6561D00FDB32D /* Decayable.swift in Sources */,
 				A35B78271C2EE43B006D2174 /* BurriedGenerator.swift in Sources */,
-				A3B9B1201BECEA7500AB9709 /* Extensions.swift in Sources */,
 				A3C7B4FE1C2D6BE30038728B /* ButtonGenerator.swift in Sources */,
 				A3C20E961BED44BB002A179E /* GameOverLabel.swift in Sources */,
 				A37673681BEBB9200079619A /* BasketManMenu.swift in Sources */,
@@ -1409,6 +1401,7 @@
 				A37D4B391BE3A4520071FFBF /* Throwable.swift in Sources */,
 				A3C9559E1BCACFCC000E6274 /* SplatBanana.swift in Sources */,
 				A396BB541BB6E517002F7231 /* ScoreLabel.swift in Sources */,
+				A32394D11C2FDBE200CC1B89 /* ButtonProperties.swift in Sources */,
 				A368FC7B1C2583BE0036DDFA /* Supernut.swift in Sources */,
 				A3C7B5051C2DAF960038728B /* Globals.swift in Sources */,
 				A3C7B5021C2DAA1A0038728B /* Generator.swift in Sources */,

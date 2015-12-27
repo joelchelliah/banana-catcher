@@ -46,25 +46,25 @@ class ButtonGenerator: Generator {
         if soundEnabled {
             soundButton.texture = SKTexture(imageNamed: "sound_on.png")
         }
-        generateButton(soundButton, name: ButtonNodes.sound, index: ButtonIndex.leftest)
+        generateButton(soundButton, name: ButtonNodes.sound, index: ButtonPositions.leftest)
     }
     
     private func generateTutorialButton() {
         let button = SKSpriteNode(imageNamed: "how.png")
         
-        generateButton(button, name: ButtonNodes.howTo, index: ButtonIndex.left)
+        generateButton(button, name: ButtonNodes.howTo, index: ButtonPositions.left)
     }
     
     private func generatePlayButton() {
         let button = SKSpriteNode(imageNamed: "play_button.png")
 
-        generateButton(button, name: ButtonNodes.play, index: ButtonIndex.mid)
+        generateButton(button, name: ButtonNodes.play, index: ButtonPositions.mid)
     }
     
     private func generateNoAdsButton() {
         let button = SKSpriteNode(imageNamed: "no_ads.png")
 
-        generateButton(button, name: ButtonNodes.noAds, index: ButtonIndex.right)
+        generateButton(button, name: ButtonNodes.noAds, index: ButtonPositions.right)
     }
     
     
@@ -75,7 +75,7 @@ class ButtonGenerator: Generator {
     var nextButton = SKSpriteNode(imageNamed: "next.png")
     
     private func generateTutorialButtons() {
-        generateButton(nextButton, name: ButtonNodes.next, index: ButtonIndex.mid)
+        generateButton(nextButton, name: ButtonNodes.next, index: ButtonPositions.mid)
     }
 
     
@@ -94,25 +94,25 @@ class ButtonGenerator: Generator {
     private func generateHomeButton() {
         let button = SKSpriteNode(imageNamed: "home.png")
         
-        generateButton(button, name: ButtonNodes.home, index: ButtonIndex.leftest)
+        generateButton(button, name: ButtonNodes.home, index: ButtonPositions.leftest)
     }
     
     private func generateHighscoreButton() {
         let button = SKSpriteNode(imageNamed: "highscore.png")
 
-        generateButton(button, name: ButtonNodes.highscore, index: ButtonIndex.left)
+        generateButton(button, name: ButtonNodes.highscore, index: ButtonPositions.left)
     }
     
     private func generateRetryButton() {
         let button = SKSpriteNode(imageNamed: "retry_button.png")
 
-        generateButton(button, name: ButtonNodes.retry, index: ButtonIndex.mid)
+        generateButton(button, name: ButtonNodes.retry, index: ButtonPositions.mid)
     }
     
     private func generateShareButton() {
         let button = SKSpriteNode(imageNamed: "share.png")
 
-        generateButton(button, name: ButtonNodes.share, index: ButtonIndex.right)
+        generateButton(button, name: ButtonNodes.share, index: ButtonPositions.right)
     }
     
     
@@ -123,7 +123,7 @@ class ButtonGenerator: Generator {
     private func generateRatingButton() {
         let button = SKSpriteNode(imageNamed: "rate.png")
 
-        generateButton(button, name: ButtonNodes.rating, index: ButtonIndex.rightest)
+        generateButton(button, name: ButtonNodes.rating, index: ButtonPositions.rightest)
     }
     
     private func generateButton(button: SKSpriteNode, name: String, index i: Int) {

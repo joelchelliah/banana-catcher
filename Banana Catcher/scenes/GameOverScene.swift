@@ -137,10 +137,10 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
     }
     
     private func addScoreBoard() {
-        let labelStartY = hHeight + 110
+        let yPos = hHeight + 110
         
         let scoreBoard = SKSpriteNode(imageNamed: "scoreboard_1.png")
-        scoreBoard.position = CGPointMake(hWidth, labelStartY)
+        scoreBoard.position = CGPointMake(hWidth, yPos)
         scoreBoard.zPosition = -500
         addChild(scoreBoard)
         
@@ -149,15 +149,13 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
         
         scoreBoard.runAction(fly)
         
-        let scoreLabel1 = Label(name: "Score:", size: 25, x: hWidth, y: labelStartY)
-        let scoreLabel2 = Label(name: score.description, size: 20, x: hWidth, y: labelStartY - 20)
-        let scoreLabel3 = Label(name: "High Score:", size: 25, x: hWidth, y: labelStartY - 55)
-        let scoreLabel4 = Label(name: highScore.description, size: 20, x: hWidth, y: labelStartY - 80)
+        let label1 = ScoreboardLabel(name: "Score:", size: 25, x: hWidth, y: yPos)
+        let label2 = ScoreboardLabel(name: score.description, size: 20, x: hWidth, y: yPos - 20)
+        let label3 = ScoreboardLabel(name: "High Score:", size: 25, x: hWidth, y: yPos - 55)
+        let label4 = ScoreboardLabel(name: highScore.description, size: 20, x: hWidth, y: yPos - 80)
         
-        [scoreLabel1, scoreLabel2, scoreLabel3, scoreLabel4].forEach {
-            $0.alpha = 0
+        [label1, label2, label3, label4].forEach {
             $0.zPosition = -490
-            $0.runAction(SKAction.fadeAlphaTo(0.7, duration: 3))
             
             addChild($0)
         }

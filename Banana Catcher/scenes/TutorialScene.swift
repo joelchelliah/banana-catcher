@@ -178,7 +178,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func addButtons() {
-        let buttonGenerator = ButtonGenerator(forScene: self, yBasePos: 30)
+        let buttonGenerator = ButtonGenerator(forScene: self, yBasePos: 40)
         
         buttonGenerator.generate()
         
