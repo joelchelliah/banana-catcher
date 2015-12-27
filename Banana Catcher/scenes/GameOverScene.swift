@@ -149,10 +149,10 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
         
         scoreBoard.runAction(fly)
         
-        let label1 = ScoreboardLabel(name: "Score:", size: 25, x: hWidth, y: yPos)
-        let label2 = ScoreboardLabel(name: score.description, size: 20, x: hWidth, y: yPos - 20)
-        let label3 = ScoreboardLabel(name: "High Score:", size: 25, x: hWidth, y: yPos - 55)
-        let label4 = ScoreboardLabel(name: highScore.description, size: 20, x: hWidth, y: yPos - 80)
+        let label1 = ScoreboardLabel(name: "Score:", size: 23, x: hWidth, y: yPos)
+        let label2 = ScoreboardLabel(name: score.description, size: 18, x: hWidth, y: yPos - 20)
+        let label3 = ScoreboardLabel(name: "High Score:", size: 23, x: hWidth, y: yPos - 55)
+        let label4 = ScoreboardLabel(name: highScore.description, size: 18, x: hWidth, y: yPos - 75)
         
         [label1, label2, label3, label4].forEach {
             $0.zPosition = -490

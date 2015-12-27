@@ -1,21 +1,21 @@
 import UIKit
 import SpriteKit
 
-class InfoLabel: SKLabelNode {
+class InfoLabel: GameLabel {
     
     init(x: CGFloat, y: CGFloat, zPosition: CGFloat) {
         super.init()
-        position = CGPointMake(x, y)
-        fontName = gameFont
-        text = ""
-        color = UIColor.whiteColor()
-        fontSize = 20
-        alpha = 0.8
+        
+        self.position = CGPointMake(x, y)
+        self.color = UIColor.whiteColor()
+        self.fontSize = 20
+        self.alpha = 0
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
+
     
     func changeText(text: String) {
         self.alpha = 0

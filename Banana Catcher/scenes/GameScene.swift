@@ -133,9 +133,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // * Update states
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
-    private func updateScore(amount: Int) {
-        score += amount
-        scoreLabel.text = "Score: \(score)"
+    private func updateScore(points: Int) {
+        score += points
+        scoreLabel.setScore(score)
     }
     
     private func updateMonkey() {

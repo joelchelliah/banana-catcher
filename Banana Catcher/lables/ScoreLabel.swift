@@ -1,23 +1,25 @@
 import UIKit
 import SpriteKit
 
-class ScoreLabel: SKLabelNode {
+class ScoreLabel: GameLabel {
 
-    init(name: String = "Score", score: Int = 0) {
+    private let prefix = "Score:"
+    
+    init() {
         super.init()
-        text = "\(name): \(score)"
-        color = SKColor.whiteColor()
-        fontName = gameFont
-        fontSize = 22
-        alpha = 0.75
-        horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        
+        self.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        self.fontSize = 22
+        self.alpha = 0.75
+        
+        setScore(0)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     func setScore(score: Int) {
-        text = "Score: \(score)"
+        self.text = "\(prefix) \(score)"
     }
 }

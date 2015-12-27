@@ -1,19 +1,17 @@
 import UIKit
 import SpriteKit
 
-class TutorialLabel: SKLabelNode {
+class TutorialLabel: GameLabel {
     
     init(x: CGFloat, y: CGFloat, zPosition: CGFloat) {
-        super.init()
-        position = CGPointMake(x, y)
-        fontName = gameFont
-        text = "How to play"
-        color = UIColor.whiteColor()
-        fontSize = 30
-        alpha = 0.8
+        super.init(text: "How to play")
+        
+        self.position = CGPointMake(x, y)
+        self.fontSize = 30
+        self.alpha = 0.8
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
 }
