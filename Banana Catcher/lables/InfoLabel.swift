@@ -16,6 +16,9 @@ class InfoLabel: GameLabel {
         super.init(coder: aDecoder)
     }
 
+    func clear() {
+        self.text = ""
+    }
     
     func changeText(text: String) {
         self.alpha = 0

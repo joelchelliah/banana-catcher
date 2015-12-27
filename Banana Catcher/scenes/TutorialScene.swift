@@ -3,16 +3,14 @@ import SpriteKit
 class TutorialScene: SKScene, SKPhysicsContactDelegate {
     
     private var hWidth: CGFloat = 0.0
+    private var helper: TutorialStageHelper!
     
-    private let ground: Ground = Ground()
-    private let basketMan: BasketMan = BasketMan()
-    private let monkey: EvilMonkey = EvilMonkey()
-    private let finger: SKSpriteNode = SKSpriteNode(imageNamed: "finger.png")
-    private var infoLabel: InfoLabel?
+    let ground: Ground = Ground()
+    let basketMan: BasketMan = BasketMan()
+    let monkey: EvilMonkey = EvilMonkey()
     
-    private var currentStage = 1
-    private var stageAdvancable = false
-    private var nextButton: SKSpriteNode = SKSpriteNode()
+    private var nextButton: SKSpriteNode!
+    private var infoLabel:  InfoLabel!
     
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
@@ -26,25 +24,18 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
         addBasketMan()
         addEvilMonkey()
         addDarkness()
-        addTutorialLabel()
-        addInfoLabel()
+        addLabels()
         addButtons()
-        addFinger()
-        
-        playCurrentStage()
+        addStageHelper()
     }
         
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touchLocation = touches.first!.locationInNode(self)
         let touchedNode = self.nodeAtPoint(touchLocation)
         
-        if(touchedNode.name == ButtonNodes.next && stageAdvancable) {
-            currentStage += 1
-            
+        if(touchedNode.name == ButtonNodes.next) {
             playSound(self, name: "option_select.wav")
-            playCurrentStage()
-        } else {
-            print("name: \(touchedNode.name), adv?: \(stageAdvancable)")
+            helper.playNextStage()
         }
     }
     
@@ -95,11 +86,13 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     
     private func addBasketMan() {
         basketMan.position = CGPoint(x: hWidth, y: ground.size.height + 10)
+        
         addChild(basketMan)
     }
     
     private func addEvilMonkey() {
         monkey.position = CGPoint(x: hWidth, y: size.height - 180)
+        
         addChild(monkey)
     }
     
@@ -119,16 +112,14 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    private func addTutorialLabel() {
-        let label = TutorialLabel(x: hWidth, y: size.height - 45, zPosition: -500)
+    private func addLabels() {
+        let zPos: CGFloat = -500
+        let header = TutorialLabel(x: hWidth, y: size.height - 45, zPosition: zPos)
         
-        addChild(label)
-    }
-    
-    private func addInfoLabel() {
-        infoLabel = InfoLabel(x: hWidth, y: size.height - 100, zPosition: -500)
+        infoLabel = InfoLabel(x: hWidth, y: size.height - 100, zPosition: zPos)
         
-        addChild(infoLabel!)
+        addChild(header)
+        addChild(infoLabel)
     }
     
     private func addButtons() {
@@ -139,123 +130,34 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
         nextButton = buttonGenerator.nextButton
     }
     
-    private func addFinger() {
-        finger.position = CGPointMake(hWidth, 100)
-        finger.alpha = 0
-        
-        addChild(finger)
+    private func addStageHelper() {
+        helper = TutorialStageHelper(scene: self)
     }
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // * Tutorial stages
+    // * Tutorial stageHelper functions
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-    private func playCurrentStage() {
-        if currentStage == 1 {
-            playStage1()
-        } else if currentStage == 2 {
-            playStage2()
-        } else {
-            moveToMenuScene()
-        }
+    func prepareForNextStage(nextButtonTexture: String) {
+        infoLabel.clear()
+        nextButton.alpha = 0.2
+        nextButton.texture = SKTexture(imageNamed: "ok.png")
     }
     
-    private func playStage1() {
-        prepareButtonsAndLabels(forStage: 1)
-        
-        let wait = SKAction.waitForDuration(0.65)
-        let waitL = SKAction.waitForDuration(1.75)
-        let enableNext = enableNextButtonAction()
-        let changeLabel = changeLabelAction("Catch all the bananas!")
-        
-        let throwLeft = SKAction.runBlock {
-            self.monkeyThrows(Banana(), throwForceX: -2)
-            self.moveBasketMan(-100)
-        }
-        
-        let throwRight = SKAction.runBlock {
-            self.monkeyThrows(Banana(), throwForceX: 2)
-            self.moveBasketMan(100)
-        }
-        
-        runAction(SKAction.sequence([changeLabel, wait, throwLeft, waitL, throwRight, wait, enableNext]))
+    func enableNextButton() {
+        nextButton.alpha = 1.0
     }
     
-    private func playStage2() {
-        prepareButtonsAndLabels(forStage: 2)
-        
-        let wait = SKAction.waitForDuration(0.5)
-        let waitL = SKAction.waitForDuration(1.5)
-        let enableNext = enableNextButtonAction()
-        let changeLabel = changeLabelAction("Avoid the cocounuts!")
-        
-        let throwRight = SKAction.runBlock {
-            self.monkeyThrows(Coconut(), throwForceX: 4)
-            self.moveBasketMan(-100)
-        }
-        
-        let throwLeft = SKAction.runBlock {
-            self.monkeyThrows(Coconut(), throwForceX: -4)
-            self.moveBasketMan(100)
-        }
-
-        runAction(SKAction.sequence([changeLabel, wait, throwRight, waitL, throwLeft, wait, enableNext]))
+    func changeInfoLabelText(text: String)  {
+        self.infoLabel.changeText(text)
     }
     
-    private func moveBasketMan(x: CGFloat) {
-        finger.position = CGPointMake(hWidth, 100)
-        finger.alpha = 0
-        
-        let wait = SKAction.waitForDuration(0.2)
-        let fadeIn = SKAction.fadeInWithDuration(0.3)
-        let fadeOut = SKAction.fadeOutWithDuration(0.6)
-        let moveLeftF = SKAction.moveToX(hWidth + x, duration: 0.3)
-        let moveLeftB = SKAction.moveToX(hWidth + x, duration: 0.75)
-        
-        finger.runAction(SKAction.sequence([SKAction.group([fadeIn, moveLeftF]), fadeOut]))
-        basketMan.runAction(SKAction.sequence([wait, moveLeftB]))
-    }
     
-    private func monkeyThrows(item: Throwable, throwForceX: CGFloat) {
-        item.position = CGPoint(x: monkey.position.x, y: monkey.position.y)
-        
-        addChild(item)
-        
-        item.physicsBody?.velocity = CGVectorMake(0,0)
-        item.physicsBody?.applyImpulse(CGVectorMake(throwForceX, item.throwForceY()))
-        
-        monkey.bounce()
-    }
-    
-    private func enableNextButtonAction() -> SKAction {
-        return SKAction.runBlock {
-            print("Setting stage advancable")
-            self.nextButton.alpha = 1.0
-            self.stageAdvancable = true
-        }
-    }
-    
-    private func changeLabelAction(text: String) -> SKAction {
-        return SKAction.runBlock {
-            self.infoLabel?.changeText(text)
-        }
-    }
-    
-    private func moveToMenuScene() {
+    func moveToMenuScene() {
         let scene = MenuScene(size: self.size)
         scene.scaleMode = self.scaleMode
         
         self.view?.presentScene(scene, transition: SKTransition.flipVerticalWithDuration(0.5))
-    }
-    
-    private func prepareButtonsAndLabels(forStage stage: Int) {
-        infoLabel?.changeText("")
-        stageAdvancable = false
-        nextButton.alpha = 0.2
-        
-        if stage == 2 {
-            nextButton.texture = SKTexture(imageNamed: "ok.png")
-        }
     }
     
     
