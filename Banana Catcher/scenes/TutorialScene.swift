@@ -3,17 +3,22 @@ import SpriteKit
 class TutorialScene: SKScene, SKPhysicsContactDelegate {
     
     private var hWidth: CGFloat = 0.0
-    private var helper: TutorialStageHelper!
-    
+
     private let ground: Ground = Ground()
     private let basketMan: BasketMan = BasketMan()
     private let monkey: EvilMonkey = EvilMonkey()
     
+    private var touchHandler: TouchHandler!
+    
     private var nextButton: SKSpriteNode!
     private var infoLabel:  InfoLabel!
     
+    var helper: TutorialStageHelper!
+    
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
+        
+        initTouchHandler()
         
         musicPlayer.change("tutorial")
 
@@ -32,13 +37,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     }
         
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let touchLocation = touches.first!.locationInNode(self)
-        let touchedNode = self.nodeAtPoint(touchLocation)
-        
-        if(touchedNode.name == ButtonNodes.next) {
-            playSound(self, name: "option_select.wav")
-            helper.playNextStage()
-        }
+        touchHandler.handle(touches)
     }
     
     
@@ -231,5 +230,10 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     
     private func unexpectedHit(item: Throwable, receiver: String) {
         fatalError("Unexpected item (\(item)) hit \(receiver)!")
+    }
+    
+    
+    private func initTouchHandler() {
+        touchHandler = TouchHandler(forScene: self)
     }
 }

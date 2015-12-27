@@ -5,14 +5,18 @@ class MenuScene: SKScene {
 
     private var hWidth: CGFloat = 0.0
     private var hHeight: CGFloat = 0.0
+    
+    private var touchHandler: TouchHandler!
 
-    private var soundButton = SKSpriteNode()
     private var menuTitleTextures = [SKTexture]()
+    
+    var soundButton = SKSpriteNode()
     
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
         hHeight = size.height / 2
         
+        initTouchHandler()
         initSound()
         loadTextures()
         
@@ -27,21 +31,7 @@ class MenuScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let touchLocation = touches.first!.locationInNode(self)
-        let touchedNode = self.nodeAtPoint(touchLocation)
-        let nodes = ButtonNodes.self
-        
-        if(touchedNode.name == nodes.sound) {
-            toggleSound()
-        } else if(touchedNode.name == nodes.howTo) {
-            moveToTutorialScene(touchedNode)
-        } else if(touchedNode.name == nodes.play) {
-            moveToGameScene(touchedNode)
-        } else if(touchedNode.name == nodes.noAds) {
-            toggleAds()
-        } else if(touchedNode.name == nodes.rating) {
-            // TODO!
-        }
+        touchHandler.handle(touches)
     }
 
     private func addBackground() {
@@ -90,62 +80,13 @@ class MenuScene: SKScene {
         soundButton = buttonGenerator.soundButton
     }
     
-    
-    /* Button actions */
-    
-    private func moveToGameScene(node: SKNode) {
-        buttonClickForNewScene(node, scene: GameScene(size: self.size))
-    }
-    
-    private func moveToTutorialScene(node: SKNode) {
-        buttonClickForNewScene(node, scene: TutorialScene(size: self.size))
-    }
-    
-    private func buttonClickForNewScene(button: SKNode, scene: SKScene) {
-        let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.1)
-        let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
-        let sound = SKAction.runBlock { playSound(self, name: "option_select.wav") }
-        let transition = SKAction.runBlock {
-            scene.scaleMode = self.scaleMode
-            self.view?.presentScene(scene, transition: SKTransition.flipVerticalWithDuration(0.5))
-        }
-        
-        button.runAction(SKAction.sequence([fadeOut, sound, fadeIn, transition]))
-    }
-    
-    private func toggleAds() {
-        // TODO!
-        playSound(self, name: "option_select.wav")
-    }
-    
-    private func toggleSound() {
-        soundEnabled = !soundEnabled
-        setSoundBtnTexture()
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        defaults.setObject(soundEnabled, forKey: "soundEnabled")
-        defaults.synchronize()
-        
-        musicPlayer.toggle()
-    }
-    
-    private func setSoundBtnTexture() {
-        let textures = [true: "sound_on.png", false: "sound_off.png"]
-        
-        let fadeOut = SKAction.fadeAlphaTo(0.25, duration: 0.1)
-        let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
-        let sound = SKAction.runBlock { playSound(self, name: "option_select.wav") }
-        let setTexture = SKAction.runBlock {
-            self.soundButton.texture = SKTexture(imageNamed: textures[soundEnabled]!)
-        }
-        soundButton.runAction(SKAction.sequence([fadeOut, sound, setTexture, fadeIn]))
-    }
-    
-    
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // * Misc
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    private func initTouchHandler() {
+        touchHandler = TouchHandler(forScene: self)
+    }
     
     private func initSound() {
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
