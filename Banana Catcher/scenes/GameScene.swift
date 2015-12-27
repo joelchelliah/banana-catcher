@@ -255,6 +255,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Collission detection callbacks
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
     private func throwableHitsBasketMan(item: Throwable) {
         let pos = item.position
         
@@ -267,9 +272,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             basketMan.collect()
             updateMonkey()
             
-        case is Coconut: coconutHitsBasketMan(pos, GamePoints.CoconutCaught)
+        case is Coconut:
+            coconutHitsBasketMan(pos, GamePoints.CoconutCaught)
 
-        case is Supernut: coconutHitsBasketMan(pos, GamePoints.SupernutCaught)
+        case is Supernut:
+            coconutHitsBasketMan(pos, GamePoints.SupernutCaught)
             
         case is Heart:
             let points = GamePoints.HeartCaught
@@ -280,7 +287,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             incrementLives()
             
         default:
-            fatalError("Unexpected item (\(item)) hit BasketMan!")
+            unexpectedHit(item, receiver: "BasketMan")
         }
         
         item.removeFromParent()
@@ -343,7 +350,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             item.runAction(SKAction.sequence([fadeOut, remove]))
             
-        default: print("Unexpected item (\(item)) hit the ground!")
+        default:
+            unexpectedHit(item, receiver: "the ground")
         }
     }
 
@@ -353,6 +361,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(label)
     }
     
+    private func unexpectedHit(item: Throwable, receiver: String) {
+        fatalError("Unexpected item (\(item)) hit \(receiver)!")
+    }
     
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

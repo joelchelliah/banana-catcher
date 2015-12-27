@@ -54,57 +54,11 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     func didBeginContact(contact: SKPhysicsContact) {
-        var b1: SKPhysicsBody
-        var b2: SKPhysicsBody
-        
-        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
-            b1 = contact.bodyA
-            b2 = contact.bodyB
-        } else {
-            b1 = contact.bodyB
-            b2 = contact.bodyA
-        }
-        
-        if b1.node?.parent == nil || b2.node?.parent == nil { return }
-        
-        if b1.categoryBitMask & CollisionCategories.Banana != 0  {
-            let banana = b1.node as! Banana
-            
-            if b2.categoryBitMask & CollisionCategories.BasketMan != 0 {
-                let pos = banana.position
-                let points = GamePoints.BananaCaught
-                
-                banana.removeFromParent()
-                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y))
-                
-                basketMan.collect()
-            }
-            else if b2.categoryBitMask & CollisionCategories.Ground != 0 {
-                let pos = banana.position
-                let points = GamePoints.BananaMissed
-                
-                addChild(CollectPointLabel(points: points, x: pos.x, y: pos.y + 15))
-                
-                basketMan.frown()
-                banana.removeFromParent()
-            }
-            else {
-                handleUnexpectedContactTest(b1, b2: b2)
-            }
-        } else if b1.categoryBitMask & CollisionCategories.Coconut != 0  {
-            let coconut = b1.node as! Coconut
-            
-
-            if b2.categoryBitMask & CollisionCategories.Ground != 0 {
-                addChild(Brokenut(pos: CGPointMake(coconut.position.x, ground.size.height + 5)))
-                coconut.removeFromParent()
-            }
-            else {
-                handleUnexpectedContactTest(b1, b2: b2)
-            }
-        }
+        CollissionDetector.run(
+            contact: contact,
+            onHitBasketMan: throwableHitsBasketMan,
+            onHitGround: throwableHitsGround)
     }
-    
     
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -306,10 +260,51 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // * Dun dun duuuun!
+    // * Collission detection callbacks
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
-    private func handleUnexpectedContactTest(b1: SKPhysicsBody, b2: SKPhysicsBody) {
-        print("Unexpected contant test: (\(b1), \(b2))")
+    private func throwableHitsBasketMan(item: Throwable) {
+        switch item {
+            
+        case is Banana:
+            let pos = item.position
+            let label = CollectPointLabel(points: GamePoints.BananaCaught, x: pos.x, y: pos.y)
+            
+            addChild(label)
+            basketMan.collect()
+            
+        case is Coconut:
+            basketMan.ouch()
+            
+        default:
+            unexpectedHit(item, receiver: "BasketMan")
+        }
+        
+        item.removeFromParent()
+    }
+    
+    private func throwableHitsGround(item: Throwable) {
+        switch item {
+            
+        case is Banana:
+            basketMan.frown()
+
+            item.removeFromParent()
+            
+        case is Coconut:
+            let pos = CGPointMake(item.position.x, ground.size.height + 5)
+            let brokenut = Brokenut(pos: pos)
+            
+            addChild(brokenut)
+            
+        default:
+            unexpectedHit(item, receiver: "the ground")
+        }
+        
+        item.removeFromParent()
+    }
+    
+    private func unexpectedHit(item: Throwable, receiver: String) {
+        fatalError("Unexpected item (\(item)) hit \(receiver)!")
     }
 }
