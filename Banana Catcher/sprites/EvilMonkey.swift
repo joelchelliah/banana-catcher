@@ -156,9 +156,9 @@ class EvilMonkey: SKSpriteNode {
     }
     
     func getTrowable() -> Throwable {
-        let diceRoll = Int(arc4random_uniform(100))
-        let chanceIncHeart = 2
-        let chanceIncNuts = 10
+        let diceRoll = Int(arc4random_uniform(1000))
+        let chanceIncHeart = 5
+        let chanceIncNuts = 100
         
         if diceRoll < heartChance {
             heartChance = 0
