@@ -16,8 +16,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
-        
-        initTouchHandler()
+        touchHandler = TutorialTouchHandler(forScene: self)
         
         musicPlayer.change("tutorial")
 
@@ -135,17 +134,21 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // * Tutorial stageHelper functions
+    // * Tutorial stages
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     func playNextStage() {
         helper.playNextStage()
     }
     
-    func prepareForNextStage(nextButtonTexture: String) {
+    func prepareForNextStage(isLastStage: Bool) {
         infoLabel.clear()
         nextButton.alpha = 0.2
-        nextButton.texture = SKTexture(imageNamed: "ok.png")
+        
+        if isLastStage {
+            nextButton.name = ButtonNodes.ok
+            nextButton.texture = SKTexture(imageNamed: "ok.png")
+        }
     }
     
     func enableNextButton() {
@@ -176,13 +179,6 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
         item.physicsBody?.applyImpulse(CGVectorMake(throwForceX, item.throwForceY()))
         
         monkey.bounce()
-    }
-    
-    func moveToMenuScene() {
-        let scene = MenuScene(size: self.size)
-        scene.scaleMode = self.scaleMode
-        
-        self.view?.presentScene(scene, transition: SKTransition.flipVerticalWithDuration(0.5))
     }
     
     
@@ -233,10 +229,5 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     
     private func unexpectedHit(item: Throwable, receiver: String) {
         fatalError("Unexpected item (\(item)) hit \(receiver)!")
-    }
-    
-    
-    private func initTouchHandler() {
-        touchHandler = TouchHandler(forScene: self)
     }
 }

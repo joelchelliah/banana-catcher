@@ -18,8 +18,7 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
         hHeight = size.height / 2
-        
-        initTouchHandler()
+        touchHandler = GameOverTouchHandler(forScene: self)
         
         musicPlayer.change("game_over")
         
@@ -157,10 +156,6 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
         let buttonGenerator = ButtonGenerator(forScene: self, yBasePos: hHeight - 30)
         
         buttonGenerator.generate()
-    }
-    
-    private func initTouchHandler() {
-        touchHandler = TouchHandler(forScene: self)
     }
     
     private func loadTextures() {

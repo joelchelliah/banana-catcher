@@ -6,6 +6,7 @@ struct ButtonNodes {
     static let rating: String = "ratingNode"
     
     static let next: String = "nextNode"
+    static let ok: String = "okNode"
     
     static let home: String = "homeNode"
     static let highscore: String = "highscoreNode"

@@ -41,7 +41,7 @@ class TutorialStageHelper {
             
         case TutorialStages.coconut : coconutStage()
             
-        default: moveToMenuScene()
+        default: fatalError("Tutorial stages out of bounds! (\(currentStage))")
         }
     }
     
@@ -123,19 +123,15 @@ class TutorialStageHelper {
         scene.monkeyThrows(item, throwForceX: force)
     }
     
-    private func moveToMenuScene() {
-        scene.moveToMenuScene()
-    }
-    
     private func initStage() {
-        let nextButtonTexture = TutorialStages.lastStage(currentStage) ? "ok.png" : "next.png"
+        let isLastStage = TutorialStages.lastStage(currentStage)
         
         nextStageReady = false
         finger.alpha = 0
         finger.position = CGPointMake(hWidth, 100)
         finger.runAction(SKAction.fadeInWithDuration(1.0))
         
-        scene.prepareForNextStage(nextButtonTexture)
+        scene.prepareForNextStage(isLastStage)
     }
 
     

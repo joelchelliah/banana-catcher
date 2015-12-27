@@ -15,8 +15,8 @@ class MenuScene: SKScene {
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
         hHeight = size.height / 2
+        touchHandler = MenuTouchHandler(forScene: self)
         
-        initTouchHandler()
         initSound()
         loadTextures()
         
@@ -81,17 +81,18 @@ class MenuScene: SKScene {
     }
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // * Misc
+    // * Sound
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
-    private func initTouchHandler() {
-        touchHandler = TouchHandler(forScene: self)
+    func changeSoundButtonTexture(name: String) {
+        soundButton.texture = SKTexture(imageNamed: name)
     }
     
     private func initSound() {
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         
         soundEnabled = defaults.valueForKey("soundEnabled")?.boolValue ?? true
+        
         defaults.synchronize()
     }
     
