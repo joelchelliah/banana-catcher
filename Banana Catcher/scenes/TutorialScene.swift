@@ -5,9 +5,9 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     private var hWidth: CGFloat = 0.0
     private var helper: TutorialStageHelper!
     
-    let ground: Ground = Ground()
-    let basketMan: BasketMan = BasketMan()
-    let monkey: EvilMonkey = EvilMonkey()
+    private let ground: Ground = Ground()
+    private let basketMan: BasketMan = BasketMan()
+    private let monkey: EvilMonkey = EvilMonkey()
     
     private var nextButton: SKSpriteNode!
     private var infoLabel:  InfoLabel!
@@ -150,6 +150,24 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     
     func changeInfoLabelText(text: String)  {
         self.infoLabel.changeText(text)
+    }
+    
+    func basketManMoves(x: CGFloat) {
+        let wait = SKAction.waitForDuration(0.4)
+        let move = SKAction.moveToX(hWidth + x, duration: 0.55)
+        
+        basketMan.runAction(SKAction.sequence([wait, move]))
+    }
+    
+    func monkeyThrows(item: Throwable, throwForceX: CGFloat) {
+        item.position = CGPoint(x: monkey.position.x, y: monkey.position.y)
+        
+        addChild(item)
+        
+        item.physicsBody?.velocity = CGVectorMake(0,0)
+        item.physicsBody?.applyImpulse(CGVectorMake(throwForceX, item.throwForceY()))
+        
+        monkey.bounce()
     }
     
     

@@ -116,23 +116,11 @@ class TutorialStageHelper {
     }
     
     private func basketManMoves(x: CGFloat) {
-        let wait = SKAction.waitForDuration(0.4)
-        let move = SKAction.moveToX(hWidth + x, duration: 0.55)
-        
-        scene.basketMan.runAction(SKAction.sequence([wait, move]))
+        scene.basketManMoves(x)
     }
     
-    private func monkeyThrows(item: Throwable, throwForceX: CGFloat) {
-        let monkey = scene.monkey
-        
-        item.position = CGPoint(x: monkey.position.x, y: monkey.position.y)
-        
-        scene.addChild(item)
-        
-        item.physicsBody?.velocity = CGVectorMake(0,0)
-        item.physicsBody?.applyImpulse(CGVectorMake(throwForceX, item.throwForceY()))
-        
-        monkey.bounce()
+    private func monkeyThrows(item: Throwable, throwForceX force: CGFloat) {
+        scene.monkeyThrows(item, throwForceX: force)
     }
     
     private func moveToMenuScene() {
