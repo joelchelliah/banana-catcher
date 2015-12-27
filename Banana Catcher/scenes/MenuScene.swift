@@ -10,7 +10,7 @@ class MenuScene: SKScene {
 
     private var menuTitleTextures = [SKTexture]()
     
-    var soundButton = SKSpriteNode()
+    private var soundButton = SKSpriteNode()
     
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
