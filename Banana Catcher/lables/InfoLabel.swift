@@ -25,9 +25,12 @@ class InfoLabel: GameLabel {
         self.text = text
         
         let fadeIn = SKAction.fadeAlphaTo(0.8, duration: 1.0)
-        let grow = SKAction.scaleBy(1.1, duration: 0.2)
-        let shrink = SKAction.scaleBy(0.9, duration: 0.3)
+        let grow = SKAction.scaleBy(1.2, duration: 0.2)
+        let shrink = SKAction.scaleBy(0.9, duration: 0.4)
         
-        self.runAction(SKAction.group([fadeIn, SKAction.sequence([grow, shrink])]))
+        self.runAction(SKAction.group([
+            fadeIn,
+            SKAction.sequence([grow, shrink])
+            ]))
     }
 }

@@ -57,7 +57,7 @@ class TutorialStageHelper {
             }
         }
         
-        let delayedMovements = zipWithDelays(movements, delay: 0.6)
+        let delayedMovements = zipWithDelays(movements, delay: 1.0)
         
         scene.runAction(SKAction.sequence(
             [changeLabel("Touch the screen to move!"), wait(0.35)]
@@ -90,7 +90,7 @@ class TutorialStageHelper {
     private func coconutStage() {
         initStage()
         
-        let positions: [CGFloat] = [-100, 100]
+        let positions: [CGFloat] = [-90, 90]
         let tosses = positions.map { pos in
             SKAction.runBlock {
                 self.monkeyThrows(Coconut(), throwForceX: -pos / 25)

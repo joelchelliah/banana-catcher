@@ -153,8 +153,12 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func basketManMoves(x: CGFloat) {
+        let destination = hWidth + x
+        let distance = abs(basketMan.position.x - destination)
+        let duration = NSTimeInterval(distance / 200)
+        
         let wait = SKAction.waitForDuration(0.4)
-        let move = SKAction.moveToX(hWidth + x, duration: 0.55)
+        let move = SKAction.moveToX(destination, duration: duration)
         
         basketMan.runAction(SKAction.sequence([wait, move]))
     }
