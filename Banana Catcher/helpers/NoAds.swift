@@ -9,6 +9,7 @@ typealias RequestProductsCompletionHandler = (success: Bool, products: [SKProduc
 struct NoAds {
     static let identifier = "com.cookiemagik.Banana.Catcher.no.ads"
     static let purchasedNotification = "NoAdsPurchasedNotification"
+    static let alreadyPurchasedNotification = "NoAdsAlreadyPurchasedNotification"
     static let restoredNotification = "NoAdsRestoredNotification"
     private static let helper = NoAdsHelper()
     
@@ -67,14 +68,10 @@ class NoAdsHelper : NSObject  {
         if NoAds.alreadyPurchased() {
             print("'No ads' already purchased")
             
-            postNoAdsPurchasedNotification()
+            NSNotificationCenter.defaultCenter().postNotificationName(NoAds.alreadyPurchasedNotification, object: NoAds.identifier)
         } else {
             f()
         }
-    }
-    
-    private func postNoAdsPurchasedNotification() {
-        NSNotificationCenter.defaultCenter().postNotificationName(NoAds.purchasedNotification, object: NoAds.identifier)
     }
 }
 
@@ -126,7 +123,8 @@ extension NoAdsHelper: SKPaymentTransactionObserver {
         print("completeTransaction... \(productIdentifier)")
         
         provideContentForProductIdentifier(transaction.payment.productIdentifier)
-        postNoAdsPurchasedNotification()
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(NoAds.purchasedNotification, object: NoAds.identifier)
         
         SKPaymentQueue.defaultQueue().finishTransaction(transaction)
     }

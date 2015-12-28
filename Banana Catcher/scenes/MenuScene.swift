@@ -10,6 +10,7 @@ class MenuScene: SKScene {
 
     private var titleTextures = [SKTexture]()
     private var pleaseWaitTextures = [SKTexture]()
+    private var adsRestoredTextures = [SKTexture]()
     
     private var soundButton = SKSpriteNode()
     private var noAdsButton = SKSpriteNode()
@@ -93,6 +94,7 @@ class MenuScene: SKScene {
     
     func observeNoAdsNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "noAdsPurchased:", name: NoAds.purchasedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "noAdsAlreadyPurchased:", name: NoAds.alreadyPurchasedNotification, object: nil)
         
         if NoAds.alreadyPurchased() || NoAds.notPermitted() {
             disableNoAdsButton()
@@ -102,7 +104,7 @@ class MenuScene: SKScene {
     func purchaseNoAds() {
         NoAds.purchase()
         
-        showSpeechBubble()
+        showSpeechBubble(pleaseWaitTextures)
     }
     
     internal func noAdsPurchased(_: NSNotification) {
@@ -110,19 +112,26 @@ class MenuScene: SKScene {
         BannerAds.hide()
     }
     
-    private func showSpeechBubble() {
-        let pos = CGPointMake(hWidth + +90, ground.size.height + 50)
-        let bubble = SKSpriteNode(imageNamed: "please_wait_1.png")
+    internal func noAdsAlreadyPurchased(_: NSNotification) {
+        disableNoAdsButton()
+        BannerAds.hide()
         
+        showSpeechBubble(adsRestoredTextures)
+    }
+    
+    private func showSpeechBubble(textures: [SKTexture]) {
+        let bubble = SKSpriteNode(texture: textures.first)
+        let pos = CGPointMake(hWidth + +90, ground.size.height + 50)
+
+        let wait = SKAction.waitForDuration(2.0)
+        let show = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
+        let hide = SKAction.animateWithTextures(textures.reverse(), timePerFrame: 0.05)
+        let remove = SKAction.removeFromParent()
+
         bubble.position = pos
         bubble.zPosition = -400
-        
-        let wait = SKAction.waitForDuration(1.0)
-        let show = SKAction.animateWithTextures(pleaseWaitTextures, timePerFrame: 0.05)
-        let hide = SKAction.animateWithTextures(pleaseWaitTextures.reverse(), timePerFrame: 0.05)
-        let remove = SKAction.removeFromParent()
-        
         bubble.runAction(SKAction.sequence([show, wait, hide, remove]))
+        
         addChild(bubble)
     }
     
@@ -159,5 +168,6 @@ class MenuScene: SKScene {
     private func loadTextures() {
         for i in 1...19 { titleTextures.append(SKTexture(imageNamed: "menu_title_\(i).png")) }
         for i in 1...7 { pleaseWaitTextures.append(SKTexture(imageNamed: "please_wait_\(i).png")) }
+        for i in 1...7 { adsRestoredTextures.append(SKTexture(imageNamed: "ads_restored_\(i).png")) }
     }
 }
