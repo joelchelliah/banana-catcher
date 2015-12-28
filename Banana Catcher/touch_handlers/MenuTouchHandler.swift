@@ -48,7 +48,6 @@ class MenuTouchHandler: TouchHandler {
     private func gotoNoAds(node: SKNode, _ menuScene: MenuScene) {
         
         let purchase = SKAction.runBlock {
-            node.runAction(SKAction.rotateByAngle(12.56, duration: 10.0))
             menuScene.purchaseNoAds()
         }
         
