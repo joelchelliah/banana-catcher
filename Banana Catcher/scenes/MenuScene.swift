@@ -128,7 +128,7 @@ class MenuScene: SKScene {
         let bubble = SKSpriteNode(texture: textures.first)
         let pos = CGPointMake(hWidth + +90, ground.size.height + 50)
 
-        let wait = SKAction.waitForDuration(2.0)
+        let wait = SKAction.waitForDuration(3.0)
         let show = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
         let hide = SKAction.animateWithTextures(textures.reverse(), timePerFrame: 0.05)
         let remove = SKAction.removeFromParent()
@@ -138,7 +138,7 @@ class MenuScene: SKScene {
         bubble.runAction(SKAction.sequence([show, wait, hide, remove]))
         
         addChild(bubble)
-        speechBubbleZCounter -= 1
+        speechBubbleZCounter += 1
     }
     
     private func disableNoAdsButton() {
