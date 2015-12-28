@@ -92,7 +92,7 @@ class MenuScene: SKScene {
     func observeNoAdsNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "noAdsPurchased:", name: NoAds.purchasedNotification, object: nil)
         
-        if NoAds.notPermitted() || NoAds.alreadyPurchased() {
+        if NoAds.alreadyPurchased() || NoAds.notPermitted() {
             disableNoAdsButton()
         }
     }
