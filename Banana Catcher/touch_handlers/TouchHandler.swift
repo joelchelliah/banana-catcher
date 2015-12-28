@@ -52,10 +52,12 @@ class TouchHandler {
     }
     
     internal func buttonClick(button: SKNode, action: SKAction) {
-        let fadeOut = SKAction.fadeAlphaTo(0.2, duration: 0.1)
-        let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
+        let size = button.frame.size
+        
+        let grow = SKAction.resizeToWidth(size.width * 1.5, height: size.height * 1.5, duration: 0.1)
+        let shrink = SKAction.resizeToWidth(size.width, height: size.height, duration: 0.1)
         let sound = SKAction.runBlock { PlaySound.select(from: self.scene) }
 
-        button.runAction(SKAction.sequence([fadeOut, sound, fadeIn, action]))
+        button.runAction(SKAction.sequence([grow, sound, shrink, action]))
     }
 }

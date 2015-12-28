@@ -6,7 +6,9 @@ struct BannerAds {
     static let hideAdsID: String = "hideadsID"
     
     static func show() {
-        postNotification(showAdsID)
+        if !NoAds.alreadyPurchased() {
+            postNotification(showAdsID)
+        }
     }
     
     static func hide() {

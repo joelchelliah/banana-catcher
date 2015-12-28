@@ -3,6 +3,7 @@ struct ButtonNodes {
     static let sound: String = "soundNode"
     static let howTo: String = "howToNode"
     static let noAds: String = "noAdsNode"
+    static let noAdsDisabled: String = "noAdsDisabledNode"
     static let rating: String = "ratingNode"
     
     static let next: String = "nextNode"

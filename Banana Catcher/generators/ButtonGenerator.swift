@@ -32,6 +32,7 @@ class ButtonGenerator: Generator {
     // * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     var soundButton = SKSpriteNode(imageNamed: "sound_off.png")
+    var noAdsButton = SKSpriteNode(imageNamed: "no_ads.png")
     
     private func generateMenuButtons() {
         generateSoundButton()
@@ -61,9 +62,7 @@ class ButtonGenerator: Generator {
     }
     
     private func generateNoAdsButton() {
-        let button = SKSpriteNode(imageNamed: "no_ads.png")
-
-        generateButton(button, name: ButtonNodes.noAds, index: ButtonPositions.right)
+        generateButton(noAdsButton, name: ButtonNodes.noAds, index: ButtonPositions.right)
     }
     
     

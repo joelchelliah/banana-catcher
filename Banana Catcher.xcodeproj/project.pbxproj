@@ -206,6 +206,7 @@
 		A37D4B521BE3BC990071FFBF /* brokenut_9.png in Resources */ = {isa = PBXBuildFile; fileRef = A37D4B481BE3BC990071FFBF /* brokenut_9.png */; };
 		A37D4B531BE3BC990071FFBF /* brokenut_10.png in Resources */ = {isa = PBXBuildFile; fileRef = A37D4B491BE3BC990071FFBF /* brokenut_10.png */; };
 		A37D4B551BE52E830071FFBF /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = A37D4B541BE52E830071FFBF /* background.png */; };
+		A388F4911C312E5E00940540 /* NoAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = A388F4901C312E5E00940540 /* NoAds.swift */; };
 		A396BB541BB6E517002F7231 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A396BB531BB6E517002F7231 /* ScoreLabel.swift */; };
 		A396BB581BB6E840002F7231 /* Lives.swift in Sources */ = {isa = PBXBuildFile; fileRef = A396BB571BB6E840002F7231 /* Lives.swift */; };
 		A3A79F931BA6D32A003C1F32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79F921BA6D32A003C1F32 /* AppDelegate.swift */; };
@@ -492,6 +493,7 @@
 		A37D4B481BE3BC990071FFBF /* brokenut_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brokenut_9.png; path = images/throwables/brokenut_9.png; sourceTree = "<group>"; };
 		A37D4B491BE3BC990071FFBF /* brokenut_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brokenut_10.png; path = images/throwables/brokenut_10.png; sourceTree = "<group>"; };
 		A37D4B541BE52E830071FFBF /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = images/hud/background.png; sourceTree = "<group>"; };
+		A388F4901C312E5E00940540 /* NoAds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAds.swift; sourceTree = "<group>"; };
 		A396BB531BB6E517002F7231 /* ScoreLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
 		A396BB571BB6E840002F7231 /* Lives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lives.swift; sourceTree = "<group>"; };
 		A3A79F8F1BA6D32A003C1F32 /* Banana Catcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Banana Catcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1032,6 +1034,7 @@
 			children = (
 				A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */,
 				A32394DA1C30311D00CC1B89 /* BannerAds.swift */,
+				A388F4901C312E5E00940540 /* NoAds.swift */,
 				A32394DE1C3046B200CC1B89 /* PlaySound.swift */,
 				A3C7B5081C2DC5F40038728B /* CollissionDetector.swift */,
 				A33034F51C29AFBD008A2346 /* MusicPlayer.swift */,
@@ -1418,6 +1421,7 @@
 				A37D4B351BE3A2700071FFBF /* Coconut.swift in Sources */,
 				A3A79FDC1BA6FFDC003C1F32 /* Ground.swift in Sources */,
 				A32394D31C2FE12F00CC1B89 /* GameLabel.swift in Sources */,
+				A388F4911C312E5E00940540 /* NoAds.swift in Sources */,
 				A373A0621C2AD8A0006D2802 /* InfoLabel.swift in Sources */,
 				A3C7B5091C2DC5F40038728B /* CollissionDetector.swift in Sources */,
 				A3DF00CD1C2C713A00B772D5 /* BushGenerator.swift in Sources */,

@@ -9,13 +9,13 @@ class MenuTouchHandler: TouchHandler {
         
         if let nodeName = touchedNode.name {
             switch nodeName {
-            case ButtonNodes.sound: toggleSound(touchedNode, menuScene: menuScene)
+            case ButtonNodes.sound: toggleSound(touchedNode, menuScene)
                 
             case ButtonNodes.howTo: gotoTutorial(touchedNode)
                 
             case ButtonNodes.play: gotoGame(touchedNode)
                 
-            case ButtonNodes.noAds: gotoNoAds(touchedNode)
+            case ButtonNodes.noAds: gotoNoAds(touchedNode, menuScene)
                 
             case ButtonNodes.rating: gotoRating(touchedNode)
                 
@@ -24,12 +24,12 @@ class MenuTouchHandler: TouchHandler {
         }
     }
     
-    private func toggleSound(button: SKNode, menuScene scene: MenuScene) {
+    private func toggleSound(button: SKNode, _ menuScene: MenuScene) {
         soundEnabled = !soundEnabled
         
         let texture = soundEnabled ? "sound_on.png" : "sound_off.png"
         let toggleTexture = SKAction.runBlock {
-            scene.changeSoundButtonTexture(texture)
+            menuScene.changeSoundButtonTexture(texture)
         }
         
         buttonClick(button, action: toggleTexture)
@@ -45,7 +45,13 @@ class MenuTouchHandler: TouchHandler {
         buttonClick(node, toScene: TutorialScene(size: scene.size))
     }
 
-    private func gotoNoAds(node: SKNode) {
+    private func gotoNoAds(node: SKNode, _ menuScene: MenuScene) {
         
+        let purchase = SKAction.runBlock {
+            node.runAction(SKAction.rotateByAngle(12.56, duration: 10.0))
+            menuScene.purchaseNoAds()
+        }
+        
+        buttonClick(node, action: purchase)
     }
 }

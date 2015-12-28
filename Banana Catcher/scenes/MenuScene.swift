@@ -11,12 +11,13 @@ class MenuScene: SKScene {
     private var menuTitleTextures = [SKTexture]()
     
     private var soundButton = SKSpriteNode()
+    private var noAdsButton = SKSpriteNode()
     
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
         hHeight = size.height / 2
         touchHandler = MenuTouchHandler(forScene: self)
-        
+
         initSound()
         loadTextures()
         
@@ -26,6 +27,8 @@ class MenuScene: SKScene {
         addBasketMan()
         addTitle()
         addButtons()
+        
+        observeNoAdsNotifications()
         
         BannerAds.show()
     }
@@ -78,6 +81,34 @@ class MenuScene: SKScene {
         buttonGenerator.generate()
         
         soundButton = buttonGenerator.soundButton
+        noAdsButton = buttonGenerator.noAdsButton
+    }
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Store (no ads)
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    func observeNoAdsNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "noAdsPurchased:", name: NoAds.purchasedNotification, object: nil)
+        
+        if NoAds.notPermitted() || NoAds.alreadyPurchased() {
+            disableNoAdsButton()
+        }
+    }
+    
+    func purchaseNoAds() {
+        NoAds.purchase()
+    }
+    
+    internal func noAdsPurchased(_: NSNotification) {
+        disableNoAdsButton()
+        BannerAds.hide()
+    }
+    
+    private func disableNoAdsButton() {
+        noAdsButton.name = ButtonNodes.noAdsDisabled
+        noAdsButton.alpha = 0.3
     }
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -85,7 +116,7 @@ class MenuScene: SKScene {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     func changeSoundButtonTexture(name: String) {
-        soundButton.texture = SKTexture(imageNamed: name)
+        changeButtonTexture(soundButton, name)
     }
     
     private func initSound() {
@@ -94,6 +125,15 @@ class MenuScene: SKScene {
         soundEnabled = defaults.valueForKey("soundEnabled")?.boolValue ?? true
         
         defaults.synchronize()
+    }
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Misc
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    private func changeButtonTexture(button: SKSpriteNode, _ name: String) {
+        button.texture = SKTexture(imageNamed: name)
     }
     
     private func loadTextures() {

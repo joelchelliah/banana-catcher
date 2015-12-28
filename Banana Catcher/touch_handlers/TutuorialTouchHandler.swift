@@ -20,8 +20,10 @@ class TutorialTouchHandler: TouchHandler {
     }
     
     private func playNextTutorialStage(button: SKNode, tutorialScene: TutorialScene) {
-        PlaySound.select(from: self.scene)
+        let nextStage = SKAction.runBlock {
+            tutorialScene.playNextStage()
+        }
         
-        tutorialScene.playNextStage()
+        buttonClick(button, action: nextStage)
     }
 }
