@@ -9,6 +9,7 @@ class MenuScene: SKScene {
     private var touchHandler: TouchHandler!
 
     private var titleTextures = [SKTexture]()
+    private var thankYouTextures = [SKTexture]()
     private var pleaseWaitTextures = [SKTexture]()
     private var adsRestoredTextures = [SKTexture]()
     
@@ -16,6 +17,8 @@ class MenuScene: SKScene {
     private var noAdsButton = SKSpriteNode()
     
     private let ground = SKSpriteNode(imageNamed: "menu_ground.png")
+    
+    private var speechBubbleZCounter: CGFloat = -400
     
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
@@ -110,6 +113,8 @@ class MenuScene: SKScene {
     internal func noAdsPurchased(_: NSNotification) {
         disableNoAdsButton()
         BannerAds.hide()
+        
+        showSpeechBubble(thankYouTextures)
     }
     
     internal func noAdsAlreadyPurchased(_: NSNotification) {
@@ -129,10 +134,11 @@ class MenuScene: SKScene {
         let remove = SKAction.removeFromParent()
 
         bubble.position = pos
-        bubble.zPosition = -400
+        bubble.zPosition = speechBubbleZCounter
         bubble.runAction(SKAction.sequence([show, wait, hide, remove]))
         
         addChild(bubble)
+        speechBubbleZCounter -= 1
     }
     
     private func disableNoAdsButton() {
@@ -167,6 +173,7 @@ class MenuScene: SKScene {
     
     private func loadTextures() {
         for i in 1...19 { titleTextures.append(SKTexture(imageNamed: "menu_title_\(i).png")) }
+        for i in 1...7 { thankYouTextures.append(SKTexture(imageNamed: "thank_you_\(i).png")) }
         for i in 1...7 { pleaseWaitTextures.append(SKTexture(imageNamed: "please_wait_\(i).png")) }
         for i in 1...7 { adsRestoredTextures.append(SKTexture(imageNamed: "ads_restored_\(i).png")) }
     }
