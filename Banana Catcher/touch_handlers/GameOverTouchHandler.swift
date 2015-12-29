@@ -28,11 +28,9 @@ class GameOverTouchHandler: TouchHandler {
     }
     
     private func gotoLeaderboard(node: SKNode) {
-        let presentLeaderboard = SKAction.runBlock {
+        buttonClick(node) {
             self.presentGameCenterLeaderboard()
         }
-        
-        buttonClick(node, action: presentLeaderboard)
     }
     
     private func presentGameCenterLeaderboard() {
@@ -53,11 +51,9 @@ class GameOverTouchHandler: TouchHandler {
         activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
         activityViewController.excludedActivityTypes = sharingExclusionList()
         
-        let presentSharing = SKAction.runBlock {
+        buttonClick(node) {
             self.rootViewController().presentViewController(activityViewController, animated: true, completion: nil)
         }
-        
-        buttonClick(node, action: presentSharing)
     }
     
     private func sharingExclusionList() -> [String] {

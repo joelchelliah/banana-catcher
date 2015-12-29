@@ -35,29 +35,30 @@ class TouchHandler {
     }
     
     internal func buttonClick(button: SKNode, toScene: SKScene) {
-        let presentScene = SKAction.runBlock {
-            toScene.scaleMode = self.scene.scaleMode
+        toScene.scaleMode = scene.scaleMode
+
+        buttonClick(button) {
             self.scene.view?.presentScene(toScene, transition: SKTransition.flipVerticalWithDuration(0.5))
         }
-        
-        buttonClick(button, action: presentScene)
     }
     
     internal func buttonClick(button: SKNode, forUrl url: NSURL) {
-        let presentScene = SKAction.runBlock {
+        buttonClick(button) {
             UIApplication.sharedApplication().openURL(url);
         }
-        
-        buttonClick(button, action: presentScene)
     }
     
-    internal func buttonClick(button: SKNode, action: SKAction) {
-        let size = button.frame.size
-        
-        let grow = SKAction.resizeToWidth(size.width * 1.5, height: size.height * 1.5, duration: 0.1)
-        let shrink = SKAction.resizeToWidth(size.width, height: size.height, duration: 0.1)
+    internal func buttonClick(button: SKNode, block: dispatch_block_t) {
         let sound = SKAction.runBlock { PlaySound.select(from: self.scene) }
-
-        button.runAction(SKAction.sequence([grow, sound, shrink, action]))
+        let action = SKAction.runBlock(block)
+        
+        if let size = (button as? SKSpriteNode)?.texture?.size() {
+            let grow = SKAction.resizeToWidth(size.width * 1.5, height: size.height * 1.5, duration: 0.1)
+            let shrink = SKAction.resizeToWidth(size.width, height: size.height, duration: 0.1)
+            
+            button.runAction(SKAction.sequence([grow, sound, shrink, action]))
+        } else {
+            button.runAction(SKAction.sequence([sound, action]))
+        }
     }
 }

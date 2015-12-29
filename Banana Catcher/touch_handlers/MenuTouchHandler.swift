@@ -19,6 +19,8 @@ class MenuTouchHandler: TouchHandler {
                 
             case ButtonNodes.rating: gotoRating(touchedNode)
                 
+            case ButtonNodes.basketManMenu: sayHello(touchedNode, menuScene)
+                
             default: break
             }
         }
@@ -28,11 +30,10 @@ class MenuTouchHandler: TouchHandler {
         soundEnabled = !soundEnabled
         
         let texture = soundEnabled ? "sound_on.png" : "sound_off.png"
-        let toggleTexture = SKAction.runBlock {
+        
+        buttonClick(button) {
             menuScene.changeSoundButtonTexture(texture)
         }
-        
-        buttonClick(button, action: toggleTexture)
         
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(soundEnabled, forKey: "soundEnabled")
@@ -46,11 +47,16 @@ class MenuTouchHandler: TouchHandler {
     }
 
     private func gotoNoAds(node: SKNode, _ menuScene: MenuScene) {
-        
-        let purchase = SKAction.runBlock {
+        buttonClick(node) {
             menuScene.purchaseNoAds()
         }
-        
-        buttonClick(node, action: purchase)
+    }
+    
+    private func sayHello(node: SKNode, _ menuScene: MenuScene) {
+        node.runAction(SKAction.runBlock {
+            PlaySound.select(from: node)
+            
+            menuScene.basketManSaysHello()
+            })
     }
 }

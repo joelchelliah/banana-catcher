@@ -8,16 +8,21 @@ class MenuScene: SKScene {
     
     private var touchHandler: TouchHandler!
 
+    private var basketMan = BasketManMenu()
+    
     private var titleTextures = [SKTexture]()
-    private var thankYouTextures = [SKTexture]()
-    private var pleaseWaitTextures = [SKTexture]()
     private var adsRestoredTextures = [SKTexture]()
+    private var helloTextures = [SKTexture]()
+    private var pleaseWaitTextures = [SKTexture]()
+    private var thankYouTextures = [SKTexture]()
+    
     
     private var soundButton = SKSpriteNode()
     private var noAdsButton = SKSpriteNode()
     
     private let ground = SKSpriteNode(imageNamed: "menu_ground.png")
     
+    private var speechBubble = SKSpriteNode()
     private var speechBubbleZCounter: CGFloat = -400
     
     override func didMoveToView(view: SKView) {
@@ -63,9 +68,9 @@ class MenuScene: SKScene {
     }
     
     private func addBasketMan() {
-        let basketMan: BasketManMenu = BasketManMenu()
-        
         basketMan.position = CGPointMake(hWidth, hHeight - 88)
+        basketMan.name = ButtonNodes.basketManMenu
+        
         addChild(basketMan)
     }
     
@@ -105,9 +110,12 @@ class MenuScene: SKScene {
     }
     
     func purchaseNoAds() {
+        disableNoAdsButton()
         NoAds.purchase()
         
         showSpeechBubble(pleaseWaitTextures)
+        
+        basketManGoesQuietForAWhile()
     }
     
     internal func noAdsPurchased(_: NSNotification) {
@@ -125,19 +133,21 @@ class MenuScene: SKScene {
     }
     
     private func showSpeechBubble(textures: [SKTexture]) {
-        let bubble = SKSpriteNode(texture: textures.first)
+        speechBubble.removeFromParent()
+        
+        speechBubble = SKSpriteNode(texture: textures.first)
         let pos = CGPointMake(hWidth + +90, ground.size.height + 50)
 
-        let wait = SKAction.waitForDuration(3.0)
+        let wait = SKAction.waitForDuration(1.0)
         let show = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
         let hide = SKAction.animateWithTextures(textures.reverse(), timePerFrame: 0.05)
         let remove = SKAction.removeFromParent()
 
-        bubble.position = pos
-        bubble.zPosition = speechBubbleZCounter
-        bubble.runAction(SKAction.sequence([show, wait, hide, remove]))
+        speechBubble.position = pos
+        speechBubble.zPosition = speechBubbleZCounter
+        speechBubble.runAction(SKAction.sequence([show, wait, hide, remove]))
         
-        addChild(bubble)
+        addChild(speechBubble)
         speechBubbleZCounter += 1
     }
     
@@ -167,14 +177,28 @@ class MenuScene: SKScene {
     // * Misc
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
+    func basketManSaysHello() {
+        showSpeechBubble(helloTextures)
+    }
+    
+    func basketManGoesQuietForAWhile() {
+        basketMan.name = ButtonNodes.basketManMenuQuiet
+        
+        let wait = SKAction.waitForDuration(8.0)
+        let unmute = SKAction.runBlock { self.basketMan.name = ButtonNodes.basketManMenu }
+        
+        runAction(SKAction.sequence([wait, unmute]))
+    }
+    
     private func changeButtonTexture(button: SKSpriteNode, _ name: String) {
         button.texture = SKTexture(imageNamed: name)
     }
     
     private func loadTextures() {
         for i in 1...19 { titleTextures.append(SKTexture(imageNamed: "menu_title_\(i).png")) }
-        for i in 1...7 { thankYouTextures.append(SKTexture(imageNamed: "thank_you_\(i).png")) }
-        for i in 1...7 { pleaseWaitTextures.append(SKTexture(imageNamed: "please_wait_\(i).png")) }
         for i in 1...7 { adsRestoredTextures.append(SKTexture(imageNamed: "ads_restored_\(i).png")) }
+        for i in 1...7 { helloTextures.append(SKTexture(imageNamed: "hello_\(i).png")) }
+        for i in 1...7 { pleaseWaitTextures.append(SKTexture(imageNamed: "please_wait_\(i).png")) }
+        for i in 1...7 { thankYouTextures.append(SKTexture(imageNamed: "thank_you_\(i).png")) }
     }
 }
