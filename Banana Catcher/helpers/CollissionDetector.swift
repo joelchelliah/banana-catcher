@@ -1,9 +1,10 @@
 import Foundation
 import SpriteKit
 
-class CollissionDetector {
-    
-    class func run(contact contact: SKPhysicsContact, onHitBasketMan basketHit: (Throwable) -> (), onHitGround groundHit: (Throwable) -> ()) {
+protocol CollissionDetector {}
+
+extension CollissionDetector {
+    func handleContact(contact contact: SKPhysicsContact, onHitBasketMan basketHit: (Throwable) -> (), onHitGround groundHit: (Throwable) -> ()) {
         var b1: SKPhysicsBody
         var b2: SKPhysicsBody
         
@@ -32,7 +33,7 @@ class CollissionDetector {
         }
     }
     
-    private class func isThrowable(body: SKPhysicsBody) -> Bool {
+    private func isThrowable(body: SKPhysicsBody) -> Bool {
         let isBanana   = body.categoryBitMask & CollisionCategories.Banana != 0
         let isCoconut  = body.categoryBitMask & CollisionCategories.Coconut != 0
         let isSupernut = body.categoryBitMask & CollisionCategories.Supernut != 0
@@ -41,8 +42,8 @@ class CollissionDetector {
         return isBanana || isCoconut || isSupernut || isHeart
     }
     
-    private class func handleUnexpectedContactTest(b1: SKPhysicsBody, _
+    private func handleUnexpectedContactTest(b1: SKPhysicsBody, _
         b2: SKPhysicsBody) {
-        print("Unexpected contant test: (\(b1), \(b2))")
+            print("Unexpected contant test: (\(b1), \(b2))")
     }
 }

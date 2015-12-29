@@ -1,6 +1,6 @@
 import SpriteKit
 
-class TutorialScene: SKScene, SKPhysicsContactDelegate {
+class TutorialScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
     
     private var hWidth: CGFloat = 0.0
 
@@ -44,8 +44,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     func didBeginContact(contact: SKPhysicsContact) {
-        CollissionDetector.run(
-            contact: contact,
+        handleContact(contact: contact,
             onHitBasketMan: throwableHitsBasketMan,
             onHitGround: throwableHitsGround)
     }
