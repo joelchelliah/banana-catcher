@@ -320,29 +320,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
             item.removeFromParent()
             
         case is Coconut:
-            let brokenut = Brokenut(pos: CGPointMake(item.position.x, ground.size.height + 5))
+            let spawnPos = CGPointMake(item.position.x, ground.size.height + 30)
+            let brokenut = Brokenut(pos: spawnPos)
             
             addChild(brokenut)
             item.removeFromParent()
             
         case is Supernut:
             let numSpawns: Int = monkey.currentLevel() / 5
+            let spawnPos = CGPointMake(item.position.x, ground.size.height + 30)
             
             for _ in 1...numSpawns {
-                let spawnPos = CGPointMake(item.position.x, ground.size.height + 30)
                 let spawn = Coconut.spawnAt(spawnPos)
-                let throwX = CGFloat(arc4random_uniform(20)) - 10.0
-                let throwY = spawn.throwForceY() + CGFloat(arc4random_uniform(10) + 5)
+                let throwX = CGFloat(randomBalanced(25))
+                let throwY = spawn.throwForceY() + CGFloat(random(10) + 5)
                 
                 addChild(spawn)
                 spawn.physicsBody?.velocity = CGVectorMake(0,0)
                 spawn.physicsBody?.applyImpulse(CGVectorMake(throwX, throwY))
             }
 
-            let brokenutPos = CGPointMake(item.position.x, ground.size.height + 5)
-            let brokenut = Brokenut(pos: brokenutPos, sizeFactor: 1.5)
+            let broke = Superbroke(pos: spawnPos)
             
-            addChild(brokenut)
+            addChild(broke)
             item.removeFromParent()
             
         case is Heart:

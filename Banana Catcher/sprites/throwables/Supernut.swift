@@ -4,11 +4,8 @@ import SpriteKit
 class Supernut: Throwable {
     
     init() {
-        let texture = SKTexture(imageNamed: "coconut")
+        let texture = SKTexture(imageNamed: "supernut")
         super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.Supernut)
-        
-        size.height *= 1.5
-        size.width *= 1.5
         
         withSound(Sounds.supernut)
     }

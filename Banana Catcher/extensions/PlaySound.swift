@@ -9,6 +9,7 @@ struct Sounds {
     static let select: String = "option_select"
     static let smash: String = "smash"
     static let supernut: String = "supernut"
+    static let supersmash: String = "supersmash"
     static let splat: String = "splat"
     static let toss: String = "toss"
 }

@@ -1,10 +1,10 @@
 import UIKit
 import SpriteKit
 
-class Brokenut: Decayable {
+class Superbroke: Decayable {
     
-    init(pos: CGPoint) {
-        let texture = SKTexture(imageNamed: "brokenut_1")
+    init(pos: CGPoint, sizeFactor: CGFloat = 1.0) {
+        let texture = SKTexture(imageNamed: "superbroke_1.png")
         
         super.init(texture: texture, pos: pos)
     }
@@ -15,10 +15,10 @@ class Brokenut: Decayable {
     
     
     internal override func splat() {
-        let textures = (1...12).map { SKTexture(imageNamed: "brokenut_\($0).png") }
+        let textures = (1...12).map { SKTexture(imageNamed: "superbroke_\($0).png") }
         let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
         
-        playSound(Sounds.smash)
+        playSound(Sounds.supersmash)
         runAction(animation)
     }
 }
