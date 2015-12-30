@@ -1,7 +1,7 @@
 import UIKit
 import SpriteKit
 
-class MenuScene: SKScene {
+class MenuScene: SKScene, SpeechBubble {
 
     private var hWidth: CGFloat = 0.0
     private var hHeight: CGFloat = 0.0
@@ -21,9 +21,6 @@ class MenuScene: SKScene {
     private var noAdsButton = SKSpriteNode()
     
     private let ground = SKSpriteNode(imageNamed: "menu_ground.png")
-    
-    private var speechBubble = SKSpriteNode()
-    private var speechBubbleZCounter: CGFloat = -400
     
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
@@ -134,28 +131,24 @@ class MenuScene: SKScene {
         showSpeechBubble(adsRestoredTextures)
     }
     
-    private func showSpeechBubble(textures: [SKTexture]) {
-        speechBubble.removeFromParent()
-        
-        speechBubble = SKSpriteNode(texture: textures.first)
-        let pos = CGPointMake(hWidth + +90, ground.size.height + 50)
-
-        let wait = SKAction.waitForDuration(1.0)
-        let show = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
-        let hide = SKAction.animateWithTextures(textures.reverse(), timePerFrame: 0.05)
-        let remove = SKAction.removeFromParent()
-
-        speechBubble.position = pos
-        speechBubble.zPosition = speechBubbleZCounter
-        speechBubble.runAction(SKAction.sequence([show, wait, hide, remove]))
-        
-        addChild(speechBubble)
-        speechBubbleZCounter += 1
-    }
-    
     private func disableNoAdsButton() {
         noAdsButton.name = ButtonNodes.noAdsDisabled
         noAdsButton.alpha = 0.3
+    }
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Speech bubble
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    private var speechBubble = SKSpriteNode()
+    
+    func setSpeechBubble(bubble: SKSpriteNode) {
+        speechBubble.removeFromParent()
+        speechBubble = bubble
+        speechBubble.position = CGPointMake(hWidth + 90, ground.size.height + 50)
+        
+        addChild(speechBubble)
     }
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

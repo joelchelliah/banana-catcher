@@ -2,7 +2,7 @@ import UIKit
 import SpriteKit
 import GameKit
 
-class GameOverScene: SKScene, GKGameCenterControllerDelegate {
+class GameOverScene: SKScene, GKGameCenterControllerDelegate, SpeechBubble  {
     
     private var hWidth: CGFloat = 0.0
     private var hHeight: CGFloat = 0.0
@@ -14,6 +14,9 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
     private var tearsTextures = [SKTexture]()
     private var sobTextures = [SKTexture]()
     private var scoreboardTextures = [SKTexture]()
+    private var sniffleTextures = [SKTexture]()
+    
+    private let cliff = SKSpriteNode(imageNamed: "game_over_tears_1.png")
     
     override func didMoveToView(view: SKView) {
         hWidth = size.width / 2
@@ -92,9 +95,9 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
     }
     
     private func addGameOverTears() {
-        let cliff = SKSpriteNode(imageNamed: "game_over_tears_1.png")
         cliff.position = CGPointMake(hWidth, cliff.size.height / 2)
         cliff.zPosition = -700
+        cliff.name = ButtonNodes.basketManMenu
         
         let tears = SKAction.animateWithTextures(tearsTextures, timePerFrame: 0.08)
         let cry = SKAction.repeatAction(tears, count: 5)
@@ -159,10 +162,35 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate {
         buttonGenerator.generate()
     }
     
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Speech bubble
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    private var speechBubble = SKSpriteNode()
+    
+    func setSpeechBubble(bubble: SKSpriteNode) {
+        speechBubble.removeFromParent()
+        speechBubble = bubble
+        speechBubble.position = CGPointMake(hWidth + 90, cliff.size.height + 20)
+        
+        addChild(speechBubble)
+    }
+    
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Misc
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    func basketManCries() {
+        showSpeechBubble(sniffleTextures)
+    }
+    
     private func loadTextures() {
         tearsTextures = (1...5).map { SKTexture(imageNamed: "game_over_tears_\($0).png") }
         sobTextures = (1...10).map { SKTexture(imageNamed: "game_over_sob_\($0).png") }
         scoreboardTextures = (1...8).map { SKTexture(imageNamed: "scoreboard_\($0).png") }
+        sniffleTextures = (1...7).map { SKTexture(imageNamed: "sniffle_\($0).png") }
     }
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

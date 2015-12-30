@@ -5,6 +5,7 @@ struct ButtonNodes {
     static let noAds: String = "noAdsNode"
     static let noAdsDisabled: String = "noAdsDisabledNode"
     static let rating: String = "ratingNode"
+    
     static let basketManMenu: String = "basketManMenuNode"
     static let basketManMenuQuiet: String = "basketManMenuQuietNode"
     

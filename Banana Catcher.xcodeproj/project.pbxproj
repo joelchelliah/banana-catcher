@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		A30E47E21C33E5C3004DEE6D /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30E47E11C33E5C3004DEE6D /* PlaySound.swift */; };
+		A30E47EA1C33FDBF004DEE6D /* sniffle_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A30E47E31C33FDBF004DEE6D /* sniffle_1.png */; };
+		A30E47EB1C33FDBF004DEE6D /* sniffle_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A30E47E41C33FDBF004DEE6D /* sniffle_2.png */; };
+		A30E47EC1C33FDBF004DEE6D /* sniffle_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A30E47E51C33FDBF004DEE6D /* sniffle_3.png */; };
+		A30E47ED1C33FDBF004DEE6D /* sniffle_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A30E47E61C33FDBF004DEE6D /* sniffle_4.png */; };
+		A30E47EE1C33FDBF004DEE6D /* sniffle_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A30E47E71C33FDBF004DEE6D /* sniffle_5.png */; };
+		A30E47EF1C33FDBF004DEE6D /* sniffle_6.png in Resources */ = {isa = PBXBuildFile; fileRef = A30E47E81C33FDBF004DEE6D /* sniffle_6.png */; };
+		A30E47F01C33FDBF004DEE6D /* sniffle_7.png in Resources */ = {isa = PBXBuildFile; fileRef = A30E47E91C33FDBF004DEE6D /* sniffle_7.png */; };
+		A30E47F21C33FE82004DEE6D /* SpeechBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30E47F11C33FE82004DEE6D /* SpeechBubble.swift */; };
 		A3194FCD1BCD7A1800FD0122 /* banana_splat_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A3194FCA1BCD7A1800FD0122 /* banana_splat_3.png */; };
 		A3194FCE1BCD7A1800FD0122 /* banana_splat_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A3194FCB1BCD7A1800FD0122 /* banana_splat_4.png */; };
 		A3194FCF1BCD7A1800FD0122 /* banana_splat_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3194FCC1BCD7A1800FD0122 /* banana_splat_5.png */; };
@@ -323,6 +331,14 @@
 
 /* Begin PBXFileReference section */
 		A30E47E11C33E5C3004DEE6D /* PlaySound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
+		A30E47E31C33FDBF004DEE6D /* sniffle_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sniffle_1.png; sourceTree = "<group>"; };
+		A30E47E41C33FDBF004DEE6D /* sniffle_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sniffle_2.png; sourceTree = "<group>"; };
+		A30E47E51C33FDBF004DEE6D /* sniffle_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sniffle_3.png; sourceTree = "<group>"; };
+		A30E47E61C33FDBF004DEE6D /* sniffle_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sniffle_4.png; sourceTree = "<group>"; };
+		A30E47E71C33FDBF004DEE6D /* sniffle_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sniffle_5.png; sourceTree = "<group>"; };
+		A30E47E81C33FDBF004DEE6D /* sniffle_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sniffle_6.png; sourceTree = "<group>"; };
+		A30E47E91C33FDBF004DEE6D /* sniffle_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sniffle_7.png; sourceTree = "<group>"; };
+		A30E47F11C33FE82004DEE6D /* SpeechBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechBubble.swift; sourceTree = "<group>"; };
 		A3194FCA1BCD7A1800FD0122 /* banana_splat_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_3.png; path = images/throwables/banana_splat_3.png; sourceTree = "<group>"; };
 		A3194FCB1BCD7A1800FD0122 /* banana_splat_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_4.png; path = images/throwables/banana_splat_4.png; sourceTree = "<group>"; };
 		A3194FCC1BCD7A1800FD0122 /* banana_splat_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_5.png; path = images/throwables/banana_splat_5.png; sourceTree = "<group>"; };
@@ -655,6 +671,7 @@
 			isa = PBXGroup;
 			children = (
 				A3C7B5081C2DC5F40038728B /* CollissionDetector.swift */,
+				A30E47F11C33FE82004DEE6D /* SpeechBubble.swift */,
 			);
 			path = traits;
 			sourceTree = "<group>";
@@ -868,6 +885,13 @@
 				A388F4BA1C31935E00940540 /* please_wait_5.png */,
 				A388F4BB1C31935E00940540 /* please_wait_6.png */,
 				A388F4BC1C31935E00940540 /* please_wait_7.png */,
+				A30E47E31C33FDBF004DEE6D /* sniffle_1.png */,
+				A30E47E41C33FDBF004DEE6D /* sniffle_2.png */,
+				A30E47E51C33FDBF004DEE6D /* sniffle_3.png */,
+				A30E47E61C33FDBF004DEE6D /* sniffle_4.png */,
+				A30E47E71C33FDBF004DEE6D /* sniffle_5.png */,
+				A30E47E81C33FDBF004DEE6D /* sniffle_6.png */,
+				A30E47E91C33FDBF004DEE6D /* sniffle_7.png */,
 				A388F4CB1C31980500940540 /* thank_you_1.png */,
 				A388F4CC1C31980500940540 /* thank_you_2.png */,
 				A388F4CD1C31980500940540 /* thank_you_3.png */,
@@ -1359,6 +1383,7 @@
 				A33492B41BEDF6D700A1FAE1 /* play_button.png in Resources */,
 				A360122E1BE613D800FDB32D /* menu_sky.png in Resources */,
 				A33492B61BEDF6D700A1FAE1 /* retry_button.png in Resources */,
+				A30E47EB1C33FDBF004DEE6D /* sniffle_2.png in Resources */,
 				A33492A21BEDF34800A1FAE1 /* game_over_sob_9.png in Resources */,
 				A33492F21BEF2E5900A1FAE1 /* monkey_angry_4.wav in Resources */,
 				A3DF00C21C2C4AD200B772D5 /* cloud_2.png in Resources */,
@@ -1398,6 +1423,7 @@
 				A33492E11BEE337600A1FAE1 /* monkey_angry_2.png in Resources */,
 				A37D4B551BE52E830071FFBF /* background.png in Resources */,
 				A33492E01BEE337600A1FAE1 /* monkey_angry_1.png in Resources */,
+				A30E47EA1C33FDBF004DEE6D /* sniffle_1.png in Resources */,
 				A37D4B331BE379250071FFBF /* flying_8.png in Resources */,
 				A360124D1BE64C2B00FDB32D /* menu_title_8.png in Resources */,
 				A36012471BE64C2B00FDB32D /* menu_title_2.png in Resources */,
@@ -1408,6 +1434,7 @@
 				A33492C81BEE066A00A1FAE1 /* scoreboard_8.png in Resources */,
 				A33492CF1BEE2A6400A1FAE1 /* monkey_angry_2.wav in Resources */,
 				A3DF00D81C2C79D900B772D5 /* 1up_1.png in Resources */,
+				A30E47EC1C33FDBF004DEE6D /* sniffle_3.png in Resources */,
 				A360122D1BE613D800FDB32D /* menu_ground.png in Resources */,
 				A37673901BEBC7CD0079619A /* blink_menu_3.png in Resources */,
 				A334929A1BEDF34800A1FAE1 /* game_over_sob_1.png in Resources */,
@@ -1419,6 +1446,7 @@
 				A3C7B4F61C2D569C0038728B /* share.png in Resources */,
 				A37673531BEB64300079619A /* caught_3.wav in Resources */,
 				A360124C1BE64C2B00FDB32D /* menu_title_7.png in Resources */,
+				A30E47F01C33FDBF004DEE6D /* sniffle_7.png in Resources */,
 				A33492FD1BEF534900A1FAE1 /* sad_4.png in Resources */,
 				A3DF00D91C2C79D900B772D5 /* 1up_2.png in Resources */,
 				A376735A1BEB92B80079619A /* brokenut_11.png in Resources */,
@@ -1431,6 +1459,7 @@
 				A373A0641C2AE5DE006D2802 /* finger.png in Resources */,
 				A376738F1BEBC7CD0079619A /* blink_menu_2.png in Resources */,
 				A388F4D41C31980500940540 /* thank_you_3.png in Resources */,
+				A30E47ED1C33FDBF004DEE6D /* sniffle_4.png in Resources */,
 				A33492CE1BEE2A6400A1FAE1 /* monkey_angry_1.wav in Resources */,
 				A3DF00E01C2C79D900B772D5 /* 1up_9.png in Resources */,
 				A347FD9C1C3298EF00E8072A /* hello_7.png in Resources */,
@@ -1505,7 +1534,9 @@
 				A36012621BE6530800FDB32D /* ouch_1.png in Resources */,
 				A3194FCE1BCD7A1800FD0122 /* banana_splat_4.png in Resources */,
 				A33034FC1C29B344008A2346 /* game_over.mp3 in Resources */,
+				A30E47EF1C33FDBF004DEE6D /* sniffle_6.png in Resources */,
 				A36012531BE64C2B00FDB32D /* menu_title_14.png in Resources */,
+				A30E47EE1C33FDBF004DEE6D /* sniffle_5.png in Resources */,
 				A3DF00C01C2C4AD200B772D5 /* bush_6.png in Resources */,
 				A3DF00DB1C2C79D900B772D5 /* 1up_4.png in Resources */,
 				A33492A11BEDF34800A1FAE1 /* game_over_sob_8.png in Resources */,
@@ -1583,6 +1614,7 @@
 				A35B78271C2EE43B006D2174 /* BurriedGenerator.swift in Sources */,
 				A3C7B4FE1C2D6BE30038728B /* ButtonGenerator.swift in Sources */,
 				A3C20E961BED44BB002A179E /* GameOverLabel.swift in Sources */,
+				A30E47F21C33FE82004DEE6D /* SpeechBubble.swift in Sources */,
 				A37673681BEBB9200079619A /* BasketManMenu.swift in Sources */,
 				A32394E81C30911600CC1B89 /* TutuorialTouchHandler.swift in Sources */,
 				A3A79FE21BA70838003C1F32 /* Banana.swift in Sources */,

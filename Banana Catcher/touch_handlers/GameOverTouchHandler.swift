@@ -8,6 +8,7 @@ class GameOverTouchHandler: TouchHandler {
     private var gameCenterDefaultLeaderBoard = ""
     
     override func handle(touches: Set<UITouch>) {
+        let gameOverScene = scene as! GameOverScene
         let touchedNode = getTouchedNode(touches)
         
         if let nodeName = touchedNode.name {
@@ -21,6 +22,8 @@ class GameOverTouchHandler: TouchHandler {
             case ButtonNodes.share: gotoSharing(touchedNode)
                 
             case ButtonNodes.rating: gotoRating(touchedNode)
+                
+            case ButtonNodes.basketManMenu: cry(gameOverScene)
                 
             default: break
             }
@@ -71,6 +74,14 @@ class GameOverTouchHandler: TouchHandler {
         } else {
             return exclude
         }
+    }
+    
+    private func cry(gameOverScene: GameOverScene) {
+        scene.runAction(SKAction.runBlock {
+            self.scene.playSound(Sounds.select)
+            
+            gameOverScene.basketManCries()
+            })
     }
     
     
