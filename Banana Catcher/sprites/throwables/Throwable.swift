@@ -27,12 +27,10 @@ class Throwable: SKSpriteNode {
     
     
     internal func withSound(sound: String? = nil) {
-        let soundPitch = Int(arc4random_uniform(3)) + 1
-        
         if let sound = sound {
-            playSound(self, name: "\(sound)_\(soundPitch).wav")
+            playSound(sound)
         } else {
-            playSound(self, name: "throw_\(soundPitch).wav")
+            playSound(Sounds.toss)
         }
     }
     

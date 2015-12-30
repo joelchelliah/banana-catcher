@@ -10,7 +10,7 @@ class Supernut: Throwable {
         size.height *= 1.5
         size.width *= 1.5
         
-        withSound("supernut")
+        withSound(Sounds.supernut)
     }
     
     required init?(coder aDecoder: NSCoder) {

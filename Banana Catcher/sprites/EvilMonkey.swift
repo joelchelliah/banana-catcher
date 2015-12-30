@@ -69,9 +69,7 @@ class EvilMonkey: SKSpriteNode {
     func throwTantrum() {
         canThrowHeartDuringTantrum = true
 
-        let angerIndex = Int(arc4random_uniform(4)) + 1
-        
-        playSound(self, name: "monkey_angry_\(angerIndex).wav")
+        playSound(Sounds.angry)
         
         let start = SKAction.animateWithTextures(angryStartTextures, timePerFrame: 0.05)
         let mid = SKAction.animateWithTextures(angryMidTextures, timePerFrame: 0.05)

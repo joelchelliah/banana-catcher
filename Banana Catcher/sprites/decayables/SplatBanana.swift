@@ -18,7 +18,7 @@ class SplatBanana: Decayable {
         let textures = (1...5).map { SKTexture(imageNamed: "banana_splat_\($0).png") }
         let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
         
-        playSound(self, name: "splat.wav")
+        playSound(Sounds.splat)
         runAction(animation)
     }
 }

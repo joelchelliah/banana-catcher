@@ -49,7 +49,7 @@ class TouchHandler {
     }
     
     internal func buttonClick(button: SKNode, block: dispatch_block_t) {
-        let sound = SKAction.runBlock { PlaySound.select(from: self.scene) }
+        let sound = SKAction.runBlock { button.playSound(Sounds.select) }
         let action = SKAction.runBlock(block)
         
         if let size = (button as? SKSpriteNode)?.texture?.size() {

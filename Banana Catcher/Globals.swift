@@ -8,8 +8,11 @@ let leaderboardID = "grp.banana.catcher"
 var score: Int = 0
 var soundEnabled: Bool = false
 
-func playSound(node: SKNode, name: String) {
-    if soundEnabled {
-        node.runAction(SKAction.playSoundFileNamed(name, waitForCompletion: false))
-    }
+
+func random(n: Int, from: Int = 0) -> Int {
+    return Int(arc4random_uniform(UInt32(n))) + from
+}
+
+func randomBalanced(n: Int, from start: Int = 0) -> Int {
+    return random(n, from: start) - n / 2
 }

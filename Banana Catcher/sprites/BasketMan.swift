@@ -49,17 +49,16 @@ class BasketMan: SKSpriteNode {
     
     func collect() {
         let animation = SKAction.animateWithTextures(catchTextures, timePerFrame: 0.05)
-        let soundPitch = Int(arc4random_uniform(3)) + 1
         
-        playSound(self, name: "catch_\(soundPitch).wav")
-        self.runAction(animation)
+        playSound(Sounds.caught)
+        runAction(animation)
     }
     
     func lifeUp() {
         let animation = SKAction.animateWithTextures(oneUpTextures, timePerFrame: 0.05)
         
-        playSound(self, name: "powerup.wav")
-        self.runAction(animation)
+        playSound(Sounds.powerup)
+        runAction(animation)
     }
     
     func ouch() {
@@ -74,9 +73,8 @@ class BasketMan: SKSpriteNode {
         let wait = SKAction.waitForDuration(1.0)
         let removeInvincibility = SKAction.runBlock { self.invincible = false }
         
-        playSound(self, name: "ouch.wav")
-
-        self.runAction(SKAction.sequence([ouchAnimation, wait, removeInvincibility]))
+        playSound(Sounds.ouch)
+        runAction(SKAction.sequence([ouchAnimation, wait, removeInvincibility]))
     }
     
     func frown() {

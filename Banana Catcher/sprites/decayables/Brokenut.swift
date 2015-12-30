@@ -21,7 +21,7 @@ class Brokenut: Decayable {
         let textures = (1...13).map { SKTexture(imageNamed: "brokenut_\($0).png") }
         let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
         
-        playSound(self, name: "break.wav")
+        playSound(Sounds.smash)
         runAction(animation)
     }
 }

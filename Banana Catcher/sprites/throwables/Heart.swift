@@ -7,9 +7,6 @@ class Heart: Throwable {
         let texture = SKTexture(imageNamed: "heart")
         super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.Heart)
         
-        // Doesn't work!
-        //self.physicsBody?.linearDamping *= 0.005
-        
         self.size.height *= 1.5
         self.size.width *= 1.5
         

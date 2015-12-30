@@ -19,12 +19,4 @@ class Generator {
     func generate() {
         fatalError("generate() function has not been overridden!")
     }
-    
-    internal func random(n: Int) -> Int {
-        return Int(arc4random_uniform(UInt32(n)))
-    }
-    
-    internal func randomBalanced(n: Int) -> Int {
-        return Int(arc4random_uniform(UInt32(n))) - n / 2
-    }
 }

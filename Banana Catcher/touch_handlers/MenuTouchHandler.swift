@@ -54,7 +54,7 @@ class MenuTouchHandler: TouchHandler {
     
     private func sayHello(node: SKNode, _ menuScene: MenuScene) {
         node.runAction(SKAction.runBlock {
-            PlaySound.select(from: node)
+            node.playSound(Sounds.select)
             
             menuScene.basketManSaysHello()
             })
