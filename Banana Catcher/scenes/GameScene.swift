@@ -29,7 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
         addBasketMan()
         addEvilMonkey()
         
-        BannerAds.show()
+        Ads.showBanner()
     }
     
     override func update(currentTime: CFTimeInterval) {

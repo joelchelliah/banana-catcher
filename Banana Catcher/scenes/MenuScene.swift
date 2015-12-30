@@ -42,7 +42,7 @@ class MenuScene: SKScene {
         
         observeNoAdsNotifications()
         
-        BannerAds.show()
+        Ads.showBanner()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -120,14 +120,16 @@ class MenuScene: SKScene {
     
     internal func noAdsPurchased(_: NSNotification) {
         disableNoAdsButton()
-        BannerAds.hide()
+        
+        Ads.hideBanner()
         
         showSpeechBubble(thankYouTextures)
     }
     
     internal func noAdsAlreadyPurchased(_: NSNotification) {
         disableNoAdsButton()
-        BannerAds.hide()
+        
+        Ads.hideBanner()
         
         showSpeechBubble(adsRestoredTextures)
     }

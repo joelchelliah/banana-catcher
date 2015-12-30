@@ -31,7 +31,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
         addButtons()
         addStageHelper()
         
-        BannerAds.hide()
+        Ads.hideBanner()
     }
         
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

@@ -26,8 +26,9 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
         adBannerView.hidden = true
         adBannerView.alpha = 0
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideBannerAd", name: BannerAds.hideAdsID, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showBannerAd", name: BannerAds.showAdsID, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideBannerAd", name: Ads.hideBannerID, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showBannerAd", name: Ads.showBannerID, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showInterstitialAd", name: Ads.showInterstitialID, object: nil);
         
         initGameView()
     }
@@ -92,7 +93,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
         let bannerHeight = adBannerView.bounds.height
         
         adBannerView.hidden = false
-
+        
         moveBannerViewFrame(by: screenHeight - bannerHeight)
     }
     
@@ -102,6 +103,10 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
         adBannerView.hidden = true
         
         moveBannerViewFrame(by: screenHeight + bannerHeight)
+    }
+    
+    func showInterstitialAd() {
+        requestInterstitialAdPresentation()
     }
     
     private func moveBannerViewFrame(by yDiff: CGFloat) {
