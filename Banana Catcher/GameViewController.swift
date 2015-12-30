@@ -11,14 +11,6 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     private var gameCenterEnabled = false
     private var gameCenterDefaultLeaderBoard = ""
     
-    lazy var priceFormatter: NSNumberFormatter = {
-        let pf = NSNumberFormatter()
-        pf.formatterBehavior = .Behavior10_4
-        pf.numberStyle = .CurrencyStyle
-        return pf
-    }()
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.authenticateLocalPlayer()
