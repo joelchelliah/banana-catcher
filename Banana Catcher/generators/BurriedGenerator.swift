@@ -101,7 +101,7 @@ class BurriedGenerator: Generator {
     private func burriedIndex() -> Int {
         let count = DoodadCounts.buried
         
-        return Int(arc4random_uniform(count)) + 1
+        return random(count) + 1
     }
     
     private func burriedAlpha() -> CGFloat {

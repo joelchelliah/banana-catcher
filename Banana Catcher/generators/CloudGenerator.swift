@@ -29,7 +29,7 @@ class CloudGenerator: Generator {
     
     private func spawnCloud() {
         let direction = [-1, 1][Int(arc4random_uniform(2))]
-        let cIndex = Int(arc4random_uniform(DoodadCounts.clouds)) + 1
+        let cIndex = random(DoodadCounts.clouds) + 1
         
         let cloud = SKSpriteNode(imageNamed: "cloud_\(cIndex)")
         

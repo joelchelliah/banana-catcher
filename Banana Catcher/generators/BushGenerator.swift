@@ -30,6 +30,6 @@ class BushGenerator: Generator {
     private func bushIndex() -> Int {
         let count = DoodadCounts.bushes
         
-        return Int(arc4random_uniform(count)) + 1
+        return random(count) + 1
     }
 }
