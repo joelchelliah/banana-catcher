@@ -208,6 +208,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             basketMan.lifeUp()
             incrementLives()
             
+        case is Greenmush:
+            let points = GamePoints.MushCaught
+            
+            showCollectPoints(pos, points)
+            updateScore(points)
+            basketMan.goGreen()
+            
+        case is Purplemush:
+            let points = GamePoints.MushCaught
+            
+            showCollectPoints(pos, points)
+            updateScore(points)
+            basketMan.goPurple()
+            
         default:
             unexpectedHit(item, receiver: "BasketMan")
         }
@@ -285,8 +299,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             addChild(broke)
             item.removeFromParent()
             
-        case is Heart:
-            let fadeOut = SKAction.fadeOutWithDuration(1.0)
+        case is Heart, is Greenmush, is Purplemush:
+            let fadeOut = SKAction.fadeOutWithDuration(0.5)
             let remove = SKAction.runBlock { item.removeFromParent() }
             
             item.runAction(SKAction.sequence([fadeOut, remove]))

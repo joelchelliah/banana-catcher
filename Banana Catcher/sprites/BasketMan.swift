@@ -6,11 +6,14 @@ class BasketMan: SKSpriteNode {
     private let velocity: CGFloat = 8.0
     
     private var invincible: Bool = false
+    private var sizeChanged: Bool = false
     
     private var idleTexture = SKTexture(imageNamed: "idle.png")
     private var blinkTextures = [SKTexture]()
     private var catchTextures = [SKTexture]()
     private var oneUpTextures = [SKTexture]()
+    private var greenTextures = [SKTexture]()
+    private var purpleTextures = [SKTexture]()
     private var ouchTextures = [SKTexture]()
     private var sadTextures = [SKTexture]()
     
@@ -57,8 +60,43 @@ class BasketMan: SKSpriteNode {
     func lifeUp() {
         let animation = SKAction.animateWithTextures(oneUpTextures, timePerFrame: 0.05)
         
-        playSound(Sounds.powerup)
+        playSound(Sounds.one_up)
         runAction(animation)
+    }
+    
+    func goGreen() {
+        goShroom(greenTextures, factor: 0.5)
+    }
+    
+    func goPurple() {
+        goShroom(purpleTextures, factor: 1.5)
+    }
+    
+    private func goShroom(textures: [SKTexture], factor: CGFloat) {
+        let currentSize = size
+        
+        let lockSize = SKAction.runBlock { self.sizeChanged = true }
+        let unlockSize = SKAction.runBlock { self.sizeChanged = false }
+        
+        let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
+        let change = SKAction.resizeToWidth(currentSize.width * factor, duration: 0.5)
+
+        let blink = SKAction.sequence([SKAction.fadeAlphaTo(0.25, duration: 0.1), SKAction.fadeAlphaTo(1.0, duration: 0.2)])
+        let normalize = SKAction.resizeToWidth(currentSize.width, duration: 0.5)
+        
+        playSound(Sounds.shroom)
+        
+        if sizeChanged {
+            runAction(animation)
+        } else {
+            runAction(SKAction.sequence([
+                lockSize,
+                SKAction.group([animation, change]),
+                SKAction.waitForDuration(5),
+                SKAction.group([normalize, SKAction.repeatAction(blink, count: 3)]),
+                unlockSize
+                ]))
+        }
     }
     
     func ouch() {
@@ -96,7 +134,9 @@ class BasketMan: SKSpriteNode {
     private func loadTextures() {
         blinkTextures = (1...3).map { SKTexture(imageNamed: "blink_\($0).png") }
         catchTextures = (1...10).map { SKTexture(imageNamed: "catch_\($0).png") }
-        oneUpTextures = (1...11).map { SKTexture(imageNamed: "1up_\($0).png") }
+        oneUpTextures = (1...10).map { SKTexture(imageNamed: "1up_\($0).png") }
+        greenTextures = (1...10).map { SKTexture(imageNamed: "go_green_\($0).png") }
+        purpleTextures = (1...10).map { SKTexture(imageNamed: "go_purple_\($0).png") }
         ouchTextures  = (1...10).map { SKTexture(imageNamed: "ouch_\($0).png") }
         sadTextures  = (1...8).map { SKTexture(imageNamed: "sad_\($0).png") }
     }

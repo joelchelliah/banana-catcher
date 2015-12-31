@@ -5,14 +5,16 @@ struct Sounds {
     static let angry: String = "monkey_angry"
     static let caught: String = "caught"
     static let ouch: String = "ouch"
-    static let powerup: String = "powerup"
+    static let one_up: String = "one_up"
     static let select: String = "option_select"
     static let smash: String = "smash"
     static let supernut: String = "supernut"
     static let supersmash: String = "supersmash"
     static let splat: String = "splat"
+    static let shroom: String = "shroom"
     static let clusterSplat: String = "cluster_splat"
     static let toss: String = "toss"
+    static let specialToss: String = "special_toss"
 }
 
 extension SKNode {

@@ -41,8 +41,12 @@ extension CollissionDetector {
         let isSupernut        = body.categoryBitMask & CollisionCategories.Supernut != 0
         let isHeartnut        = body.categoryBitMask & CollisionCategories.Heartnut != 0
         let isHeart           = body.categoryBitMask & CollisionCategories.Heart != 0
+        let isPurpleMush      = body.categoryBitMask & CollisionCategories.PurpleMush != 0
+        let isGreenMush       = body.categoryBitMask & CollisionCategories.GreenMush != 0
         
-        return isBanana || isBananaCluster || isCoconut || isBanananut || isSupernut || isHeartnut || isHeart
+        return isBanana || isBananaCluster
+            || isCoconut || isBanananut || isSupernut || isHeartnut
+            || isHeart || isPurpleMush || isGreenMush
     }
     
     private func handleUnexpectedContactTest(b1: SKPhysicsBody, _

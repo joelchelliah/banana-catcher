@@ -10,7 +10,7 @@ class Heart: Throwable {
         self.size.height *= 1.5
         self.size.width *= 1.5
         
-        if withThrowSound { withSound() }
+        withSound(Sounds.specialToss)
     }
     
     class func spawnAt(pos: CGPoint) -> Heart {

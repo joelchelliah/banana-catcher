@@ -7,8 +7,10 @@ struct CollisionCategories {
     static let Heartnut: UInt32 = 0x1 << 5
     static let Supernut: UInt32 = 0x1 << 6
     static let Heart: UInt32 = 0x1 << 7
-    static let BasketMan: UInt32 = 0x1 << 8
-    static let Ground: UInt32 = 0x1 << 9
-    static let EdgeBody: UInt32 = 0x1 << 10
-    static let Ignorable: UInt32 = 0x1 << 11
+    static let GreenMush: UInt32 = 0x1 << 8
+    static let PurpleMush: UInt32 = 0x1 << 9
+    static let BasketMan: UInt32 = 0x1 << 10
+    static let Ground: UInt32 = 0x1 << 11
+    static let EdgeBody: UInt32 = 0x1 << 12
+    static let Ignorable: UInt32 = 0x1 << 13
 }
