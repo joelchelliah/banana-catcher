@@ -65,8 +65,6 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
     }
     
     func throwTantrum() {
-        canThrowHeartDuringTantrum = true
-
         playSound(Sounds.angry)
         
         let start = SKAction.animateWithTextures(angryStartTextures, timePerFrame: 0.05)
@@ -131,7 +129,6 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
     // * Throwing and cooldown logic
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
-    private var canThrowHeartDuringTantrum: Bool = false
     private var canThrow: Bool = false
     
     private var coconutChance: Int = 0;
@@ -145,15 +142,6 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         if canThrow {
             activateCooldown()
             canThrow = false
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func canThrowHeart() -> Bool {
-        if canThrowHeartDuringTantrum && arc4random_uniform(3) == 1 {
-            canThrowHeartDuringTantrum = false
             return true
         } else {
             return false
@@ -188,7 +176,6 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
     internal func updateCanThrow() {
         canThrow = true
     }
-    
     
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
