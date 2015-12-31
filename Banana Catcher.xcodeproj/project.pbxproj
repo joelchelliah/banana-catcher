@@ -271,6 +271,12 @@
 		A388F4D81C31980500940540 /* thank_you_7.png in Resources */ = {isa = PBXBuildFile; fileRef = A388F4D11C31980500940540 /* thank_you_7.png */; };
 		A396BB541BB6E517002F7231 /* ScoreLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A396BB531BB6E517002F7231 /* ScoreLabel.swift */; };
 		A396BB581BB6E840002F7231 /* Lives.swift in Sources */ = {isa = PBXBuildFile; fileRef = A396BB571BB6E840002F7231 /* Lives.swift */; };
+		A3A1D8A91C352D6B004A7E44 /* ItemThrower.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1D8A81C352D6B004A7E44 /* ItemThrower.swift */; };
+		A3A1D8AC1C353775004A7E44 /* banananut.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A1D8AA1C353775004A7E44 /* banananut.png */; };
+		A3A1D8AD1C353775004A7E44 /* heartnut.png in Resources */ = {isa = PBXBuildFile; fileRef = A3A1D8AB1C353775004A7E44 /* heartnut.png */; };
+		A3A1D8AF1C35379C004A7E44 /* Banananut.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1D8AE1C35379C004A7E44 /* Banananut.swift */; };
+		A3A1D8B11C353837004A7E44 /* Heartnut.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1D8B01C353837004A7E44 /* Heartnut.swift */; };
+		A3A1D8B31C353C30004A7E44 /* ThrowSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1D8B21C353C30004A7E44 /* ThrowSupport.swift */; };
 		A3A79F931BA6D32A003C1F32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79F921BA6D32A003C1F32 /* AppDelegate.swift */; };
 		A3A79F971BA6D32A003C1F32 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79F961BA6D32A003C1F32 /* GameScene.swift */; };
 		A3A79F991BA6D32A003C1F32 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79F981BA6D32A003C1F32 /* GameViewController.swift */; };
@@ -620,6 +626,12 @@
 		A388F4D11C31980500940540 /* thank_you_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thank_you_7.png; sourceTree = "<group>"; };
 		A396BB531BB6E517002F7231 /* ScoreLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreLabel.swift; sourceTree = "<group>"; };
 		A396BB571BB6E840002F7231 /* Lives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lives.swift; sourceTree = "<group>"; };
+		A3A1D8A81C352D6B004A7E44 /* ItemThrower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemThrower.swift; sourceTree = "<group>"; };
+		A3A1D8AA1C353775004A7E44 /* banananut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banananut.png; path = images/throwables/banananut.png; sourceTree = "<group>"; };
+		A3A1D8AB1C353775004A7E44 /* heartnut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heartnut.png; path = images/throwables/heartnut.png; sourceTree = "<group>"; };
+		A3A1D8AE1C35379C004A7E44 /* Banananut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banananut.swift; sourceTree = "<group>"; };
+		A3A1D8B01C353837004A7E44 /* Heartnut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Heartnut.swift; sourceTree = "<group>"; };
+		A3A1D8B21C353C30004A7E44 /* ThrowSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowSupport.swift; sourceTree = "<group>"; };
 		A3A79F8F1BA6D32A003C1F32 /* Banana Catcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Banana Catcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3A79F921BA6D32A003C1F32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3A79F961BA6D32A003C1F32 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -724,6 +736,8 @@
 			children = (
 				A3C7B5081C2DC5F40038728B /* CollissionDetector.swift */,
 				A30E47F11C33FE82004DEE6D /* SpeechBubble.swift */,
+				A3A1D8A81C352D6B004A7E44 /* ItemThrower.swift */,
+				A3A1D8B21C353C30004A7E44 /* ThrowSupport.swift */,
 			);
 			path = traits;
 			sourceTree = "<group>";
@@ -922,6 +936,8 @@
 				A37D4B341BE3A2700071FFBF /* Coconut.swift */,
 				A3BBCA2C1C006FA900BCBCC7 /* Heart.swift */,
 				A368FC7A1C2583BE0036DDFA /* Supernut.swift */,
+				A3A1D8AE1C35379C004A7E44 /* Banananut.swift */,
+				A3A1D8B01C353837004A7E44 /* Heartnut.swift */,
 			);
 			path = throwables;
 			sourceTree = "<group>";
@@ -1165,6 +1181,7 @@
 				A3194FCB1BCD7A1800FD0122 /* banana_splat_4.png */,
 				A3194FCC1BCD7A1800FD0122 /* banana_splat_5.png */,
 				A37673631BEBB04D0079619A /* banana_splat_6.png */,
+				A3A1D8AA1C353775004A7E44 /* banananut.png */,
 				A30E48131C342510004DEE6D /* brokenut_1.png */,
 				A30E48141C342510004DEE6D /* brokenut_2.png */,
 				A30E48151C342510004DEE6D /* brokenut_3.png */,
@@ -1178,6 +1195,7 @@
 				A30E481D1C342510004DEE6D /* brokenut_11.png */,
 				A30E481E1C342510004DEE6D /* brokenut_12.png */,
 				A37D4B361BE3A29C0071FFBF /* coconut.png */,
+				A3A1D8AB1C353775004A7E44 /* heartnut.png */,
 				A30E481F1C342510004DEE6D /* superbroke_1.png */,
 				A30E48201C342510004DEE6D /* superbroke_2.png */,
 				A30E48211C342510004DEE6D /* superbroke_3.png */,
@@ -1411,6 +1429,7 @@
 				A33492A51BEDF34800A1FAE1 /* game_over_tears_2.png in Resources */,
 				A376737D1BEBC59B0079619A /* catch_menu_4.png in Resources */,
 				A376737B1BEBC59B0079619A /* catch_menu_2.png in Resources */,
+				A3A1D8AC1C353775004A7E44 /* banananut.png in Resources */,
 				A37D4B321BE379250071FFBF /* flying_7.png in Resources */,
 				A35B78221C2EE3B0006D2174 /* burried_3.png in Resources */,
 				A37673521BEB64300079619A /* caught_2.wav in Resources */,
@@ -1649,6 +1668,7 @@
 				A376737E1BEBC59B0079619A /* catch_menu_5.png in Resources */,
 				A30E480E1C341EBE004DEE6D /* supernut.png in Resources */,
 				A33492E21BEE337600A1FAE1 /* monkey_angry_3.png in Resources */,
+				A3A1D8AD1C353775004A7E44 /* heartnut.png in Resources */,
 				A3DF00DC1C2C79D900B772D5 /* 1up_5.png in Resources */,
 				A36012521BE64C2B00FDB32D /* menu_title_13.png in Resources */,
 				A33492FA1BEF534900A1FAE1 /* sad_1.png in Resources */,
@@ -1684,6 +1704,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3A1D8B11C353837004A7E44 /* Heartnut.swift in Sources */,
 				A33034F61C29AFBD008A2346 /* MusicPlayer.swift in Sources */,
 				A373A05A1C2AB233006D2802 /* TutorialScene.swift in Sources */,
 				A396BB581BB6E840002F7231 /* Lives.swift in Sources */,
@@ -1697,6 +1718,7 @@
 				A3C7B5091C2DC5F40038728B /* CollissionDetector.swift in Sources */,
 				A3DF00CD1C2C713A00B772D5 /* BushGenerator.swift in Sources */,
 				A3A79FC51BA6D46A003C1F32 /* MenuScene.swift in Sources */,
+				A3A1D8B31C353C30004A7E44 /* ThrowSupport.swift in Sources */,
 				A32394D51C2FF05900CC1B89 /* TutorialProperties.swift in Sources */,
 				A3DF00CB1C2C4BE300B772D5 /* CloudGenerator.swift in Sources */,
 				A3F33D861BAD381F0038FDFB /* CollisionCategories.swift in Sources */,
@@ -1706,12 +1728,14 @@
 				A3A79F991BA6D32A003C1F32 /* GameViewController.swift in Sources */,
 				A33492F01BEE611F00A1FAE1 /* CollectPointLabel.swift in Sources */,
 				A32394DB1C30311D00CC1B89 /* Ads.swift in Sources */,
+				A3A1D8A91C352D6B004A7E44 /* ItemThrower.swift in Sources */,
 				A32394EA1C30917200CC1B89 /* GameOverTouchHandler.swift in Sources */,
 				A32394E51C308F9A00CC1B89 /* MenuTouchHandler.swift in Sources */,
 				A30E47E21C33E5C3004DEE6D /* PlaySound.swift in Sources */,
 				A3A79FDA1BA6FE67003C1F32 /* BasketMan.swift in Sources */,
 				A32A31FB1BB8114300A12214 /* GameOverScene.swift in Sources */,
 				A3DF00C81C2C4B3500B772D5 /* DoodadCounts.swift in Sources */,
+				A3A1D8AF1C35379C004A7E44 /* Banananut.swift in Sources */,
 				A3A79FE01BA706C5003C1F32 /* EvilMonkey.swift in Sources */,
 				A360126C1BE6561D00FDB32D /* Decayable.swift in Sources */,
 				A35B78271C2EE43B006D2174 /* BurriedGenerator.swift in Sources */,

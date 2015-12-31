@@ -1,6 +1,6 @@
 import SpriteKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
+class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSupport {
     
     private var hWidth: CGFloat = 0.0
     
@@ -154,7 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
             monkey.throwTantrum()
             
             let center = SKAction.moveToX(hWidth, duration: 0.5)
-            let frenzy = monkeyCoconutFrenzy()
+            let frenzy = coconutFrenzyActions()
             let enable = SKAction.runBlock { self.monkey.enable() }
             
             monkey.runAction(SKAction.sequence([center, frenzy, enable]))
@@ -179,83 +179,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
         lives.up()
     }
     
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // * Triggerable actions
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    
-    private func monkeyThrowsSomething() {
-        if monkey.isAbleToThrow() {
-            
-            let item: Throwable = monkey.getTrowable()
-            let throwRange = CGFloat(arc4random_uniform(13)) - 6.0
-
-            item.position = CGPoint(x: monkey.position.x, y: monkey.position.y)
-            
-            addChild(item)
-            
-            item.physicsBody?.velocity = CGVectorMake(0,0)
-            item.physicsBody?.applyImpulse(CGVectorMake(throwRange, item.throwForceY()))
-        
-            monkey.bounce()
-        }
-    }
-    
-    private func monkeyCoconutFrenzy() -> SKAction {
-        let level = monkey.currentLevel()
-        assert(level > 0, "Monkey's level should be above 0!")
-        
-        let maxX: Float = 8.0
-        let step: Float = 2.0 * Float(maxX) / Float(level)
-        
-        var throwSpeedBoost = 0.0
-        var numCoconuts = level
-        if numCoconuts > 3 {
-            throwSpeedBoost = Double(numCoconuts - 3) / (20.0 + Double(numCoconuts))
-            numCoconuts = 3
-        }
-        
-        let fromLeft = (1...numCoconuts).map { frenzyThrowAction(-maxX, step: step, i: $0 - 1) }
-        let fromRight = (1...numCoconuts).map { frenzyThrowAction(maxX, step: -step, i: $0 - 1) }
-
-        let coconuts = zip(fromLeft, fromRight).flatMap { [$0, $1] }
-        let delay = SKAction.waitForDuration(0.4 - throwSpeedBoost)
-        let delays = (1...coconuts.count).map { _ in delay }
-        let frenzy = zip(coconuts, delays).flatMap { [$0, $1] }
-        
-        return SKAction.sequence(frenzy + [delay])
-    }
-    
-    private func frenzyThrowAction(start: Float, step: Float, i: Int) -> SKAction {
-        let variance: Float = Float(arc4random_uniform(4))
-        let throwX = CGFloat(start + step * Float(i) + variance)
-        
-        return SKAction.runBlock {
-            let throwable = self.frenzyThrowable()
-            
-            throwable.position = self.monkey.position
-            
-            self.addChild(throwable)
-            
-            throwable.physicsBody?.velocity = CGVectorMake(0,0)
-            throwable.physicsBody?.applyImpulse(CGVectorMake(throwX, throwable.throwForceY()))
-        }
-    }
-    
-    private func frenzyThrowable() -> Throwable {
-        let diceRoll = Int(arc4random_uniform(100))
-        
-        let shouldThrowHeart = !lives.isFull() && monkey.canThrowHeart()
-        let shouldThrowSupernut = monkey.currentLevel() > 5 && diceRoll < monkey.currentLevel()
-        
-        if shouldThrowHeart {
-            return Heart()
-        } else if shouldThrowSupernut {
-            return Supernut()
-        } else {
-            return Coconut()
-        }
-    }
-    
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // * Collission detection callbacks
@@ -273,7 +196,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
             basketMan.collect()
             updateMonkey()
             
-        case is Coconut:
+        case is Coconut, is Banananut, is Heartnut:
             coconutHitsBasketMan(pos, GamePoints.CoconutCaught)
 
         case is Supernut:
@@ -314,16 +237,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
             showCollectPoints(CGPointMake(pos.x, pos.y + 15), points)
             updateScore(points)
             basketMan.frown()
-            decrementLives()
             
             addChild(splatBanana)
             item.removeFromParent()
             
-        case is Coconut:
+        case is Coconut, is Banananut, is Heartnut:
             let spawnPos = CGPointMake(item.position.x, ground.size.height + 30)
-            let brokenut = Brokenut(pos: spawnPos)
             
-            addChild(brokenut)
+            switch item {
+                
+            case is Banananut: throwSpawnedItem(Banana.spawnAt(spawnPos))
+                
+            case is Heartnut: throwSpawnedItem(Heart.spawnAt(spawnPos))
+                
+            default: break
+            }
+
+            addChild(Brokenut(pos: spawnPos))
             item.removeFromParent()
             
         case is Supernut:
@@ -331,13 +261,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
             let spawnPos = CGPointMake(item.position.x, ground.size.height + 30)
             
             for _ in 1...numSpawns {
-                let spawn = Coconut.spawnAt(spawnPos)
-                let throwX = CGFloat(randomBalanced(25))
-                let throwY = spawn.throwForceY() + CGFloat(random(10) + 5)
-                
-                addChild(spawn)
-                spawn.physicsBody?.velocity = CGVectorMake(0,0)
-                spawn.physicsBody?.applyImpulse(CGVectorMake(throwX, throwY))
+                throwSpawnedItem(Coconut.spawnAt(spawnPos))
             }
 
             let broke = Superbroke(pos: spawnPos)

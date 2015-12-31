@@ -1,7 +1,7 @@
 import UIKit
 import SpriteKit
 
-class EvilMonkey: SKSpriteNode {
+class EvilMonkey: SKSpriteNode, ItemThrower {
     
     private var disabled: Bool = false
     
@@ -73,7 +73,7 @@ class EvilMonkey: SKSpriteNode {
         
         let start = SKAction.animateWithTextures(angryStartTextures, timePerFrame: 0.05)
         let mid = SKAction.animateWithTextures(angryMidTextures, timePerFrame: 0.05)
-        let midExtended = SKAction.repeatAction(mid, count: 4 * level + 10)
+        let midExtended = SKAction.repeatAction(mid, count: 16)
         let end = SKAction.animateWithTextures(angryEndTextures, timePerFrame: 0.05)
         
         self.runAction(SKAction.sequence([start, midExtended, end]))
@@ -153,35 +153,6 @@ class EvilMonkey: SKSpriteNode {
         }
     }
     
-    func getTrowable() -> Throwable {
-        let diceRoll = Int(arc4random_uniform(1000))
-        let chanceIncHeart = 5
-        let chanceIncNuts = 100
-        
-        if diceRoll < heartChance {
-            heartChance = 0
-            return Heart()
-        }
-        
-        heartChance += vLevel * chanceIncHeart
-        
-        if diceRoll < supernutChance {
-            supernutChance = 0
-            return Supernut()
-        }
-        
-        supernutChance += vLevel * chanceIncNuts
-        
-        if diceRoll < coconutChance {
-            coconutChance = 0
-            return Coconut()
-        }
-        
-        coconutChance += (1 + vLevel) * chanceIncNuts
-        
-        return Banana()
-    }
-    
     func canThrowHeart() -> Bool {
         if canThrowHeartDuringTantrum && arc4random_uniform(3) == 1 {
             canThrowHeartDuringTantrum = false
@@ -204,14 +175,14 @@ class EvilMonkey: SKSpriteNode {
         let lvl = currentLevel()
         
         if lvl > 24 {
-            return 0.3
+            return 0.5
         } else {
             return [
-                2.0, 1.5, 1.3, 1.1, 0.8, // 0  - 4
+                2.0, 1.5, 1.3, 1.1, 0.9, // 0  - 4
                 1.5, 1.1, 1.0, 0.9, 0.8, // 5  - 9
-                1.3, 1.0, 0.8, 0.7, 0.6, // 10 - 14
-                1.1, 0.9, 0.7, 0.5, 0.4, // 15 - 19
-                0.8, 0.8, 0.6, 0.4, 0.3  // 20 - 24
+                1.3, 1.0, 0.9, 0.8, 0.7, // 10 - 14
+                1.1, 0.9, 0.8, 0.7, 0.6, // 15 - 19
+                0.9, 0.8, 0.7, 0.6, 0.5  // 20 - 24
                 ][lvl]
         }
     }
