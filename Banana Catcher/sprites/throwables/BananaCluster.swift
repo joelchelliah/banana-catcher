@@ -15,6 +15,6 @@ class BananaCluster: Throwable {
     }
     
     override func throwForceY() -> CGFloat {
-        return 14.0
+        return 28.0
     }
 }

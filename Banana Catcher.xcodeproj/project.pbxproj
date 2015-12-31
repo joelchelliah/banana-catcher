@@ -954,12 +954,12 @@
 			children = (
 				A37D4B381BE3A4520071FFBF /* Throwable.swift */,
 				A3A79FE11BA70838003C1F32 /* Banana.swift */,
+				A3A1D8C21C354D23004A7E44 /* BananaCluster.swift */,
 				A37D4B341BE3A2700071FFBF /* Coconut.swift */,
 				A3BBCA2C1C006FA900BCBCC7 /* Heart.swift */,
 				A368FC7A1C2583BE0036DDFA /* Supernut.swift */,
 				A3A1D8AE1C35379C004A7E44 /* Banananut.swift */,
 				A3A1D8B01C353837004A7E44 /* Heartnut.swift */,
-				A3A1D8C21C354D23004A7E44 /* BananaCluster.swift */,
 			);
 			path = throwables;
 			sourceTree = "<group>";

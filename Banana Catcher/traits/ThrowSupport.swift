@@ -76,7 +76,9 @@ extension ThrowSupport where Self: GameScene {
         
         switch item {
         
-        case is Banana, is BananaCluster: return Coconut()
+        case is Banana: return Coconut()
+        
+        case is BananaCluster: return Supernut()
             
         default: return item
         }

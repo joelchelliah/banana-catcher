@@ -52,10 +52,10 @@ extension ItemThrower where Self: EvilMonkey {
 private struct DropRates {
     static let heart: [Int] = DropRates.zeros(11)        + 3.stride(to: 1, by: -1)
     static let heartnut: [Int] = DropRates.zeros(7)      + 5.stride(to: 1, by: -1)
-    static let supernut: [Int] = DropRates.zeros(5)      + 60.stride(to: 15, by: -5)
-    static let bananacluster: [Int] = DropRates.zeros(3) + 50.stride(to: 5, by: -5)
-    static let banananut: [Int] = DropRates.zeros(2)     + 10.stride(to: 1, by: -1)
-    static let coconut: [Int] =                     [20] + 40.stride(to: 20, by: -5)
+    static let supernut: [Int] = DropRates.zeros(5)      + 40.stride(to: 20, by: -2)
+    static let bananacluster: [Int] = DropRates.zeros(5) + 40.stride(to: 16, by: -2)
+    static let banananut: [Int] = DropRates.zeros(2)     + 40.stride(to: 14, by: -2)
+    static let coconut: [Int] =                     [20] + 30.stride(to: 12, by: -2)
     
     private static func zeros(num: Int) -> [Int] {
         return [Int](count: num, repeatedValue: 0)
