@@ -30,7 +30,7 @@ class BasketMan: SKSpriteNode {
         self.physicsBody?.collisionBitMask = CollisionCategories.Ground | CollisionCategories.EdgeBody
         
         loadTextures()
-        animate()
+        idle()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -51,14 +51,14 @@ class BasketMan: SKSpriteNode {
     }
     
     func collect() {
-        let animation = SKAction.animateWithTextures(catchTextures, timePerFrame: 0.05)
+        let animation = animateTextures(catchTextures)
         
         playSound(Sounds.caught)
         runAction(animation)
     }
     
     func lifeUp() {
-        let animation = SKAction.animateWithTextures(oneUpTextures, timePerFrame: 0.05)
+        let animation = animateTextures(oneUpTextures)
         
         playSound(Sounds.one_up)
         runAction(animation)
@@ -78,7 +78,7 @@ class BasketMan: SKSpriteNode {
         let lockSize = SKAction.runBlock { self.sizeChanged = true }
         let unlockSize = SKAction.runBlock { self.sizeChanged = false }
         
-        let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
+        let animation = animateTextures(textures)
         let change = SKAction.resizeToWidth(currentSize.width * factor, duration: 0.5)
 
         let blink = SKAction.sequence([SKAction.fadeAlphaTo(0.25, duration: 0.1), SKAction.fadeAlphaTo(1.0, duration: 0.2)])
@@ -102,7 +102,7 @@ class BasketMan: SKSpriteNode {
     func ouch() {
         invincible = true
         
-        let animation = SKAction.animateWithTextures(ouchTextures, timePerFrame: 0.05)
+        let animation = animateTextures(ouchTextures)
         let fadeOut = SKAction.fadeAlphaTo(0.3, duration: 0.1)
         let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
         let fadeOutIn = SKAction.repeatAction(SKAction.sequence([fadeOut, fadeIn]), count: 3)
@@ -121,14 +121,18 @@ class BasketMan: SKSpriteNode {
         self.runAction(animation)
     }
     
-    private func animate() {
-        let frames = [blinkTextures, [idleTexture]].flatMap { $0 }
+    private func idle() {
+        let textures = [blinkTextures, [idleTexture]].flatMap { $0 }
         
-        let blink = SKAction.animateWithTextures(frames, timePerFrame: 0.05)
+        let blink = animateTextures(textures)
         let delay = SKAction.waitForDuration(1.0)
         let animation = SKAction.sequence([blink, delay, blink, blink, delay, delay])
         
         self.runAction(SKAction.repeatActionForever(animation))
+    }
+    
+    private func animateTextures(textures: [SKTexture]) -> SKAction {
+        return SKAction.animateWithTextures(textures, timePerFrame: 0.05)
     }
     
     private func loadTextures() {
