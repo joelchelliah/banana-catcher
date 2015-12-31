@@ -34,14 +34,15 @@ extension CollissionDetector {
     }
     
     private func isThrowable(body: SKPhysicsBody) -> Bool {
-        let isBanana   = body.categoryBitMask & CollisionCategories.Banana != 0
-        let isCoconut  = body.categoryBitMask & CollisionCategories.Coconut != 0
-        let isBanananut  = body.categoryBitMask & CollisionCategories.Banananut != 0
-        let isSupernut = body.categoryBitMask & CollisionCategories.Supernut != 0
-        let isHeartnut = body.categoryBitMask & CollisionCategories.Heartnut != 0
-        let isHeart    = body.categoryBitMask & CollisionCategories.Heart != 0
+        let isBanana          = body.categoryBitMask & CollisionCategories.Banana != 0
+        let isBananaCluster   = body.categoryBitMask & CollisionCategories.BananaCluster != 0
+        let isCoconut         = body.categoryBitMask & CollisionCategories.Coconut != 0
+        let isBanananut       = body.categoryBitMask & CollisionCategories.Banananut != 0
+        let isSupernut        = body.categoryBitMask & CollisionCategories.Supernut != 0
+        let isHeartnut        = body.categoryBitMask & CollisionCategories.Heartnut != 0
+        let isHeart           = body.categoryBitMask & CollisionCategories.Heart != 0
         
-        return isBanana || isCoconut || isBanananut || isSupernut || isHeartnut || isHeart
+        return isBanana || isBananaCluster || isCoconut || isBanananut || isSupernut || isHeartnut || isHeart
     }
     
     private func handleUnexpectedContactTest(b1: SKPhysicsBody, _

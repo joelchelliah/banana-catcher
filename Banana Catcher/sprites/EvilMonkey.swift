@@ -35,8 +35,6 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
     // * Rage logic
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
-    private let requiredRageDefault: Int = 3
-    
     private var rage: Int = 0
     private var requiredRage: Int = 3
     private var level: Int = 0
@@ -60,7 +58,7 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         if level == 5 {
             vLevel += 1
             level = 0
-            requiredRage = requiredRageDefault
+            requiredRage = vLevel + 3
         }
         
         print("level: \(level), vLevel: \(vLevel), currentLevel: \(currentLevel())")
@@ -175,12 +173,12 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         let lvl = currentLevel()
         
         if lvl > 24 {
-            return 0.5
+            return 0.4
         } else {
             return [
                 2.0, 1.5, 1.3, 1.1, 0.9, // 0  - 4
-                1.5, 1.1, 1.0, 0.9, 0.8, // 5  - 9
-                1.3, 1.0, 0.9, 0.8, 0.7, // 10 - 14
+                1.5, 1.3, 1.1, 0.9, 0.8, // 5  - 9
+                1.3, 1.1, 0.9, 0.8, 0.7, // 10 - 14
                 1.1, 0.9, 0.8, 0.7, 0.6, // 15 - 19
                 0.9, 0.8, 0.7, 0.6, 0.5  // 20 - 24
                 ][lvl]

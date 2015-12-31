@@ -11,6 +11,7 @@ struct Sounds {
     static let supernut: String = "supernut"
     static let supersmash: String = "supersmash"
     static let splat: String = "splat"
+    static let clusterSplat: String = "cluster_splat"
     static let toss: String = "toss"
 }
 

@@ -189,12 +189,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
         
         switch item {
         case is Banana:
-            let points = GamePoints.BananaCaught
-            
-            showCollectPoints(pos, points)
-            updateScore(points)
-            basketMan.collect()
-            updateMonkey()
+            bananaHitsBasketMan(pos, GamePoints.BananaCaught)
+        
+        case is BananaCluster:
+            bananaHitsBasketMan(pos, GamePoints.BananaClusterCaught)
             
         case is Coconut, is Banananut, is Heartnut:
             coconutHitsBasketMan(pos, GamePoints.CoconutCaught)
@@ -215,6 +213,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
         }
         
         item.removeFromParent()
+    }
+    
+    private func bananaHitsBasketMan(pos: CGPoint, _ points: Int) {
+        showCollectPoints(pos, points)
+        updateScore(points)
+        basketMan.collect()
+        updateMonkey()
     }
     
     private func coconutHitsBasketMan(pos: CGPoint, _ points: Int) {
@@ -239,6 +244,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             basketMan.frown()
             
             addChild(splatBanana)
+            item.removeFromParent()
+            
+        case is BananaCluster:
+            let splat = SplatBananaCluster(pos: CGPointMake(item.position.x, ground.size.height + 5))
+            let points = GamePoints.BananaClusterMissed
+            
+            showCollectPoints(CGPointMake(pos.x, pos.y + 15), points)
+            updateScore(points)
+            basketMan.frown()
+            
+            addChild(splat)
             item.removeFromParent()
             
         case is Coconut, is Banananut, is Heartnut:

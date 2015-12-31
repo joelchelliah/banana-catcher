@@ -8,7 +8,7 @@ protocol ItemThrower {
 extension ItemThrower where Self: EvilMonkey {
     
     func getTrowable() -> Throwable {
-        let throwables = [Heart(), Heartnut(), Supernut(), Banananut(), Coconut()]
+        let throwables = [Heart(), Heartnut(), Supernut(), BananaCluster(), Banananut(), Coconut()]
         
         for throwable in throwables {
             if Int(random(100)) < dropRateFor(throwable) {
@@ -28,6 +28,8 @@ extension ItemThrower where Self: EvilMonkey {
         
         case is Supernut: return lookUp(DropRates.supernut)
         
+        case is BananaCluster: return lookUp(DropRates.bananacluster)
+            
         case is Banananut: return lookUp(DropRates.banananut)
             
         case is Coconut: return lookUp(DropRates.coconut)
@@ -48,12 +50,12 @@ extension ItemThrower where Self: EvilMonkey {
 }
 
 private struct DropRates {
-    static let heart: [Int] = DropRates.zeros(11)        + 5.stride(to: 1, by: -1)
-    static let heartnut: [Int] = DropRates.zeros(8)      + 10.stride(to: 1, by: -1)
-    static let supernut: [Int] = DropRates.zeros(5)      + 50.stride(to: 10, by: -5)
-    static let bananacluster: [Int] = DropRates.zeros(5) + 32.stride(to: 4, by: -4)
+    static let heart: [Int] = DropRates.zeros(11)        + 3.stride(to: 1, by: -1)
+    static let heartnut: [Int] = DropRates.zeros(7)      + 5.stride(to: 1, by: -1)
+    static let supernut: [Int] = DropRates.zeros(5)      + 60.stride(to: 15, by: -5)
+    static let bananacluster: [Int] = DropRates.zeros(3) + 50.stride(to: 5, by: -5)
     static let banananut: [Int] = DropRates.zeros(2)     + 10.stride(to: 1, by: -1)
-    static let coconut: [Int] =                            [20] + 40.stride(to: 20, by: -5)
+    static let coconut: [Int] =                     [20] + 40.stride(to: 20, by: -5)
     
     private static func zeros(num: Int) -> [Int] {
         return [Int](count: num, repeatedValue: 0)

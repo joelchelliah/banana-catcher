@@ -23,8 +23,10 @@ extension ThrowSupport where Self: GameScene {
     }
     
     func throwSpawnedItem(spawn: Throwable) {
+        let yForce = spawn.throwForceY()
+        
         let throwX = CGFloat(randomBalanced(25))
-        let throwY = spawn.throwForceY() + CGFloat(random(10) + 5)
+        let throwY = yForce + CGFloat(random(Int(yForce)))
         
         addChild(spawn)
         
@@ -72,10 +74,11 @@ extension ThrowSupport where Self: GameScene {
     private func getFrenzyThrowable() -> Throwable {
         let item = monkey.getTrowable()
         
-        if let _ = item as? Banana {
-            return Coconut()
-        } else {
-            return item
+        switch item {
+        
+        case is Banana, is BananaCluster: return Coconut()
+            
+        default: return item
         }
     }
 }
