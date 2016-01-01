@@ -8,7 +8,7 @@ class Generator {
     internal let hWidth: CGFloat
     internal let yBaseLevel: CGFloat
     
-    init(forScene: SKScene, yBasePos: CGFloat) {
+    init(forScene: SKScene, yBasePos: CGFloat, fromZPos: CGFloat = -800) {
         scene = forScene
         height = scene.frame.height
         width = scene.frame.width

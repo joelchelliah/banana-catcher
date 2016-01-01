@@ -2,35 +2,31 @@ import SpriteKit
 
 class TutorialScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
     
-    private var hWidth: CGFloat = 0.0
-
-    private let ground: Ground = Ground()
-    private let basketMan: BasketMan = BasketMan()
-    private let monkey: EvilMonkey = EvilMonkey()
-    
     private var touchHandler: TouchHandler!
+    
+    private var props: PropsManager!
+    private var basketMan: BasketMan!
+    private var monkey: EvilMonkey!
+    private var infoLabel:  InfoLabel!
+    private var nextButton: SKSpriteNode!
+
     private var helper: TutorialStageHelper!
     
-    private var nextButton: SKSpriteNode!
-    private var infoLabel:  InfoLabel!
-    
     override func didMoveToView(view: SKView) {
-        hWidth = size.width / 2
         touchHandler = TutorialTouchHandler(forScene: self)
+        
+        props = TutorialProps.init(forScene: self)
+        props.add()
+        
+        basketMan = props.basketMan
+        monkey = props.monkey
+        infoLabel = props.infoLabel
+        nextButton = props.nextButton
+        
+        helper = TutorialStageHelper(scene: self)
         
         musicPlayer.change("tutorial")
 
-        adjustPhysics()
-        addBackgroundImage()
-        addGround()
-        addDoodads()
-        addBasketMan()
-        addEvilMonkey()
-        addDarkness()
-        addLabels()
-        addButtons()
-        addStageHelper()
-        
         Ads.hideBanner()
     }
         
@@ -48,89 +44,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
             onHitBasketMan: throwableHitsBasketMan,
             onHitGround: throwableHitsGround)
     }
-    
-    
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // * Add game elements
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    
-    private func adjustPhysics() {
-        self.physicsWorld.contactDelegate = self
-        self.physicsWorld.gravity = CGVectorMake(0, -5)
-        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
-        self.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
-    }
-    
-    private func addBackgroundImage() {
-        let background = SKSpriteNode(imageNamed: "background.png")
-        background.position = CGPointMake(CGRectGetMidX(frame), background.size.height / 2)
-        background.zPosition = -999
-        addChild(background)
-    }
-    
-    private func addGround() {
-        ground.position = CGPoint(x: hWidth, y: ground.size.height / 2)
-        addChild(ground)
-    }
-    
-    private func addDoodads() {
-        let groundLevel = ground.size.height
-        let cloudGen = CloudGenerator(forScene: self)
-        let bushGen = BushGenerator(forScene: self, yBasePos: groundLevel)
-        let burriedGen = BurriedGenerator(forScene: self, yBasePos: groundLevel)
-        
-        [burriedGen, bushGen, cloudGen].forEach { $0.generate() }
-    }
-    
-    private func addBasketMan() {
-        basketMan.position = CGPoint(x: hWidth, y: ground.size.height + 10)
-        
-        addChild(basketMan)
-    }
-    
-    private func addEvilMonkey() {
-        monkey.position = CGPoint(x: hWidth, y: size.height - 180)
-        
-        addChild(monkey)
-    }
-    
-    private func addDarkness() {
-        let topDarkness = SKSpriteNode(imageNamed: "darkness_top.png")
-        let bottomDarkness = SKSpriteNode(imageNamed: "darkness_bottom.png")
-        
-        topDarkness.size.height *= 0.5
-        bottomDarkness.size.height *= 0.7
-        
-        topDarkness.position = CGPointMake(hWidth, size.height - topDarkness.size.height / 2)
-        bottomDarkness.position = CGPointMake(hWidth, bottomDarkness.size.height / 2 - 50)
-        
-        [topDarkness, bottomDarkness].forEach {
-            $0.zPosition = -600
-            addChild($0)
-        }
-    }
-    
-    private func addLabels() {
-        let zPos: CGFloat = -500
-        let header = TutorialLabel(x: hWidth, y: size.height - 45, zPosition: zPos)
-        
-        infoLabel = InfoLabel(x: hWidth, y: size.height - 100, zPosition: zPos)
-        
-        addChild(header)
-        addChild(infoLabel)
-    }
-    
-    private func addButtons() {
-        let buttonGenerator = ButtonGenerator(forScene: self, yBasePos: 40)
-        
-        buttonGenerator.generate()
-        
-        nextButton = buttonGenerator.nextButton
-    }
-    
-    private func addStageHelper() {
-        helper = TutorialStageHelper(scene: self)
-    }
+
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // * Tutorial stages
@@ -159,7 +73,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
     }
     
     func basketManMoves(x: CGFloat) {
-        let destination = hWidth + x
+        let destination = CGRectGetMidX(frame) + x
         let distance = abs(basketMan.position.x - destination)
         let duration = NSTimeInterval(distance / 200)
         
@@ -214,7 +128,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
             item.removeFromParent()
             
         case is Coconut:
-            let pos = CGPointMake(item.position.x, ground.size.height + 5)
+            let pos = CGPointMake(item.position.x, props.groundLevel + 5)
             let brokenut = Brokenut(pos: pos)
             
             addChild(brokenut)

@@ -4,7 +4,7 @@ struct Ads {
     
     static let showInterstitialID: String = "showInterstitialID"
     static let showBannerID: String = "showBannerID"
-    static let hideBannerID: String = "showBannerID"
+    static let hideBannerID: String = "hideBannerID"
     
     static func showInterstitial() {
         if !NoAds.alreadyPurchased() {

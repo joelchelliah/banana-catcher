@@ -21,3 +21,13 @@ extension SpeechBubble where Self: SKScene {
         setSpeechBubble(bubble)
     }
 }
+
+struct SpeechBubbles {
+    static let adsRestored = range.map { SKTexture(imageNamed: "ads_restored_\($0).png") }
+    static let hello = range.map { SKTexture(imageNamed: "hello_\($0).png") }
+    static let pleaseWait = range.map { SKTexture(imageNamed: "please_wait_\($0).png") }
+    static let thankYou = range.map { SKTexture(imageNamed: "thank_you_\($0).png") }
+    static let sniffle = range.map { SKTexture(imageNamed: "sniffle_\($0).png") }
+    
+    private static let range = (1...7)
+}

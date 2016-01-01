@@ -58,6 +58,11 @@
 		A3194FCD1BCD7A1800FD0122 /* banana_splat_3.png in Resources */ = {isa = PBXBuildFile; fileRef = A3194FCA1BCD7A1800FD0122 /* banana_splat_3.png */; };
 		A3194FCE1BCD7A1800FD0122 /* banana_splat_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A3194FCB1BCD7A1800FD0122 /* banana_splat_4.png */; };
 		A3194FCF1BCD7A1800FD0122 /* banana_splat_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A3194FCC1BCD7A1800FD0122 /* banana_splat_5.png */; };
+		A31A51E21C369E7400FBCBBE /* PropsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A51E11C369E7400FBCBBE /* PropsManager.swift */; };
+		A31A51E41C369FD900FBCBBE /* GameProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A51E31C369FD900FBCBBE /* GameProps.swift */; };
+		A31A51E61C36B09F00FBCBBE /* MenuProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A51E51C36B09F00FBCBBE /* MenuProps.swift */; };
+		A31A51E81C36B8FB00FBCBBE /* TutorialProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A51E71C36B8FB00FBCBBE /* TutorialProps.swift */; };
+		A31A51EA1C36BFA800FBCBBE /* GameOverProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A51E91C36BFA800FBCBBE /* GameOverProps.swift */; };
 		A32394D11C2FDBE200CC1B89 /* ButtonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32394D01C2FDBE200CC1B89 /* ButtonProperties.swift */; };
 		A32394D31C2FE12F00CC1B89 /* GameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32394D21C2FE12F00CC1B89 /* GameLabel.swift */; };
 		A32394D51C2FF05900CC1B89 /* TutorialProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32394D41C2FF05900CC1B89 /* TutorialProperties.swift */; };
@@ -448,6 +453,11 @@
 		A3194FCA1BCD7A1800FD0122 /* banana_splat_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_3.png; path = images/throwables/banana_splat_3.png; sourceTree = "<group>"; };
 		A3194FCB1BCD7A1800FD0122 /* banana_splat_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_4.png; path = images/throwables/banana_splat_4.png; sourceTree = "<group>"; };
 		A3194FCC1BCD7A1800FD0122 /* banana_splat_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = banana_splat_5.png; path = images/throwables/banana_splat_5.png; sourceTree = "<group>"; };
+		A31A51E11C369E7400FBCBBE /* PropsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropsManager.swift; sourceTree = "<group>"; };
+		A31A51E31C369FD900FBCBBE /* GameProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameProps.swift; sourceTree = "<group>"; };
+		A31A51E51C36B09F00FBCBBE /* MenuProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuProps.swift; sourceTree = "<group>"; };
+		A31A51E71C36B8FB00FBCBBE /* TutorialProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialProps.swift; sourceTree = "<group>"; };
+		A31A51E91C36BFA800FBCBBE /* GameOverProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverProps.swift; sourceTree = "<group>"; };
 		A32394D01C2FDBE200CC1B89 /* ButtonProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonProperties.swift; sourceTree = "<group>"; };
 		A32394D21C2FE12F00CC1B89 /* GameLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLabel.swift; sourceTree = "<group>"; };
 		A32394D41C2FF05900CC1B89 /* TutorialProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialProperties.swift; sourceTree = "<group>"; };
@@ -820,6 +830,18 @@
 			path = extensions;
 			sourceTree = "<group>";
 		};
+		A31A51E01C369E0600FBCBBE /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A31A51E11C369E7400FBCBBE /* PropsManager.swift */,
+				A31A51E31C369FD900FBCBBE /* GameProps.swift */,
+				A31A51E91C36BFA800FBCBBE /* GameOverProps.swift */,
+				A31A51E51C36B09F00FBCBBE /* MenuProps.swift */,
+				A31A51E71C36B8FB00FBCBBE /* TutorialProps.swift */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
 		A32394E01C308ECB00CC1B89 /* touch_handlers */ = {
 			isa = PBXGroup;
 			children = (
@@ -976,6 +998,7 @@
 		A37D4B3B1BE3AEB90071FFBF /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A31A51E01C369E0600FBCBBE /* helpers */,
 				A3A79F961BA6D32A003C1F32 /* GameScene.swift */,
 				A3A79FC41BA6D46A003C1F32 /* MenuScene.swift */,
 				A32A31FA1BB8114300A12214 /* GameOverScene.swift */,
@@ -1850,8 +1873,11 @@
 				A37D4B351BE3A2700071FFBF /* Coconut.swift in Sources */,
 				A3A79FDC1BA6FFDC003C1F32 /* Ground.swift in Sources */,
 				A32394D31C2FE12F00CC1B89 /* GameLabel.swift in Sources */,
+				A31A51EA1C36BFA800FBCBBE /* GameOverProps.swift in Sources */,
 				A388F4911C312E5E00940540 /* NoAds.swift in Sources */,
+				A31A51E41C369FD900FBCBBE /* GameProps.swift in Sources */,
 				A373A0621C2AD8A0006D2802 /* InfoLabel.swift in Sources */,
+				A31A51E21C369E7400FBCBBE /* PropsManager.swift in Sources */,
 				A3C7B5091C2DC5F40038728B /* CollissionDetector.swift in Sources */,
 				A3DF00CD1C2C713A00B772D5 /* BushGenerator.swift in Sources */,
 				A3A79FC51BA6D46A003C1F32 /* MenuScene.swift in Sources */,
@@ -1884,11 +1910,13 @@
 				A3A1D8D11C358102004A7E44 /* Purplemush.swift in Sources */,
 				A30E48101C341F00004DEE6D /* Superbroke.swift in Sources */,
 				A37673681BEBB9200079619A /* BasketManMenu.swift in Sources */,
+				A31A51E81C36B8FB00FBCBBE /* TutorialProps.swift in Sources */,
 				A32394E81C30911600CC1B89 /* TutuorialTouchHandler.swift in Sources */,
 				A3A79FE21BA70838003C1F32 /* Banana.swift in Sources */,
 				A3BBCA2D1C006FA900BCBCC7 /* Heart.swift in Sources */,
 				A32394E61C308F9A00CC1B89 /* TouchHandler.swift in Sources */,
 				A37D4B391BE3A4520071FFBF /* Throwable.swift in Sources */,
+				A31A51E61C36B09F00FBCBBE /* MenuProps.swift in Sources */,
 				A3C9559E1BCACFCC000E6274 /* SplatBanana.swift in Sources */,
 				A396BB541BB6E517002F7231 /* ScoreLabel.swift in Sources */,
 				A32394D11C2FDBE200CC1B89 /* ButtonProperties.swift in Sources */,

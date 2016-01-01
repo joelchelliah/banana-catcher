@@ -42,8 +42,8 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     
     
     private func initGameScene() -> SKScene {
-        let gameScene = MenuScene(size: view.bounds.size)
-        //let gameScene = GameOverScene(size: view.bounds.size)
+        //let gameScene = MenuScene(size: view.bounds.size)
+        let gameScene = GameOverScene(size: view.bounds.size)
         //let gameScene = TutorialScene(size: view.bounds.size)
         //let gameScene = GameScene(size: view.bounds.size)
         
@@ -82,6 +82,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     }
     
     func showBannerAd() {
+        print("called show banner")
         let bannerHeight = adBannerView.bounds.height
         
         adBannerView.hidden = false
@@ -90,6 +91,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     }
     
     func hideBannerAd() {
+        print("called hide banner")
         let bannerHeight = adBannerView.bounds.height
         
         adBannerView.hidden = true

@@ -2,51 +2,38 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSupport {
     
-    private var hWidth: CGFloat = 0.0
-    
-    let ground: Ground = Ground()
-    let basketMan: BasketMan = BasketMan()
-    let monkey: EvilMonkey = EvilMonkey()
-    let scoreLabel: ScoreLabel = ScoreLabel()
-    let lives: Lives = Lives()
+    var props: PropsManager!
+    var basketMan: BasketMan!
+    var monkey: EvilMonkey!
+    var lives: Lives!
+    var scoreLabel: ScoreLabel!
     
     var touching = false
     var touchLoc = CGPointMake(0, 0)
     
     override func didMoveToView(view: SKView) {
-        hWidth = size.width / 2
         score = 0
         
-        musicPlayer.change("game_1")
+        props = GameProps.init(forScene: self)
+        props.add()
         
-        adjustGravity()
-        addBackgroundImage()
-        addScore()
-        addLives()
-        addEdgeBody()
-        addGround()
-        addDoodads()
-        addBasketMan()
-        addEvilMonkey()
+        basketMan = props.basketMan
+        monkey = props.monkey
+        lives = props.lives
+        scoreLabel = props.scoreLabel
+        
+        musicPlayer.change("game_1")
         
         Ads.showBanner()
     }
     
     override func update(currentTime: CFTimeInterval) {
         monkey.move(frame.width)
+        
         monkeyThrowsSomething()
         
-        let leftEdge = basketMan.size.width / 2
-        let rightEdge = size.width - basketMan.size.width / 2
-        
-        if basketMan.position.x < leftEdge {
-            basketMan.position.x = leftEdge
-        } else if basketMan.position.x > rightEdge {
-            basketMan.position.x = rightEdge
-        }
-        
         if touching {
-            basketMan.move(touchLoc)
+            basketMan.move(touchLoc, range: frame.width)
         }   
     }
     
@@ -74,61 +61,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             onHitGround: throwableHitsGround)
     }
     
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // * Add game elements
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    
-    private func adjustGravity() {
-        self.physicsWorld.gravity = CGVectorMake(0, -5)
-        self.physicsWorld.contactDelegate = self
-    }
-    
-    private func addBackgroundImage() {
-        let background = SKSpriteNode(imageNamed: "background.png")
-        background.position = CGPointMake(CGRectGetMidX(frame), background.size.height / 2)
-        background.zPosition = -999
-        addChild(background)
-    }
-    
-    private func addScore() {
-        scoreLabel.position = CGPoint(x: 10, y: frame.height - 30)
-        addChild(scoreLabel)
-    }
-    
-    private func addLives() {
-        lives.position = CGPoint(x: frame.width - lives.size.width, y: frame.height - 30)
-        addChild(lives)
-    }
-    
-    private func addEdgeBody() {
-        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
-        self.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
-    }
-    
-    private func addGround() {
-        ground.position = CGPoint(x: hWidth, y: ground.size.height / 2)
-        addChild(ground)
-    }
-    
-    private func addDoodads() {
-        let groundLevel = ground.size.height
-        let cloudGen = CloudGenerator(forScene: self)
-        let bushGen = BushGenerator(forScene: self, yBasePos: groundLevel)
-        let burriedGen = BurriedGenerator(forScene: self, yBasePos: groundLevel)
-        
-        [burriedGen, bushGen, cloudGen].forEach { $0.generate() }
-    }
-    
-    private func addBasketMan() {
-        basketMan.position = CGPoint(x: hWidth, y: ground.size.height + 10)
-        addChild(basketMan)
-    }
-    
-    private func addEvilMonkey() {
-        monkey.position = CGPoint(x: hWidth, y: frame.height - 130)
-        addChild(monkey)
-    }
-    
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // * Update states
@@ -153,7 +85,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             monkey.disable()
             monkey.throwTantrum()
             
-            let center = SKAction.moveToX(hWidth, duration: 0.5)
+            let center = SKAction.moveToX(CGRectGetMidX(frame), duration: 0.5)
             let frenzy = coconutFrenzyActions()
             let enable = SKAction.runBlock { self.monkey.enable() }
             
@@ -250,18 +182,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
         
         switch item {
         case is Banana:
-            let splatBanana = SplatBanana(pos: CGPointMake(item.position.x, ground.size.height + 5))
+            let yPos = props.groundLevel + 5
+            let splat = SplatBanana(pos: CGPointMake(item.position.x, yPos))
             let points = GamePoints.BananaMissed
             
             showCollectPoints(CGPointMake(pos.x, pos.y + 15), points)
             updateScore(points)
             basketMan.frown()
             
-            addChild(splatBanana)
+            addChild(splat)
             item.removeFromParent()
             
         case is BananaCluster:
-            let splat = SplatBananaCluster(pos: CGPointMake(item.position.x, ground.size.height + 5))
+            let yPos = props.groundLevel + 5
+            let splat = SplatBananaCluster(pos: CGPointMake(item.position.x, yPos))
             let points = GamePoints.BananaClusterMissed
             
             showCollectPoints(CGPointMake(pos.x, pos.y + 15), points)
@@ -272,7 +206,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             item.removeFromParent()
             
         case is Coconut, is Banananut, is Heartnut:
-            let spawnPos = CGPointMake(item.position.x, ground.size.height + 30)
+            let yPos = props.groundLevel + 30
+            let spawnPos = CGPointMake(item.position.x, yPos)
             
             switch item {
                 
@@ -287,8 +222,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             item.removeFromParent()
             
         case is Supernut:
+            let yPos = props.groundLevel + 30
             let numSpawns: Int = monkey.currentLevel() / 5
-            let spawnPos = CGPointMake(item.position.x, ground.size.height + 30)
+            let spawnPos = CGPointMake(item.position.x, yPos)
             
             for _ in 1...numSpawns {
                 throwSpawnedItem(Coconut.spawnAt(spawnPos))

@@ -37,7 +37,16 @@ class BasketMan: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func move(touch: CGPoint) {
+    func move(touch: CGPoint, range: CGFloat) {
+        let leftEdge = size.width / 2
+        let rightEdge = range - size.width / 2
+        
+        if position.x < leftEdge {
+            position.x = leftEdge
+        } else if position.x > rightEdge {
+            position.x = rightEdge
+        }
+        
         let dx = touch.x - position.x
         let mag = abs(dx)
         

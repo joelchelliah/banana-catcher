@@ -6,6 +6,7 @@ let musicPlayer = MusicPlayer(music: "menu")
 let leaderboardID = "grp.banana.catcher"
 
 var score: Int = 0
+var highScore: Int = 0
 var soundEnabled: Bool = false
 
 

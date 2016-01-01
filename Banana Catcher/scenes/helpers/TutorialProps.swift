@@ -1,0 +1,95 @@
+import Foundation
+import SpriteKit
+
+class TutorialProps: PropsManager {
+    
+    init(forScene scene: TutorialScene) {
+        super.init(forScene: scene)
+    }
+    
+    override func add() {
+        addBackground()
+        addGround()
+        addDoodads()
+        addBasketMan()
+        addEvilMonkey()
+        addDarkness()
+        addLabels()
+        addButtons()
+    }
+    
+    
+    private func addBackground() {
+        let background = SKSpriteNode(imageNamed: "background.png")
+        background.position = CGPointMake(hWidth, background.size.height / 2)
+        background.zPosition = nextZ()
+        
+        scene.addChild(background)
+    }
+    
+    private func addGround() {
+        let ground: Ground = Ground()
+        ground.position = CGPoint(x: hWidth, y: ground.size.height / 2)
+        
+        groundLevel = ground.size.height
+        
+        scene.addChild(ground)
+    }
+    
+    private func addDoodads() {
+        let cloudGen = CloudGenerator(forScene: scene, fromZPos: nextZ())
+        let bushGen = BushGenerator(forScene: scene, yBasePos: groundLevel, fromZPos: nextZ())
+        let burriedGen = BurriedGenerator(forScene: scene, yBasePos: groundLevel, fromZPos: nextZ())
+        
+        [burriedGen, bushGen, cloudGen].forEach { $0.generate() }
+        
+        advanceZBy(300)
+    }
+    
+    private func addDarkness() {
+        let top = SKSpriteNode(imageNamed: "darkness_top.png")
+        let bot = SKSpriteNode(imageNamed: "darkness_bottom.png")
+        
+        top.size.height *= 0.5
+        bot.size.height *= 0.7
+        
+        top.position = CGPointMake(hWidth, height - top.size.height / 2)
+        bot.position = CGPointMake(hWidth, bot.size.height / 2 - 50)
+        
+        [top, bot].forEach {
+            $0.zPosition = nextZ()
+            scene.addChild($0)
+        }
+    }
+    
+    private func addBasketMan() {
+        basketMan = BasketMan()
+        basketMan.position = CGPoint(x: hWidth, y: groundLevel + 10)
+        
+        scene.addChild(basketMan)
+    }
+    
+    private func addEvilMonkey() {
+        monkey = EvilMonkey()
+        monkey.position = CGPoint(x: hWidth, y: height - 180)
+        
+        scene.addChild(monkey)
+    }
+    
+    private func addLabels() {
+        let header = TutorialLabel(x: hWidth, y: height - 45, zPosition: nextZ())
+        
+        infoLabel = InfoLabel(x: hWidth, y: height - 100, zPosition: nextZ())
+        
+        scene.addChild(header)
+        scene.addChild(infoLabel)
+    }
+    
+    private func addButtons() {
+        let buttonGenerator = ButtonGenerator(forScene: scene, yBasePos: 40, fromZPos: nextZ())
+        
+        buttonGenerator.generate()
+        
+        nextButton = buttonGenerator.nextButton
+    }
+}

@@ -6,7 +6,7 @@ class ButtonGenerator: Generator {
     private var buttonPositions: [CGPoint]!
     private var buttonAnimations: [SKAction]!
     
-    override init(forScene scene: SKScene, yBasePos: CGFloat) {
+    override init(forScene scene: SKScene, yBasePos: CGFloat, fromZPos: CGFloat = -800) {
         super.init(forScene: scene, yBasePos: yBasePos)
         
         buttonPositions = initButtonPositions()
