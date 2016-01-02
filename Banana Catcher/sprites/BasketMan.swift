@@ -7,6 +7,7 @@ class BasketMan: SKSpriteNode {
     
     private var invincible: Bool = false
     private var sizeChanged: Bool = false
+    private let originalWidth: CGFloat
     
     private var idleTexture = SKTexture(imageNamed: "idle.png")
     private var blinkTextures = [SKTexture]()
@@ -18,6 +19,7 @@ class BasketMan: SKSpriteNode {
     private var sadTextures = [SKTexture]()
     
     init() {
+        originalWidth = idleTexture.size().width
         super.init(texture: idleTexture, color: SKColor.clearColor(), size: idleTexture.size())
         
         self.physicsBody = SKPhysicsBody(texture: self.texture!,size:self.size)
@@ -82,27 +84,35 @@ class BasketMan: SKSpriteNode {
     }
     
     private func goShroom(textures: [SKTexture], factor: CGFloat) {
-        let currentSize = size
-        
         let lockSize = SKAction.runBlock { self.sizeChanged = true }
         let unlockSize = SKAction.runBlock { self.sizeChanged = false }
         
         let animation = animateTextures(textures)
-        let change = SKAction.resizeToWidth(currentSize.width * factor, duration: 0.5)
+        let change = SKAction.resizeToWidth(originalWidth * factor, duration: 0.5)
 
         let blink = SKAction.sequence([SKAction.fadeAlphaTo(0.25, duration: 0.1), SKAction.fadeAlphaTo(1.0, duration: 0.2)])
-        let normalize = SKAction.resizeToWidth(currentSize.width, duration: 0.5)
+        let normalize = SKAction.resizeToWidth(originalWidth, duration: 0.5)
+        
+        let normalizeIfChanged = SKAction.runBlock {
+            if self.sizeChanged {
+                self.runAction(SKAction.group([normalize, SKAction.repeatAction(blink, count: 3)]))
+            }
+        }
         
         playSound(Sounds.shroom)
         
         if sizeChanged {
-            runAction(animation)
+            runAction(SKAction.sequence([
+                animation,
+                normalizeIfChanged,
+                unlockSize
+                ]))
         } else {
             runAction(SKAction.sequence([
                 lockSize,
                 SKAction.group([animation, change]),
                 SKAction.waitForDuration(5),
-                SKAction.group([normalize, SKAction.repeatAction(blink, count: 3)]),
+                normalizeIfChanged,
                 unlockSize
                 ]))
         }

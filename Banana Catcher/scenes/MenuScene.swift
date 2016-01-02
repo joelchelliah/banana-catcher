@@ -46,13 +46,22 @@ class MenuScene: SKScene, SpeechBubble {
     
     func purchaseNoAds() {
         disableNoAdsButton()
-        NoAds.purchase()
+        
+        NoAds.restore()
         
         showSpeechBubble(SpeechBubbles.pleaseWait)
-        
         basketManGoesQuietForAWhile()
         
-        enableNoAdsButtonUnlessPurchased()
+        let wait = SKAction.waitForDuration(3)
+        let purchase = SKAction.runBlock { NoAds.purchase() }
+        let enableButtonUnlessPurchased = SKAction.runBlock {
+            if !NoAds.alreadyPurchased() {
+                self.noAdsButton.name = ButtonNodes.noAds
+                self.noAdsButton.alpha = 1.0
+            }
+        }
+        
+        runAction(SKAction.sequence([wait, purchase, wait, enableButtonUnlessPurchased]))
     }
     
     internal func noAdsPurchased(_: NSNotification) {
@@ -64,6 +73,8 @@ class MenuScene: SKScene, SpeechBubble {
     }
     
     internal func noAdsAlreadyPurchased(_: NSNotification) {
+        earlierTransactionRestored = true
+        
         disableNoAdsButton()
         
         Ads.hideBanner()
@@ -74,18 +85,6 @@ class MenuScene: SKScene, SpeechBubble {
     private func disableNoAdsButton() {
         noAdsButton.name = ButtonNodes.noAdsDisabled
         noAdsButton.alpha = 0.3
-    }
-    
-    private func enableNoAdsButtonUnlessPurchased() {
-        let wait = SKAction.waitForDuration(3)
-        let enableUnlessPurchased = SKAction.runBlock {
-            if !NoAds.alreadyPurchased() {
-                self.noAdsButton.name = ButtonNodes.noAds
-                self.noAdsButton.alpha = 1.0
-            }
-        }
-        
-        runAction(SKAction.sequence([wait, enableUnlessPurchased]))
     }
     
     

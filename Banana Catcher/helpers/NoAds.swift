@@ -10,11 +10,14 @@ struct NoAds {
     static let identifier = "com.cookiemagik.Banana.Catcher.no.ads"
     static let purchasedNotification = "NoAdsPurchasedNotification"
     static let alreadyPurchasedNotification = "NoAdsAlreadyPurchasedNotification"
-    static let restoredNotification = "NoAdsRestoredNotification"
     private static let helper = NoAdsHelper()
     
     static func purchase() {
         helper.purchaseNoAds()
+    }
+    
+    static func restore() {
+        helper.restoreNoAds()
     }
     
     static func alreadyPurchased() -> Bool {
@@ -36,22 +39,13 @@ class NoAdsHelper : NSObject  {
         super.init()
         
         SKPaymentQueue.defaultQueue().addTransactionObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "afterRestore:", name: NoAds.restoredNotification, object: nil)
         
         productsRequest = SKProductsRequest(productIdentifiers: Set(arrayLiteral: NoAds.identifier))
         productsRequest?.delegate = self
         productsRequest?.start()
     }
     
-    // Purchase step 1
     func purchaseNoAds() {
-        unlessNoAdsIsAlreadyPurchased {
-            SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
-        }
-    }
-    
-    // Purchase step 2 (callback)
-    internal func afterRestore(_: NSNotification) {
         unlessNoAdsIsAlreadyPurchased {
             if let i = self.allProducts.indexOf({$0.productIdentifier == NoAds.identifier}) {
                 let product = self.allProducts[i]
@@ -61,6 +55,12 @@ class NoAdsHelper : NSObject  {
             } else {
                 print("Could not find product with id: \(NoAds.identifier)")
             }
+        }
+    }
+    
+    func restoreNoAds() {
+        unlessNoAdsIsAlreadyPurchased {
+            SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
         }
     }
     
@@ -135,8 +135,6 @@ extension NoAdsHelper: SKPaymentTransactionObserver {
         print("restoreTransaction... \(productIdentifier)")
         
         provideContentForProductIdentifier(productIdentifier)
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(NoAds.restoredNotification, object: productIdentifier)
         
         SKPaymentQueue.defaultQueue().finishTransaction(transaction)
     }
