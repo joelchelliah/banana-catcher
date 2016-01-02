@@ -55,7 +55,7 @@ class GameOverProps: PropsManager {
         
         scene.addChild(ground)
         
-        groundLevel = ground.size.height
+        groundLevel = height - offset + 70
     }
     
     private func addDarkness() {
