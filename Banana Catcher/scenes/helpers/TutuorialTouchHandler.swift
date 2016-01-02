@@ -12,7 +12,7 @@ class TutorialTouchHandler: TouchHandler {
                 
             case ButtonNodes.next: playNextTutorialStage(touchedNode, tutorialScene: tutorialScene)
                 
-            case ButtonNodes.ok: gotoMenu(touchedNode)
+            case ButtonNodes.ok: endTutorial(touchedNode)
                 
             default: break
             }
@@ -20,8 +20,16 @@ class TutorialTouchHandler: TouchHandler {
     }
     
     private func playNextTutorialStage(button: SKNode, tutorialScene: TutorialScene) {
-        buttonClick(button) {
-            tutorialScene.playNextStage()
+        if button.alpha == 1 {
+            buttonClick(button) {
+                tutorialScene.playNextStage()
+            }
+        }
+    }
+    
+    private func endTutorial(button: SKNode) {
+        if button.alpha == 1 {
+            gotoMenu(button)
         }
     }
 }

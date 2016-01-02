@@ -3,6 +3,12 @@ import SpriteKit
 
 class TutorialProps: PropsManager {
     
+    // Height offsets from top
+    private let headerOffset: CGFloat = 50
+    private let infoOffset: CGFloat = 90
+    private let monkeyOffset: CGFloat = 150
+    private let cloudsOffset: CGFloat = 10
+    
     init(forScene scene: TutorialScene) {
         super.init(forScene: scene)
     }
@@ -37,7 +43,9 @@ class TutorialProps: PropsManager {
     }
     
     private func addDoodads() {
-        let cloudGen = CloudGenerator(forScene: scene, fromZPos: nextZ())
+        let cOffset = cloudsOffset + screenHeightOffset()
+        
+        let cloudGen = CloudGenerator(forScene: scene, yBasePos: height - cOffset, fromZPos: nextZ())
         let bushGen = BushGenerator(forScene: scene, yBasePos: groundLevel, fromZPos: nextZ())
         let burriedGen = BurriedGenerator(forScene: scene, yBasePos: groundLevel, fromZPos: nextZ())
         
@@ -50,7 +58,11 @@ class TutorialProps: PropsManager {
         let top = SKSpriteNode(imageNamed: "darkness_top.png")
         let bot = SKSpriteNode(imageNamed: "darkness_bottom.png")
         
+        [top, bot].forEach { $0.size.width *= 1.5 }
+        
         top.size.height *= 0.5
+        top.size.height += screenHeightOffset() / 2
+        
         bot.size.height *= 0.7
         
         top.position = CGPointMake(hWidth, height - top.size.height / 2)
@@ -70,23 +82,26 @@ class TutorialProps: PropsManager {
     }
     
     private func addEvilMonkey() {
+        let offset = monkeyOffset + screenHeightOffset()
+        
         monkey = EvilMonkey()
-        monkey.position = CGPoint(x: hWidth, y: height - 180)
+        monkey.position = CGPoint(x: hWidth, y: height - offset)
         
         scene.addChild(monkey)
     }
     
     private func addLabels() {
-        let header = TutorialLabel(x: hWidth, y: height - 45, zPosition: nextZ())
+        let header = TutorialLabel(x: hWidth, y: height - headerOffset, zPosition: nextZ())
+        let offset = infoOffset + screenHeightOffset() / 4
         
-        infoLabel = InfoLabel(x: hWidth, y: height - 100, zPosition: nextZ())
+        infoLabel = InfoLabel(x: hWidth, y: height - offset, zPosition: nextZ())
         
         scene.addChild(header)
         scene.addChild(infoLabel)
     }
     
     private func addButtons() {
-        let buttonGenerator = ButtonGenerator(forScene: scene, yBasePos: 40, fromZPos: nextZ())
+        let buttonGenerator = ButtonGenerator(forScene: scene, yBasePos: 50, fromZPos: nextZ())
         
         buttonGenerator.generate()
         

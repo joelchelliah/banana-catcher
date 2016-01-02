@@ -6,8 +6,8 @@ class CloudGenerator: Generator {
     private var cloudHeights: [CGFloat]!
     private var zCounter: CGFloat = -800
     
-    init(forScene scene: SKScene, fromZPos: CGFloat = -800) {
-        super.init(forScene: scene, yBasePos: 0)
+    override init(forScene scene: SKScene, yBasePos y: CGFloat = 0, fromZPos: CGFloat = -800) {
+        super.init(forScene: scene, yBasePos: y)
         
         cloudHeights = initCloudHeights()
     }
@@ -76,6 +76,6 @@ class CloudGenerator: Generator {
         let max = 275
         let step = 25
         
-        return (min.stride(to: max, by: step)).map { height - CGFloat($0) }
+        return (min.stride(to: max, by: step)).map { yBaseLevel - CGFloat($0) }
     }
 }
