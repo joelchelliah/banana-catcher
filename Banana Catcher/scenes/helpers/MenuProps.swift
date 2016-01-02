@@ -38,7 +38,7 @@ class MenuProps: PropsManager {
             scene.addChild($0)
         }
         
-        groundLevel = ground.size.height
+        groundLevel = height - offset + 120
     }
     
     private func addBasketMan() {

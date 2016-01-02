@@ -51,6 +51,8 @@ class MenuScene: SKScene, SpeechBubble {
         showSpeechBubble(SpeechBubbles.pleaseWait)
         
         basketManGoesQuietForAWhile()
+        
+        enableNoAdsButtonUnlessPurchased()
     }
     
     internal func noAdsPurchased(_: NSNotification) {
@@ -72,6 +74,18 @@ class MenuScene: SKScene, SpeechBubble {
     private func disableNoAdsButton() {
         noAdsButton.name = ButtonNodes.noAdsDisabled
         noAdsButton.alpha = 0.3
+    }
+    
+    private func enableNoAdsButtonUnlessPurchased() {
+        let wait = SKAction.waitForDuration(3)
+        let enableUnlessPurchased = SKAction.runBlock {
+            if !NoAds.alreadyPurchased() {
+                self.noAdsButton.name = ButtonNodes.noAds
+                self.noAdsButton.alpha = 1.0
+            }
+        }
+        
+        runAction(SKAction.sequence([wait, enableUnlessPurchased]))
     }
     
     
