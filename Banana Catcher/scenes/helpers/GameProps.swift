@@ -6,6 +6,7 @@ class GameProps: PropsManager {
     // Height offsets from top
     private let labelOffset: CGFloat = 30
     private let monkeyOffset: CGFloat = 130
+    private let levelUpLabelOffset: CGFloat = 200
     private let cloudsOffset: CGFloat = 0
     
     init(forScene scene: GameScene) {
@@ -15,6 +16,7 @@ class GameProps: PropsManager {
     override func add() {
         addBackground()
         addGround()
+        addLevelUpLabel()
         addDoodads()
         addScoreLabel()
         addLives()
@@ -38,6 +40,14 @@ class GameProps: PropsManager {
         groundLevel = ground.size.height
             
         scene.addChild(ground)
+    }
+    
+    private func addLevelUpLabel() {
+        let offset = levelUpLabelOffset + screenHeightOffset()
+        
+        levelUpLabel = LevelUpLabel(x: hWidth, y: height - offset)
+        
+        scene.addChild(levelUpLabel)
     }
     
     private func addDoodads() {

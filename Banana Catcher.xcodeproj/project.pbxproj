@@ -63,6 +63,7 @@
 		A31A51E61C36B09F00FBCBBE /* MenuProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A51E51C36B09F00FBCBBE /* MenuProps.swift */; };
 		A31A51E81C36B8FB00FBCBBE /* TutorialProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A51E71C36B8FB00FBCBBE /* TutorialProps.swift */; };
 		A31A51EA1C36BFA800FBCBBE /* GameOverProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A51E91C36BFA800FBCBBE /* GameOverProps.swift */; };
+		A31A51EC1C38322700FBCBBE /* LevelUpLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A51EB1C38322700FBCBBE /* LevelUpLabel.swift */; };
 		A32394D11C2FDBE200CC1B89 /* ButtonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32394D01C2FDBE200CC1B89 /* ButtonProperties.swift */; };
 		A32394D31C2FE12F00CC1B89 /* GameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32394D21C2FE12F00CC1B89 /* GameLabel.swift */; };
 		A32394D51C2FF05900CC1B89 /* TutorialProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32394D41C2FF05900CC1B89 /* TutorialProperties.swift */; };
@@ -458,6 +459,7 @@
 		A31A51E51C36B09F00FBCBBE /* MenuProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuProps.swift; sourceTree = "<group>"; };
 		A31A51E71C36B8FB00FBCBBE /* TutorialProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialProps.swift; sourceTree = "<group>"; };
 		A31A51E91C36BFA800FBCBBE /* GameOverProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverProps.swift; sourceTree = "<group>"; };
+		A31A51EB1C38322700FBCBBE /* LevelUpLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelUpLabel.swift; sourceTree = "<group>"; };
 		A32394D01C2FDBE200CC1B89 /* ButtonProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonProperties.swift; sourceTree = "<group>"; };
 		A32394D21C2FE12F00CC1B89 /* GameLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLabel.swift; sourceTree = "<group>"; };
 		A32394D41C2FF05900CC1B89 /* TutorialProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialProperties.swift; sourceTree = "<group>"; };
@@ -1010,6 +1012,7 @@
 				A373A05B1C2AD12A006D2802 /* TutorialLabel.swift */,
 				A373A0611C2AD8A0006D2802 /* InfoLabel.swift */,
 				A32394D21C2FE12F00CC1B89 /* GameLabel.swift */,
+				A31A51EB1C38322700FBCBBE /* LevelUpLabel.swift */,
 			);
 			name = labels;
 			path = lables;
@@ -1887,6 +1890,7 @@
 				A3A1D8A91C352D6B004A7E44 /* ItemThrower.swift in Sources */,
 				A32394EA1C30917200CC1B89 /* GameOverTouchHandler.swift in Sources */,
 				A32394E51C308F9A00CC1B89 /* MenuTouchHandler.swift in Sources */,
+				A31A51EC1C38322700FBCBBE /* LevelUpLabel.swift in Sources */,
 				A3A1D8CF1C357FA4004A7E44 /* Greenmush.swift in Sources */,
 				A30E47E21C33E5C3004DEE6D /* PlaySound.swift in Sources */,
 				A3A79FDA1BA6FE67003C1F32 /* BasketMan.swift in Sources */,

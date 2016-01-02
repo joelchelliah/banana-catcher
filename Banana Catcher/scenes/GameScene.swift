@@ -7,6 +7,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
     var monkey: EvilMonkey!
     var lives: Lives!
     var scoreLabel: ScoreLabel!
+    var levelUpLabel: LevelUpLabel!
     
     var touching = false
     var touchLoc = CGPointMake(0, 0)
@@ -23,6 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
         monkey = props.monkey
         lives = props.lives
         scoreLabel = props.scoreLabel
+        levelUpLabel = props.levelUpLabel
         
         musicPlayer.change("game_1")
         
@@ -88,6 +90,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
         let currentLevel = monkey.currentLevel()
         
         if currentLevel > levelBefore {
+            levelUpLabel.show(currentLevel)
+            
             if currentLevel == 5 { musicPlayer.change("game_2") }
             if currentLevel == 10 { musicPlayer.change("game_3") }
             if currentLevel == 15 { musicPlayer.change("game_4") }

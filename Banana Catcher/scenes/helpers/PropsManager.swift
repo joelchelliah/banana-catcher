@@ -14,6 +14,7 @@ class PropsManager {
     internal var monkey: EvilMonkey!
     internal var lives: Lives!
     internal var scoreLabel: ScoreLabel!
+    internal var levelUpLabel: LevelUpLabel!
     internal var infoLabel:  InfoLabel!
     internal var soundButton: SKSpriteNode!
     internal var noAdsButton: SKSpriteNode!
