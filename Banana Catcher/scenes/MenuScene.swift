@@ -52,7 +52,7 @@ class MenuScene: SKScene, SpeechBubble {
         showSpeechBubble(SpeechBubbles.pleaseWait)
         basketManGoesQuietForAWhile()
         
-        let wait = SKAction.waitForDuration(3)
+        let wait = SKAction.waitForDuration(5)
         let purchase = SKAction.runBlock { NoAds.purchase() }
         let enableButtonUnlessPurchased = SKAction.runBlock {
             if !NoAds.alreadyPurchased() {

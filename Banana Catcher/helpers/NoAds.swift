@@ -136,6 +136,8 @@ extension NoAdsHelper: SKPaymentTransactionObserver {
         
         provideContentForProductIdentifier(productIdentifier)
         
+        NSNotificationCenter.defaultCenter().postNotificationName(NoAds.alreadyPurchasedNotification, object: NoAds.identifier)
+        
         SKPaymentQueue.defaultQueue().finishTransaction(transaction)
     }
     
