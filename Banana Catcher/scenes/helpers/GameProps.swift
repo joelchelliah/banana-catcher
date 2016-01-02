@@ -3,6 +3,11 @@ import SpriteKit
 
 class GameProps: PropsManager {
     
+    // Height offsets from top
+    private let labelOffset: CGFloat = 30
+    private let monkeyOffset: CGFloat = 130
+    private let cloudsOffset: CGFloat = 0
+    
     init(forScene scene: GameScene) {
         super.init(forScene: scene)
     }
@@ -36,23 +41,33 @@ class GameProps: PropsManager {
     }
     
     private func addDoodads() {
-        let cloudGen = CloudGenerator(forScene: scene)
-        let bushGen = BushGenerator(forScene: scene, yBasePos: groundLevel)
-        let burriedGen = BurriedGenerator(forScene: scene, yBasePos: groundLevel)
+        let cOffset = cloudsOffset + screenHeightOffset()
+        
+        let cloudGen = CloudGenerator(forScene: scene, yBasePos: height - cOffset, fromZPos: nextZ())
+        let bushGen = BushGenerator(forScene: scene, yBasePos: groundLevel, fromZPos: nextZ())
+        let burriedGen = BurriedGenerator(forScene: scene, yBasePos: groundLevel, fromZPos: nextZ())
         
         [burriedGen, bushGen, cloudGen].forEach { $0.generate() }
+        
+        advanceZBy(600)
     }
     
     private func addScoreLabel() {
+        let offset = labelOffset + screenHeightOffset() / 8
+        
         scoreLabel = ScoreLabel()
-        scoreLabel.position = CGPoint(x: 10, y: height - 30)
+        scoreLabel.position = CGPoint(x: 10, y: height - offset)
+        scoreLabel.zPosition = nextZ()
         
         scene.addChild(scoreLabel)
     }
     
     private func addLives() {
+        let offset = labelOffset + screenHeightOffset() / 8
+        
         lives = Lives()
-        lives.position = CGPoint(x: width - lives.size.width, y: height - 30)
+        lives.position = CGPoint(x: width - lives.size.width, y: height - offset)
+        lives.zPosition = nextZ()
         
         scene.addChild(lives)
     }
@@ -65,8 +80,11 @@ class GameProps: PropsManager {
     }
     
     private func addEvilMonkey() {
+        let offset = monkeyOffset + screenHeightOffset() * 0.75
+        
         monkey = EvilMonkey()
-        monkey.position = CGPoint(x: hWidth, y: height - 130)
+        monkey.position = CGPoint(x: hWidth, y: height - offset)
+        monkey.zPosition = nextZ()
         
         scene.addChild(monkey)
     }

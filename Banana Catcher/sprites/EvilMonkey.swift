@@ -121,7 +121,7 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
             position.x = halfWidth + safetyDistance
             direction = -direction
         }
-        position.x += direction * step
+        position.x += direction * (step + screenWidthBonus())
     }
     
     
@@ -201,5 +201,19 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         angryStartTextures = (1...7).map { SKTexture(imageNamed: "monkey_angry_\($0).png") }
         angryMidTextures = (8...9).map { SKTexture(imageNamed: "monkey_angry_\($0).png") }
         angryEndTextures = (10...15).map { SKTexture(imageNamed: "monkey_angry_\($0).png") }
+    }
+    
+    private func screenWidthBonus() -> CGFloat {
+        switch UIScreen.mainScreen().bounds.width {
+            
+        case 0..<330: return 0
+            
+        case 330..<380: return 3
+            
+        case 380..<430: return 6
+            
+        default: return 9
+            
+        }
     }
 }

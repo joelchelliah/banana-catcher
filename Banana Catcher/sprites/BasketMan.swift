@@ -50,8 +50,8 @@ class BasketMan: SKSpriteNode {
         let dx = touch.x - position.x
         let mag = abs(dx)
         
-        if(mag > 5.0) {
-            position.x += dx / mag * velocity
+        if(mag > 5.0 + screenWidthBonus()) {
+            position.x += dx / mag * (velocity + screenWidthBonus())
         }
     }
     
@@ -117,7 +117,7 @@ class BasketMan: SKSpriteNode {
         let fadeOutIn = SKAction.repeatAction(SKAction.sequence([fadeOut, fadeIn]), count: 3)
         let ouchAnimation = SKAction.group([animation, fadeOutIn])
         
-        let wait = SKAction.waitForDuration(0.8)
+        let wait = SKAction.waitForDuration(0.7)
         let removeInvincibility = SKAction.runBlock { self.invincible = false }
         
         playSound(Sounds.ouch)
@@ -152,5 +152,19 @@ class BasketMan: SKSpriteNode {
         purpleTextures = (1...10).map { SKTexture(imageNamed: "go_purple_\($0).png") }
         ouchTextures  = (1...10).map { SKTexture(imageNamed: "ouch_\($0).png") }
         sadTextures  = (1...8).map { SKTexture(imageNamed: "sad_\($0).png") }
+    }
+    
+    private func screenWidthBonus() -> CGFloat {
+        switch UIScreen.mainScreen().bounds.width {
+            
+        case 0..<330: return 0
+            
+        case 330..<380: return 5
+            
+        case 380..<430: return 10
+            
+        default: return 12
+            
+        }
     }
 }

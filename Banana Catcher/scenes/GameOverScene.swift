@@ -17,8 +17,8 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate, SpeechBubble  {
         
         musicPlayer.change("game_over")
         
-        Ads.hideBanner()
         Ads.showInterstitial()
+        Ads.showBanner()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

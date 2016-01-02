@@ -7,7 +7,7 @@ class TutorialProps: PropsManager {
     private let headerOffset: CGFloat = 50
     private let infoOffset: CGFloat = 90
     private let monkeyOffset: CGFloat = 150
-    private let cloudsOffset: CGFloat = 10
+    private let cloudsOffset: CGFloat = 0
     
     init(forScene scene: TutorialScene) {
         super.init(forScene: scene)
