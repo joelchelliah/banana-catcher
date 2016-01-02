@@ -20,9 +20,9 @@ class LevelUpLabel: GameLabel {
         
         let y = position.y
         
-        let fadeIn = SKAction.fadeAlphaTo(0.5, duration: 0.3)
-        let fadeOut = SKAction.fadeAlphaTo(0, duration: 0.7)
-        let ascend = SKAction.moveByX(0, y: 10, duration: 1.0)
+        let fadeIn = SKAction.fadeAlphaTo(0.8, duration: 0.4)
+        let fadeOut = SKAction.fadeAlphaTo(0, duration: 0.8)
+        let ascend = SKAction.moveByX(0, y: 10, duration: 1.2)
         
         let ascendWhileFading = SKAction.group([SKAction.sequence([fadeIn, fadeOut]), ascend])
         let resetPos = SKAction.runBlock { self.position.y = y }
