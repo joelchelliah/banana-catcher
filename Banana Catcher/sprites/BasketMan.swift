@@ -117,7 +117,7 @@ class BasketMan: SKSpriteNode {
         let fadeOutIn = SKAction.repeatAction(SKAction.sequence([fadeOut, fadeIn]), count: 3)
         let ouchAnimation = SKAction.group([animation, fadeOutIn])
         
-        let wait = SKAction.waitForDuration(1.0)
+        let wait = SKAction.waitForDuration(0.8)
         let removeInvincibility = SKAction.runBlock { self.invincible = false }
         
         playSound(Sounds.ouch)

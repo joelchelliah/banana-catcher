@@ -3,6 +3,13 @@ import SpriteKit
 
 class GameOverProps: PropsManager {
     
+    // Height offsets from top
+    private let labelOffset: CGFloat = 50
+    private let scoreBoardOffset: CGFloat = 160
+    private let buttonsOffset: CGFloat = 295
+    private let groundOffset: CGFloat = 440
+    private let botDarkOffset: CGFloat = 510
+    
     init(forScene scene: GameOverScene) {
         super.init(forScene: scene)
     }
@@ -15,7 +22,6 @@ class GameOverProps: PropsManager {
         addScoreBoard()
         addButtons()
     }
-    
     
     private func addBackground() {
         let sky = SKSpriteNode(imageNamed: "menu_sky.png")
@@ -32,6 +38,8 @@ class GameOverProps: PropsManager {
     }
     
     private func addGround() {
+        let offset = groundOffset + screenHeightOffset()
+        
         let tearsTex = texturesFor(name: "game_over_tears", numFrames: 5)
         let sobTex = texturesFor(name: "game_over_sob", numFrames: 10)
         let ground = SKSpriteNode(texture: tearsTex.first)
@@ -40,7 +48,7 @@ class GameOverProps: PropsManager {
         let cry = SKAction.repeatAction(tears, count: 5)
         let sob = SKAction.animateWithTextures(sobTex, timePerFrame: 0.08)
         
-        ground.position = CGPointMake(hWidth, ground.size.height / 2)
+        ground.position = CGPointMake(hWidth, height - offset)
         ground.zPosition = nextZ()
         ground.name = ButtonNodes.basketManMenu
         ground.runAction(SKAction.repeatActionForever(SKAction.sequence([cry, sob])))
@@ -51,13 +59,15 @@ class GameOverProps: PropsManager {
     }
     
     private func addDarkness() {
+        let offset = botDarkOffset + screenHeightOffset()
+        
         let top = SKSpriteNode(imageNamed: "darkness_top.png")
         let bot = SKSpriteNode(imageNamed: "darkness_bottom.png")
         
         top.size.height *= 0.75
         
         top.position = CGPointMake(hWidth, height - top.size.height / 2)
-        bot.position = CGPointMake(hWidth, bot.size.height / 2 - 130)
+        bot.position = CGPointMake(hWidth, height - offset)
         
         [top, bot].forEach {
             $0.zPosition = nextZ()
@@ -67,13 +77,15 @@ class GameOverProps: PropsManager {
     }
     
     private func addLabel() {
-        let label = GameOverLabel(x: hWidth, y: height - 55, zPosition: nextZ())
+        let label = GameOverLabel(x: hWidth, y: height - labelOffset, zPosition: nextZ())
         
         scene.addChild(label)
     }
     
     private func addScoreBoard() {
-        let yPos = height - 175
+        let offset = scoreBoardOffset + screenHeightOffset() / 4
+        
+        let yPos = height - offset
         let textures = texturesFor(name: "scoreboard", numFrames: 8)
         let scoreBoard = SKSpriteNode(texture: textures.first)
         let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.08)
@@ -97,7 +109,8 @@ class GameOverProps: PropsManager {
     }
     
     private func addButtons() {
-        let buttonGenerator = ButtonGenerator(forScene: scene, yBasePos: groundLevel + 40)
+        let offset = buttonsOffset + screenHeightOffset() / 2
+        let buttonGenerator = ButtonGenerator(forScene: scene, yBasePos: height - offset)
         
         buttonGenerator.generate()
     }

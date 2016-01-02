@@ -102,6 +102,10 @@ class MenuScene: SKScene, SpeechBubble {
         
         soundEnabled = defaults.valueForKey("soundEnabled")?.boolValue ?? true
         
+        if soundEnabled {
+            changeSoundButtonTexture("sound_on")
+        }
+        
         defaults.synchronize()
     }
     

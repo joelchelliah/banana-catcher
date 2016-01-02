@@ -13,6 +13,8 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
     private var helper: TutorialStageHelper!
     
     override func didMoveToView(view: SKView) {
+        initPhysics()
+        
         touchHandler = TutorialTouchHandler(forScene: self)
         
         props = TutorialProps.init(forScene: self)
@@ -28,6 +30,15 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
         musicPlayer.change("tutorial")
 
         Ads.hideBanner()
+    }
+    
+    private func initPhysics() {
+        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.gravity = CGVectorMake(0, -5)
+        
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+        self.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
+        
     }
         
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

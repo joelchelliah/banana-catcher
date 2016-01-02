@@ -3,6 +3,12 @@ import SpriteKit
 
 class MenuProps: PropsManager {
     
+    // Height offsets from top
+    private let labelOffset: CGFloat = 50
+    private let buttonsOffset: CGFloat = 180
+    private let basketOffset: CGFloat = 305
+    private let groundOffset: CGFloat = 470
+    
     init(forScene scene: MenuScene) {
         super.init(forScene: scene)
     }
@@ -22,8 +28,9 @@ class MenuProps: PropsManager {
         let rain = SKEmitterNode(fileNamed: "BananaRain")!
         rain.position = CGPointMake(hWidth, height + 50)
         
+        let offset = groundOffset + screenHeightOffset()
         let ground = SKSpriteNode(imageNamed: "menu_ground.png")
-        ground.position = CGPointMake(hWidth, ground.size.height / 2)
+        ground.position = CGPointMake(hWidth, height - offset)
         
         [sky, rain, ground].forEach {
             $0.zPosition = nextZ()
@@ -35,8 +42,10 @@ class MenuProps: PropsManager {
     }
     
     private func addBasketMan() {
+        let offset = basketOffset + screenHeightOffset()
+        
         basketManMenu = BasketManMenu()
-        basketManMenu.position = CGPoint(x: hWidth, y: groundLevel + 35)
+        basketManMenu.position = CGPoint(x: hWidth, y: height - offset)
         basketManMenu.name = ButtonNodes.basketManMenu
         
         scene.addChild(basketManMenu)
@@ -48,14 +57,16 @@ class MenuProps: PropsManager {
         let anim = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
         
         let title = SKSpriteNode(texture: textures.last)
-        title.position = CGPoint(x: hWidth, y: height - 65)
+        title.position = CGPoint(x: hWidth, y: height - labelOffset)
         title.runAction(SKAction.repeatActionForever(SKAction.sequence([delay, anim])))
         
         scene.addChild(title)
     }
     
     private func addButtons() {
-        let buttonGenerator = ButtonGenerator(forScene: scene, yBasePos: height - 225)
+        let offset = buttonsOffset + screenHeightOffset() / 2
+        
+        let buttonGenerator = ButtonGenerator(forScene: scene, yBasePos: height - offset)
         
         buttonGenerator.generate()
         

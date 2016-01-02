@@ -838,19 +838,12 @@
 				A31A51E91C36BFA800FBCBBE /* GameOverProps.swift */,
 				A31A51E51C36B09F00FBCBBE /* MenuProps.swift */,
 				A31A51E71C36B8FB00FBCBBE /* TutorialProps.swift */,
-			);
-			path = helpers;
-			sourceTree = "<group>";
-		};
-		A32394E01C308ECB00CC1B89 /* touch_handlers */ = {
-			isa = PBXGroup;
-			children = (
+				A32394E41C308F9A00CC1B89 /* TouchHandler.swift */,
 				A32394E91C30917200CC1B89 /* GameOverTouchHandler.swift */,
 				A32394E31C308F9A00CC1B89 /* MenuTouchHandler.swift */,
-				A32394E41C308F9A00CC1B89 /* TouchHandler.swift */,
 				A32394E71C30911600CC1B89 /* TutuorialTouchHandler.swift */,
 			);
-			path = touch_handlers;
+			path = helpers;
 			sourceTree = "<group>";
 		};
 		A334927F1BEDE8B100A1FAE1 /* gamover */ = {
@@ -1116,7 +1109,6 @@
 				A37D4B3B1BE3AEB90071FFBF /* scenes */,
 				A3EEC5B21BD6AFAD00A1D133 /* sounds */,
 				A37D4B3A1BE3AD860071FFBF /* sprites */,
-				A32394E01C308ECB00CC1B89 /* touch_handlers */,
 				A30E47DF1C330252004DEE6D /* traits */,
 				A3A79F921BA6D32A003C1F32 /* AppDelegate.swift */,
 				A3A79F981BA6D32A003C1F32 /* GameViewController.swift */,

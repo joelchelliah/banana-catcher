@@ -12,6 +12,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
     var touchLoc = CGPointMake(0, 0)
     
     override func didMoveToView(view: SKView) {
+        initPhysics()
+        
         score = 0
         
         props = GameProps.init(forScene: self)
@@ -25,6 +27,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
         musicPlayer.change("game_1")
         
         Ads.showBanner()
+    }
+    
+    private func initPhysics() {
+        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.gravity = CGVectorMake(0, -5)
+        
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+        self.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
+
     }
     
     override func update(currentTime: CFTimeInterval) {

@@ -26,8 +26,6 @@ class PropsManager {
         height = scene.frame.height
         width = scene.frame.width
         hWidth = width / 2
-        
-        initPhysics()
     }
     
     func add() {
@@ -48,16 +46,20 @@ class PropsManager {
         return (1...numFrames).map { SKTexture(imageNamed: "\(name)_\($0).png") }
     }
     
-    private func initPhysics() {
-        switch scene {
-        case let scene where scene is SKPhysicsContactDelegate:
-            scene.physicsWorld.contactDelegate = scene as? SKPhysicsContactDelegate
-            scene.physicsWorld.gravity = CGVectorMake(0, -5)
+    internal func screenHeightOffset() -> CGFloat {
+        switch height {
+        
+        case 0..<500: return 0
             
-            scene.physicsBody = SKPhysicsBody(edgeLoopFromRect: scene.frame)
-            scene.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
+        case 500..<650: return 45
             
-        default: break
+        case 650..<700: return 90
+            
+        case 700..<750: return 150
+            
+        case 750..<800: return 200
+            
+        default: return 250
         }
     }
 }
