@@ -59,10 +59,10 @@ private struct DropRates {
     static let purpleMush: [Int] = DropRates.zeros(9)    + 3.stride(to: 1, by: -1)
     static let heart: [Int] = DropRates.zeros(9)         + 3.stride(to: 1, by: -1)
     static let greenMush: [Int] = DropRates.zeros(7)     + 3.stride(to: 1, by: -1)
-    static let heartnut: [Int] = DropRates.zeros(7)      + 5.stride(to: 1, by: -1)
-    static let supernut: [Int] = DropRates.zeros(5)      + 30.stride(to: 24, by: -2)
-    static let bananacluster: [Int] = DropRates.zeros(5) + 30.stride(to: 20, by: -2)
-    static let banananut: [Int] = DropRates.zeros(2)     + 30.stride(to: 18, by: -2)
+    static let heartnut: [Int] = DropRates.zeros(7)      + 3.stride(to: 1, by: -1)
+    static let supernut: [Int] = DropRates.zeros(5)      + 28.stride(to: 18, by: -2)
+    static let bananacluster: [Int] = DropRates.zeros(5) + 24.stride(to: 16, by: -2)
+    static let banananut: [Int] = DropRates.zeros(2)     + 20.stride(to: 14, by: -2)
     static let coconut: [Int] =                     [20] + 30.stride(to: 12, by: -2)
     
     private static func zeros(num: Int) -> [Int] {
