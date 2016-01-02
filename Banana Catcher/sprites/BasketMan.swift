@@ -70,9 +70,11 @@ class BasketMan: SKSpriteNode {
     
     func lifeUp() {
         let animation = animateTextures(oneUpTextures)
+        let normalize = SKAction.resizeToWidth(originalWidth, duration: 0.4)
         
         playSound(Sounds.one_up)
-        runAction(animation)
+        
+        runAction(SKAction.group([animation, normalize]))
     }
     
     func goGreen() {
@@ -84,38 +86,11 @@ class BasketMan: SKSpriteNode {
     }
     
     private func goShroom(textures: [SKTexture], factor: CGFloat) {
-        let lockSize = SKAction.runBlock { self.sizeChanged = true }
-        let unlockSize = SKAction.runBlock { self.sizeChanged = false }
-        
         let animation = animateTextures(textures)
         let change = SKAction.resizeToWidth(originalWidth * factor, duration: 0.5)
-
-        let blink = SKAction.sequence([SKAction.fadeAlphaTo(0.25, duration: 0.1), SKAction.fadeAlphaTo(1.0, duration: 0.2)])
-        let normalize = SKAction.resizeToWidth(originalWidth, duration: 0.5)
-        
-        let normalizeIfChanged = SKAction.runBlock {
-            if self.sizeChanged {
-                self.runAction(SKAction.group([normalize, SKAction.repeatAction(blink, count: 3)]))
-            }
-        }
         
         playSound(Sounds.shroom)
-        
-        if sizeChanged {
-            runAction(SKAction.sequence([
-                animation,
-                normalizeIfChanged,
-                unlockSize
-                ]))
-        } else {
-            runAction(SKAction.sequence([
-                lockSize,
-                SKAction.group([animation, change]),
-                SKAction.waitForDuration(5),
-                normalizeIfChanged,
-                unlockSize
-                ]))
-        }
+        runAction(SKAction.group([animation, change]))
     }
     
     func ouch() {
@@ -126,12 +101,16 @@ class BasketMan: SKSpriteNode {
         let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.1)
         let fadeOutIn = SKAction.repeatAction(SKAction.sequence([fadeOut, fadeIn]), count: 3)
         let ouchAnimation = SKAction.group([animation, fadeOutIn])
+        let normalize = SKAction.resizeToWidth(originalWidth, duration: 0.4)
         
         let wait = SKAction.waitForDuration(0.7)
         let removeInvincibility = SKAction.runBlock { self.invincible = false }
         
         playSound(Sounds.ouch)
-        runAction(SKAction.sequence([ouchAnimation, wait, removeInvincibility]))
+        runAction(SKAction.sequence([
+            SKAction.group([ouchAnimation, normalize]),
+            wait, removeInvincibility
+            ]))
     }
     
     func frown() {
