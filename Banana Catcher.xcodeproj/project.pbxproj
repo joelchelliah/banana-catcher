@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A303AD521C39A0780001F4F5 /* splash_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = A303AD511C39A0780001F4F5 /* splash_screen.png */; };
 		A30E47E21C33E5C3004DEE6D /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30E47E11C33E5C3004DEE6D /* PlaySound.swift */; };
 		A30E47EA1C33FDBF004DEE6D /* sniffle_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A30E47E31C33FDBF004DEE6D /* sniffle_1.png */; };
 		A30E47EB1C33FDBF004DEE6D /* sniffle_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A30E47E41C33FDBF004DEE6D /* sniffle_2.png */; };
@@ -403,6 +404,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A303AD511C39A0780001F4F5 /* splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_screen.png; path = images/icon/splash_screen.png; sourceTree = "<group>"; };
 		A30E47E11C33E5C3004DEE6D /* PlaySound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 		A30E47E31C33FDBF004DEE6D /* sniffle_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sniffle_1.png; sourceTree = "<group>"; };
 		A30E47E41C33FDBF004DEE6D /* sniffle_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sniffle_2.png; sourceTree = "<group>"; };
@@ -1362,6 +1364,7 @@
 				A37D4B541BE52E830071FFBF /* background.png */,
 				A3C955971BCA943E000E6274 /* heart.png */,
 				A373A0631C2AE5DE006D2802 /* finger.png */,
+				A303AD511C39A0780001F4F5 /* splash_screen.png */,
 			);
 			name = hud;
 			sourceTree = "<group>";
@@ -1797,6 +1800,7 @@
 				A3A1D8F51C358945004A7E44 /* go_purple_4.png in Resources */,
 				A373A07B1C2B41DD006D2802 /* bush_3.png in Resources */,
 				A33034FA1C29B344008A2346 /* game_1.mp3 in Resources */,
+				A303AD521C39A0780001F4F5 /* splash_screen.png in Resources */,
 				A3A1D8EB1C358945004A7E44 /* go_green_4.png in Resources */,
 				A388F4BF1C31935E00940540 /* ads_restored_3.png in Resources */,
 				A3DF00C51C2C4AD200B772D5 /* cloud_5.png in Resources */,

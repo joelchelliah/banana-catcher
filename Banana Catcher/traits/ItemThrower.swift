@@ -56,9 +56,9 @@ extension ItemThrower where Self: EvilMonkey {
 }
 
 private struct DropRates {
-    static let purpleMush: [Int] = DropRates.zeros(9)    + 1.stride(to: 3, by: 1)
-    static let heart: [Int] = DropRates.zeros(9)         + [1, 1, 1, 1, 1, 1, 1, 2]
-    static let greenMush: [Int] = DropRates.zeros(7)     + 1.stride(to: 3, by: 1)
+    static let purpleMush: [Int] = DropRates.zeros(13)    + 1.stride(to: 3, by: 1)
+    static let heart: [Int] = DropRates.zeros(11)         + [1, 1, 1, 1, 1, 1, 1, 2]
+    static let greenMush: [Int] = DropRates.zeros(9)     + 1.stride(to: 3, by: 1)
     static let heartnut: [Int] = DropRates.zeros(7)      + [3, 1, 1, 1, 1, 1, 1, 2]
     static let supernut: [Int] = DropRates.zeros(5)      + 28.stride(to: 18, by: -2)
     static let bananacluster: [Int] = DropRates.zeros(5) + 24.stride(to: 16, by: -2)
