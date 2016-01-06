@@ -53,12 +53,16 @@ class MenuProps: PropsManager {
     
     private func addTitle() {
         let textures = texturesFor(name: "menu_title", numFrames: 19)
-        let delay = SKAction.waitForDuration(2.0)
+        
+        let wait = SKAction.waitForDuration(2.0)
         let anim = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
+        let loop = SKAction.repeatActionForever(SKAction.sequence([wait, anim]))
+        let appear = SKAction.fadeAlphaTo(1.0, duration: 1.5)
         
         let title = SKSpriteNode(texture: textures.last)
+        title.alpha = 0
         title.position = CGPoint(x: hWidth, y: height - labelOffset)
-        title.runAction(SKAction.repeatActionForever(SKAction.sequence([delay, anim])))
+        title.runAction(SKAction.sequence([appear, loop]))
         
         scene.addChild(title)
     }
