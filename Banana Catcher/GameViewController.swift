@@ -31,7 +31,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     
     private func initGameView() {
         let gameScene = initGameScene()
-        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 1.0)
+        let transition = SKTransition.doorsOpenHorizontalWithDuration(1.0)
         let gameView = view as! SKView
         
         gameView.showsFPS = false
