@@ -17,6 +17,7 @@ class MenuProps: PropsManager {
         addBackground()
         addBasketMan()
         addTitle()
+        addLoadingText()
         addButtons()
     }
     
@@ -52,7 +53,7 @@ class MenuProps: PropsManager {
     }
     
     private func addTitle() {
-        let textures = texturesFor(name: "menu_title", numFrames: 19)
+        let textures = Textures.title
         
         let wait = SKAction.waitForDuration(2.0)
         let anim = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
@@ -65,6 +66,10 @@ class MenuProps: PropsManager {
         title.runAction(SKAction.sequence([appear, loop]))
         
         scene.addChild(title)
+    }
+    
+    private func addLoadingText() {
+        
     }
     
     private func addButtons() {

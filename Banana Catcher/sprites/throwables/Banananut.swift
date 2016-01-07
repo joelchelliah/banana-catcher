@@ -4,7 +4,8 @@ import SpriteKit
 class Banananut: Throwable {
     
     init(withThrowSound: Bool = true) {
-        let texture = SKTexture(imageNamed: "banananut")
+        let texture = Textures.bananaNut
+        
         super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.Banananut)
         
         withSound()

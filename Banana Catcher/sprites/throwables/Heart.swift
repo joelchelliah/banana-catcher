@@ -4,7 +4,8 @@ import SpriteKit
 class Heart: Throwable {
     
     init(withThrowSound: Bool = true) {
-        let texture = SKTexture(imageNamed: "heart")
+        let texture = Textures.heart
+        
         super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.Heart)
         
         self.size.height *= 1.5

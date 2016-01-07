@@ -43,10 +43,6 @@ class PropsManager {
         zPos += num
     }
     
-    internal func texturesFor(name name: String, numFrames: Int) -> [SKTexture] {
-        return (1...numFrames).map { SKTexture(imageNamed: "\(name)_\($0).png") }
-    }
-    
     internal func screenHeightOffset() -> CGFloat {
         switch height {
         

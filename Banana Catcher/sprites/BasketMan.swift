@@ -9,14 +9,14 @@ class BasketMan: SKSpriteNode {
     private var sizeChanged: Bool = false
     private let originalWidth: CGFloat
     
-    private var idleTexture = SKTexture(imageNamed: "idle.png")
-    private var blinkTextures = [SKTexture]()
-    private var catchTextures = [SKTexture]()
-    private var oneUpTextures = [SKTexture]()
-    private var greenTextures = [SKTexture]()
-    private var purpleTextures = [SKTexture]()
-    private var ouchTextures = [SKTexture]()
-    private var sadTextures = [SKTexture]()
+    private var idleTexture = Textures.basketManIdle
+    private var blinkTextures = Textures.basketManBlink
+    private var catchTextures = Textures.basketManCatch
+    private var oneUpTextures = Textures.basketManOneUp
+    private var greenTextures = Textures.basketManGreen
+    private var purpleTextures = Textures.basketManPurple
+    private var ouchTextures = Textures.basketManOuch
+    private var sadTextures = Textures.basketManSad
     
     init() {
         originalWidth = idleTexture.size().width
@@ -31,7 +31,6 @@ class BasketMan: SKSpriteNode {
         self.physicsBody?.contactTestBitMask = CollisionCategories.Banana
         self.physicsBody?.collisionBitMask = CollisionCategories.Ground | CollisionCategories.EdgeBody
         
-        loadTextures()
         idle()
     }
 
@@ -131,16 +130,6 @@ class BasketMan: SKSpriteNode {
     
     private func animateTextures(textures: [SKTexture]) -> SKAction {
         return SKAction.animateWithTextures(textures, timePerFrame: 0.05)
-    }
-    
-    private func loadTextures() {
-        blinkTextures = (1...3).map { SKTexture(imageNamed: "blink_\($0).png") }
-        catchTextures = (1...10).map { SKTexture(imageNamed: "catch_\($0).png") }
-        oneUpTextures = (1...10).map { SKTexture(imageNamed: "1up_\($0).png") }
-        greenTextures = (1...10).map { SKTexture(imageNamed: "go_green_\($0).png") }
-        purpleTextures = (1...10).map { SKTexture(imageNamed: "go_purple_\($0).png") }
-        ouchTextures  = (1...10).map { SKTexture(imageNamed: "ouch_\($0).png") }
-        sadTextures  = (1...8).map { SKTexture(imageNamed: "sad_\($0).png") }
     }
     
     private func screenWidthBonus() -> CGFloat {

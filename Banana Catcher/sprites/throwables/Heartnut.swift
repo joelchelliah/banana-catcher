@@ -4,7 +4,8 @@ import SpriteKit
 class Heartnut: Throwable {
     
     init(withThrowSound: Bool = true) {
-        let texture = SKTexture(imageNamed: "heartnut")
+        let texture = Textures.heartNut
+        
         super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.Heartnut)
         
         withSound()

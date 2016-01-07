@@ -40,8 +40,8 @@ class GameOverProps: PropsManager {
     private func addGround() {
         let offset = groundOffset + screenHeightOffset()
         
-        let tearsTex = texturesFor(name: "game_over_tears", numFrames: 5)
-        let sobTex = texturesFor(name: "game_over_sob", numFrames: 10)
+        let tearsTex = Textures.basketManTears
+        let sobTex = Textures.basketManSob
         let ground = SKSpriteNode(texture: tearsTex.first)
         
         let tears = SKAction.animateWithTextures(tearsTex, timePerFrame: 0.08)
@@ -86,7 +86,7 @@ class GameOverProps: PropsManager {
         let offset = scoreBoardOffset + screenHeightOffset() / 4
         
         let yPos = height - offset
-        let textures = texturesFor(name: "scoreboard", numFrames: 8)
+        let textures = Textures.scoreboard
         let scoreBoard = SKSpriteNode(texture: textures.first)
         let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.08)
         

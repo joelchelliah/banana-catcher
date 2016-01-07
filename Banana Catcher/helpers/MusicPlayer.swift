@@ -33,7 +33,6 @@ class MusicPlayer {
     }
     
     private func play() {
-        print("Sound enabled?: \(soundEnabled)")
         if soundEnabled {
             player.play()
             isPlaying = true

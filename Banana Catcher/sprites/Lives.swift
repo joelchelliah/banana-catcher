@@ -7,7 +7,7 @@ class Lives: SKSpriteNode {
     private var numLives: Int = 3
 
     init() {
-        let texSize = SKTexture(imageNamed: "heart").size()
+        let texSize = Textures.heart.size()
         let size = CGSize(width: texSize.width * CGFloat(numLives), height: texSize.height)
         
         super.init(texture: nil, color: SKColor.clearColor(), size: size)
@@ -73,7 +73,7 @@ class Lives: SKSpriteNode {
     }
     
     private func makeHeart() -> SKSpriteNode {
-        let texture = SKTexture(imageNamed: "heart")
+        let texture = Textures.heart
         
         return SKSpriteNode(texture: texture, color: SKColor.clearColor(), size: texture.size())
     }

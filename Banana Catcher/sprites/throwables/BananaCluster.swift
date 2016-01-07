@@ -4,7 +4,8 @@ import SpriteKit
 class BananaCluster: Throwable {
     
     init() {
-        let texture = SKTexture(imageNamed: "banana_cluster")
+        let texture = Textures.bananaCluster
+        
         super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.BananaCluster)
         
         withSound()

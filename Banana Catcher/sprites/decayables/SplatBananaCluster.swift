@@ -4,7 +4,7 @@ import SpriteKit
 class SplatBananaCluster: Decayable {
     
     init(pos: CGPoint) {
-        let texture = SKTexture(imageNamed: "banana_cluster_splat_1")
+        let texture = Textures.bananaClusterSplatIdle
         
         super.init(texture: texture, pos: pos)
     }
@@ -15,8 +15,7 @@ class SplatBananaCluster: Decayable {
     
     
     internal override func splat() {
-        let textures = (1...5).map { SKTexture(imageNamed: "banana_cluster_splat_\($0).png") }
-        let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
+        let animation = SKAction.animateWithTextures(Textures.bananaClusterSplatBreak, timePerFrame: 0.05)
         
         playSound(Sounds.splat)
         runAction(animation)

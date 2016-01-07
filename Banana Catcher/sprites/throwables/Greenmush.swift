@@ -4,7 +4,8 @@ import SpriteKit
 class Greenmush: Throwable {
     
     init() {
-        let texture = SKTexture(imageNamed: "greenmush")
+        let texture = Textures.mushGreen
+        
         super.init(texture: texture, size: texture.size(), categoryBitMask: CollisionCategories.GreenMush)
         
         withSound(Sounds.specialToss)

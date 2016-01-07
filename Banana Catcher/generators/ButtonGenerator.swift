@@ -31,7 +31,7 @@ class ButtonGenerator: Generator {
     // * Menu buttons
     // * * * * * * * * * * * * * * * * * * * * * * * * * *
     
-    var soundButton = SKSpriteNode(imageNamed: "sound_off.png")
+    var soundButton = SKSpriteNode(texture: Textures.soundOff)
     var noAdsButton = SKSpriteNode(imageNamed: "no_ads.png")
     
     private func generateMenuButtons() {
@@ -44,7 +44,7 @@ class ButtonGenerator: Generator {
     
     private func generateSoundButton() {
         if soundEnabled {
-            soundButton.texture = SKTexture(imageNamed: "sound_on.png")
+            soundButton.texture = Textures.soundOn
         }
         generateButton(soundButton, name: ButtonNodes.sound, index: ButtonPositions.leftest)
     }

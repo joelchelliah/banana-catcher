@@ -3,14 +3,13 @@ import SpriteKit
 
 class BasketManMenu: SKSpriteNode {
     
-    private var idleTexture = SKTexture(imageNamed: "idle_menu.png")
-    private var blinkTextures = [SKTexture]()
-    private var jumpTextures = [SKTexture]()
+    private var idleTexture = Textures.basketManIdleMenu
+    private var blinkTextures = Textures.basketManBlinkMenu
+    private var jumpTextures = Textures.basketManCatchMenu
     
     init() {
         super.init(texture: idleTexture, color: SKColor.clearColor(), size: idleTexture.size())
                 
-        loadTextures()
         animate()
     }
     
@@ -32,11 +31,5 @@ class BasketManMenu: SKSpriteNode {
         let delay = SKAction.waitForDuration(0.5)
         
         return SKAction.sequence([delay, blink, delay, delay, blink, blink, delay])
-    }
-    
-    private func loadTextures() {
-        blinkTextures = (1...4).map { SKTexture(imageNamed: "blink_menu_\($0).png") }
-        jumpTextures.appendContentsOf((1...12).map { SKTexture(imageNamed: "catch_menu_\($0).png") })
-        jumpTextures.appendContentsOf((1...15).map { SKTexture(imageNamed: "catch_menu_\($0).png") })
     }
 }

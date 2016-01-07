@@ -71,7 +71,7 @@ class TutorialScene: SKScene, SKPhysicsContactDelegate, CollissionDetector {
         
         if isLastStage {
             nextButton.name = ButtonNodes.ok
-            nextButton.texture = SKTexture(imageNamed: "ok.png")
+            nextButton.texture = Textures.ok
         }
     }
     

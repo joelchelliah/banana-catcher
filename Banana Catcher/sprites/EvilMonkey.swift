@@ -5,13 +5,12 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
     
     private var disabled: Bool = false
     
-    private var flyingTextures = [SKTexture]()
-    private var angryStartTextures = [SKTexture]()
-    private var angryMidTextures = [SKTexture]()
-    private var angryEndTextures = [SKTexture]()
+    private var flyingTextures = Textures.monkeyFlying
+    private var angryTextures = Textures.monkeyAngry
     
     init() {
-        let texture = SKTexture(imageNamed: "flying_1.png")
+        let texture = flyingTextures.first!
+        
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
         
         self.physicsBody = SKPhysicsBody(texture: self.texture!,size:self.size)
@@ -21,7 +20,6 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         self.physicsBody?.categoryBitMask = CollisionCategories.EvilMonkey
         self.physicsBody?.collisionBitMask = CollisionCategories.EdgeBody
         
-        loadTextures()
         animate()
         activateCooldown()
     }
@@ -67,12 +65,9 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
     func throwTantrum() {
         playSound(Sounds.angry)
         
-        let start = SKAction.animateWithTextures(angryStartTextures, timePerFrame: 0.05)
-        let mid = SKAction.animateWithTextures(angryMidTextures, timePerFrame: 0.05)
-        let midExtended = SKAction.repeatAction(mid, count: 16)
-        let end = SKAction.animateWithTextures(angryEndTextures, timePerFrame: 0.05)
+        let animation = SKAction.animateWithTextures(angryTextures, timePerFrame: 0.05)
         
-        self.runAction(SKAction.sequence([start, midExtended, end]))
+        self.runAction(animation)
     }
     
     
@@ -194,13 +189,6 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         let anim = SKAction.animateWithTextures(flyingTextures, timePerFrame: 0.06)
         
         self.runAction(SKAction.repeatActionForever(anim))
-    }
-    
-    private func loadTextures() {
-        flyingTextures = (1...8).map { SKTexture(imageNamed: "flying_\($0).png") }
-        angryStartTextures = (1...7).map { SKTexture(imageNamed: "monkey_angry_\($0).png") }
-        angryMidTextures = (8...9).map { SKTexture(imageNamed: "monkey_angry_\($0).png") }
-        angryEndTextures = (10...15).map { SKTexture(imageNamed: "monkey_angry_\($0).png") }
     }
     
     private func screenWidthBonus() -> CGFloat {
