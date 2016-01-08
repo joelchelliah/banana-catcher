@@ -6,6 +6,7 @@ class MenuProps: PropsManager {
     // Height offsets from top
     private let labelOffset: CGFloat = 50
     private let buttonsOffset: CGFloat = 180
+    private let loadingOffset: CGFloat = 200
     private let basketOffset: CGFloat = 305
     private let groundOffset: CGFloat = 470
     
@@ -58,18 +59,39 @@ class MenuProps: PropsManager {
         let wait = SKAction.waitForDuration(2.0)
         let anim = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
         let loop = SKAction.repeatActionForever(SKAction.sequence([wait, anim]))
-        let appear = SKAction.fadeAlphaTo(1.0, duration: 1.5)
         
         let title = SKSpriteNode(texture: textures.last)
-        title.alpha = 0
         title.position = CGPoint(x: hWidth, y: height - labelOffset)
-        title.runAction(SKAction.sequence([appear, loop]))
         
         scene.addChild(title)
+        
+        if didPlayLoadingTransition {
+            title.runAction(loop)
+        } else {
+            let appear = SKAction.fadeAlphaTo(1.0, duration: 2.0 * loadingTransitionDuration)
+            
+            title.alpha = 0
+            title.runAction(SKAction.sequence([appear, loop]))
+        }
     }
     
     private func addLoadingText() {
+        if didPlayLoadingTransition { return }
         
+        let offset = loadingOffset + screenHeightOffset() * 0.8
+        let scaleFactor = 1.0 + screenHeightOffset() / 1000
+        
+        let disappear = SKAction.fadeAlphaTo(0, duration: loadingTransitionDuration)
+        let remove = SKAction.removeFromParent()
+        
+        let loading = SKSpriteNode(texture: Textures.loading)
+        loading.size.width *= scaleFactor
+        loading.size.height *= scaleFactor
+        loading.position = CGPoint(x: hWidth, y: height - offset)
+        loading.zPosition = nextZ()
+        loading.runAction(SKAction.sequence([disappear, remove]))
+        
+        scene.addChild(loading)
     }
     
     private func addButtons() {

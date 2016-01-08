@@ -8,6 +8,8 @@ struct Textures {
     static let basketManBlinkMenu: [SKTexture] = Textures.make("blink_menu", 4)
     static let basketManCatchMenu: [SKTexture] = Textures.makeMenuCatch()
     
+    static let loading: SKTexture = SKTexture(imageNamed: "loading")
+    
     static let title: [SKTexture] = Textures.make("menu_title", 19)
     
     
@@ -59,6 +61,7 @@ struct Textures {
     // Game over
     
     static let scoreboard: [SKTexture] = Textures.make("scoreboard", 8)
+    
     static let basketManTears: [SKTexture] = Textures.make("game_over_tears", 5)
     static let basketManSob: [SKTexture] = Textures.make("game_over_sob", 10)
     

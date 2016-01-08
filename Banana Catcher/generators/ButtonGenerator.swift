@@ -133,7 +133,9 @@ class ButtonGenerator: Generator {
         button.position = relativePosition
         button.runAction(SKAction.repeatActionForever(animation))
         
-        appearOnScreen(button)
+        scene.addChild(button)
+        
+        if !didPlayLoadingTransition { appearOnScreen(button) }
     }
     
     private func appearOnScreen(button: SKSpriteNode) {
@@ -141,12 +143,10 @@ class ButtonGenerator: Generator {
         button.size.width = 0
         button.size.height = 0
         
-        let wait = SKAction.waitForDuration(0.5)
-        let appear = SKAction.resizeToWidth(size.width, height: size.height, duration: 0.5)
+        let wait = SKAction.waitForDuration(loadingTransitionDuration)
+        let appear = SKAction.resizeToWidth(size.width, height: size.height, duration: loadingTransitionDuration)
         
         button.runAction(SKAction.sequence([wait, appear]))
-        
-        scene.addChild(button)
     }
     
     private func initButtonPositions() -> [CGPoint] {

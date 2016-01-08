@@ -25,6 +25,8 @@ class MenuScene: SKScene, SpeechBubble {
         musicPlayer.change("menu")
         
         Ads.showBanner()
+        
+        didPlayLoadingTransition = true
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
