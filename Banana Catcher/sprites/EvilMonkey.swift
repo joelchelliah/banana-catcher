@@ -70,14 +70,15 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         let animation = SKAction.animateWithTextures(angryTextures, timePerFrame: 0.05)
         
         self.runAction(animation)
-        
+    }
+    
+    func burstIntoFlames() {
         if (angerEmitter.parent == nil) {
             addChild(angerEmitter)
         }
         
         angerEmitter.resetSimulation()
     }
-    
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // * Movement logic

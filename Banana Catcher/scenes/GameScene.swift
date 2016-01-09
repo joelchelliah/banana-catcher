@@ -99,7 +99,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             if currentLevel == 15 { musicPlayer.change("game_4") }
             if currentLevel == 20 { musicPlayer.change("game_5") }
             
-            dramaticDarkening()
+            if currentLevel >= 5 {
+                dramaticDarkening()
+                monkey.burstIntoFlames()
+            }
             
             monkey.disable()
             monkey.throwTantrum()
