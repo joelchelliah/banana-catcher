@@ -16,12 +16,13 @@ class GameProps: PropsManager {
     override func add() {
         addBackground()
         addGround()
-        addLevelUpLabel()
         addDoodads()
         addScoreLabel()
         addLives()
         addBasketMan()
+        addDarkener()
         addEvilMonkey()
+        addLevelUpLabel()
     }
     
     
@@ -60,6 +61,17 @@ class GameProps: PropsManager {
         [burriedGen, bushGen, cloudGen].forEach { $0.generate() }
         
         advanceZBy(600)
+    }
+    
+    private func addDarkener() {
+        darkener = SKShapeNode(rect: scene.frame)
+        darkener.position = CGPointMake(0, 0)
+        darkener.zPosition = nextZ()
+        darkener.fillColor = SKColor.blackColor()
+        darkener.lineWidth = 0
+        darkener.alpha = 0
+        
+        scene.addChild(darkener)
     }
     
     private func addScoreLabel() {

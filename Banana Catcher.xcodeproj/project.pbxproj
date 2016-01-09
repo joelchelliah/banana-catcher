@@ -198,6 +198,10 @@
 		A368FC7B1C2583BE0036DDFA /* Supernut.swift in Sources */ = {isa = PBXBuildFile; fileRef = A368FC7A1C2583BE0036DDFA /* Supernut.swift */; };
 		A37094841C3EDA17000721C8 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = A37094831C3EDA17000721C8 /* loading.png */; };
 		A37094861C3EDAFA000721C8 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37094851C3EDAFA000721C8 /* Textures.swift */; };
+		A370948E1C415977000721C8 /* Emitters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A370948D1C415977000721C8 /* Emitters.swift */; };
+		A37094901C415B1C000721C8 /* PowerUp.sks in Resources */ = {isa = PBXBuildFile; fileRef = A370948F1C415B1C000721C8 /* PowerUp.sks */; };
+		A37094931C415EF2000721C8 /* Anger.sks in Resources */ = {isa = PBXBuildFile; fileRef = A37094911C415EF2000721C8 /* Anger.sks */; };
+		A37094941C415EF2000721C8 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A37094921C415EF2000721C8 /* spark.png */; };
 		A373A05A1C2AB233006D2802 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373A0591C2AB233006D2802 /* TutorialScene.swift */; };
 		A373A05C1C2AD12A006D2802 /* TutorialLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373A05B1C2AD12A006D2802 /* TutorialLabel.swift */; };
 		A373A05F1C2AD5E5006D2802 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = A373A05D1C2AD5E5006D2802 /* next.png */; };
@@ -597,6 +601,10 @@
 		A368FC7A1C2583BE0036DDFA /* Supernut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supernut.swift; sourceTree = "<group>"; };
 		A37094831C3EDA17000721C8 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		A37094851C3EDAFA000721C8 /* Textures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
+		A370948D1C415977000721C8 /* Emitters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emitters.swift; sourceTree = "<group>"; };
+		A370948F1C415B1C000721C8 /* PowerUp.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PowerUp.sks; sourceTree = "<group>"; };
+		A37094911C415EF2000721C8 /* Anger.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Anger.sks; sourceTree = "<group>"; };
+		A37094921C415EF2000721C8 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		A373A0591C2AB233006D2802 /* TutorialScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
 		A373A05B1C2AD12A006D2802 /* TutorialLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialLabel.swift; sourceTree = "<group>"; };
 		A373A05D1C2AD5E5006D2802 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = images/buttons/next.png; sourceTree = "<group>"; };
@@ -945,6 +953,17 @@
 			path = images/menu;
 			sourceTree = "<group>";
 		};
+		A37094881C414FFD000721C8 /* emitters */ = {
+			isa = PBXGroup;
+			children = (
+				A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */,
+				A370948F1C415B1C000721C8 /* PowerUp.sks */,
+				A37094911C415EF2000721C8 /* Anger.sks */,
+				A37094921C415EF2000721C8 /* spark.png */,
+			);
+			path = emitters;
+			sourceTree = "<group>";
+		};
 		A373A0671C2B3202006D2802 /* doodads */ = {
 			isa = PBXGroup;
 			children = (
@@ -1138,6 +1157,7 @@
 		A3A79F911BA6D32A003C1F32 /* Banana Catcher */ = {
 			isa = PBXGroup;
 			children = (
+				A37094881C414FFD000721C8 /* emitters */,
 				A30E47E01C33E5C3004DEE6D /* extensions */,
 				A3C7B5031C2DAC8F0038728B /* generators */,
 				A3DF00C91C2C4BDA00B772D5 /* helpers */,
@@ -1392,6 +1412,7 @@
 				A32394D01C2FDBE200CC1B89 /* ButtonProperties.swift */,
 				A32394D41C2FF05900CC1B89 /* TutorialProperties.swift */,
 				A37094851C3EDAFA000721C8 /* Textures.swift */,
+				A370948D1C415977000721C8 /* Emitters.swift */,
 			);
 			name = properties;
 			path = structs;
@@ -1400,7 +1421,6 @@
 		A3DF00C91C2C4BDA00B772D5 /* helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */,
 				A32394DA1C30311D00CC1B89 /* Ads.swift */,
 				A388F4901C312E5E00940540 /* NoAds.swift */,
 				A33034F51C29AFBD008A2346 /* MusicPlayer.swift */,
@@ -1552,6 +1572,7 @@
 				A37D4B311BE379250071FFBF /* flying_6.png in Resources */,
 				A33492B81BEDF6D700A1FAE1 /* sound_on.png in Resources */,
 				A3A1D8CD1C357EB9004A7E44 /* purplemush.png in Resources */,
+				A37094941C415EF2000721C8 /* spark.png in Resources */,
 				A36012461BE64C2B00FDB32D /* menu_title_1.png in Resources */,
 				A37D4B2C1BE379250071FFBF /* flying_1.png in Resources */,
 				A37094841C3EDA17000721C8 /* loading.png in Resources */,
@@ -1721,6 +1742,7 @@
 				A33492A81BEDF34800A1FAE1 /* game_over_tears_5.png in Resources */,
 				A36012681BE6530800FDB32D /* ouch_7.png in Resources */,
 				A3DF00E11C2C79D900B772D5 /* 1up_10.png in Resources */,
+				A37094931C415EF2000721C8 /* Anger.sks in Resources */,
 				A3C7B4F61C2D569C0038728B /* share.png in Resources */,
 				A37673531BEB64300079619A /* caught_3.wav in Resources */,
 				A30E48381C342510004DEE6D /* superbroke_2.png in Resources */,
@@ -1839,6 +1861,7 @@
 				A33492A11BEDF34800A1FAE1 /* game_over_sob_8.png in Resources */,
 				A3DF00C41C2C4AD200B772D5 /* cloud_4.png in Resources */,
 				A373A07A1C2B41DD006D2802 /* bush_2.png in Resources */,
+				A37094901C415B1C000721C8 /* PowerUp.sks in Resources */,
 				A376737E1BEBC59B0079619A /* catch_menu_5.png in Resources */,
 				A30E480E1C341EBE004DEE6D /* supernut.png in Resources */,
 				A33492E21BEE337600A1FAE1 /* monkey_angry_3.png in Resources */,
@@ -1892,6 +1915,7 @@
 				A388F4911C312E5E00940540 /* NoAds.swift in Sources */,
 				A31A51E41C369FD900FBCBBE /* GameProps.swift in Sources */,
 				A373A0621C2AD8A0006D2802 /* InfoLabel.swift in Sources */,
+				A370948E1C415977000721C8 /* Emitters.swift in Sources */,
 				A31A51E21C369E7400FBCBBE /* PropsManager.swift in Sources */,
 				A3C7B5091C2DC5F40038728B /* CollissionDetector.swift in Sources */,
 				A3DF00CD1C2C713A00B772D5 /* BushGenerator.swift in Sources */,

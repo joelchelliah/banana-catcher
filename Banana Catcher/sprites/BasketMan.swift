@@ -18,6 +18,8 @@ class BasketMan: SKSpriteNode {
     private var ouchTextures = Textures.basketManOuch
     private var sadTextures = Textures.basketManSad
     
+    private let powerUpEmitter = Emitters.powerUp
+    
     init() {
         originalWidth = idleTexture.size().width
         super.init(texture: idleTexture, color: SKColor.clearColor(), size: idleTexture.size())
@@ -74,14 +76,20 @@ class BasketMan: SKSpriteNode {
         playSound(Sounds.one_up)
         
         runAction(SKAction.group([animation, normalize]))
+        
+        emit(Textures.heart)
     }
     
     func goGreen() {
         goShroom(greenTextures, factor: 0.5)
+        
+        emit(Textures.mushGreen)
     }
     
     func goPurple() {
         goShroom(purpleTextures, factor: 1.5)
+        
+        emit(Textures.mushPurple)
     }
     
     private func goShroom(textures: [SKTexture], factor: CGFloat) {
@@ -130,6 +138,15 @@ class BasketMan: SKSpriteNode {
     
     private func animateTextures(textures: [SKTexture]) -> SKAction {
         return SKAction.animateWithTextures(textures, timePerFrame: 0.05)
+    }
+    
+    private func emit(texture: SKTexture) {
+        if (powerUpEmitter.parent == nil) {
+            addChild(powerUpEmitter)
+        }
+        
+        powerUpEmitter.particleTexture = texture
+        powerUpEmitter.resetSimulation()
     }
     
     private func screenWidthBonus() -> CGFloat {

@@ -27,7 +27,7 @@ class GameOverProps: PropsManager {
         let sky = SKSpriteNode(imageNamed: "menu_sky.png")
         sky.position = CGPointMake(hWidth, sky.size.height / 2)
         
-        let rain = SKEmitterNode(fileNamed: "BananaRain")!
+        let rain = Emitters.rain
         rain.position = CGPointMake(hWidth, height + 50)
         
         [sky, rain].forEach {

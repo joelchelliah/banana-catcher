@@ -8,6 +8,8 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
     private var flyingTextures = Textures.monkeyFlying
     private var angryTextures = Textures.monkeyAngry
     
+    private let angerEmitter = Emitters.anger
+    
     init() {
         let texture = flyingTextures.first!
         
@@ -68,6 +70,12 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         let animation = SKAction.animateWithTextures(angryTextures, timePerFrame: 0.05)
         
         self.runAction(animation)
+        
+        if (angerEmitter.parent == nil) {
+            addChild(angerEmitter)
+        }
+        
+        angerEmitter.resetSimulation()
     }
     
     

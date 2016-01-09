@@ -10,6 +10,7 @@ class PropsManager {
     
     internal var groundLevel: CGFloat!
     internal var basketManMenu: BasketManMenu!
+    internal var darkener: SKShapeNode!
     internal var basketMan: BasketMan!
     internal var monkey: EvilMonkey!
     internal var lives: Lives!

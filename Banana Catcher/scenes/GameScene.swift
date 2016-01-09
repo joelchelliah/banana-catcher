@@ -8,6 +8,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
     var lives: Lives!
     var scoreLabel: ScoreLabel!
     var levelUpLabel: LevelUpLabel!
+    var darkener: SKShapeNode!
     
     var touching = false
     var touchLoc = CGPointMake(0, 0)
@@ -25,6 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
         lives = props.lives
         scoreLabel = props.scoreLabel
         levelUpLabel = props.levelUpLabel
+        darkener = props.darkener
         
         musicPlayer.change("game_1")
         
@@ -97,6 +99,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             if currentLevel == 15 { musicPlayer.change("game_4") }
             if currentLevel == 20 { musicPlayer.change("game_5") }
             
+            dramaticDarkening()
+            
             monkey.disable()
             monkey.throwTantrum()
             
@@ -106,6 +110,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             
             monkey.runAction(SKAction.sequence([center, frenzy, enable]))
         }
+    }
+    
+    private func dramaticDarkening() {
+        let darken = SKAction.fadeAlphaTo(0.75, duration: 0.5)
+        let wait = SKAction.waitForDuration(1.0)
+        let lighten = SKAction.fadeAlphaTo(0, duration: 1.0)
+        
+        darkener.runAction(SKAction.sequence([darken, wait, lighten]))
     }
     
     private func decrementLives() {
@@ -238,8 +250,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             
         case is Supernut:
             let yPos = props.groundLevel + 30
-            let numSpawns: Int = monkey.currentLevel() / 5
             let spawnPos = CGPointMake(item.position.x, yPos)
+            
+            var numSpawns: Int = monkey.currentLevel() / 5
+            if numSpawns < 1 { numSpawns = 1 }
             
             for _ in 1...numSpawns {
                 throwSpawnedItem(Coconut.spawnAt(spawnPos))
