@@ -51,6 +51,6 @@ extension CollissionDetector {
     
     private func handleUnexpectedContactTest(b1: SKPhysicsBody, _
         b2: SKPhysicsBody) {
-            print("Unexpected contant test: (\(b1), \(b2))")
+            fatalError("Unexpected contant test: (\(b1), \(b2))")
     }
 }

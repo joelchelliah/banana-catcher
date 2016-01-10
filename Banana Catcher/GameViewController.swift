@@ -82,7 +82,6 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     }
     
     func showBannerAd() {
-        print("called show banner")
         let bannerHeight = adBannerView.bounds.height
         
         adBannerView.hidden = false
@@ -91,7 +90,6 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     }
     
     func hideBannerAd() {
-        print("called hide banner")
         let bannerHeight = adBannerView.bounds.height
         
         adBannerView.hidden = true

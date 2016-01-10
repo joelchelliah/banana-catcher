@@ -66,8 +66,6 @@ class NoAdsHelper : NSObject  {
     
     private func unlessNoAdsIsAlreadyPurchased(f: () -> ()) {
         if NoAds.alreadyPurchased() {
-            print("'No ads' already purchased")
-            
             NSNotificationCenter.defaultCenter().postNotificationName(NoAds.alreadyPurchasedNotification, object: NoAds.identifier)
         } else {
             f()

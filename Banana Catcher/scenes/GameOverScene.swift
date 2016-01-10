@@ -53,8 +53,6 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate, SpeechBubble  {
         GKScore.reportScores([sScore], withCompletionHandler: { (error: NSError?) -> Void in
             if error != nil {
                 print(error!.localizedDescription)
-            } else {
-                print("Score submitted")
             }
         })
     }

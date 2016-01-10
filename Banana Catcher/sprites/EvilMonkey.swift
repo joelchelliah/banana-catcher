@@ -66,8 +66,6 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
             level = 0
             requiredRage = vLevel + 3
         }
-        
-        print("level: \(level), vLevel: \(vLevel), currentLevel: \(currentLevel())")
     }
     
     func throwTantrum(darkening: () -> Void) {

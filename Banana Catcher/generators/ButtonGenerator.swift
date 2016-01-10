@@ -22,7 +22,7 @@ class ButtonGenerator: Generator {
         case is GameOverScene:
             generateGameOverButtons()
         default:
-            print("Called generate buttons for unexpected scene: \(scene.name)")
+            fatalError("Called generate buttons for unexpected scene: \(scene.name)")
         }
     }
     

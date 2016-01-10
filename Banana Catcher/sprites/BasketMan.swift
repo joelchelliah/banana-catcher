@@ -159,9 +159,9 @@ class BasketMan: SKSpriteNode {
             
         case 330..<380: return 5
             
-        case 380..<430: return 10
+        case 380..<430: return 15
             
-        default: return 12
+        default: return 20
             
         }
     }
