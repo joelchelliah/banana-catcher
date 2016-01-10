@@ -10,6 +10,7 @@ class BasketMan: SKSpriteNode {
     private var sizeChanged: Bool = false
     private let originalWidth: CGFloat
     
+    private let idleAnimationKey = "idle_animation"
     private var idleTexture = Textures.basketManIdle
     private var blinkTextures = Textures.basketManBlink
     private var catchTextures = Textures.basketManCatch
@@ -143,13 +144,25 @@ class BasketMan: SKSpriteNode {
             if let body = self.physicsBody {
                 body.velocity = CGVectorMake(0,0)
                 body.allowsRotation = true
-                body.applyImpulse(CGVectorMake(0, 25))
+                body.applyImpulse(CGVectorMake(0, 50))
                 body.applyAngularImpulse(20)
                 body.collisionBitMask = 0
             }
         }
+        let wait = SKAction.waitForDuration(0.25)
+        let fallFaster = SKAction.runBlock {
+            if let body = self.physicsBody {
+                body.velocity = CGVectorMake(0,0)
+                body.applyImpulse(CGVectorMake(0, -80))
+            }
+        }
         
-        runAction(SKAction.group([shock, spinFall]))
+        removeActionForKey(idleAnimationKey)
+        runAction(SKAction.sequence([
+            SKAction.group([shock, spinFall]),
+            wait,
+            fallFaster
+        ]))
     }
     
     private func idle() {
@@ -159,7 +172,7 @@ class BasketMan: SKSpriteNode {
         let delay = SKAction.waitForDuration(1.0)
         let animation = SKAction.sequence([blink, delay, blink, blink, delay, delay])
         
-        self.runAction(SKAction.repeatActionForever(animation))
+        self.runAction(SKAction.repeatActionForever(animation), withKey: idleAnimationKey)
     }
     
     private func animateTextures(textures: [SKTexture]) -> SKAction {

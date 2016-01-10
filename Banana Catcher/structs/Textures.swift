@@ -43,8 +43,8 @@ struct Textures {
     static let heartNut: SKTexture = SKTexture(imageNamed: "heartnut")
     
     static let monkeyFlying: [SKTexture] = Textures.make("flying", 8)
-    static let monkeyAngry: [SKTexture] = Textures.makeAngryMonkey(16)
-    static let monkeyReallyAngry: [SKTexture] = Textures.makeAngryMonkey(20)
+    static let monkeyAngry: [SKTexture] = Textures.makeAngryMonkey(8)
+    static let monkeyReallyAngry: [SKTexture] = Textures.makeAngryMonkey(14)
     
     static let mushGreen: SKTexture = SKTexture(imageNamed: "greenmush")
     static let mushPurple: SKTexture = SKTexture(imageNamed: "purplemush")

@@ -47,7 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
         
         monkeyThrowsSomething()
         
-        if touching {
+        if touching && !basketMan.isDead() {
             basketMan.move(touchLoc, range: frame.width)
         }
         
@@ -107,7 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             monkey.throwTantrum(dramaticDarkening())
             
             let center = SKAction.moveToX(CGRectGetMidX(frame), duration: 0.5)
-            let wait = SKAction.waitForDuration(monkey.currentLevel() < 5 ? 0 : 0.5)
+            let wait = SKAction.waitForDuration(monkey.currentLevel() < 5 ? 0 : 0.6)
             let frenzy = coconutFrenzyActions()
             let enable = SKAction.runBlock { self.monkey.enable() }
             
@@ -116,9 +116,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
     }
     
     private func dramaticDarkening() -> () -> Void {
-        let darken = SKAction.fadeAlphaTo(0.5, duration: 0.5)
-        let wait = SKAction.waitForDuration(1.0)
-        let lighten = SKAction.fadeAlphaTo(0, duration: 0.5)
+        let darken = SKAction.fadeAlphaTo(0.8, duration: 0.5)
+        let wait = SKAction.waitForDuration(0.8)
+        let lighten = SKAction.fadeAlphaTo(0, duration: 0.6)
         
         return { self.darkener.runAction(SKAction.sequence([darken, wait, lighten])) }
     }

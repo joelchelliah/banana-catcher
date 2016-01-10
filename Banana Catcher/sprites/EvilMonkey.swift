@@ -91,7 +91,8 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         
         if above9 && beserkable {
             madnessEmitter.hidden = false
-            madnessEmitter.numParticlesToEmit += 150
+            madnessEmitter.numParticlesToEmit *= 2
+            madnessEmitter.particleBirthRate *= 1.1
             madnessEmitter.resetSimulation()
         }
         

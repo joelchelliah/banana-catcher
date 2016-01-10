@@ -32,6 +32,11 @@ extension SKNode {
         let variations = [
             Sounds.angry: 4,
             Sounds.caught: 3,
+            Sounds.ouch: 3,
+            Sounds.select: 2,
+            Sounds.shroom: 2,
+            Sounds.smash: 3,
+            Sounds.splat: 3,
             Sounds.supernut: 3,
             Sounds.toss: 3
         ]
