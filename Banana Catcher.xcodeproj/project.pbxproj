@@ -202,6 +202,7 @@
 		A37094931C415EF2000721C8 /* Anger.sks in Resources */ = {isa = PBXBuildFile; fileRef = A37094911C415EF2000721C8 /* Anger.sks */; };
 		A37094941C415EF2000721C8 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A37094921C415EF2000721C8 /* spark.png */; };
 		A37094961C4252A2000721C8 /* Madness.sks in Resources */ = {isa = PBXBuildFile; fileRef = A37094951C4252A2000721C8 /* Madness.sks */; };
+		A37094981C427AE7000721C8 /* dead.wav in Resources */ = {isa = PBXBuildFile; fileRef = A37094971C427AE7000721C8 /* dead.wav */; };
 		A373A05A1C2AB233006D2802 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373A0591C2AB233006D2802 /* TutorialScene.swift */; };
 		A373A05C1C2AD12A006D2802 /* TutorialLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373A05B1C2AD12A006D2802 /* TutorialLabel.swift */; };
 		A373A05F1C2AD5E5006D2802 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = A373A05D1C2AD5E5006D2802 /* next.png */; };
@@ -605,6 +606,7 @@
 		A37094911C415EF2000721C8 /* Anger.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Anger.sks; sourceTree = "<group>"; };
 		A37094921C415EF2000721C8 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		A37094951C4252A2000721C8 /* Madness.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Madness.sks; sourceTree = "<group>"; };
+		A37094971C427AE7000721C8 /* dead.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dead.wav; path = sounds/dead.wav; sourceTree = "<group>"; };
 		A373A0591C2AB233006D2802 /* TutorialScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
 		A373A05B1C2AD12A006D2802 /* TutorialLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialLabel.swift; sourceTree = "<group>"; };
 		A373A05D1C2AD5E5006D2802 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = images/buttons/next.png; sourceTree = "<group>"; };
@@ -1436,6 +1438,7 @@
 				A376734E1BEB64300079619A /* caught_2.wav */,
 				A376734F1BEB64300079619A /* caught_3.wav */,
 				A3A1D8C61C354EFD004A7E44 /* cluster_splat.wav */,
+				A37094971C427AE7000721C8 /* dead.wav */,
 				A37673431BEB5D6C0079619A /* option_select.wav */,
 				A33492CB1BEE2A6400A1FAE1 /* monkey_angry_1.wav */,
 				A33492CC1BEE2A6400A1FAE1 /* monkey_angry_2.wav */,
@@ -1856,6 +1859,7 @@
 				A30E47EF1C33FDBF004DEE6D /* sniffle_6.png in Resources */,
 				A30E483E1C342510004DEE6D /* superbroke_8.png in Resources */,
 				A36012531BE64C2B00FDB32D /* menu_title_14.png in Resources */,
+				A37094981C427AE7000721C8 /* dead.wav in Resources */,
 				A30E47EE1C33FDBF004DEE6D /* sniffle_5.png in Resources */,
 				A3DF00C01C2C4AD200B772D5 /* bush_6.png in Resources */,
 				A3DF00DB1C2C79D900B772D5 /* 1up_4.png in Resources */,

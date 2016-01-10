@@ -49,7 +49,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
         
         if touching {
             basketMan.move(touchLoc, range: frame.width)
-        }   
+        }
+        
+        if basketMan.position.y < 0 {
+            gameOver()
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -122,11 +126,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
     private func decrementLives() {
         if lives.isEmpty() {
             monkey.disable()
-            
-            let wait = SKAction.waitForDuration(0.3)
-            let endGame = SKAction.runBlock { self.gameOver() }
-            
-            self.runAction(SKAction.sequence([wait, endGame]))
+            basketMan.die()
         }
         else {
             lives.down()
@@ -188,6 +188,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
     }
     
     private func bananaHitsBasketMan(pos: CGPoint, _ points: Int) {
+        if basketMan.isDead() { return }
+        
         showCollectPoints(pos, points)
         updateScore(points)
         basketMan.collect()
@@ -195,12 +197,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
     }
     
     private func coconutHitsBasketMan(pos: CGPoint, _ points: Int) {
-        if basketMan.isInvincible() { return }
+        if basketMan.isInvincible() || basketMan.isDead() { return }
         
         showCollectPoints(pos, points)
         updateScore(points)
-        basketMan.ouch()
         decrementLives()
+        basketMan.ouch()
     }
     
     private func throwableHitsGround(item: Throwable) {

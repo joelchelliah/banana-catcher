@@ -4,6 +4,7 @@ import SpriteKit
 struct Sounds {
     static let angry: String = "monkey_angry"
     static let caught: String = "caught"
+    static let dead: String = "dead"
     static let ouch: String = "ouch"
     static let one_up: String = "one_up"
     static let select: String = "option_select"

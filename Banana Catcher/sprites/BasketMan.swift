@@ -6,6 +6,7 @@ class BasketMan: SKSpriteNode {
     private let velocity: CGFloat = 8.0
     
     private var invincible: Bool = false
+    private var dead: Bool = false
     private var sizeChanged: Bool = false
     private let originalWidth: CGFloat
     
@@ -63,6 +64,10 @@ class BasketMan: SKSpriteNode {
         return invincible
     }
     
+    func isDead() -> Bool {
+        return dead
+    }
+    
     func collect() {
         let animation = animateTextures(catchTextures)
         
@@ -102,6 +107,8 @@ class BasketMan: SKSpriteNode {
     }
     
     func ouch() {
+        if dead { return }
+        
         invincible = true
         
         let animation = animateTextures(ouchTextures)
@@ -125,6 +132,24 @@ class BasketMan: SKSpriteNode {
         let animation = SKAction.animateWithTextures(sadTextures, timePerFrame: 0.07)
         
         self.runAction(animation)
+    }
+    
+    func die() {
+        dead = true
+        playSound(Sounds.dead)
+        
+        let shock = animateTextures(Array(ouchTextures[0...7]))
+        let spinFall = SKAction.runBlock {
+            if let body = self.physicsBody {
+                body.velocity = CGVectorMake(0,0)
+                body.allowsRotation = true
+                body.applyImpulse(CGVectorMake(0, 25))
+                body.applyAngularImpulse(20)
+                body.collisionBitMask = 0
+            }
+        }
+        
+        runAction(SKAction.group([shock, spinFall]))
     }
     
     private func idle() {
