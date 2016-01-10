@@ -81,7 +81,7 @@ class TutorialStageHelper {
         let delayedTosses = zipWithDelays(tosses, delay: 1.5)
         
         scene.runAction(SKAction.sequence(
-            [changeLabel("Catch all the bananas!"), wait(0.35)]
+            [changeLabel("Catch the bananas!"), wait(0.35)]
             + delayedTosses
             + [enableNextStage()]
             ))
