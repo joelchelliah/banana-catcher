@@ -62,8 +62,8 @@ private struct DropRates {
     static let heartnut: [Int] = DropRates.zeros(8)      + [3, 1, 1, 1, 1, 1, 1, 2]
     static let supernut: [Int] = DropRates.zeros(5)      + 28.stride(to: 18, by: -2)
     static let bananacluster: [Int] = DropRates.zeros(4) + 24.stride(to: 16, by: -2)
-    static let banananut: [Int] = DropRates.zeros(2)     + 20.stride(to: 14, by: -2)
-    static let coconut: [Int] =                     [20] + 30.stride(to: 12, by: -2)
+    static let banananut: [Int] = DropRates.zeros(3)     + 20.stride(to: 14, by: -2)
+    static let coconut: [Int] =   DropRates.zeros(1)     + 30.stride(to: 12, by: -2)
     
     private static func zeros(num: Int) -> [Int] {
         return [Int](count: num, repeatedValue: 0)

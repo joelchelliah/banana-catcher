@@ -79,7 +79,7 @@ extension ThrowSupport where Self: GameScene {
         
         case is Banana: return Coconut()
         
-        case is BananaCluster: return Supernut()
+        case is BananaCluster: return monkey.currentLevel() < 5 ? Coconut() : Supernut()
             
         default: return item
         }
