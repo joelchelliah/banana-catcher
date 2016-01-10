@@ -27,7 +27,7 @@ class MenuProps: PropsManager {
         let sky = SKSpriteNode(imageNamed: "menu_sky.png")
         sky.position = CGPointMake(hWidth, sky.size.height / 2)
         
-        let rain = Emitters.rain
+        let rain = SKEmitterNode(fileNamed: "BananaRain")!
         rain.position = CGPointMake(hWidth, height + 50)
         
         let offset = groundOffset + screenHeightOffset()

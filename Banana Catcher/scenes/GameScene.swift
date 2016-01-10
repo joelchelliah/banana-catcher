@@ -98,29 +98,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate, CollissionDetector, ThrowSup
             if currentLevel == 10 { musicPlayer.change("game_3") }
             if currentLevel == 15 { musicPlayer.change("game_4") }
             if currentLevel == 20 { musicPlayer.change("game_5") }
-            
-            if currentLevel >= 5 {
-                dramaticDarkening()
-                monkey.burstIntoFlames()
-            }
-            
+                        
             monkey.disable()
-            monkey.throwTantrum()
+            monkey.throwTantrum(dramaticDarkening())
             
             let center = SKAction.moveToX(CGRectGetMidX(frame), duration: 0.5)
+            let wait = SKAction.waitForDuration(monkey.currentLevel() < 5 ? 0 : 0.5)
             let frenzy = coconutFrenzyActions()
             let enable = SKAction.runBlock { self.monkey.enable() }
             
-            monkey.runAction(SKAction.sequence([center, frenzy, enable]))
+            monkey.runAction(SKAction.sequence([center, wait, frenzy, enable]))
         }
     }
     
-    private func dramaticDarkening() {
-        let darken = SKAction.fadeAlphaTo(0.75, duration: 0.5)
+    private func dramaticDarkening() -> () -> Void {
+        let darken = SKAction.fadeAlphaTo(0.5, duration: 0.5)
         let wait = SKAction.waitForDuration(1.0)
-        let lighten = SKAction.fadeAlphaTo(0, duration: 1.0)
+        let lighten = SKAction.fadeAlphaTo(0, duration: 0.5)
         
-        darkener.runAction(SKAction.sequence([darken, wait, lighten]))
+        return { self.darkener.runAction(SKAction.sequence([darken, wait, lighten])) }
     }
     
     private func decrementLives() {

@@ -43,7 +43,8 @@ struct Textures {
     static let heartNut: SKTexture = SKTexture(imageNamed: "heartnut")
     
     static let monkeyFlying: [SKTexture] = Textures.make("flying", 8)
-    static let monkeyAngry: [SKTexture] = Textures.makeAngryMonkey()
+    static let monkeyAngry: [SKTexture] = Textures.makeAngryMonkey(16)
+    static let monkeyReallyAngry: [SKTexture] = Textures.makeAngryMonkey(20)
     
     static let mushGreen: SKTexture = SKTexture(imageNamed: "greenmush")
     static let mushPurple: SKTexture = SKTexture(imageNamed: "purplemush")
@@ -74,14 +75,15 @@ struct Textures {
         return all[0...11] + all
     }
     
-    private static func makeAngryMonkey() -> [SKTexture] {
+    private static func makeAngryMonkey(length: Int) -> [SKTexture] {
         let all: [SKTexture] = Textures.make("monkey_angry", 15)
         let start = Array(all[0...6])
-        let mid = Array((1...16).map { _ in all[7...8] }.flatten())
+        let mid = Array((1...length).map { _ in all[7...8] }.flatten())
         let end = Array(all[9...14])
         
         return start + mid + end
     }
+    
     
     private static func make(name: String, _ numFrames: Int) -> [SKTexture] {
         return (1...numFrames).map { SKTexture(imageNamed: "\(name)_\($0).png") }

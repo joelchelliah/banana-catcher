@@ -7,8 +7,13 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
     
     private var flyingTextures = Textures.monkeyFlying
     private var angryTextures = Textures.monkeyAngry
+    private var reallyAngryTextures = Textures.monkeyReallyAngry
     
-    private let angerEmitter = Emitters.anger
+    private let angerEmitter = SKEmitterNode(fileNamed: "Anger")!
+    private let angerEffect = SKEffectNode()
+    
+    private let madnessEmitter = SKEmitterNode(fileNamed: "Madness")!
+    private let madnessEffect = SKEffectNode()
     
     init() {
         let texture = flyingTextures.first!
@@ -24,6 +29,7 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         
         animate()
         activateCooldown()
+        initAngerEffects()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -64,19 +70,34 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         print("level: \(level), vLevel: \(vLevel), currentLevel: \(currentLevel())")
     }
     
-    func throwTantrum() {
+    func throwTantrum(darkening: () -> Void) {
+        let hasReachedPuberty = currentLevel() >= 5
+        
         playSound(Sounds.angry)
         
-        let animation = SKAction.animateWithTextures(angryTextures, timePerFrame: 0.05)
+        if hasReachedPuberty {
+            darkening()
+            burstIntoFlames()
+        }
+        
+        let textures = hasReachedPuberty ? reallyAngryTextures : angryTextures
+        let animation = SKAction.animateWithTextures(textures, timePerFrame: 0.05)
         
         self.runAction(animation)
     }
     
-    func burstIntoFlames() {
-        if (angerEmitter.parent == nil) {
-            addChild(angerEmitter)
+    private func burstIntoFlames() {
+        let lvl = currentLevel()
+        let above9 = lvl > 9
+        let beserkable = lvl % 5 == 0 || lvl % 3 == 0
+        
+        if above9 && beserkable {
+            madnessEmitter.hidden = false
+            madnessEmitter.numParticlesToEmit += 150
+            madnessEmitter.resetSimulation()
         }
         
+        angerEmitter.hidden = false
         angerEmitter.resetSimulation()
     }
     
@@ -198,6 +219,17 @@ class EvilMonkey: SKSpriteNode, ItemThrower {
         let anim = SKAction.animateWithTextures(flyingTextures, timePerFrame: 0.06)
         
         self.runAction(SKAction.repeatActionForever(anim))
+    }
+    
+    private func initAngerEffects() {
+        angerEmitter.hidden = true
+        madnessEmitter.hidden = true
+        
+        angerEffect.addChild(angerEmitter)
+        madnessEffect.addChild(madnessEmitter)
+        
+        addChild(angerEffect)
+        addChild(madnessEffect)
     }
     
     private func screenWidthBonus() -> CGFloat {

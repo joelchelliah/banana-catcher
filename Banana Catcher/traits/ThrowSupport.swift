@@ -41,8 +41,9 @@ extension ThrowSupport where Self: GameScene {
         let maxX: Float = 8.0
         let step: Float = 2.0 * Float(maxX) / Float(level)
         
-        var numCoconuts = level % 3
-        if numCoconuts == 0 { numCoconuts = random(3, from: 1) }
+        var numCoconuts = 1
+        if level < 14 { numCoconuts = level % 3 }
+        if numCoconuts == 0 { numCoconuts = 2 }
         
         let fromLeft = (1...numCoconuts).map { frenzyThrowAction(-maxX, step: step, i: $0 - 1) }
         let fromRight = (1...numCoconuts).map { frenzyThrowAction(maxX, step: -step, i: $0 - 1) }

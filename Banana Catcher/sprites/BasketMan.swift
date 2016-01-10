@@ -18,7 +18,7 @@ class BasketMan: SKSpriteNode {
     private var ouchTextures = Textures.basketManOuch
     private var sadTextures = Textures.basketManSad
     
-    private let powerUpEmitter = Emitters.powerUp
+    private let powerUpEmitter = SKEmitterNode(fileNamed: "PowerUp")!
     
     init() {
         originalWidth = idleTexture.size().width
@@ -34,6 +34,7 @@ class BasketMan: SKSpriteNode {
         self.physicsBody?.collisionBitMask = CollisionCategories.Ground | CollisionCategories.EdgeBody
         
         idle()
+        initPowerUpEffect()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -77,19 +78,19 @@ class BasketMan: SKSpriteNode {
         
         runAction(SKAction.group([animation, normalize]))
         
-        emit(Textures.heart)
+        powrUpEffect(Textures.heart)
     }
     
     func goGreen() {
         goShroom(greenTextures, factor: 0.5)
         
-        emit(Textures.mushGreen)
+        powrUpEffect(Textures.mushGreen)
     }
     
     func goPurple() {
         goShroom(purpleTextures, factor: 1.5)
         
-        emit(Textures.mushPurple)
+        powrUpEffect(Textures.mushPurple)
     }
     
     private func goShroom(textures: [SKTexture], factor: CGFloat) {
@@ -140,13 +141,15 @@ class BasketMan: SKSpriteNode {
         return SKAction.animateWithTextures(textures, timePerFrame: 0.05)
     }
     
-    private func emit(texture: SKTexture) {
-        if (powerUpEmitter.parent == nil) {
-            addChild(powerUpEmitter)
-        }
-        
+    private func powrUpEffect(texture: SKTexture) {
+        powerUpEmitter.hidden = false
         powerUpEmitter.particleTexture = texture
         powerUpEmitter.resetSimulation()
+    }
+    
+    private func initPowerUpEffect() {
+        powerUpEmitter.hidden = true
+        addChild(powerUpEmitter)
     }
     
     private func screenWidthBonus() -> CGFloat {
