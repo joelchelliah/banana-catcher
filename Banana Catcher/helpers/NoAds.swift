@@ -7,7 +7,7 @@ typealias RequestProductsCompletionHandler = (success: Bool, products: [SKProduc
 
 
 struct NoAds {
-    static let identifier = "com.cookiemagik.Banana.Catcher.no.ads"
+    static let identifier = "com.cookiemagik.Banana.Catcher.no.iads"
     static let purchasedNotification = "NoAdsPurchasedNotification"
     static let restoredNotification = "NoAdsRestoredNotification"
     private static let helper = NoAdsHelper()
