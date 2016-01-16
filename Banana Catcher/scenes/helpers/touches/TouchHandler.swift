@@ -62,7 +62,7 @@ class TouchHandler {
         }
     }
     
-    internal func sayHello(node: SKNode, _ shopScene: ShopScene) {
+    internal func sayHello(node: SKNode) {
         node.playSound(Sounds.select)
         
         (scene as? MenuScene)?.basketManSaysHello()

@@ -15,11 +15,11 @@ class MenuTouchHandler: TouchHandler {
                 
             case ButtonNodes.play: gotoGame(touchedNode)
                 
-            case ButtonNodes.noAds: gotoNoAds(touchedNode, menuScene)
+            case ButtonNodes.noAds: gotoShop(touchedNode)
                 
             case ButtonNodes.rating: gotoRating(touchedNode)
                 
-            case ButtonNodes.basketManMenu: sayHello(touchedNode, menuScene)
+            case ButtonNodes.basketManMenu: sayHello(touchedNode)
                 
             default: break
             }
@@ -45,18 +45,8 @@ class MenuTouchHandler: TouchHandler {
     private func gotoTutorial(node: SKNode) {
         buttonClick(node, toScene: TutorialScene(size: scene.size))
     }
-
-    private func gotoNoAds(node: SKNode, _ menuScene: MenuScene) {
-        buttonClick(node) {
-            menuScene.purchaseNoAds()
-        }
-    }
     
-    private func sayHello(node: SKNode, _ menuScene: MenuScene) {
-        node.runAction(SKAction.runBlock {
-            node.playSound(Sounds.select)
-            
-            menuScene.basketManSaysHello()
-            })
+    private func gotoShop(node: SKNode) {
+        buttonClick(node, toScene: ShopScene(size: scene.size))
     }
 }

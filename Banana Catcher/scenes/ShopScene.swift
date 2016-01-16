@@ -8,16 +8,18 @@ class ShopScene: SKScene, SpeechBubble {
     private var basketMan: BasketManMenu!
     private var purchaseButton = SKSpriteNode()
     private var restoreButton = SKSpriteNode()
+    private var backButton = SKSpriteNode()
     
     override func didMoveToView(view: SKView) {
-        touchHandler = MenuTouchHandler(forScene: self)
+        touchHandler = ShopTouchHandler(forScene: self)
         
-        props = MenuProps.init(forScene: self)
+        props = ShopProps.init(forScene: self)
         props.add()
         
         basketMan = props.basketManMenu
         purchaseButton = props.purchaseButton
         restoreButton = props.restoreButton
+        backButton = props.backButton
         
         observeNoAdsNotifications()
         
@@ -31,7 +33,7 @@ class ShopScene: SKScene, SpeechBubble {
     }
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // * Store (no ads)
+    // * No Ads
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     func observeNoAdsNotifications() {
@@ -44,22 +46,28 @@ class ShopScene: SKScene, SpeechBubble {
     }
     
     func purchaseNoAds() {
+        doNoAdsTransaction(NoAds.purchase)
+    }
+    
+    func restoreNoAds() {
+        doNoAdsTransaction(NoAds.restore)
+    }
+    
+    private func doNoAdsTransaction(transaction: () -> ()) {
         disableShopButtons()
         
-        NoAds.restore()
-        
-        showSpeechBubble(SpeechBubbles.pleaseWait)
-        basketManGoesQuietForAWhile()
+        transaction()
+
+        basketManWaits()
         
         let wait = SKAction.waitForDuration(5)
-        let purchase = SKAction.runBlock { NoAds.purchase() }
         let enableButtonUnlessPurchased = SKAction.runBlock {
             if !NoAds.alreadyPurchased() {
                 self.enableShopButtons()
             }
         }
         
-        runAction(SKAction.sequence([wait, purchase, wait, enableButtonUnlessPurchased]))
+        runAction(SKAction.sequence([wait, enableButtonUnlessPurchased]))
     }
     
     internal func noAdsPurchased(_: NSNotification) {
@@ -71,8 +79,6 @@ class ShopScene: SKScene, SpeechBubble {
     }
     
     internal func noAdsAlreadyPurchased(_: NSNotification) {
-        earlierTransactionRestored = true
-        
         disableShopButtons()
         
         Ads.hideBanner()
@@ -113,7 +119,9 @@ class ShopScene: SKScene, SpeechBubble {
         showSpeechBubble(SpeechBubbles.hello)
     }
     
-    func basketManGoesQuietForAWhile() {
+    private func basketManWaits() {
+        showSpeechBubble(SpeechBubbles.pleaseWait)
+        
         basketMan.name = ButtonNodes.basketManMenuQuiet
         
         let wait = SKAction.waitForDuration(8.0)

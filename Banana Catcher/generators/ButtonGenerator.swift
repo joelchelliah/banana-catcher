@@ -62,6 +62,10 @@ class ButtonGenerator: Generator {
     }
     
     private func generateNoAdsButton() {
+        if NoAds.alreadyPurchased() || NoAds.notPermitted() {
+            noAdsButton.name = ButtonNodes.disabled
+            noAdsButton.alpha = 0.3
+        }
         generateButton(noAdsButton, name: ButtonNodes.noAds, index: ButtonPositions.right)
     }
     

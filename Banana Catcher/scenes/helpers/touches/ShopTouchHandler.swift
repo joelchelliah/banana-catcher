@@ -4,7 +4,6 @@ import SpriteKit
 class ShopTouchHandler: TouchHandler {
     
     override func handle(touches: Set<UITouch>) {
-        let shopScene = scene as! ShopScene
         let touchedNode = getTouchedNode(touches)
         
         if let nodeName = touchedNode.name {
@@ -13,9 +12,9 @@ class ShopTouchHandler: TouchHandler {
                 
             case ButtonNodes.restore: restoreNoAds(touchedNode)
                 
-            case ButtonNodes.back: gotoMenu(<#T##node: SKNode##SKNode#>)
+            case ButtonNodes.back: gotoMenu(touchedNode)
                 
-            case ButtonNodes.basketManMenu: sayHello(touchedNode, shopScene)
+            case ButtonNodes.basketManMenu: sayHello(touchedNode)
                 
             default: break
             }
@@ -23,28 +22,14 @@ class ShopTouchHandler: TouchHandler {
     }
     
     private func purchaseNoAds(button: SKNode) {
-        soundEnabled = !soundEnabled
-        
-        let texture = soundEnabled ? "sound_on.png" : "sound_off.png"
-        
         buttonClick(button) {
-            menuScene.changeSoundButtonTexture(texture)
+            (self.scene as! ShopScene).purchaseNoAds()
         }
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(soundEnabled, forKey: "soundEnabled")
-        defaults.synchronize()
-        
-        musicPlayer.toggle()
     }
     
-    private func restoreNoAds(node: SKNode) {
-        buttonClick(node, toScene: TutorialScene(size: scene.size))
-    }
-    
-    private func gotoNoAds(node: SKNode, _ menuScene: MenuScene) {
-        buttonClick(node) {
-            menuScene.purchaseNoAds()
+    private func restoreNoAds(button: SKNode) {
+        buttonClick(button) {
+            (self.scene as! ShopScene).restoreNoAds()
         }
     }
 }

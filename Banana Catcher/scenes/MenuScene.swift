@@ -20,7 +20,6 @@ class MenuScene: SKScene, SpeechBubble {
         noAdsButton = props.noAdsButton
         
         initSound()
-        observeNoAdsNotifications()
         
         musicPlayer.change("menu")
         
@@ -31,62 +30,6 @@ class MenuScene: SKScene, SpeechBubble {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         touchHandler.handle(touches)
-    }
-    
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // * Store (no ads)
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    
-    func observeNoAdsNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "noAdsPurchased:", name: NoAds.purchasedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "noAdsAlreadyPurchased:", name: NoAds.alreadyPurchasedNotification, object: nil)
-        
-        if NoAds.alreadyPurchased() || NoAds.notPermitted() {
-            disableNoAdsButton()
-        }
-    }
-    
-    func purchaseNoAds() {
-        disableNoAdsButton()
-        
-        NoAds.restore()
-        
-        showSpeechBubble(SpeechBubbles.pleaseWait)
-        basketManGoesQuietForAWhile()
-        
-        let wait = SKAction.waitForDuration(5)
-        let purchase = SKAction.runBlock { NoAds.purchase() }
-        let enableButtonUnlessPurchased = SKAction.runBlock {
-            if !NoAds.alreadyPurchased() {
-                self.noAdsButton.name = ButtonNodes.noAds
-                self.noAdsButton.alpha = 1.0
-            }
-        }
-        
-        runAction(SKAction.sequence([wait, purchase, wait, enableButtonUnlessPurchased]))
-    }
-    
-    internal func noAdsPurchased(_: NSNotification) {
-        disableNoAdsButton()
-        
-        Ads.hideBanner()
-        
-        showSpeechBubble(SpeechBubbles.thankYou)
-    }
-    
-    internal func noAdsAlreadyPurchased(_: NSNotification) {
-        earlierTransactionRestored = true
-        
-        disableNoAdsButton()
-        
-        Ads.hideBanner()
-        
-        showSpeechBubble(SpeechBubbles.adsRestored)
-    }
-    
-    private func disableNoAdsButton() {
-        noAdsButton.name = ButtonNodes.disabled
-        noAdsButton.alpha = 0.3
     }
     
     
@@ -131,15 +74,6 @@ class MenuScene: SKScene, SpeechBubble {
     
     func basketManSaysHello() {
         showSpeechBubble(SpeechBubbles.hello)
-    }
-    
-    func basketManGoesQuietForAWhile() {
-        basketMan.name = ButtonNodes.basketManMenuQuiet
-        
-        let wait = SKAction.waitForDuration(8.0)
-        let unmute = SKAction.runBlock { self.basketMan.name = ButtonNodes.basketManMenu }
-        
-        runAction(SKAction.sequence([wait, unmute]))
     }
     
     private func changeButtonTexture(button: SKSpriteNode, _ name: String) {
