@@ -18,7 +18,7 @@ class PropsManager {
     internal var levelUpLabel: LevelUpLabel!
     internal var infoLabel:  InfoLabel!
     internal var soundButton: SKSpriteNode!
-    internal var noAdsButton: SKSpriteNode!
+    internal var shopButton: SKSpriteNode!
     internal var nextButton: SKSpriteNode!
     internal var purchaseButton: SKSpriteNode!
     internal var restoreButton: SKSpriteNode!

@@ -102,6 +102,6 @@ class MenuProps: PropsManager {
         buttonGenerator.generate()
         
         soundButton = buttonGenerator.soundButton
-        noAdsButton = buttonGenerator.noAdsButton
+        shopButton = buttonGenerator.shopButton
     }
 }

@@ -56,6 +56,7 @@ struct Textures {
     static let restore: SKTexture = SKTexture(imageNamed: "restore")
     static let back: SKTexture = SKTexture(imageNamed: "back")
     
+    static let shop: SKTexture = SKTexture(imageNamed: "shop")
     static let soundOn: SKTexture = SKTexture(imageNamed: "sound_on")
     static let soundOff: SKTexture = SKTexture(imageNamed: "sound_off")
     

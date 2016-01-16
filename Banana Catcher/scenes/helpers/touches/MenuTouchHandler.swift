@@ -15,7 +15,7 @@ class MenuTouchHandler: TouchHandler {
                 
             case ButtonNodes.play: gotoGame(touchedNode)
                 
-            case ButtonNodes.noAds: gotoShop(touchedNode)
+            case ButtonNodes.shop: gotoShop(touchedNode)
                 
             case ButtonNodes.rating: gotoRating(touchedNode)
                 

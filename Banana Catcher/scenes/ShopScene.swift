@@ -38,7 +38,7 @@ class ShopScene: SKScene, SpeechBubble {
     
     func observeNoAdsNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "noAdsPurchased:", name: NoAds.purchasedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "noAdsAlreadyPurchased:", name: NoAds.alreadyPurchasedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "noAdsRestored:", name: NoAds.restoredNotification, object: nil)
         
         if NoAds.alreadyPurchased() || NoAds.notPermitted() {
             disableShopButtons()
@@ -78,7 +78,7 @@ class ShopScene: SKScene, SpeechBubble {
         showSpeechBubble(SpeechBubbles.thankYou)
     }
     
-    internal func noAdsAlreadyPurchased(_: NSNotification) {
+    internal func noAdsRestored(_: NSNotification) {
         disableShopButtons()
         
         Ads.hideBanner()

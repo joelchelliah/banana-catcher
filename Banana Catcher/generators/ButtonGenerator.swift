@@ -19,6 +19,8 @@ class ButtonGenerator: Generator {
             generateMenuButtons()
         case is TutorialScene:
             generateTutorialButtons()
+        case is ShopScene:
+            generateShopButtons()
         case is GameOverScene:
             generateGameOverButtons()
         default:
@@ -32,13 +34,13 @@ class ButtonGenerator: Generator {
     // * * * * * * * * * * * * * * * * * * * * * * * * * *
     
     var soundButton = SKSpriteNode(texture: Textures.soundOff)
-    var noAdsButton = SKSpriteNode(imageNamed: "no_ads.png")
+    var shopButton = SKSpriteNode(texture: Textures.shop)
     
     private func generateMenuButtons() {
         generateSoundButton()
         generateTutorialButton()
         generatePlayButton()
-        generateNoAdsButton()
+        generateShopButton()
         generateRatingButton()
     }
     
@@ -61,12 +63,12 @@ class ButtonGenerator: Generator {
         generateButton(button, name: ButtonNodes.play, index: ButtonPositions.mid)
     }
     
-    private func generateNoAdsButton() {
+    private func generateShopButton() {
         if NoAds.alreadyPurchased() || NoAds.notPermitted() {
-            noAdsButton.name = ButtonNodes.disabled
-            noAdsButton.alpha = 0.3
+            shopButton.name = ButtonNodes.disabled
+            shopButton.alpha = 0.3
         }
-        generateButton(noAdsButton, name: ButtonNodes.noAds, index: ButtonPositions.right)
+        generateButton(shopButton, name: ButtonNodes.shop, index: ButtonPositions.right)
     }
     
     
@@ -92,7 +94,7 @@ class ButtonGenerator: Generator {
     private func generateShopButtons() {
         generateButton(purchaseButton, name: ButtonNodes.purchase, index: ButtonPositions.left)
         generateButton(restoreButton, name: ButtonNodes.restore, index: ButtonPositions.right)
-        generateButton(restoreButton, name: ButtonNodes.back, index: ButtonPositions.mid)
+        generateButton(backButton, name: ButtonNodes.back, index: ButtonPositions.mid)
     }
     
     
@@ -154,19 +156,23 @@ class ButtonGenerator: Generator {
         
         scene.addChild(button)
         
-        // if !didPlayLoadingTransition { appearOnScreen(button) }
         switch scene {
-        case is MenuScene, is ShopScene: appearOnScreen(button)
+        case is MenuScene, is ShopScene:
+            if didPlayLoadingTransition {
+                appearOnScreen(button , 0)
+            } else {
+                appearOnScreen(button, loadingTransitionDuration)
+            }
         default: break
         }
     }
     
-    private func appearOnScreen(button: SKSpriteNode) {
+    private func appearOnScreen(button: SKSpriteNode, _ duration: NSTimeInterval) {
         let size = button.size
         button.size.width = 0
         button.size.height = 0
         
-        let wait = SKAction.waitForDuration(loadingTransitionDuration)
+        let wait = SKAction.waitForDuration(duration)
         let appear = SKAction.resizeToWidth(size.width, height: size.height, duration: loadingTransitionDuration)
         
         button.runAction(SKAction.sequence([wait, appear]))

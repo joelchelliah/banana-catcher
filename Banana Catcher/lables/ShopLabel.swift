@@ -4,7 +4,7 @@ import SpriteKit
 class ShopLabel: GameLabel {
     
     init(x: CGFloat, y: CGFloat, zPosition: CGFloat) {
-        super.init(text: "Remove Ads")
+        super.init(text: "Remove Ads?")
         
         self.position = CGPointMake(x, y)
         self.fontSize = 30

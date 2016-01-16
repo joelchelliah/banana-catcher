@@ -43,9 +43,10 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     
     private func initGameScene() -> SKScene {
         let gameScene = MenuScene(size: view.bounds.size)
-        //let gameScene = GameOverScene(size: view.bounds.size)
+        //let gameScene = ShopScene(size: view.bounds.size)
         //let gameScene = TutorialScene(size: view.bounds.size)
         //let gameScene = GameScene(size: view.bounds.size)
+        //let gameScene = GameOverScene(size: view.bounds.size)
         
         gameScene.scaleMode = .ResizeFill
         

@@ -7,7 +7,7 @@ class MenuScene: SKScene, SpeechBubble {
     private var props: PropsManager!
     private var basketMan: BasketManMenu!
     private var soundButton = SKSpriteNode()
-    private var noAdsButton = SKSpriteNode()
+    private var shopButton = SKSpriteNode()
     
     override func didMoveToView(view: SKView) {
         touchHandler = MenuTouchHandler(forScene: self)
@@ -17,7 +17,7 @@ class MenuScene: SKScene, SpeechBubble {
         
         basketMan = props.basketManMenu
         soundButton = props.soundButton
-        noAdsButton = props.noAdsButton
+        shopButton = props.shopButton
         
         initSound()
         

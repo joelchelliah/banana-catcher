@@ -66,6 +66,7 @@ class TouchHandler {
         node.playSound(Sounds.select)
         
         (scene as? MenuScene)?.basketManSaysHello()
+        
         (scene as? ShopScene)?.basketManSaysHello()
     }
 }

@@ -5,8 +5,8 @@ class ShopProps: PropsManager {
     
     // Height offsets from top
     private let headerOffset: CGFloat = 50
-    private let infoOffset: CGFloat = 90
-    private let buttonsOffset: CGFloat = 180
+    private let infoOffset: CGFloat = 80
+    private let buttonsOffset: CGFloat = 160
     private let basketOffset: CGFloat = 305
     private let groundOffset: CGFloat = 470
     
@@ -77,10 +77,23 @@ class ShopProps: PropsManager {
         let header = ShopLabel(x: hWidth, y: height - headerOffset, zPosition: nextZ())
         let offset = infoOffset + screenHeightOffset() / 4
         
-        infoLabel = InfoLabel(x: hWidth, y: height - offset, zPosition: nextZ())
+        let info1 = InfoLabel(x: hWidth, y: height - offset, zPosition: nextZ())
+        let info2 = InfoLabel(x: hWidth, y: height - offset - 30, zPosition: nextZ())
         
         scene.addChild(header)
-        scene.addChild(infoLabel)
+        
+        [info1, info2].forEach {
+            $0.fontSize = 18
+            scene.addChild($0)
+        }
+        
+        let wait = SKAction.waitForDuration(1.5)
+        let setText = SKAction.runBlock {
+            info1.changeText("Purchase to remove")
+            info2.changeText("all ads from the game")
+        }
+        
+        scene.runAction(SKAction.sequence([wait, setText]))
     }
     
     private func addButtons() {
@@ -93,5 +106,7 @@ class ShopProps: PropsManager {
         purchaseButton = buttonGenerator.purchaseButton
         restoreButton = buttonGenerator.restoreButton
         backButton = buttonGenerator.backButton
+        
+        backButton.position.y -= 80 + 1.1 * offset
     }
 }
