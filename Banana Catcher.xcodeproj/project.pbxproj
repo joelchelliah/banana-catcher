@@ -399,6 +399,10 @@
 		A3DF00E01C2C79D900B772D5 /* 1up_9.png in Resources */ = {isa = PBXBuildFile; fileRef = A3DF00D61C2C79D900B772D5 /* 1up_9.png */; };
 		A3DF00E11C2C79D900B772D5 /* 1up_10.png in Resources */ = {isa = PBXBuildFile; fileRef = A3DF00D71C2C79D900B772D5 /* 1up_10.png */; };
 		A3F33D861BAD381F0038FDFB /* CollisionCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */; };
+		A3FCCA0A1C4A23D200898765 /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FCCA091C4A23D200898765 /* ShopScene.swift */; };
+		A3FCCA0E1C4A278400898765 /* ShopProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FCCA0D1C4A278400898765 /* ShopProps.swift */; };
+		A3FCCA101C4A282D00898765 /* ShopLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FCCA0F1C4A282D00898765 /* ShopLabel.swift */; };
+		A3FCCA131C4A2CEB00898765 /* ShopTouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FCCA121C4A2CEB00898765 /* ShopTouchHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -817,6 +821,10 @@
 		A3DF00D61C2C79D900B772D5 /* 1up_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1up_9.png; path = images/heroes/box/1up_9.png; sourceTree = "<group>"; };
 		A3DF00D71C2C79D900B772D5 /* 1up_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1up_10.png; path = images/heroes/box/1up_10.png; sourceTree = "<group>"; };
 		A3F33D851BAD381F0038FDFB /* CollisionCategories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionCategories.swift; sourceTree = "<group>"; };
+		A3FCCA091C4A23D200898765 /* ShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
+		A3FCCA0D1C4A278400898765 /* ShopProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopProps.swift; sourceTree = "<group>"; };
+		A3FCCA0F1C4A282D00898765 /* ShopLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopLabel.swift; sourceTree = "<group>"; };
+		A3FCCA121C4A2CEB00898765 /* ShopTouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopTouchHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -867,15 +875,8 @@
 		A31A51E01C369E0600FBCBBE /* helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A31A51E11C369E7400FBCBBE /* PropsManager.swift */,
-				A31A51E31C369FD900FBCBBE /* GameProps.swift */,
-				A31A51E91C36BFA800FBCBBE /* GameOverProps.swift */,
-				A31A51E51C36B09F00FBCBBE /* MenuProps.swift */,
-				A31A51E71C36B8FB00FBCBBE /* TutorialProps.swift */,
-				A32394E41C308F9A00CC1B89 /* TouchHandler.swift */,
-				A32394E91C30917200CC1B89 /* GameOverTouchHandler.swift */,
-				A32394E31C308F9A00CC1B89 /* MenuTouchHandler.swift */,
-				A32394E71C30911600CC1B89 /* TutuorialTouchHandler.swift */,
+				A3FCCA0C1C4A273000898765 /* props */,
+				A3FCCA111C4A2C8A00898765 /* touches */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -1072,6 +1073,7 @@
 				A3A79FC41BA6D46A003C1F32 /* MenuScene.swift */,
 				A32A31FA1BB8114300A12214 /* GameOverScene.swift */,
 				A373A0591C2AB233006D2802 /* TutorialScene.swift */,
+				A3FCCA091C4A23D200898765 /* ShopScene.swift */,
 			);
 			path = scenes;
 			sourceTree = "<group>";
@@ -1079,14 +1081,15 @@
 		A37D4B3C1BE3AEF70071FFBF /* labels */ = {
 			isa = PBXGroup;
 			children = (
-				A396BB531BB6E517002F7231 /* ScoreLabel.swift */,
-				A3C20E951BED44BB002A179E /* GameOverLabel.swift */,
 				A33492EF1BEE611F00A1FAE1 /* CollectPointLabel.swift */,
-				A32A31FE1BB81E3F00A12214 /* ScoreboardLabel.swift */,
-				A373A05B1C2AD12A006D2802 /* TutorialLabel.swift */,
-				A373A0611C2AD8A0006D2802 /* InfoLabel.swift */,
 				A32394D21C2FE12F00CC1B89 /* GameLabel.swift */,
+				A3C20E951BED44BB002A179E /* GameOverLabel.swift */,
+				A373A0611C2AD8A0006D2802 /* InfoLabel.swift */,
 				A31A51EB1C38322700FBCBBE /* LevelUpLabel.swift */,
+				A32A31FE1BB81E3F00A12214 /* ScoreboardLabel.swift */,
+				A396BB531BB6E517002F7231 /* ScoreLabel.swift */,
+				A3FCCA0F1C4A282D00898765 /* ShopLabel.swift */,
+				A373A05B1C2AD12A006D2802 /* TutorialLabel.swift */,
 			);
 			name = labels;
 			path = lables;
@@ -1483,6 +1486,31 @@
 				A37673471BEB60330079619A /* toss_3.wav */,
 			);
 			name = sounds;
+			sourceTree = "<group>";
+		};
+		A3FCCA0C1C4A273000898765 /* props */ = {
+			isa = PBXGroup;
+			children = (
+				A31A51E11C369E7400FBCBBE /* PropsManager.swift */,
+				A31A51E31C369FD900FBCBBE /* GameProps.swift */,
+				A31A51E91C36BFA800FBCBBE /* GameOverProps.swift */,
+				A31A51E51C36B09F00FBCBBE /* MenuProps.swift */,
+				A3FCCA0D1C4A278400898765 /* ShopProps.swift */,
+				A31A51E71C36B8FB00FBCBBE /* TutorialProps.swift */,
+			);
+			path = props;
+			sourceTree = "<group>";
+		};
+		A3FCCA111C4A2C8A00898765 /* touches */ = {
+			isa = PBXGroup;
+			children = (
+				A32394E41C308F9A00CC1B89 /* TouchHandler.swift */,
+				A32394E91C30917200CC1B89 /* GameOverTouchHandler.swift */,
+				A32394E31C308F9A00CC1B89 /* MenuTouchHandler.swift */,
+				A3FCCA121C4A2CEB00898765 /* ShopTouchHandler.swift */,
+				A32394E71C30911600CC1B89 /* TutuorialTouchHandler.swift */,
+			);
+			path = touches;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1966,6 +1994,8 @@
 				A37D4B3F1BE3BC6B0071FFBF /* Brokenut.swift in Sources */,
 				A3A79F991BA6D32A003C1F32 /* GameViewController.swift in Sources */,
 				A33492F01BEE611F00A1FAE1 /* CollectPointLabel.swift in Sources */,
+				A3FCCA0E1C4A278400898765 /* ShopProps.swift in Sources */,
+				A3FCCA0A1C4A23D200898765 /* ShopScene.swift in Sources */,
 				A32394DB1C30311D00CC1B89 /* Ads.swift in Sources */,
 				A3A1D8A91C352D6B004A7E44 /* ItemThrower.swift in Sources */,
 				A32394EA1C30917200CC1B89 /* GameOverTouchHandler.swift in Sources */,
@@ -1992,12 +2022,14 @@
 				A3BBCA2D1C006FA900BCBCC7 /* Heart.swift in Sources */,
 				A32394E61C308F9A00CC1B89 /* TouchHandler.swift in Sources */,
 				A37D4B391BE3A4520071FFBF /* Throwable.swift in Sources */,
+				A3FCCA131C4A2CEB00898765 /* ShopTouchHandler.swift in Sources */,
 				A37094861C3EDAFA000721C8 /* Textures.swift in Sources */,
 				A31A51E61C36B09F00FBCBBE /* MenuProps.swift in Sources */,
 				A3C9559E1BCACFCC000E6274 /* SplatBanana.swift in Sources */,
 				A396BB541BB6E517002F7231 /* ScoreLabel.swift in Sources */,
 				A32394D11C2FDBE200CC1B89 /* ButtonProperties.swift in Sources */,
 				A368FC7B1C2583BE0036DDFA /* Supernut.swift in Sources */,
+				A3FCCA101C4A282D00898765 /* ShopLabel.swift in Sources */,
 				A3C7B5051C2DAF960038728B /* Globals.swift in Sources */,
 				A3C7B5021C2DAA1A0038728B /* Generator.swift in Sources */,
 				A32A31FF1BB81E3F00A12214 /* ScoreboardLabel.swift in Sources */,

@@ -1,32 +1,29 @@
 import UIKit
 import SpriteKit
 
-class MenuScene: SKScene, SpeechBubble {
-
+class ShopScene: SKScene, SpeechBubble {
+    
     private var touchHandler: TouchHandler!
     private var props: PropsManager!
     private var basketMan: BasketManMenu!
-    private var soundButton = SKSpriteNode()
-    private var noAdsButton = SKSpriteNode()
+    private var purchaseButton = SKSpriteNode()
+    private var restoreButton = SKSpriteNode()
     
     override func didMoveToView(view: SKView) {
         touchHandler = MenuTouchHandler(forScene: self)
-
+        
         props = MenuProps.init(forScene: self)
         props.add()
         
         basketMan = props.basketManMenu
-        soundButton = props.soundButton
-        noAdsButton = props.noAdsButton
+        purchaseButton = props.purchaseButton
+        restoreButton = props.restoreButton
         
-        initSound()
         observeNoAdsNotifications()
         
-        musicPlayer.change("menu")
+        musicPlayer.change("tutorial")
         
         Ads.showBanner()
-        
-        didPlayLoadingTransition = true
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -42,12 +39,12 @@ class MenuScene: SKScene, SpeechBubble {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "noAdsAlreadyPurchased:", name: NoAds.alreadyPurchasedNotification, object: nil)
         
         if NoAds.alreadyPurchased() || NoAds.notPermitted() {
-            disableNoAdsButton()
+            disableShopButtons()
         }
     }
     
     func purchaseNoAds() {
-        disableNoAdsButton()
+        disableShopButtons()
         
         NoAds.restore()
         
@@ -58,8 +55,7 @@ class MenuScene: SKScene, SpeechBubble {
         let purchase = SKAction.runBlock { NoAds.purchase() }
         let enableButtonUnlessPurchased = SKAction.runBlock {
             if !NoAds.alreadyPurchased() {
-                self.noAdsButton.name = ButtonNodes.noAds
-                self.noAdsButton.alpha = 1.0
+                self.enableShopButtons()
             }
         }
         
@@ -67,7 +63,7 @@ class MenuScene: SKScene, SpeechBubble {
     }
     
     internal func noAdsPurchased(_: NSNotification) {
-        disableNoAdsButton()
+        disableShopButtons()
         
         Ads.hideBanner()
         
@@ -77,16 +73,25 @@ class MenuScene: SKScene, SpeechBubble {
     internal func noAdsAlreadyPurchased(_: NSNotification) {
         earlierTransactionRestored = true
         
-        disableNoAdsButton()
+        disableShopButtons()
         
         Ads.hideBanner()
         
         showSpeechBubble(SpeechBubbles.adsRestored)
     }
     
-    private func disableNoAdsButton() {
-        noAdsButton.name = ButtonNodes.disabled
-        noAdsButton.alpha = 0.3
+    private func enableShopButtons() {
+        [purchaseButton, restoreButton].forEach { $0.alpha = 1.0 }
+        
+        purchaseButton.name = ButtonNodes.purchase
+        restoreButton.name = ButtonNodes.restore
+    }
+    
+    private func disableShopButtons() {
+        [purchaseButton, restoreButton].forEach {
+            $0.name = ButtonNodes.disabled
+            $0.alpha = 0.3
+        }
     }
     
     
@@ -104,31 +109,6 @@ class MenuScene: SKScene, SpeechBubble {
         addChild(speechBubble)
     }
     
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // * Sound
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    
-    func changeSoundButtonTexture(name: String) {
-        changeButtonTexture(soundButton, name)
-    }
-    
-    private func initSound() {
-        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        
-        soundEnabled = defaults.valueForKey("soundEnabled")?.boolValue ?? true
-        
-        if soundEnabled {
-            changeSoundButtonTexture("sound_on")
-        }
-        
-        defaults.synchronize()
-    }
-    
-    
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // * Misc
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    
     func basketManSaysHello() {
         showSpeechBubble(SpeechBubbles.hello)
     }
@@ -140,9 +120,5 @@ class MenuScene: SKScene, SpeechBubble {
         let unmute = SKAction.runBlock { self.basketMan.name = ButtonNodes.basketManMenu }
         
         runAction(SKAction.sequence([wait, unmute]))
-    }
-    
-    private func changeButtonTexture(button: SKSpriteNode, _ name: String) {
-        button.texture = SKTexture(imageNamed: name)
     }
 }

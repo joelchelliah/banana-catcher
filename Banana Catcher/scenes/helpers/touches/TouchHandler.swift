@@ -61,4 +61,11 @@ class TouchHandler {
             button.runAction(SKAction.sequence([sound, action]))
         }
     }
+    
+    internal func sayHello(node: SKNode, _ shopScene: ShopScene) {
+        node.playSound(Sounds.select)
+        
+        (scene as? MenuScene)?.basketManSaysHello()
+        (scene as? ShopScene)?.basketManSaysHello()
+    }
 }

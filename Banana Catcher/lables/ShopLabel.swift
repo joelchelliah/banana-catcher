@@ -1,13 +1,13 @@
 import UIKit
 import SpriteKit
 
-class GameOverLabel: GameLabel {
+class ShopLabel: GameLabel {
     
     init(x: CGFloat, y: CGFloat, zPosition: CGFloat) {
-        super.init(text: "Game Over")
+        super.init(text: "Remove Ads")
         
         self.position = CGPointMake(x, y)
-        self.fontSize = 35
+        self.fontSize = 30
         
         self.alpha = 0
         self.runAction(SKAction.fadeAlphaTo(0.8, duration: 8))

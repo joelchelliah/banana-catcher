@@ -70,12 +70,27 @@ class ButtonGenerator: Generator {
     // * Tutorial buttons
     // * * * * * * * * * * * * * * * * * * * * * * * * * *
     
-    var nextButton = SKSpriteNode(imageNamed: "next.png")
+    var nextButton = SKSpriteNode(texture: Textures.next)
     
     private func generateTutorialButtons() {
         generateButton(nextButton, name: ButtonNodes.next, index: ButtonPositions.mid)
     }
 
+    
+    // * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * Shop buttons
+    // * * * * * * * * * * * * * * * * * * * * * * * * * *
+    
+    var purchaseButton = SKSpriteNode(texture: Textures.purchase)
+    var restoreButton = SKSpriteNode(texture: Textures.restore)
+    var backButton = SKSpriteNode(texture: Textures.back)
+    
+    private func generateShopButtons() {
+        generateButton(purchaseButton, name: ButtonNodes.purchase, index: ButtonPositions.left)
+        generateButton(restoreButton, name: ButtonNodes.restore, index: ButtonPositions.right)
+        generateButton(restoreButton, name: ButtonNodes.back, index: ButtonPositions.mid)
+    }
+    
     
     // * * * * * * * * * * * * * * * * * * * * * * * * * *
     // * Game over buttons
@@ -135,7 +150,11 @@ class ButtonGenerator: Generator {
         
         scene.addChild(button)
         
-        if !didPlayLoadingTransition { appearOnScreen(button) }
+        // if !didPlayLoadingTransition { appearOnScreen(button) }
+        switch scene {
+        case is MenuScene, is ShopScene: appearOnScreen(button)
+        default: break
+        }
     }
     
     private func appearOnScreen(button: SKSpriteNode) {

@@ -3,7 +3,6 @@ struct ButtonNodes {
     static let sound: String = "soundNode"
     static let howTo: String = "howToNode"
     static let noAds: String = "noAdsNode"
-    static let noAdsDisabled: String = "noAdsDisabledNode"
     static let rating: String = "ratingNode"
     
     static let basketManMenu: String = "basketManMenuNode"
@@ -11,6 +10,11 @@ struct ButtonNodes {
     
     static let next: String = "nextNode"
     static let ok: String = "okNode"
+    
+    static let purchase: String = "purchaseNode"
+    static let restore: String = "restoreNode"
+    static let back: String = "backNode"
+    static let disabled: String = "disabledNode"
     
     static let home: String = "homeNode"
     static let highscore: String = "highscoreNode"

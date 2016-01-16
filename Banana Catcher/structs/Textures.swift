@@ -49,7 +49,12 @@ struct Textures {
     static let mushGreen: SKTexture = SKTexture(imageNamed: "greenmush")
     static let mushPurple: SKTexture = SKTexture(imageNamed: "purplemush")
     
+    static let next: SKTexture = SKTexture(imageNamed: "next")
     static let ok: SKTexture = SKTexture(imageNamed: "ok")
+    
+    static let purchase: SKTexture = SKTexture(imageNamed: "purchase")
+    static let restore: SKTexture = SKTexture(imageNamed: "restore")
+    static let back: SKTexture = SKTexture(imageNamed: "back")
     
     static let soundOn: SKTexture = SKTexture(imageNamed: "sound_on")
     static let soundOff: SKTexture = SKTexture(imageNamed: "sound_off")
