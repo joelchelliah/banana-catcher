@@ -29,7 +29,7 @@ class TouchHandler {
     }
     
     internal func gotoRating(node: SKNode) {
-        let appUrl = NSURL(string : "http://itunes.com/app/id1070905846")!
+        let appUrl = NSURL(string : "http://itunes.apple.com/us/app/banana-catcher/id1070905846")!
         
         buttonClick(node, forUrl: appUrl)
     }

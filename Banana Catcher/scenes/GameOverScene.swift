@@ -10,10 +10,10 @@ class GameOverScene: SKScene, GKGameCenterControllerDelegate, SpeechBubble  {
     override func didMoveToView(view: SKView) {
         touchHandler = GameOverTouchHandler(forScene: self)
         
+        updateHighScore()
+        
         props = GameOverProps.init(forScene: self)
         props.add()
-        
-        updateHighScore()
         
         musicPlayer.change("game_over")
         
