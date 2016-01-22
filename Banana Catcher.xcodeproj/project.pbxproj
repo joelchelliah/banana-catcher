@@ -341,8 +341,6 @@
 		A3A79F9C1BA6D32A003C1F32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3A79F9A1BA6D32A003C1F32 /* Main.storyboard */; };
 		A3A79F9E1BA6D32A003C1F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3A79F9D1BA6D32A003C1F32 /* Assets.xcassets */; };
 		A3A79FA11BA6D32A003C1F32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3A79F9F1BA6D32A003C1F32 /* LaunchScreen.storyboard */; };
-		A3A79FAC1BA6D32A003C1F32 /* Banana_CatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79FAB1BA6D32A003C1F32 /* Banana_CatcherTests.swift */; };
-		A3A79FB71BA6D32A003C1F32 /* Banana_CatcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79FB61BA6D32A003C1F32 /* Banana_CatcherUITests.swift */; };
 		A3A79FC51BA6D46A003C1F32 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79FC41BA6D46A003C1F32 /* MenuScene.swift */; };
 		A3A79FD31BA6DA61003C1F32 /* BananaRain.sks in Resources */ = {isa = PBXBuildFile; fileRef = A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */; };
 		A3A79FDA1BA6FE67003C1F32 /* BasketMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A79FD91BA6FE67003C1F32 /* BasketMan.swift */; };
@@ -407,23 +405,6 @@
 		A3FCCA191C4A45B500898765 /* restore.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FCCA161C4A45B500898765 /* restore.png */; };
 		A3FCCA1B1C4AA35700898765 /* shop.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FCCA1A1C4AA35700898765 /* shop.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A3A79FA81BA6D32A003C1F32 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A3A79F871BA6D32A003C1F32 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A3A79F8E1BA6D32A003C1F32;
-			remoteInfo = "Banana Catcher";
-		};
-		A3A79FB31BA6D32A003C1F32 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A3A79F871BA6D32A003C1F32 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A3A79F8E1BA6D32A003C1F32;
-			remoteInfo = "Banana Catcher";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A303AD511C39A0780001F4F5 /* splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_screen.png; path = images/icon/splash_screen.png; sourceTree = "<group>"; };
@@ -762,12 +743,6 @@
 		A3A79F9D1BA6D32A003C1F32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3A79FA01BA6D32A003C1F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3A79FA21BA6D32A003C1F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A3A79FA71BA6D32A003C1F32 /* Banana CatcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Banana CatcherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3A79FAB1BA6D32A003C1F32 /* Banana_CatcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banana_CatcherTests.swift; sourceTree = "<group>"; };
-		A3A79FAD1BA6D32A003C1F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A3A79FB21BA6D32A003C1F32 /* Banana CatcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Banana CatcherUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3A79FB61BA6D32A003C1F32 /* Banana_CatcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banana_CatcherUITests.swift; sourceTree = "<group>"; };
-		A3A79FB81BA6D32A003C1F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3A79FC41BA6D46A003C1F32 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		A3A79FD11BA6DA61003C1F32 /* BananaRain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BananaRain.sks; sourceTree = "<group>"; };
 		A3A79FD91BA6FE67003C1F32 /* BasketMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketMan.swift; sourceTree = "<group>"; };
@@ -839,20 +814,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A32394D91C3023C600CC1B89 /* iAd.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3A79FA41BA6D32A003C1F32 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3A79FAF1BA6D32A003C1F32 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1169,8 +1130,6 @@
 			children = (
 				A32394D81C3023C600CC1B89 /* iAd.framework */,
 				A3A79F911BA6D32A003C1F32 /* Banana Catcher */,
-				A3A79FAA1BA6D32A003C1F32 /* Banana CatcherTests */,
-				A3A79FB51BA6D32A003C1F32 /* Banana CatcherUITests */,
 				A3A79F901BA6D32A003C1F32 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1179,8 +1138,6 @@
 			isa = PBXGroup;
 			children = (
 				A3A79F8F1BA6D32A003C1F32 /* Banana Catcher.app */,
-				A3A79FA71BA6D32A003C1F32 /* Banana CatcherTests.xctest */,
-				A3A79FB21BA6D32A003C1F32 /* Banana CatcherUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1209,24 +1166,6 @@
 				A3A79FA21BA6D32A003C1F32 /* Info.plist */,
 			);
 			path = "Banana Catcher";
-			sourceTree = "<group>";
-		};
-		A3A79FAA1BA6D32A003C1F32 /* Banana CatcherTests */ = {
-			isa = PBXGroup;
-			children = (
-				A3A79FAB1BA6D32A003C1F32 /* Banana_CatcherTests.swift */,
-				A3A79FAD1BA6D32A003C1F32 /* Info.plist */,
-			);
-			path = "Banana CatcherTests";
-			sourceTree = "<group>";
-		};
-		A3A79FB51BA6D32A003C1F32 /* Banana CatcherUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A3A79FB61BA6D32A003C1F32 /* Banana_CatcherUITests.swift */,
-				A3A79FB81BA6D32A003C1F32 /* Info.plist */,
-			);
-			path = "Banana CatcherUITests";
 			sourceTree = "<group>";
 		};
 		A3A79FC81BA6D646003C1F32 /* images */ = {
@@ -1542,42 +1481,6 @@
 			productReference = A3A79F8F1BA6D32A003C1F32 /* Banana Catcher.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A3A79FA61BA6D32A003C1F32 /* Banana CatcherTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A3A79FBE1BA6D32A003C1F32 /* Build configuration list for PBXNativeTarget "Banana CatcherTests" */;
-			buildPhases = (
-				A3A79FA31BA6D32A003C1F32 /* Sources */,
-				A3A79FA41BA6D32A003C1F32 /* Frameworks */,
-				A3A79FA51BA6D32A003C1F32 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A3A79FA91BA6D32A003C1F32 /* PBXTargetDependency */,
-			);
-			name = "Banana CatcherTests";
-			productName = "Banana CatcherTests";
-			productReference = A3A79FA71BA6D32A003C1F32 /* Banana CatcherTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		A3A79FB11BA6D32A003C1F32 /* Banana CatcherUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A3A79FC11BA6D32A003C1F32 /* Build configuration list for PBXNativeTarget "Banana CatcherUITests" */;
-			buildPhases = (
-				A3A79FAE1BA6D32A003C1F32 /* Sources */,
-				A3A79FAF1BA6D32A003C1F32 /* Frameworks */,
-				A3A79FB01BA6D32A003C1F32 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A3A79FB41BA6D32A003C1F32 /* PBXTargetDependency */,
-			);
-			name = "Banana CatcherUITests";
-			productName = "Banana CatcherUITests";
-			productReference = A3A79FB21BA6D32A003C1F32 /* Banana CatcherUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1590,14 +1493,6 @@
 					A3A79F8E1BA6D32A003C1F32 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 9NQ2459H97;
-					};
-					A3A79FA61BA6D32A003C1F32 = {
-						CreatedOnToolsVersion = 7.1;
-						TestTargetID = A3A79F8E1BA6D32A003C1F32;
-					};
-					A3A79FB11BA6D32A003C1F32 = {
-						CreatedOnToolsVersion = 7.1;
-						TestTargetID = A3A79F8E1BA6D32A003C1F32;
 					};
 				};
 			};
@@ -1615,8 +1510,6 @@
 			projectRoot = "";
 			targets = (
 				A3A79F8E1BA6D32A003C1F32 /* Banana Catcher */,
-				A3A79FA61BA6D32A003C1F32 /* Banana CatcherTests */,
-				A3A79FB11BA6D32A003C1F32 /* Banana CatcherUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1957,20 +1850,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3A79FA51BA6D32A003C1F32 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3A79FB01BA6D32A003C1F32 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2049,36 +1928,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3A79FA31BA6D32A003C1F32 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A3A79FAC1BA6D32A003C1F32 /* Banana_CatcherTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3A79FAE1BA6D32A003C1F32 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A3A79FB71BA6D32A003C1F32 /* Banana_CatcherUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A3A79FA91BA6D32A003C1F32 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A3A79F8E1BA6D32A003C1F32 /* Banana Catcher */;
-			targetProxy = A3A79FA81BA6D32A003C1F32 /* PBXContainerItemProxy */;
-		};
-		A3A79FB41BA6D32A003C1F32 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A3A79F8E1BA6D32A003C1F32 /* Banana Catcher */;
-			targetProxy = A3A79FB31BA6D32A003C1F32 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A3A79F9A1BA6D32A003C1F32 /* Main.storyboard */ = {
@@ -2211,56 +2061,6 @@
 			};
 			name = Release;
 		};
-		A3A79FBF1BA6D32A003C1F32 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = "Banana CatcherTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cookiemagik.Banana-CatcherTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Banana Catcher.app/Banana Catcher";
-			};
-			name = Debug;
-		};
-		A3A79FC01BA6D32A003C1F32 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "Banana CatcherTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cookiemagik.Banana-CatcherTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Banana Catcher.app/Banana Catcher";
-			};
-			name = Release;
-		};
-		A3A79FC21BA6D32A003C1F32 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = "Banana CatcherUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cookiemagik.Banana-CatcherUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Banana Catcher";
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		A3A79FC31BA6D32A003C1F32 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "Banana CatcherUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cookiemagik.Banana-CatcherUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Banana Catcher";
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2278,24 +2078,6 @@
 			buildConfigurations = (
 				A3A79FBC1BA6D32A003C1F32 /* Debug */,
 				A3A79FBD1BA6D32A003C1F32 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A3A79FBE1BA6D32A003C1F32 /* Build configuration list for PBXNativeTarget "Banana CatcherTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A3A79FBF1BA6D32A003C1F32 /* Debug */,
-				A3A79FC01BA6D32A003C1F32 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A3A79FC11BA6D32A003C1F32 /* Build configuration list for PBXNativeTarget "Banana CatcherUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A3A79FC21BA6D32A003C1F32 /* Debug */,
-				A3A79FC31BA6D32A003C1F32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
