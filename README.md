@@ -10,7 +10,7 @@ This is touch-based game for the iPhone, written in Xcode and Swift 2! It curren
 
 
 ##### It's also my very first app!
-After almost 6 months of coding, my hobby project of 2015 is finally finished, and out on the App Store. This has certainly been a great learning experience with it's fare share of fun and frustration... and of course, finally a great sense of achievement to have my very own app available on the App Store for everyone to try out!
+After almost 6 months of coding, my hobby project of 2015 is finally finished, and out on the App Store. This has certainly been a great learning experience with it's fare share of fun and frustration... and of course, finally, a great sense of achievement to have my very own app available on the App Store for everyone to try out!
 
 ------
 
@@ -22,7 +22,7 @@ I am very excited (and anxious) to see what people think. So if you do try out m
 ------
 
 ### :banana: Sharing my code
-When I started this project I knew next to nothing about coding in Swift (let alone creating games in this new language), and I would have appreciated having more examples to learn from. So with that in mind, I'm leaving all of my code here to serve as some form of reference or learning material for anyone in the same shoes I was in a few months back. Feel free to look through and play around with it as much as you want. I hope it can be useful as a small example. (Please don't plagarize :sweat_smile:)
+When I started this project I knew next to nothing about coding in Swift (let alone creating games in this new language), and I would have appreciated having similar examples to learn from. So with that in mind, I'm leaving all of my code here, to serve as some form of reference or learning material for anyone in the same shoes that I was in a few months back. Feel free to look through the code and play around with it as much as you want. I hope it can be useful as a small example. (Please don't plagarize :sweat_smile:)
 
 
 
