@@ -10,14 +10,14 @@ This is simple, touch-based game for the iPhone, written in Xcode and Swift 2! I
 
 
 ##### It's also my very first app!
-After almost 6 months of coding, my hobby project of 2015 is finally finished, and out on the App Store. This has certainly been a great learning experience with it's fare share of fun and frustration... and of course, finally, a great sense of achievement to have my very own app available on the App Store for everyone to try out! I basically learned the Swift programming language through the creation of this app, and I must admit that this has been one of the most enjoyable learning experiences of my life! :smile:
+After almost 6 months of coding, my hobby project of 2015 is finally finished, and out on the App Store. This has certainly been an amazing learning experience with it's fair share of fun and frustration... and of course, finally, a great sense of achievement to have my very own app available on the App Store for everyone to try out! I basically learned the Swift programming language through the creation of this app, and I must admit that this has been one of the most enjoyable learning experiences of my life! :smile:
 
 ------
 
 ### :banana: Go try it out
 **iTunes link:** https://itunes.apple.com/us/app/banana-catcher/id1070905846
 
-I am very excited (and anxious) to see what people think. So if you do try it out, I would love to hear what you think. Any form of feedback is greatly appreciated. If you have any questions or comments about the game, feel free to leave me a review or comment on iTunes / App Store, or shoot me an email at: banana.catcher.feedback@gmail.com
+I am very excited (and anxious) to see what people think, so if you do try it out, I would love to hear from you! Any form of feedback is greatly appreciated. If you have any questions or thoughts about the game, feel free to leave me a review or comment on iTunes / App Store, or shoot me an email at: banana.catcher.feedback@gmail.com
 
 ------
 
@@ -27,7 +27,7 @@ Here's a small animated preview.
 
 [![Animated preview](http://orig01.deviantart.net/c972/f/2016/027/9/7/banana_catcher_by_cookiemagik-d9plg3l.gif)](http://cookiemagik.deviantart.com/art/Banana-catcher-587186625)
 
-Played around with some of the sprites I used in the game, and tried to recreate the feel of the gameplay through frame-by-frame animation :monkey:
+Played around with some of the sprites I used in the game, and tried to recreate the feel of the gameplay through some frame-by-frame animation. :monkey:
 
 ------
 
