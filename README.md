@@ -38,6 +38,11 @@ And of course, I would appreciate advice, critique, random comments, and/or any 
 
 ------
 
+### :banana: Sharing my experience
+I've written a short blog post, where I go through my thoughts and experiences around making this game. Here I give a brief overview of the challenges that I found the most fun and interesting during the whole process. You can [find it here, on Bekk Open](http://open.bekk.no/a-swift-run-through-making-an-ios-game).
+
+------
+
 ### :banana: Thank you!
 
 [![Hai!](http://orig14.deviantart.net/86cb/f/2016/008/f/4/basket_man_avatar_by_cookiemagik-d9n76kg.gif)](http://cookiemagik.deviantart.com/art/Basket-Man-Avatar-583161856) :banana: :banana: ![Mmm... potassium](http://i.imgur.com/FTxVhxP.png "Mmm... potassium") :banana: :banana: [![Ook eeek!](http://orig00.deviantart.net/03ad/f/2016/005/1/7/evil_monkey_avatar_by_cookiemagik-d9mukke.gif)](http://cookiemagik.deviantart.com/art/Evil-Monkey-Avatar-582573470)
